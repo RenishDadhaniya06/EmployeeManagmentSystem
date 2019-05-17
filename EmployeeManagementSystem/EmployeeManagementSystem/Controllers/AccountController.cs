@@ -76,21 +76,35 @@ namespace EmployeeManagementSystem.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var user = await SignInManager.UserManager.FindAsync(model.Email, model.Password);
+
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                var identity = await UserManager.CreateIdentityAsync(
+               user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                GetAuthenticationManager().SignIn(identity);
+                return Redirect(GetRedirectUrl(returnUrl));
+            }
+            else
+            {
+                return View();
             }
         }
+        private IAuthenticationManager GetAuthenticationManager()
+        {
+            var ctx = Request.GetOwinContext();
+            return ctx.Authentication;
+        }
+        private string GetRedirectUrl(string returnUrl)
+        {
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+            {
+                return Url.Action("index", "home");
+            }
 
+            return returnUrl;
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -388,7 +402,7 @@ namespace EmployeeManagementSystem.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
