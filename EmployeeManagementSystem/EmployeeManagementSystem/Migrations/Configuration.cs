@@ -12,7 +12,6 @@ namespace EmployeeManagementSystem.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-
         protected override void Seed(EmployeeManagementSystem.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.

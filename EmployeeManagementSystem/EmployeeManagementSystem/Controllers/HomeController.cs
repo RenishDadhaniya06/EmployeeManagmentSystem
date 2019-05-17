@@ -10,6 +10,10 @@ namespace EmployeeManagementSystem.Controllers
     {
         public ActionResult Index()
         {
+            TempData["sucess"] = "qdq cqwd  qddwqed ";
+            TempData["error"] = " we wewqe   eqwqwe ";
+            TempData["info"] = "qwe qwe qwe e";
+            TempData["warning"] = "q ewq ";
             return View();
         }
 

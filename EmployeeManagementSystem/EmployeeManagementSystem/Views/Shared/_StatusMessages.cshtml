@@ -1,0 +1,19 @@
+﻿<link href="~/Content/toastr.min.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/custom")
+<script type='text/javascript'>
+    debugger
+    //Alerts your TempData value (you could also use the Session or your rno value here
+         var a = '@(TempData["sucess"])';
+
+    if (a != '')
+        toastify("success", a);
+    var b = '@(TempData["error"])';
+    if (b != '')
+        toastify("error", b);
+var c = '@(TempData["info"])';
+    if (c != '')
+        toastify("info", c);
+        var c = '@(TempData["warning"])';
+    if (c != '')
+        toastify("warning", c);
+</script>
