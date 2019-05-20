@@ -296,6 +296,7 @@
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_StatusMessages.cshtml" />
+    <Content Include="Scripts\jquery1.10.0.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
