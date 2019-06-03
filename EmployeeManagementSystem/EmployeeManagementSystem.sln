@@ -4,6 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementSystem", "EmployeeManagementSystem\EmployeeManagementSystem.csproj", "{205A569E-BD49-465A-985E-6819DD164797}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94D1864C-5F0B-4F14-848A-FE673BD03A46} = {94D1864C-5F0B-4F14-848A-FE673BD03A46}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeMangmentSystem.Resources", "EmployeeMangmentSystem.Resources\EmployeeMangmentSystem.Resources.csproj", "{94D1864C-5F0B-4F14-848A-FE673BD03A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{5F082497-7BC3-4FF9-8E8C-53BD6FE47CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeMangmentSystem.Repository", "EmployeeMangmentSystem.Repository\EmployeeMangmentSystem.Repository.csproj", "{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeMangmentSystem.Services", "EmployeeMangmentSystem.Services\EmployeeMangmentSystem.Services.csproj", "{9DF519B3-FCF0-4E3E-84CC-EDA58D380C28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,22 @@ Global
 		{205A569E-BD49-465A-985E-6819DD164797}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{205A569E-BD49-465A-985E-6819DD164797}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{205A569E-BD49-465A-985E-6819DD164797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94D1864C-5F0B-4F14-848A-FE673BD03A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94D1864C-5F0B-4F14-848A-FE673BD03A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94D1864C-5F0B-4F14-848A-FE673BD03A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94D1864C-5F0B-4F14-848A-FE673BD03A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F082497-7BC3-4FF9-8E8C-53BD6FE47CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F082497-7BC3-4FF9-8E8C-53BD6FE47CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F082497-7BC3-4FF9-8E8C-53BD6FE47CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F082497-7BC3-4FF9-8E8C-53BD6FE47CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF519B3-FCF0-4E3E-84CC-EDA58D380C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF519B3-FCF0-4E3E-84CC-EDA58D380C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF519B3-FCF0-4E3E-84CC-EDA58D380C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF519B3-FCF0-4E3E-84CC-EDA58D380C28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

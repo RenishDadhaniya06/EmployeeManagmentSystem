@@ -1,6 +1,8 @@
-﻿@using EmployeeManagementSystem.Models
+﻿@using EmployeeManagementSystem.Models 
 @model LoginViewModel
 @{
+    /**/
+
     Layout = null;
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -8,12 +10,19 @@
 <link href="~/Content/nprogress.css" rel="stylesheet" />
 <link href="~/Libs/Gentelella/css/custom.min.css" rel="stylesheet" />
 
+
 <body class="login">
     <div>
+    
         <a class="hiddenanchor" id="signin"></a>
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
+                    @if (!string.IsNullOrEmpty(ViewBag.message))
+                    {
+                        <p class="text-success">@ViewBag.message</p>
+                    }
+
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
