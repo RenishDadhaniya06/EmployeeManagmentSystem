@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<Customer>("api/Home/GetCustomers");
+            //var data = await APIHelpers.GetAsync<Customer>("api/Home/GetCustomers");
             return View();
         }
 

@@ -5,15 +5,24 @@
     //Alerts your TempData value (you could also use the Session or your rno value here
          var a = '@(TempData["sucess"])';
 
-    if (a != '')
+    if (a != '') {
         toastify("success", a);
-    var b = '@(TempData["error"])';
-    if (b != '')
-        toastify("error", b);
-var c = '@(TempData["info"])';
-    if (c != '')
+        @TempData["sucess"] = "";
+    }
+    var b = '@(TempData["error"])'; 
+    if (b != '') {
+            toastify("error", b);
+        @TempData["error"] = "";
+    }
+    var c = '@(TempData["info"])'; 
+    if (c != '') { 
         toastify("info", c);
-        var c = '@(TempData["warning"])';
-    if (c != '')
+        TempData["info"] = "";
+    }
+    
+    var c = '@(TempData["warning"])';
+    if (c != '') {
         toastify("warning", c);
+        @TempData["warning"] = "";
+    }
 </script>

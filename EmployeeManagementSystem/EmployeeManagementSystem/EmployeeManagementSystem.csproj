@@ -221,8 +221,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
+    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +232,14 @@
     <Compile Include="Migrations\201905271316024_Renish.cs" />
     <Compile Include="Migrations\201905271316024_Renish.Designer.cs">
       <DependentUpon>201905271316024_Renish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906070915207_d.cs" />
+    <Compile Include="Migrations\201906070915207_d.Designer.cs">
+      <DependentUpon>201906070915207_d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906071307418_s.cs" />
+    <Compile Include="Migrations\201906071307418_s.Designer.cs">
+      <DependentUpon>201906071307418_s.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -369,6 +379,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,6 +395,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905271316024_Renish.resx">
       <DependentUpon>201905271316024_Renish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906070915207_d.resx">
+      <DependentUpon>201906070915207_d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906071307418_s.resx">
+      <DependentUpon>201906071307418_s.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -61,6 +61,15 @@ namespace EmployeeMangmentSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Active.
+        /// </summary>
+        public static string lblIsActive {
+            get {
+                return ResourceManager.GetString("lblIsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string lblPassword {

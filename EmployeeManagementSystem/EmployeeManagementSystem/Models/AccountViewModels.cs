@@ -90,6 +90,11 @@ namespace EmployeeManagementSystem.Models
         [DataType(DataType.Text)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        public bool IsSuperAdmin { get; set; }
+
+        [Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
+        public bool IsActive { get; set; } 
     }
 
     public class ResetPasswordViewModel
