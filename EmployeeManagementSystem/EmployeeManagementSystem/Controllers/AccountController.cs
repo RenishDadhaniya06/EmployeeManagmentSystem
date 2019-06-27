@@ -1,14 +1,11 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿using EmployeeManagementSystem.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using EmployeeManagementSystem.Models;
+using System;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
@@ -84,7 +81,7 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     var ctx = Request.GetOwinContext();
                     var identity = await UserManager.CreateIdentityAsync(
-                user, DefaultAuthenticationTypes.ApplicationCookie);
+                    user, DefaultAuthenticationTypes.ApplicationCookie);
                     var authManager = ctx.Authentication;
                     authManager.SignIn(identity);
                     TempData["sucess"] = "Sucessfully Login.";
