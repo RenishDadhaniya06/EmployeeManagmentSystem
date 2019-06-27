@@ -39,15 +39,7 @@ namespace EmployeeManagementSystem.Models
         {
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
-
-            modelBuilder.Entity<IdentityUser>().ToTable("Users");
-            modelBuilder.Entity<ApplicationUser>().ToTable("UserDetails");
-            modelBuilder.Entity<IdentityRole>().ToTable("Role");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
-        }
+      
 
         public static ApplicationDbContext Create()
         {

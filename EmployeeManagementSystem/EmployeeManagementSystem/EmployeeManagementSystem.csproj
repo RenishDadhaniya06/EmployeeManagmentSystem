@@ -229,17 +229,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CommonHelper.cs" />
-    <Compile Include="Migrations\201905271316024_Renish.cs" />
-    <Compile Include="Migrations\201905271316024_Renish.Designer.cs">
-      <DependentUpon>201905271316024_Renish.cs</DependentUpon>
+    <Compile Include="Migrations\201906270640275_4.cs" />
+    <Compile Include="Migrations\201906270640275_4.Designer.cs">
+      <DependentUpon>201906270640275_4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906070915207_d.cs" />
-    <Compile Include="Migrations\201906070915207_d.Designer.cs">
-      <DependentUpon>201906070915207_d.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906071307418_s.cs" />
-    <Compile Include="Migrations\201906071307418_s.Designer.cs">
-      <DependentUpon>201906071307418_s.cs</DependentUpon>
+    <Compile Include="Migrations\201906270643147_66.cs" />
+    <Compile Include="Migrations\201906270643147_66.Designer.cs">
+      <DependentUpon>201906270643147_66.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -393,17 +389,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905271316024_Renish.resx">
-      <DependentUpon>201905271316024_Renish.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906070915207_d.resx">
-      <DependentUpon>201906070915207_d.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906071307418_s.resx">
-      <DependentUpon>201906071307418_s.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EmployeeMangmentSystem.Repository\EmployeeMangmentSystem.Repository.csproj">
       <Project>{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}</Project>
       <Name>EmployeeMangmentSystem.Repository</Name>
@@ -426,6 +411,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906270640275_4.resx">
+      <DependentUpon>201906270640275_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906270643147_66.resx">
+      <DependentUpon>201906270643147_66.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

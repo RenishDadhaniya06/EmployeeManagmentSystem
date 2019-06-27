@@ -7,13 +7,13 @@ namespace EmployeeManagementSystem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Renish : IMigrationMetadata
+    public sealed partial class _4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Renish));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905271316024_Renish"; }
+            get { return "201906270640275_4"; }
         }
         
         string IMigrationMetadata.Source
