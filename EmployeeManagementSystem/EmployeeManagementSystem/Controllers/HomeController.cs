@@ -1,10 +1,6 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
 using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
@@ -15,7 +11,7 @@ namespace EmployeeManagementSystem.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            //var data = await APIHelpers.GetAsync<Customer>("api/Home/GetCustomers");
+           var data = await APIHelpers.GetAsync<Customer>("api/Home/GetCustomers");
             return View();
         }
 
