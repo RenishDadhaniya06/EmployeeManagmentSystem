@@ -48,10 +48,10 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                <a class="btn btn-info glyphicon glyphicon-edit"></a>
+                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","User",new { id = @item.Id})"></a>
             </td>
             <td>
-                <a class="btn btn-danger glyphicon glyphicon-trash"></a>
+                <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete","User",new { id = @item.Id})"></a>
             </td>
         </tr>
         }

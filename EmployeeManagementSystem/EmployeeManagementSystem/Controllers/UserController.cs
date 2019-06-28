@@ -1,11 +1,10 @@
 ﻿using EmployeeManagementSystem.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
@@ -54,15 +53,6 @@ namespace EmployeeManagementSystem.Controllers
                     UserContext.Users.Add(user);
                     await UserContext.SaveChangesAsync();
                     return RedirectToAction("Index");
-                    //if (result.Succeeded)
-                    //{
-                    //    ViewBag.message = "Registered Successfully";
-                    //    return RedirectToAction("Index");
-                    //}
-                    //else
-                    //{
-                    //    return HttpNotFound();
-                    //}
                 }
                 else
                 {
@@ -76,41 +66,100 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<ActionResult> Edit(string id)
         {
-            return View("Create");
+            try
+            {
+                if (id == null)
+                {
+                    return HttpNotFound();
+                }
+                var UserContext = new ApplicationDbContext();
+                var user = UserContext.Users.Where(m => m.Id == id).SingleOrDefault();
+                RegisterViewModel model = new RegisterViewModel { Id = user.Id,FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, IsActive = user.IsActive };
+                //return View("Create", user);
+                return View(model);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(RegisterViewModel model)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                ModelState.Remove("Password");
+                ModelState.Remove("ConfirmPassword");
+                ModelState.Remove("IsSuperAdmin");
+                if (ModelState.IsValid)
+                {
+                    var UserContext = new ApplicationDbContext();
+                    //var user = new ApplicationUser { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName, IsActive = model.IsActive, IsSuperAdmin = model.IsSuperAdmin };
+                    var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                    var manager = new UserManager<ApplicationUser>(store);
+                    var currentuser = manager.FindById(model.Id);
+                    currentuser.FirstName = model.FirstName;
+                    currentuser.LastName = model.LastName;
+                    currentuser.Email = model.Email;
+                    currentuser.IsActive = model.IsActive;
+                    await manager.UpdateAsync(currentuser);
+                    await store.Context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
         }
 
         // GET: User/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            //return View();
+            try
+            {
+                if (id == null)
+                {
+                    return HttpNotFound();
+                }
+                var UserContext = new ApplicationDbContext();
+                var user = UserContext.Users.Where(m => m.Id == id).SingleOrDefault();
+                RegisterViewModel model = new RegisterViewModel { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, IsActive = user.IsActive };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         // POST: User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost,ActionName("Delete")]
+        public async Task<ActionResult> DeleteConfirm(string id)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                var UserContext = new ApplicationDbContext();
+                var user = UserContext.Users.Where(m => m.Id == id).SingleOrDefault();
+                UserContext.Users.Remove(user);
+                await UserContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             catch
