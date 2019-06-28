@@ -12,43 +12,11 @@ namespace EmployeeManagementSystem.Controllers
 {
     public class UserController : Controller
     {
-
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-
+        
         // GET: User
         public UserController()
         {
 
-        }
-
-        public UserController(ApplicationUserManager userManager,ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
         }
 
         public ActionResult Index()
@@ -82,16 +50,19 @@ namespace EmployeeManagementSystem.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                        ViewBag.message = "Regestered Sucessfully Please Try To Login Now.";
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        return HttpNotFound();
-                    }
+                    var UserContext = new ApplicationDbContext();
+                    UserContext.Users.Add(user);
+                    await UserContext.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                    //if (result.Succeeded)
+                    //{
+                    //    ViewBag.message = "Registered Successfully";
+                    //    return RedirectToAction("Index");
+                    //}
+                    //else
+                    //{
+                    //    return HttpNotFound();
+                    //}
                 }
                 else
                 {
