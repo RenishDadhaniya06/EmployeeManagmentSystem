@@ -132,8 +132,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email,IsActive = true,IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                IdentityResult result = await RegiaterUser(model);
                 if (result.Succeeded)
                 {
                     ViewBag.message = "Regestered Sucessfully Please Try To Login Now.";
@@ -144,6 +143,34 @@ namespace EmployeeManagementSystem.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterUser(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityResult result = await RegiaterUser(model);
+                if (result.Succeeded)
+                {
+                    TempData["sucess"] = "Regestered Sucessfully Please Try To Login Now.";
+                    return RedirectToAction("CreateSucess","User");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            //return View(model);
+            return RedirectToAction("Index", "User");
+        }
+
+        private async Task<IdentityResult> RegiaterUser(RegisterViewModel model)
+        {
+            var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+            var result = await UserManager.CreateAsync(user, model.Password);
+            return result;
         }
 
 

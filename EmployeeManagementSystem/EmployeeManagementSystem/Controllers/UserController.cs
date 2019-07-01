@@ -20,13 +20,24 @@ namespace EmployeeManagementSystem.Controllers
 
         public ActionResult Index()
         {
-            var currentUser = Guid.Parse(User.Identity.GetUserId());
-            var UsersContext = new ApplicationDbContext();
-            List<ApplicationUser> data = UsersContext.Users.Where(_=>_.IsSuperAdmin== false && _.ParentUserID == currentUser).ToList();
-
-            return View(data.Where(_=>_.IsSuperAdmin == false));
+            return View(GetUsers());
         }
 
+        private List<ApplicationUser> GetUsers()
+        {
+            var currentUser = Guid.Parse(User.Identity.GetUserId());
+            var UsersContext = new ApplicationDbContext();
+            List<ApplicationUser> data = UsersContext.Users.Where(_ => _.IsSuperAdmin == false && _.ParentUserID == currentUser).ToList();
+
+            return data;
+        }
+
+        public ActionResult CreateSucess()
+        {
+            TempData["sucess"] = "Regestered Sucessfully Please Try To Login Now.";
+
+            return View("Index",GetUsers());
+        }
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
