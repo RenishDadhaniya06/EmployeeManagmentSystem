@@ -1,5 +1,7 @@
 ﻿<link href="~/Content/toastr.min.css" rel="stylesheet" />
-@Scripts.Render("~/bundles/custom")
+<script src="~/Scripts/custom.js"></script>
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/script.js"></script>
 <script type='text/javascript'>
 
     //Alerts your TempData value (you could also use the Session or your rno value here
@@ -7,22 +9,18 @@
 
     if (a != '') {
         toastify("success", a);
-        @TempData["sucess"] = "";
     }
-    var b = '@(TempData["error"])'; 
+    var b = '@(TempData["error"])';
     if (b != '') {
             toastify("error", b);
-        @TempData["error"] = "";
     }
-    var c = '@(TempData["info"])'; 
-    if (c != '') { 
+    var c = '@(TempData["info"])';
+    if (c != '') {
         toastify("info", c);
-        TempData["info"] = "";
     }
-    
+
     var c = '@(TempData["warning"])';
     if (c != '') {
         toastify("warning", c);
-        @TempData["warning"] = "";
     }
 </script>

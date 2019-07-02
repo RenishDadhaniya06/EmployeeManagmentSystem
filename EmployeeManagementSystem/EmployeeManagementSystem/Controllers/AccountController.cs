@@ -148,7 +148,7 @@ namespace EmployeeManagementSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterUser(RegisterViewModel model)
+        public async Task<ActionResult> Create(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -158,12 +158,14 @@ namespace EmployeeManagementSystem.Controllers
                     TempData["sucess"] = "Regestered Sucessfully Please Try To Login Now.";
                     return RedirectToAction("CreateSucess","User");
                 }
+                else{
+                }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            //return View(model);
-            return RedirectToAction("Index", "User");
+            return View(model);
+            //return RedirectToAction("Index", "User");
         }
 
         private async Task<IdentityResult> RegiaterUser(RegisterViewModel model)
