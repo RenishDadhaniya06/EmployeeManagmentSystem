@@ -217,7 +217,8 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // POST: User/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost,ActionName("Delete")]
+        [HttpGet]
         public async Task<ActionResult> DeleteConfirm(string id)
         {
             try
@@ -228,7 +229,7 @@ namespace EmployeeManagementSystem.Controllers
                 await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

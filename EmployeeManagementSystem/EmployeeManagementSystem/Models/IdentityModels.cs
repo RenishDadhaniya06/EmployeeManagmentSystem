@@ -30,6 +30,8 @@ namespace EmployeeManagementSystem.Models
 
         [Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
         public bool IsActive { get; set; }
+
+        //public string RoleId { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
