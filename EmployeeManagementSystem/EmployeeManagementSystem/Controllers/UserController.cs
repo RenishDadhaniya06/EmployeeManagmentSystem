@@ -1,6 +1,7 @@
 ﻿using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            ViewBag.Roles = _applicationDbContext.Roles.ToList();
             return View();
         }
 
@@ -79,10 +81,15 @@ namespace EmployeeManagementSystem.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = model.UserStatus };
+                    var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = model.UserStatus,RoleId = model.RoleId };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
+                        _applicationDbContext.UserRoles.Add(new IdentityUserRole<string>()
+                        {
+                            UserId = model.Id,
+                        RoleId = model.RoleId
+                        });
                         TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");
                     }

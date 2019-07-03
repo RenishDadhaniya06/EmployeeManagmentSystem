@@ -33,7 +33,7 @@ namespace EmployeeManagementSystem.Models
 
         public Status UserStatus { get; set; }
 
-        //public string RoleId { get; set; }
+        public string RoleId { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
