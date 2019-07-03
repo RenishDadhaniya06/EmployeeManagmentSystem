@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -42,36 +43,25 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                ////ModelState.Remove("Id");
+                ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
-                    if(role.Id == null)
-                    {
                         role.Id = Convert.ToString(Guid.NewGuid());
                         appcontext.Roles.Add(role);
                         await appcontext.SaveChangesAsync();
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        var store = new RoleStore<IdentityRole>(appcontext);
-                        var manager = new RoleManager<IdentityRole>(store);
-                        var data = manager.Roles.Where(m => m.Id == role.Id).SingleOrDefault();
-                        data.Name = role.Name;
-                        await manager.UpdateAsync(data);
-                        await appcontext.SaveChangesAsync();
-                        return RedirectToAction("Index");
-                    }
-                    
+                    TempData["sucess"] = CommonResources.create;
+                    return RedirectToAction("Index");
+                                        
                 }
                 else
                 {
-                    return HttpNotFound();
+                    TempData["error"] = CommonResources.error;
+                    return View(role);
                 }
             }
             catch (Exception ex)
             {
-
+                TempData["error"] = CommonResources.error;
                 throw;
             }
         }
@@ -88,11 +78,61 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     return HttpNotFound();
                 }
-                return View("Post", model);
+                RoleViewModel data = new RoleViewModel();
+                data.Id = model.Id;
+                data.Name = model.Name;
+                return View(model);
             }
             catch (Exception ex)
             {
 
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(string id,[Bind] IdentityRole role)
+        {
+            try
+            {
+                var store = new RoleStore<IdentityRole>(appcontext);
+                var manager = new RoleManager<IdentityRole>(store);
+                var data = manager.Roles.Where(m => m.Id == role.Id).SingleOrDefault();
+                data.Name = role.Name;
+                await manager.UpdateAsync(data);
+                await appcontext.SaveChangesAsync();
+                TempData["sucess"] = CommonResources.update;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = CommonResources.error;
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> DeleteConfirm(string id)
+        {
+            try
+            {
+                if (id == null)
+                    return HttpNotFound();
+                var data = appcontext.Roles.Where(m => m.Id == id).SingleOrDefault();
+                if(data == null)
+                {
+                    return HttpNotFound();
+                }
+                appcontext.Roles.Remove(data);
+                await appcontext.SaveChangesAsync();
+                TempData["sucess"] = CommonResources.delete;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = CommonResources.error;
                 throw;
             }
         }
