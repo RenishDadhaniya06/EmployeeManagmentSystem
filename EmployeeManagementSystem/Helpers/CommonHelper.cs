@@ -11,9 +11,9 @@ namespace Helpers
 
         public static string ApiURL = "http://localhost:56853/";
 
-        public static string Email = "";
+        public static string Email = "Dhaval.Albiorix@gmail.com";
 
-        public static string PWD = "";
+        public static string PWD = "Dhaval@Albiorix";
 
         public static void SendMail(string emailId, string subject,string body)
         {
@@ -28,7 +28,7 @@ namespace Helpers
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
+                UseDefaultCredentials = true,
                 Credentials = new NetworkCredential(fromMail.Address, PWD)
 
             };

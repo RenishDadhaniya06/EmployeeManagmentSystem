@@ -96,12 +96,22 @@ namespace EmployeeManagementSystem.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        public Status UserStatus { get; set; }
+
         public bool IsSuperAdmin { get; set; }
 
         public string RoleId { get; set; }
 
         [Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
         public bool IsActive { get; set; } 
+    }
+
+    public enum Status
+    {
+        Active = 0,
+        InActive = 1,
+        Suspended = 2,
+        Block = 3
     }
 
     public class RoleViewModel

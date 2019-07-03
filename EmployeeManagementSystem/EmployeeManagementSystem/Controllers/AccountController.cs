@@ -4,8 +4,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -80,7 +78,7 @@ namespace EmployeeManagementSystem.Controllers
                 //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
                 var user = await SignInManager.UserManager.FindAsync(model.Email, model.Password);
 
-                if (user != null)
+                if (user != null && user.UserStatus == Status.Active)
                 {
                     var ctx = Request.GetOwinContext();
                     var identity = await UserManager.CreateIdentityAsync(
@@ -138,7 +136,7 @@ namespace EmployeeManagementSystem.Controllers
                 IdentityResult result = await RegiaterUser(model);
                 if (result.Succeeded)
                 {
-                    ViewBag.message = "Regestered Sucessfully Please Try To Login Now.";
+                    ViewBag.message = "Registered Sucessfully Please Try To Login Now.";
 
                     return View("Login");
                 }
@@ -159,7 +157,7 @@ namespace EmployeeManagementSystem.Controllers
                 IdentityResult result = await RegiaterUser(model);
                 if (result.Succeeded)
                 {
-                    TempData["sucess"] = "Regestered Sucessfully Please Try To Login Now.";
+                    TempData["sucess"] = "Registered Sucessfully Please Try To Login Now.";
                     return RedirectToAction("CreateSucess", "User");
                 }
                 else
@@ -175,7 +173,7 @@ namespace EmployeeManagementSystem.Controllers
 
         private async Task<IdentityResult> RegiaterUser(RegisterViewModel model)
         {
-            var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+            var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = (Status)Status.InActive };
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -230,7 +228,24 @@ namespace EmployeeManagementSystem.Controllers
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            //return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            if (result.Succeeded)
+            {
+                var data = await UserManager.FindByIdAsync(userId);
+                //data.UserStatus = Status.Active;
+                data.UserStatus = (Status)Status.Active;
+                var tempresult = await UserManager.UpdateAsync(data);
+                if (tempresult.Succeeded)
+                {
+                    ApplicationDbContext context = new ApplicationDbContext();
+                    await context.SaveChangesAsync();
+                    return View("ConfirmEmail");
+                }
+                
+            }
+            return View();
+            
+
         }
 
         [AllowAnonymous]

@@ -1,9 +1,7 @@
 ﻿using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +79,7 @@ namespace EmployeeManagementSystem.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+                    var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = model.UserStatus };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -170,6 +168,7 @@ namespace EmployeeManagementSystem.Controllers
                     currentuser.LastName = model.LastName;
                     currentuser.Email = model.Email;
                     currentuser.IsActive = model.IsActive;
+                    currentuser.UserStatus = model.UserStatus;
                     var data = await UserManager.UpdateAsync(currentuser);
                     //await _applicationDbContext.SaveChangesAsync();
                     if (data.Succeeded)

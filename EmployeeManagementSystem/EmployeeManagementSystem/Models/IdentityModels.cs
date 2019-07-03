@@ -31,6 +31,8 @@ namespace EmployeeManagementSystem.Models
         [Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
         public bool IsActive { get; set; }
 
+        public Status UserStatus { get; set; }
+
         //public string RoleId { get; set; }
     }
 
