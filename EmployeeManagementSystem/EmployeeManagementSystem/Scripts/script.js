@@ -2,7 +2,7 @@
 
 function toastify(type, msg) {
 
-    debugger
+    //debugger
         toastr.options = {
             "closeButton": true,
             "debug": false,

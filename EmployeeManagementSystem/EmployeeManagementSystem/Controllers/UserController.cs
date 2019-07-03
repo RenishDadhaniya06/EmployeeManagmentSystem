@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -56,7 +57,7 @@ namespace EmployeeManagementSystem.Controllers
 
         public ActionResult CreateSucess()
         {
-            TempData["sucess"] = "User Added Sucessfully.";
+            TempData["sucess"] = CommonResources.create;
             return View("Index", GetUsers());
         }
         // GET: User/Details/5
@@ -84,7 +85,7 @@ namespace EmployeeManagementSystem.Controllers
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        TempData["sucess"] = "User Added Sucessfully.";
+                        TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");
                     }
                     else
@@ -96,13 +97,13 @@ namespace EmployeeManagementSystem.Controllers
                 }
                 else
                 {
-                    TempData["error"] = "Error Occured While Processing";
+                    TempData["error"] = CommonResources.error;
                     return View(model);
                 }
             }
             catch
             {
-                TempData["error"] = "Error Occured While Processing";
+                TempData["error"] = CommonResources.error;
                 return View();
             }
         }
@@ -173,7 +174,7 @@ namespace EmployeeManagementSystem.Controllers
                     //await _applicationDbContext.SaveChangesAsync();
                     if (data.Succeeded)
                     {
-                        TempData["sucess"] = "User Updated Sucessfully.";
+                        TempData["sucess"] = CommonResources.update;
                         return RedirectToAction("Index");
                     }
                     else
@@ -184,14 +185,14 @@ namespace EmployeeManagementSystem.Controllers
                 }
                 else
                 {
-                    TempData["error"] = "Error Occured While Processing";
+                    TempData["error"] = CommonResources.error;
                     return View(model);
                 }
 
             }
             catch (Exception ex)
             {
-                TempData["error"] = "Error Occured While Processing";
+                TempData["error"] = CommonResources.error;
                 return View();
             }
         }
