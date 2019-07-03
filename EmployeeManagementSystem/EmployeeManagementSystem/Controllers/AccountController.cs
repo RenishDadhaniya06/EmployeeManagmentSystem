@@ -1,8 +1,11 @@
 ﻿using EmployeeManagementSystem.Models;
+using Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -136,6 +139,7 @@ namespace EmployeeManagementSystem.Controllers
                 if (result.Succeeded)
                 {
                     ViewBag.message = "Regestered Sucessfully Please Try To Login Now.";
+
                     return View("Login");
                 }
                 AddErrors(result);
@@ -156,9 +160,10 @@ namespace EmployeeManagementSystem.Controllers
                 if (result.Succeeded)
                 {
                     TempData["sucess"] = "Regestered Sucessfully Please Try To Login Now.";
-                    return RedirectToAction("CreateSucess","User");
+                    return RedirectToAction("CreateSucess", "User");
                 }
-                else{
+                else
+                {
                 }
                 AddErrors(result);
             }
@@ -172,6 +177,12 @@ namespace EmployeeManagementSystem.Controllers
         {
             var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
             var result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                SendVerificationLinkEmail(model.Email, callbackUrl);
+            }
             return result;
         }
 
@@ -203,13 +214,33 @@ namespace EmployeeManagementSystem.Controllers
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+
+        [AllowAnonymous]
+        public static void SendVerificationLinkEmail(string emailId, string activationcode)
+        {
+            string subject = "Your account is successfull created";
+            string body = "<br/><br/>We are excited to tell you that your account is" +
+        " successfully created. Please click on the below link to verify your account" +
+        " <br/><br/><a href='" + activationcode + "'>" + activationcode + "</a> ";
+            CommonHelper.SendMail(emailId, subject, body);
         }
 
         //

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 
 namespace Helpers
@@ -8,5 +10,35 @@ namespace Helpers
     {
 
         public static string ApiURL = "http://localhost:56853/";
+
+        public static string Email = "";
+
+        public static string PWD = "";
+
+        public static void SendMail(string emailId, string subject,string body)
+        {
+           
+            var fromMail = new MailAddress(Email, subject);
+            var toMail = new MailAddress(emailId);
+           
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromMail.Address, PWD)
+
+            };
+            using (var message = new MailMessage(fromMail, toMail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+                smtp.Send(message);
+        }
     }
 }

@@ -17,8 +17,8 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/nprogress.css" rel="stylesheet" />
     <link href="~/Libs/Gentelella/css/custom.min.css" rel="stylesheet" />
- 
-   
+
+
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
 </head>
@@ -32,10 +32,12 @@
             @Html.Partial("_Header")
             <!-- /top navigation -->
             <!-- page content -->
+
             <div class="right_col" role="main">
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
+                        
                             <h3>
                                 @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
                                 {
@@ -45,10 +47,11 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
+                  
                             @RenderBody()
-
-                        </div>
-                    </div>
+                     
+                </div>
+            </div>
 
             <!-- /page content -->
             <!-- footer content -->
