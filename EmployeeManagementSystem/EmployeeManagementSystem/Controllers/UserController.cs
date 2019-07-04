@@ -1,4 +1,5 @@
-﻿using EmployeeManagementSystem.Models;
+﻿using EmployeeManagementSystem.Helper;
+using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
+
     public class UserController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -38,6 +40,7 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
+        [CheckAuthorization]
         public ActionResult Index()
         {
             //TempData["sucess"] = "qdq cqwd  qddwqed ";
@@ -65,7 +68,7 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: User/Create
-        [Authorize(Roles = "Admin")]
+        [CheckAuthorization]
         public ActionResult Create()
         {
             ViewBag.Roles = _applicationDbContext.Roles.Where(m => m.Name != "Admin").ToList();
@@ -136,6 +139,7 @@ namespace EmployeeManagementSystem.Controllers
 
         // GET: User/Edit/5
         [HttpGet]
+        [CheckAuthorization]
         public async Task<ActionResult> Edit(string id)
         {
             try
