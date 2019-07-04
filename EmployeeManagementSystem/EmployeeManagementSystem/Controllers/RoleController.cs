@@ -1,4 +1,5 @@
-﻿using EmployeeManagementSystem.Models;
+﻿using EmployeeManagementSystem.Helper;
+using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -10,7 +11,8 @@ using System.Web.Mvc;
 namespace EmployeeManagementSystem.Controllers
 {
     //[Route("[controller]/[action]")]
-    [Authorize(Roles ="Admin")]
+    [HandleError]
+    [CheckAuthorization]
     public class RoleController : Controller
     {
         public ApplicationDbContext appcontext;
