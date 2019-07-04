@@ -2,11 +2,11 @@
 
 
 
-@*@{
-    ViewBag.Title = "Index";
-}*@
+@{
+        ViewBag.Title = "Roles";
+    }
 
-<h2>Roles</h2>
+<h2></h2>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -67,18 +67,18 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayTextFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Role",new { id = @item.Id})"></a>
-            </td>
-            <td>
-                <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-            </td>
-            
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Role",new { id = @item.Id})"></a>
+                </td>
+                <td>
+                    <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
+                </td>
+
+            </tr>
         }
 
     </tbody>
