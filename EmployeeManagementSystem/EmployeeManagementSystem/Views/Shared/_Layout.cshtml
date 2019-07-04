@@ -17,7 +17,9 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/nprogress.css" rel="stylesheet" />
     <link href="~/Libs/Gentelella/css/custom.min.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
 
+    <link href="~/Content/responsive.bootstrap.min.css" rel="stylesheet" />
 
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
@@ -26,32 +28,25 @@
 <body class="nav-md footer_fixed">
     <div class="container body">
         @Html.Partial("_StatusMessages")
+        @Html.Partial("ConformDialog")
         <div class="main_container">
             @Html.Partial("_Sidebar")
             <!-- top navigation -->
             @Html.Partial("_Header")
             <!-- /top navigation -->
             <!-- page content -->
-
             <div class="right_col" role="main">
                 <div class="">
-                    <div class="page-title">
-                        <div class="title_left">
-                        
-                            <h3>
-                                @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
-                                {
-                                    @ViewBag.Title
-                                }
-                            </h3>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @RenderBody()
+
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                  
-                            @RenderBody()
-                     
                 </div>
             </div>
+
 
             <!-- /page content -->
             <!-- footer content -->
@@ -59,12 +54,17 @@
             <!-- /footer content -->
         </div>
     </div>
-    <script src="~/Scripts/jquery1.10.0.js"></script>
+    @*<script src="~/Scripts/jquery1.10.0.js"></script>*@
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
+
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/fastclick.js"></script>
     <script src="~/Scripts/nprogress.min.js"></script>
     <script src="~/Libs/Gentelella/js/custom.min.js"></script>
-
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.js"></script>
+    <script src="~/Scripts/common.js"></script>
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)*@
