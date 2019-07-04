@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Text;
 
 namespace Helpers
 {
@@ -11,9 +8,9 @@ namespace Helpers
 
         public static string ApiURL = "http://localhost:56853/";
 
-        public static string Email = "Dhaval.Albiorix@gmail.com";
+        public static string Email = "";
 
-        public static string PWD = "Dhaval@Albiorix";
+        public static string PWD = "";
 
         public static void SendMail(string emailId, string subject,string body)
         {
