@@ -28,8 +28,8 @@ namespace EmployeeManagementSystem.Models
 
         public Guid ParentUserID { get; set; }
 
-        [Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
-        public bool IsActive { get; set; }
+        //[Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
+        //public bool IsActive { get; set; }
 
         public Status UserStatus { get; set; }
 

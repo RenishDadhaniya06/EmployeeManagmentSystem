@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -15,15 +16,17 @@ namespace EmployeeManagementSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ApplicationDbContext context)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _applicationDbContext = context;
         }
 
         public ApplicationSignInManager SignInManager
@@ -80,13 +83,32 @@ namespace EmployeeManagementSystem.Controllers
 
                 if (user != null && user.UserStatus == Status.Active)
                 {
-                    var ctx = Request.GetOwinContext();
-                    var identity = await UserManager.CreateIdentityAsync(
-                    user, DefaultAuthenticationTypes.ApplicationCookie);
-                    var authManager = ctx.Authentication;
-                    authManager.SignIn(identity);
-                    TempData["sucess"] = "Sucessfully Login.";
-                    return RedirectToAction("Index", "Home");
+                    if(user.UserStatus == Status.InActive)
+                    {
+                        TempData["error"] = "This Account is inactive";
+                        return View();
+                    }
+                    else if(user.UserStatus == Status.Block)
+                    {
+                        TempData["error"] = "This Account is blocked";
+                        return View();
+                    }
+                    else if(user.UserStatus == Status.Suspended)
+                    {
+                        TempData["error"] = "This Account is suspended";
+                        return View();
+                    }
+                    else
+                    {
+                        var ctx = Request.GetOwinContext();
+                        var identity = await UserManager.CreateIdentityAsync(
+                        user, DefaultAuthenticationTypes.ApplicationCookie);
+                        var authManager = ctx.Authentication;
+                        authManager.SignIn(identity);
+                        TempData["sucess"] = "Sucessfully Login.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                   
                 }
                 else
                 {
@@ -133,7 +155,10 @@ namespace EmployeeManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var data = _applicationDbContext.Roles.Where(m => m.Name == "Guest").SingleOrDefault();
+                model.RoleId = data.Id;
                 IdentityResult result = await RegiaterUser(model);
+                
                 if (result.Succeeded)
                 {
                     ViewBag.message = "Registered Sucessfully Please Try To Login Now.";
@@ -154,6 +179,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                //var data = _applicationDbContext.Roles.Where(m => m.Name == "Guest").SingleOrDefault();
+                //model.RoleId = data.Id;
                 IdentityResult result = await RegiaterUser(model);
                 if (result.Succeeded)
                 {
@@ -173,8 +200,10 @@ namespace EmployeeManagementSystem.Controllers
 
         private async Task<IdentityResult> RegiaterUser(RegisterViewModel model)
         {
-            var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = (Status)Status.InActive };
+
+            var user = new ApplicationUser { UserName = model.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, UserStatus = (Status)Status.InActive, RoleId = model.RoleId };
             var result = await UserManager.CreateAsync(user, model.Password);
+           
             if (result.Succeeded)
             {
                 string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -232,8 +261,10 @@ namespace EmployeeManagementSystem.Controllers
             if (result.Succeeded)
             {
                 var data = await UserManager.FindByIdAsync(userId);
+                var guest = _applicationDbContext.Roles.Where(m => m.Name == "Guest").SingleOrDefault();
                 //data.UserStatus = Status.Active;
                 data.UserStatus = (Status)Status.Active;
+                await UserManager.AddToRoleAsync(userId, guest.Name);
                 var tempresult = await UserManager.UpdateAsync(data);
                 if (tempresult.Succeeded)
                 {

@@ -3,7 +3,6 @@ using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -11,6 +10,7 @@ using System.Web.Mvc;
 namespace EmployeeManagementSystem.Controllers
 {
     //[Route("[controller]/[action]")]
+    [Authorize(Roles ="Admin")]
     public class RoleController : Controller
     {
         public ApplicationDbContext appcontext;
@@ -46,9 +46,9 @@ namespace EmployeeManagementSystem.Controllers
                 ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
-                        role.Id = Convert.ToString(Guid.NewGuid());
-                        appcontext.Roles.Add(role);
-                        await appcontext.SaveChangesAsync();
+                    role.Id = Convert.ToString(Guid.NewGuid());
+                    appcontext.Roles.Add(role);
+                    await appcontext.SaveChangesAsync();
                     TempData["sucess"] = CommonResources.create;
                     return RedirectToAction("Index");
                                         

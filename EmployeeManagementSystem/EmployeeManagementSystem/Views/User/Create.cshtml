@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-4">
             <div class="checkbox">
@@ -63,7 +63,7 @@
                 @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.RoleId,"Role", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -72,12 +72,12 @@
         </div>
     </div>
 
-    @*<div class="form-group">
+    <div class="form-group">
             @Html.LabelFor(model => model.UserStatus, htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-4">
                 @Html.EnumDropDownListFor(model => model.UserStatus,"Select Status", new { @class = "form-control"})
             </div>
-        </div>*@
+        </div>
 
 
 

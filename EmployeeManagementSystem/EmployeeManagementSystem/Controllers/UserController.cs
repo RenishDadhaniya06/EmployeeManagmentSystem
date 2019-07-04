@@ -1,7 +1,6 @@
 ﻿using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -66,9 +65,10 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: User/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.Roles = _applicationDbContext.Roles.ToList();
+            ViewBag.Roles = _applicationDbContext.Roles.Where(m => m.Name != "Admin").ToList();
             return View();
         }
 
@@ -81,15 +81,18 @@ namespace EmployeeManagementSystem.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, IsActive = true, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = model.UserStatus,RoleId = model.RoleId };
+                    var user = new ApplicationUser { UserName = model.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = model.UserStatus,RoleId = model.RoleId };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        _applicationDbContext.UserRoles.Add(new IdentityUserRole<string>()
-                        {
-                            UserId = model.Id,
-                        RoleId = model.RoleId
-                        });
+                        //_applicationDbContext.UserRoles.Add(new IdentityUserRole<string>()
+                        //{
+                        //    UserId = model.Id,
+                        //RoleId = model.RoleId
+                        //});
+                        var data = _applicationDbContext.Roles.Where(m => m.Id == user.RoleId).SingleOrDefault();
+                        await UserManager.AddToRoleAsync(user.Id, data.Name);
+
                         TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");
                     }
@@ -106,7 +109,7 @@ namespace EmployeeManagementSystem.Controllers
                     return View(model);
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return View();
@@ -143,7 +146,7 @@ namespace EmployeeManagementSystem.Controllers
                 }
 
                 var user = UserManager.Users.Where(m => m.Id == id).SingleOrDefault();
-                RegisterViewModel model = new RegisterViewModel { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, IsActive = user.IsActive };
+                RegisterViewModel model = new RegisterViewModel { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
                 //return View("Create", user);
                 return View(model);
 
@@ -174,7 +177,6 @@ namespace EmployeeManagementSystem.Controllers
                     currentuser.FirstName = model.FirstName;
                     currentuser.LastName = model.LastName;
                     currentuser.Email = model.Email;
-                    currentuser.IsActive = model.IsActive;
                     currentuser.UserStatus = model.UserStatus;
                     var data = await UserManager.UpdateAsync(currentuser);
                     //await _applicationDbContext.SaveChangesAsync();
@@ -214,7 +216,7 @@ namespace EmployeeManagementSystem.Controllers
                     return HttpNotFound();
                 }
                 var user = UserManager.FindById(id);
-                RegisterViewModel model = new RegisterViewModel { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, IsActive = user.IsActive };
+                RegisterViewModel model = new RegisterViewModel { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
                 return View(model);
             }
             catch (Exception ex)
@@ -251,10 +253,7 @@ namespace EmployeeManagementSystem.Controllers
                     _userManager.Dispose();
                     _userManager = null;
                 }
-
-
             }
-
             base.Dispose(disposing);
         }
     }

@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201907031402189_Role.Designer.cs">
       <DependentUpon>201907031402189_Role.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907040654076_isActive.cs" />
+    <Compile Include="Migrations\201907040654076_isActive.Designer.cs">
+      <DependentUpon>201907040654076_isActive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -438,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907031402189_Role.resx">
       <DependentUpon>201907031402189_Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907040654076_isActive.resx">
+      <DependentUpon>201907040654076_isActive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

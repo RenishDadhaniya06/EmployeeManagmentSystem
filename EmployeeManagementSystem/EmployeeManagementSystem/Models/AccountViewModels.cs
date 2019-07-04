@@ -102,8 +102,8 @@ namespace EmployeeManagementSystem.Models
 
         public string RoleId { get; set; }
 
-        [Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
-        public bool IsActive { get; set; } 
+        //[Display(Name = "lblIsActive", ResourceType = typeof(RegestrationResources))]
+        //public bool IsActive { get; set; } 
     }
 
     public enum Status
