@@ -248,6 +248,21 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<ActionResult> Profile()
+        {
+            try
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                return View(user);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
