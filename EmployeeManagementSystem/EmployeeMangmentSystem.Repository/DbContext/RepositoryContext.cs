@@ -25,5 +25,13 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         /// The customers.
         /// </value>
         public DbSet<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the designations.
+        /// </summary>
+        /// <value>
+        /// The designations.
+        /// </value>
+        public DbSet<Designation> Designations { get; set; }
     }
 }

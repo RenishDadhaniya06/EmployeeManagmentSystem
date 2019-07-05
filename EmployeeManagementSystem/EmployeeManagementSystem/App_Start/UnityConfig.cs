@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem
         {
             var container = new UnityContainer();
 
+            container.RegisterType<IRepository<Designation>, Repository<Designation>>();
             container.RegisterType<IRepository<Customer>, Repository<Customer>>();
             container.RegisterType<ICustomerService, CustomerService>();
             container.RegisterType<IDataRepositoryContext, RepositoryContext>();
