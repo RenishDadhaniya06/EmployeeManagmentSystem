@@ -252,6 +252,14 @@
     <Compile Include="Migrations\201907040654076_isActive.Designer.cs">
       <DependentUpon>201907040654076_isActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907051038026_Editor.cs" />
+    <Compile Include="Migrations\201907051038026_Editor.Designer.cs">
+      <DependentUpon>201907051038026_Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907051142552_Edit.cs" />
+    <Compile Include="Migrations\201907051142552_Edit.Designer.cs">
+      <DependentUpon>201907051142552_Edit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -409,6 +417,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -456,6 +465,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907040654076_isActive.resx">
       <DependentUpon>201907040654076_isActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051038026_Editor.resx">
+      <DependentUpon>201907051038026_Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051142552_Edit.resx">
+      <DependentUpon>201907051142552_Edit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
