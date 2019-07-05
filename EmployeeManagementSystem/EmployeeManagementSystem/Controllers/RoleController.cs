@@ -21,6 +21,7 @@ namespace EmployeeManagementSystem.Controllers
             appcontext = context;
         }
         // GET: Role
+        [CheckAuthorization]
         public async Task<ActionResult> Index()
         {
             //var roleStore = new RoleStore<IdentityRole>(appcontext);

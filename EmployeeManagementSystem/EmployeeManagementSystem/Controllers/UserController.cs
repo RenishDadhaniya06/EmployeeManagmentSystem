@@ -148,7 +148,7 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     return HttpNotFound();
                 }
-
+                ViewBag.Roles = _applicationDbContext.Roles.Where(m => m.Name != "Admin").ToList();
                 var user = UserManager.Users.Where(m => m.Id == id).SingleOrDefault();
                 RegisterViewModel model = new RegisterViewModel { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email };
                 //return View("Create", user);
@@ -182,6 +182,18 @@ namespace EmployeeManagementSystem.Controllers
                     currentuser.LastName = model.LastName;
                     currentuser.Email = model.Email;
                     currentuser.UserStatus = model.UserStatus;
+                    currentuser.RoleId = model.RoleId;
+                    //var updaterole = await UserManager.GetRolesAsync(currentuser.Id);
+                    var updaterole = _applicationDbContext.Roles.Where(m => m.Id == currentuser.RoleId).SingleOrDefault();
+                    var role = UserManager.GetRoles(currentuser.Id);
+                    string temp = Convert.ToString(role[0]);
+                    if(await UserManager.IsInRoleAsync(currentuser.Id, temp))
+                    {
+                        await UserManager.RemoveFromRolesAsync(currentuser.Id, temp);
+                        await UserManager.AddToRolesAsync(currentuser.Id, updaterole.Name);
+                    }
+                    //await UserManager.IsInRoleAsync()
+
                     var data = await UserManager.UpdateAsync(currentuser);
                     //await _applicationDbContext.SaveChangesAsync();
                     if (data.Succeeded)

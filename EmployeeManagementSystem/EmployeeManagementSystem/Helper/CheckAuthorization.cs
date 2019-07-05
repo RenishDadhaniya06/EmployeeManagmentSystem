@@ -1,9 +1,4 @@
-﻿
-
-using EmployeeManagementSystem.Models;
-using System;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace EmployeeManagementSystem.Helper
