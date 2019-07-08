@@ -222,12 +222,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
+    <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -418,10 +420,11 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Designation\Index.cshtml" />
     <Content Include="Views\Designation\Create.cshtml" />
+    <Content Include="Views\Template\Index.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
