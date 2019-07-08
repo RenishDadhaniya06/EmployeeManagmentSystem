@@ -432,7 +432,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmployeeMangmentSystem.Repository\EmployeeMangmentSystem.Repository.csproj">
-      <Project>{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}</Project>
+      <Project>{b9fdef48-857b-460f-8f06-9ea4f5aedc6c}</Project>
       <Name>EmployeeMangmentSystem.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmployeeMangmentSystem.Resources\EmployeeMangmentSystem.Resources.csproj">
