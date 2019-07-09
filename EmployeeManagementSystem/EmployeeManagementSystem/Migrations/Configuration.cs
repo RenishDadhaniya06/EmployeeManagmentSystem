@@ -9,7 +9,7 @@ namespace EmployeeManagementSystem.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(EmployeeManagementSystem.Models.ApplicationDbContext context)

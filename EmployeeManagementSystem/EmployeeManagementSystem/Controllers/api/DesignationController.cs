@@ -21,8 +21,18 @@ namespace EmployeeManagementSystem.Controllers.api
         [Route("api/Designation/GetDesignations")]
         public IEnumerable<Designation> GetDesignations()
         {
-            var data = _repository.GetAll();
-            return data;
+            try
+            {
+                var data = _repository.GetAll();
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+          
         }
 
         [Route("api/Designation/Get/{id}")]

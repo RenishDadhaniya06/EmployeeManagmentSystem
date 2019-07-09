@@ -16,27 +16,64 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Designation
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
-            return View(data.ToList());
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
+                if (data == null)
+                {
+                    data = new List<Designation>();
+                }
+                return View(data.ToList());
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
         }
 
         public async Task<FileResult> Print()
         {
-            var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
-            var builder = new PdfBuilder<List<Designation>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
-            return builder.GetPdf();
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
+                var builder = new PdfBuilder<List<Designation>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
+                return builder.GetPdf();
+            }
+            catch (Exception)
+            {
+
+                return File("AccessDenied", "Error");
+            }
         }
 
         // GET: Designation/Details/5
         public ActionResult Details(Guid id)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("AccessDenied", "Error");
+            }
         }
 
         // GET: Designation/Create
         public ActionResult Create()
         {
-            return View(new Designation());
+            try
+            {
+                return View(new Designation());
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("AccessDenied", "Error");
+            }
         }
 
         // POST: Designation/Create
@@ -65,7 +102,7 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     return View(collection);
                 }
-                
+
             }
             catch
             {
@@ -77,8 +114,15 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Designation/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
+            try
+            {
+                return View("Create", await APIHelpers.GetAsync<Designation>("api/Designation/Get/" + id));
+            }
+            catch (Exception)
+            {
 
-            return View("Create", await APIHelpers.GetAsync<Designation>("api/Designation/Get/" + id));
+                return RedirectToAction("AccessDenied", "Error");
+            }
         }
 
         // POST: Designation/Edit/5
