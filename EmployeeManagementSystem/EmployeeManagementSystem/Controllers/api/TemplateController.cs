@@ -2,8 +2,7 @@
 using EmployeeMangmentSystem.Repository.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Web.Http;
 using System.Net.Http;
 using System.Web.Http;
 
@@ -26,7 +25,7 @@ namespace EmployeeManagementSystem.Controllers.api
             return data;
         }
 
-        [Route("api/Template/Get/{id}")]
+        [Route("api/Templates/Get/{id}")]
         [HttpGet]
         public Templates Get(Guid id)
         {
@@ -34,7 +33,7 @@ namespace EmployeeManagementSystem.Controllers.api
             return data;
         }
 
-        [Route("api/Template/Post")]
+        [Route("api/Templates/Post")]
         [HttpPost]
         public Templates Post(Templates model)
         {
@@ -43,14 +42,14 @@ namespace EmployeeManagementSystem.Controllers.api
             return data;
         }
 
-        [Route("api/Template/Put")]
+        [Route("api/Templates/Put")]
         [HttpPut]
         public Templates Put(Templates model)
         {
             return _repository.Update(model);
         }
 
-        [Route("api/Template/Delete/{id}")]
+        [Route("api/Templates/Delete/{id}")]
         public bool Delete(Guid id)
         {
             _repository.Delete(id);
