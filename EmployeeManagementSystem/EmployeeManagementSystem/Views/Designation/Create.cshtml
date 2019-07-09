@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Create Designation";
 }
-
+@*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
 <div class="x_panel">
     <div class="x_title">
         <h2>
@@ -34,6 +34,7 @@
                 <div class="col-md-4">
                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @*<script>CKEDITOR.replace("Description")</script>*@
                 </div>
             </div>
 

@@ -234,6 +234,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
+    <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Helper\ITextEvents.cs" />
     <Compile Include="Helper\PdfBuilder.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,6 +269,14 @@
     <Compile Include="Migrations\201907040654076_isActive.cs" />
     <Compile Include="Migrations\201907040654076_isActive.Designer.cs">
       <DependentUpon>201907040654076_isActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907051038026_Editor.cs" />
+    <Compile Include="Migrations\201907051038026_Editor.Designer.cs">
+      <DependentUpon>201907051038026_Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907051142552_Edit.cs" />
+    <Compile Include="Migrations\201907051142552_Edit.Designer.cs">
+      <DependentUpon>201907051142552_Edit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -425,6 +435,8 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Designation\Index.cshtml" />
     <Content Include="Views\Designation\Create.cshtml" />
+    <Content Include="Views\Template\Index.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Print\Pdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -439,7 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmployeeMangmentSystem.Repository\EmployeeMangmentSystem.Repository.csproj">
-      <Project>{B9FDEF48-857B-460F-8F06-9EA4F5AEDC6C}</Project>
+      <Project>{b9fdef48-857b-460f-8f06-9ea4f5aedc6c}</Project>
       <Name>EmployeeMangmentSystem.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmployeeMangmentSystem.Resources\EmployeeMangmentSystem.Resources.csproj">
@@ -476,6 +488,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907040654076_isActive.resx">
       <DependentUpon>201907040654076_isActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051038026_Editor.resx">
+      <DependentUpon>201907051038026_Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907051142552_Edit.resx">
+      <DependentUpon>201907051142552_Edit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

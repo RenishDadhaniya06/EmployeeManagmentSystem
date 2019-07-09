@@ -4,13 +4,13 @@ $(document).ready(function () {
     //delcaring global variable to hold primary key value.
     var pryEmpId;
     $('.delete-prompt').click(function () {
-        debugger
+        //debugger
         pryEmpId = $(this).attr('id');
         $('#myModal').modal('show');
     });
 
     $('.delete-confirm').click(function () {
-        debugger
+        //debugger
 
         if (pryEmpId != '') {
             $.ajax({

@@ -26,6 +26,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         /// The name.
         /// </value>
         [Display(Name = "Name", ResourceType = typeof(DesignationResources))]
+        [Required]
         public string Name { get; set; }
     }
 }

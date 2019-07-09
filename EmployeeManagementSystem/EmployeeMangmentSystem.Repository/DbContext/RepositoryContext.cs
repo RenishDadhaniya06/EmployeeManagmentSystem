@@ -33,5 +33,7 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         /// The designations.
         /// </value>
         public DbSet<Designation> Designations { get; set; }
+
+        public DbSet<Templates> Templates { get; set; }
     }
 }

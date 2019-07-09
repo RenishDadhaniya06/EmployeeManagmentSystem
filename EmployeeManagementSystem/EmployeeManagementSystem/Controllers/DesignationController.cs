@@ -41,22 +41,31 @@ namespace EmployeeManagementSystem.Controllers
 
         // POST: Designation/Create
         [HttpPost]
+        [ValidateInput(false)]
         public async Task<ActionResult> Create(Designation collection)
         {
             try
             {
-                // TODO: Add insert logic here
-                if (collection.Id == Guid.Empty)
+                if (ModelState.IsValid)
                 {
-                    await APIHelpers.PostAsync<Designation>("api/Designation/Post", collection);
-                    TempData["sucess"] = DesignationResources.create;
+                    // TODO: Add insert logic here
+                    if (collection.Id == Guid.Empty)
+                    {
+                        await APIHelpers.PostAsync<Designation>("api/Designation/Post", collection);
+                        TempData["sucess"] = DesignationResources.create;
+                    }
+                    else
+                    {
+                        await APIHelpers.PutAsync<Designation>("api/Designation/Put", collection);
+                        TempData["sucess"] = DesignationResources.update;
+                    }
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    await APIHelpers.PutAsync<Designation>("api/Designation/Put", collection);
-                    TempData["sucess"] = DesignationResources.update;
+                    return View(collection);
                 }
-                return RedirectToAction("Index");
+                
             }
             catch
             {
