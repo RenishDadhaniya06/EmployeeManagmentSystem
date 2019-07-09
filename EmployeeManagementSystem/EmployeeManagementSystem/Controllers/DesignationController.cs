@@ -1,4 +1,5 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
@@ -17,6 +18,13 @@ namespace EmployeeManagementSystem.Controllers
         {
             var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
             return View(data.ToList());
+        }
+
+        public async Task<FileResult> Print()
+        {
+            var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
+            var builder = new PdfBuilder<List<Designation>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
+            return builder.GetPdf();
         }
 
         // GET: Designation/Details/5
