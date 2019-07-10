@@ -37,12 +37,18 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
                     if(collection.Id == Guid.Empty)
                     {
-                        await APIHelpers.PostAsync<TemplatesType>("", collection);
+                        await APIHelpers.PostAsync<TemplatesType>("api/TemplateType/Post", collection);
                         TempData["sucess"] = TemplateTypeResources.create;
+                    }
+                    else
+                    {
+                        await APIHelpers.PutAsync<TemplatesType>("api/TemplateType/Put", collection);
+                        TempData["sucess"] = TemplateResources.update;
                     }
                 }
                 return RedirectToAction("Index");
@@ -55,46 +61,48 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: TemplateType/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            return View("Create", await APIHelpers.GetAsync<TemplatesType>("api/TemplateType/Get/" + id));
         }
 
         // POST: TemplateType/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: TemplateType/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: TemplateType/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public async Task<ActionResult> DeleteConfirm(Guid id)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                await APIHelpers.DeleteAsync<TemplatesType>("api/TemplateType/Delete/" + id);
+                TempData["sucess"] = TemplateTypeResources.delete;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                TempData["error"] = CommonResources.error;
+                return RedirectToAction("AccessDenied", "Error");
             }
         }
     }

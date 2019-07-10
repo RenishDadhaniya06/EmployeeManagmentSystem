@@ -40,7 +40,6 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<RepositoryContext>(null);
             base.OnModelCreating(modelBuilder);
         }
     }

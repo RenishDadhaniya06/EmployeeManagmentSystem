@@ -107,7 +107,7 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 // TODO: Add delete logic here
-                await APIHelpers.DeleteAsync<Designation>("api/Templates/Delete/" + id);
+                await APIHelpers.DeleteAsync<Templates>("api/Templates/Delete/" + id);
                 TempData["sucess"] = TemplateResources.delete;
                 return RedirectToAction("Index");
             }
