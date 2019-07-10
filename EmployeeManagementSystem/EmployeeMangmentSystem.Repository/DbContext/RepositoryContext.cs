@@ -36,9 +36,10 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Templates> Templates { get; set; }
 
+        public DbSet<TemplatesType> TemplatesType { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<RepositoryContext>(null);
             base.OnModelCreating(modelBuilder);
         }
     }

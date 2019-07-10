@@ -1,24 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace EmployeeMangmentSystem.Repository.Models
 {
-    public class Templates
+    public class TemplatesType
     {
-        [Key]
         public Guid Id { get; set; }
 
         //[Required]
         [Display(Name ="Name")]
         public string Name { get; set; }
-
-        //[Required]
-        //[Display(Name = "TemplateType")]
-        public Guid TemplateType { get; set; }
-
-        //[Required]
-        [Display(Name ="Content")]
-        public string TemplateContent { get; set; }
 
         public bool IsActive { get; set; }
     }

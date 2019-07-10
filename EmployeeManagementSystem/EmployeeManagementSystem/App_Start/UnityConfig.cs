@@ -22,10 +22,12 @@ namespace EmployeeManagementSystem
             container.RegisterType<IRepository<Designation>, Repository<Designation>>();
             container.RegisterType<IRepository<Customer>, Repository<Customer>>();
             container.RegisterType<IRepository<Templates>, Repository<Templates>>();
+            container.RegisterType<IRepository<TemplatesType>, Repository<TemplatesType>>();
             container.RegisterType<ICustomerService, CustomerService>();
             container.RegisterType<IDataRepositoryContext, RepositoryContext>();
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<UserController>(new InjectionConstructor());
+            //container.RegisterType<TemplateTypeController>(new InjectionConstructor);
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 

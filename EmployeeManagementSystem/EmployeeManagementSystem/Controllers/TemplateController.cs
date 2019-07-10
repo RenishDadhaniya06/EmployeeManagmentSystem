@@ -14,6 +14,8 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Template
         public async Task<ActionResult> Index()
         {
+            //ViewBag.Types = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
+            
             var data = await APIHelpers.GetAsync<List<Templates>>("api/Template/GetTemplates");
             if (data == null)
             {
@@ -29,8 +31,10 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: Template/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var types = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
+            ViewBag.Types = types;
             return View();
         }
 
@@ -78,27 +82,7 @@ namespace EmployeeManagementSystem.Controllers
             return View("Create",await APIHelpers.GetAsync<Templates>("api/Templates/Get/" + id));
         }
 
-        // POST: Template/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        // GET: Template/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        
 
         // POST: Template/Delete/5
         [HttpGet]
@@ -107,7 +91,7 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 // TODO: Add delete logic here
-                await APIHelpers.DeleteAsync<Designation>("api/Templates/Delete/" + id);
+                await APIHelpers.DeleteAsync<Templates>("api/Templates/Delete/" + id);
                 TempData["sucess"] = TemplateResources.delete;
                 return RedirectToAction("Index");
             }
