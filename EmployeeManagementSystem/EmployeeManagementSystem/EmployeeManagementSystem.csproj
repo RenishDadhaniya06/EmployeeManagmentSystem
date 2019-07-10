@@ -232,11 +232,13 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\CountryController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\TypesController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -443,6 +445,8 @@
     <Content Include="Views\Print\Pdf.cshtml" />
     <Content Include="Views\Types\Create.cshtml" />
     <Content Include="Views\Types\Index.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CommonResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="CountryResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CountryResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="DashboardResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -46,6 +51,10 @@
     <EmbeddedResource Update="CommonResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CountryResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CountryResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="DashboardResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

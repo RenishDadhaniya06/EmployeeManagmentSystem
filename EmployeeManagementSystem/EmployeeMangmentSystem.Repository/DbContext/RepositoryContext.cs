@@ -38,6 +38,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<TemplatesType> TemplatesType { get; set; }
 
+        public DbSet<Countries> Countries { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
