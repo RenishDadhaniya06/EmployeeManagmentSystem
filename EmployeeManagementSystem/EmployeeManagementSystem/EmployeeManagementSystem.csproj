@@ -250,34 +250,11 @@
     </Compile>
     <Compile Include="Helper\CheckAuthorization.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
-    <Compile Include="Migrations\201906270640275_4.cs" />
-    <Compile Include="Migrations\201906270640275_4.Designer.cs">
-      <DependentUpon>201906270640275_4.cs</DependentUpon>
+    <Compile Include="Migrations\201907101039397_Initial.cs" />
+    <Compile Include="Migrations\201907101039397_Initial.Designer.cs">
+      <DependentUpon>201907101039397_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906270643147_66.cs" />
-    <Compile Include="Migrations\201906270643147_66.Designer.cs">
-      <DependentUpon>201906270643147_66.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907030900015_thnt.cs" />
-    <Compile Include="Migrations\201907030900015_thnt.Designer.cs">
-      <DependentUpon>201907030900015_thnt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907031402189_Role.cs" />
-    <Compile Include="Migrations\201907031402189_Role.Designer.cs">
-      <DependentUpon>201907031402189_Role.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907040654076_isActive.cs" />
-    <Compile Include="Migrations\201907040654076_isActive.Designer.cs">
-      <DependentUpon>201907040654076_isActive.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907051038026_Editor.cs" />
-    <Compile Include="Migrations\201907051038026_Editor.Designer.cs">
-      <DependentUpon>201907051038026_Editor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907051142552_Edit.cs" />
-    <Compile Include="Migrations\201907051142552_Edit.Designer.cs">
-      <DependentUpon>201907051142552_Edit.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Class1.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -475,26 +452,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906270640275_4.resx">
-      <DependentUpon>201906270640275_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906270643147_66.resx">
-      <DependentUpon>201906270643147_66.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907030900015_thnt.resx">
-      <DependentUpon>201907030900015_thnt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907031402189_Role.resx">
-      <DependentUpon>201907031402189_Role.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907040654076_isActive.resx">
-      <DependentUpon>201907040654076_isActive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907051038026_Editor.resx">
-      <DependentUpon>201907051038026_Editor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907051142552_Edit.resx">
-      <DependentUpon>201907051142552_Edit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907101039397_Initial.resx">
+      <DependentUpon>201907101039397_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
