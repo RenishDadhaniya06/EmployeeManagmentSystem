@@ -19,7 +19,16 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         }
         public IEnumerable<T> GetAll()
         {
-            return dbSet.ToList();
+            try
+            {
+                return dbSet.ToList();
+
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
         }
         public T GetById(object id)
         {

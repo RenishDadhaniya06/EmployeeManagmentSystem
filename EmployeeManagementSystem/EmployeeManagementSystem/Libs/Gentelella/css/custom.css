@@ -1050,6 +1050,9 @@ h2 {
     background: #F2F5F7
 }
 .x_panel {
+    margin-bottom: 8% !important;
+}
+.x_panel {
     position: relative;
     width: 100%;
     margin-bottom: 10px;
