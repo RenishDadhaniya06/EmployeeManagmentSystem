@@ -35,6 +35,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TemplateResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="TemplateTypeResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TemplateTypeResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +66,10 @@
     <EmbeddedResource Update="TemplateResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TemplateResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TemplateTypeResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemplateTypeResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

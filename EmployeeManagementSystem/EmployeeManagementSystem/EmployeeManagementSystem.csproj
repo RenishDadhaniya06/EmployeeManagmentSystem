@@ -235,11 +235,13 @@
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\TemplateController.cs" />
+    <Compile Include="Controllers\api\TypesController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Helper\ITextEvents.cs" />
     <Compile Include="Helper\PdfBuilder.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -438,6 +440,8 @@
     <Content Include="Views\Template\Index.cshtml" />
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Print\Pdf.cshtml" />
+    <Content Include="Views\Types\Create.cshtml" />
+    <Content Include="Views\Types\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
