@@ -5,6 +5,7 @@ namespace EmployeeMangmentSystem.Repository.Models
 {
     public class Templates
     {
+        [Key]
         public Guid Id { get; set; }
 
         //[Required]
@@ -12,8 +13,8 @@ namespace EmployeeMangmentSystem.Repository.Models
         public string Name { get; set; }
 
         //[Required]
-        [Display(Name ="TemplateType")]
-        public string TemplateType { get; set; }
+        //[Display(Name = "TemplateType")]
+        public Guid TemplateType { get; set; }
 
         //[Required]
         [Display(Name ="Content")]
