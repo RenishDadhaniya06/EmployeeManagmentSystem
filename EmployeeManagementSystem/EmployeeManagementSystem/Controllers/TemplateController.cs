@@ -33,8 +33,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Template/Create
         public async Task<ActionResult> Create()
         {
-            var types = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
-            ViewBag.Types = types;
+            ViewBag.Types = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
             return View();
         }
 
@@ -79,6 +78,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Template/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
+            ViewBag.Types = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
             return View("Create",await APIHelpers.GetAsync<Templates>("api/Templates/Get/" + id));
         }
 

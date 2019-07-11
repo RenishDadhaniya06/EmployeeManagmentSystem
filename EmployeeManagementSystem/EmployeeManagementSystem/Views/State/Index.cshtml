@@ -1,7 +1,7 @@
-﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.Countries>
+﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.States>
 
 @{
-    ViewBag.Title = "Countries";
+    ViewBag.Title = "States";
 }
 
 <div class="x_panel">
@@ -26,7 +26,7 @@
             <div class="col-md-1">
 
                 <p>
-                    <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Country")"></a>
+                    <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","State")"></a>
                 </p>
             </div>
         </div>
@@ -52,7 +52,7 @@
 
 
                         <td style="text-align:center">
-                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Country",new { id = @item.Id})"></a>
+                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","State",new { id = @item.Id})"></a>
                         </td>
                         <td style="text-align:center">
                             <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
@@ -64,6 +64,6 @@
     </div>
 </div>
 <script>
-    var deleteUrl = '@Url.Action("DeleteConfirm", "Country")';
+    var deleteUrl = '@Url.Action("DeleteConfirm", "State")';
 </script>
 
