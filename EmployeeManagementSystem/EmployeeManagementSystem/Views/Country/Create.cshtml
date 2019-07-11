@@ -1,9 +1,10 @@
-﻿@model EmployeeMangmentSystem.Repository.Models.Designation
+﻿@model EmployeeMangmentSystem.Repository.Models.Countries
+
 
 @{
-    ViewBag.Title = "Create Designation";
+    ViewBag.Title = "Create";
 }
-@*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
+
 <div class="x_panel">
     <div class="x_title">
         <h2>
@@ -21,12 +22,11 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        @using (Html.BeginForm("Create", "Designation", FormMethod.Post))
+        @using (Html.BeginForm("Create", "Country", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @*     <h4>RegisterViewModel</h4>*@
+            <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
             <div class="form-group">
@@ -43,11 +43,12 @@
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
                     <div class="col-md-2">
-                        <a href="@Url.Action("Index","User")" class="btn btn-success">Cancel</a>
+                        <a href="@Url.Action("Index","Country")" class="btn btn-success">Cancel</a>
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
         }
-    </div>
+        </div>
 </div>
+

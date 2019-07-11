@@ -1,9 +1,9 @@
-﻿@model EmployeeMangmentSystem.Repository.Models.Designation
+﻿@model EmployeeMangmentSystem.Repository.Models.States
 
 @{
-    ViewBag.Title = "Create Designation";
+    ViewBag.Title = "Create";
 }
-@*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
+
 <div class="x_panel">
     <div class="x_title">
         <h2>
@@ -21,14 +21,20 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        @using (Html.BeginForm("Create", "Designation", FormMethod.Post))
+        @using (Html.BeginForm("Create", "State", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            @*     <h4>RegisterViewModel</h4>*@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.Label("Select Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.Country, "Id", "Name"), new { @class = "form-control" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
@@ -43,7 +49,7 @@
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
                     <div class="col-md-2">
-                        <a href="@Url.Action("Index","User")" class="btn btn-success">Cancel</a>
+                        <a href="@Url.Action("Index","State")" class="btn btn-success">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -51,3 +57,4 @@
         }
     </div>
 </div>
+
