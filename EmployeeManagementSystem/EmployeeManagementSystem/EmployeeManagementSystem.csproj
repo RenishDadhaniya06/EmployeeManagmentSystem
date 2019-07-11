@@ -252,9 +252,9 @@
     </Compile>
     <Compile Include="Helper\CheckAuthorization.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
-    <Compile Include="Migrations\201907101039397_Initial.cs" />
-    <Compile Include="Migrations\201907101039397_Initial.Designer.cs">
-      <DependentUpon>201907101039397_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201907101225151_Initial.cs" />
+    <Compile Include="Migrations\201907101225151_Initial.Designer.cs">
+      <DependentUpon>201907101225151_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Class1.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -456,8 +456,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907101039397_Initial.resx">
-      <DependentUpon>201907101039397_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907101225151_Initial.resx">
+      <DependentUpon>201907101225151_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

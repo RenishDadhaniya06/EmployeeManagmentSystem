@@ -16,6 +16,10 @@ namespace EmployeeManagementSystem.Controllers
         public async Task<ActionResult> Index()
         {
             var data = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
+            if (data == null)
+            {
+                data = new List<TemplatesType>();
+            }
             return View(data.ToList());
         }
 
