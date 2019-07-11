@@ -40,6 +40,13 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             Save();
             return obj;
         }
+
+        public List<T> InsertRange(List<T> obj)
+        {
+            dbSet.AddRange(obj);
+            Save();
+            return obj;
+        }
         public void Delete(object id)
         {
             T entityToDelete = dbSet.Find(id);
