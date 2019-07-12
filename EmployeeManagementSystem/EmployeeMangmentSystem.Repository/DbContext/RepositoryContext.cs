@@ -1,4 +1,5 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using System.Data.Entity;
 
 namespace EmployeeMangmentSystem.Repository.Repository.Classes
@@ -41,6 +42,12 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         public DbSet<Countries> Countries { get; set; }
 
         public DbSet<States> States { get; set; }
+
+        public DbSet<PermissionModules> PermissionModules { get; set; }
+
+        public DbSet<RolePermission> RolePermission { get; set; }
+
+        public DbSet<RolesViewModel> RolesViewModel { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

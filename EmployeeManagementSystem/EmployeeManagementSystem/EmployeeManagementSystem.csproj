@@ -235,6 +235,7 @@
     <Compile Include="Controllers\api\CountryController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
+    <Compile Include="Controllers\api\RolePermissionsController.cs" />
     <Compile Include="Controllers\api\StateController.cs" />
     <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\TypesController.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RolePermissionController.cs" />
     <Compile Include="Controllers\StateController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Helper\ITextEvents.cs" />
@@ -428,9 +430,11 @@
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\State\Index.cshtml" />
     <Content Include="Views\State\Create.cshtml" />
+    <Content Include="Views\RolePermission\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\RolePermissions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
