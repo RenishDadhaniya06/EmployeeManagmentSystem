@@ -431,6 +431,7 @@
     <Content Include="Views\State\Index.cshtml" />
     <Content Include="Views\State\Create.cshtml" />
     <Content Include="Views\RolePermission\Index.cshtml" />
+    <Content Include="Views\RolePermission\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

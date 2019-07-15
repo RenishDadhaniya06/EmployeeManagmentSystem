@@ -50,7 +50,44 @@ namespace EmployeeManagementSystem.Controllers
             {
                 ViewBag.Roles = await APIHelpers.GetAsync<List<RolesViewModel>>("api/RolePermission/GetRoles");
                 var data = await APIHelpers.GetAsync<List<RolePermission>>("api/RolePermission/displayRoles/" + id);
-                return View("Index",data);
+                return View("Index", data);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(Guid id)
+        {
+            try
+            {
+                if(id == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    var data = await APIHelpers.GetAsync<RolePermission>("api/RolePermission/Get/" + id);
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(RolePermission role)
+        {
+            try
+            {
+                await APIHelpers.PutAsync<RolePermission>("api/RolePermission/Put",role);
+                return RedirectToAction("Edit",role.Id);
             }
             catch (Exception ex)
             {

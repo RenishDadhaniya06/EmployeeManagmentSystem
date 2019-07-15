@@ -54,6 +54,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Delete)
                         </th>
+                        <th>
+                            Edit
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,6 +78,9 @@
                             <td id="Delete">
                                 @Html.CheckBoxFor(modelItem => item.Delete)
                             </td>
+                            <td style="text-align:center">
+                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","RolePermission",new { id = @item.Id})"></a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -83,7 +89,8 @@
     </div>
 </div>
 <script>
-    var url = '@Url.Action("DisplayRoles", "RolePermission")';
+    var url;
+    url = '@Url.Action("DisplayRoles", "RolePermission")';
     function SelectedIndexChanged(){
         var Id = $("#RoleId").val();
         window.location.href = url + "/"+Id;

@@ -120,5 +120,33 @@ namespace EmployeeManagementSystem.Controllers.api
                 throw;
             }
         }
+        [Route("api/RolePermission/Put")]
+        public RolePermission Put(RolePermission role)
+        {
+            try
+            {
+                return rolerepository.Update(role);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [Route("api/RolePermission/Get/{id}")]
+        public RolePermission Get(Guid id)
+        {
+            try
+            {
+                var data = rolerepository.GetById(id);
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }
