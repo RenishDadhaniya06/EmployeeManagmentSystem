@@ -15,14 +15,7 @@ namespace EmployeeManagementSystem.Controllers
 {
     public class RolePermissionController : Controller
     {
-        private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
-        private ICustomerService _iCustomerService;
-
-        public RolePermissionController(ICustomerService iCustomerService, ApplicationDbContext context)
-        {
-            _applicationDbContext = context;
-            _iCustomerService = iCustomerService;
-        }
+    
         // GET: RolePermission
         public async Task<ActionResult> Index()
         {

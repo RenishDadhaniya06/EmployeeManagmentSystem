@@ -88,11 +88,9 @@
         }
     </div>
 </div>
+
 <script>
-    var url;
-    url = '@Url.Action("DisplayRoles", "RolePermission")';
-    function SelectedIndexChanged(){
-        var Id = $("#RoleId").val();
-        window.location.href = url + "/"+Id;
+    function SelectedIndexChanged() {
+        location.href = '@Url.Action("DisplayRoles", "RolePermission")?id=' + $("#RoleId").val() ;
     }
 </script>
