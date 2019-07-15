@@ -1,9 +1,13 @@
 ﻿using EmployeeManagementSystem.Helper;
 using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Repository.Interfaces;
 using EmployeeMangmentSystem.Resources;
+using Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -49,9 +53,12 @@ namespace EmployeeManagementSystem.Controllers
                 ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
+                    
                     role.Id = Convert.ToString(Guid.NewGuid());
                     appcontext.Roles.Add(role);
                     await appcontext.SaveChangesAsync();
+                    bool data = await APIHelpers.GetAsync<bool>("api/RolePermission/PostRoles/" + role.Id);
+                   
                     TempData["sucess"] = CommonResources.create;
                     return RedirectToAction("Index");
                                         

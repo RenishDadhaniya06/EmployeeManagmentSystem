@@ -1,7 +1,4 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace EmployeeMangmentSystem.Repository.Repository.Interfaces
 {

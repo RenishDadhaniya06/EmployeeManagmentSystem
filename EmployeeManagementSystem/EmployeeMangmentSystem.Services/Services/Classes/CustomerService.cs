@@ -6,9 +6,12 @@
 
 namespace EmployeeMangmentSystem.Services.Services.Classes
 {
+    using System;
     #region using
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using EmployeeMangmentSystem.Repository.StoreProcedureService;
     
     #endregion
@@ -31,6 +34,16 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         public IEnumerable<Customer> GetCustomers()
         {
             return dbContext.GetAll();
+        }
+
+        public async Task<List<RolePermission>> GetRolesById(Guid roleId)
+        {
+            return await dbContext.GetRolesById(roleId);
+        }
+
+        public async Task<List<RolesViewModel>> GetRoles()
+        {
+            return await dbContext.GetRoles();
         }
     }
 }
