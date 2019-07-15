@@ -54,28 +54,34 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Delete)
                         </th>
+                        <th>
+                            Edit
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td id="ModuleName">
-                                @Html.DisplayFor(modelItem => item.ModuleName)
-                            </td>
-                            <td id="Read">
-                                @Html.CheckBoxFor(modelItem => item.Read)
-                            </td>
-                            <td id="Create">
-                                @Html.CheckBoxFor(modelItem => item.Create)
-                            </td>
-                            <td id="Edit">
-                                @Html.CheckBoxFor(modelItem => item.Edit)
-                            </td>
-                            <td id="Delete">
-                                @Html.CheckBoxFor(modelItem => item.Delete)
-                            </td>
-                        </tr>
+                    <tr>
+                        <td id="ModuleName">
+                            @Html.DisplayFor(modelItem => item.ModuleName)
+                        </td>
+                        <td id="Read">
+                            @Html.DisplayFor(modelItem => item.Read)
+                        </td>
+                        <td id="Create">
+                            @Html.DisplayFor(modelItem => item.Create)
+                        </td>
+                        <td id="Edit">
+                            @Html.DisplayFor(modelItem => item.Edit)
+                        </td>
+                        <td id="Delete">
+                            @Html.DisplayFor(modelItem => item.Delete)
+                        </td>
+                        <td>
+                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","RolePermission",new { id = @item.Id})"></a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
