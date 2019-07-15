@@ -59,41 +59,41 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Edit(Guid id)
-        {
-            try
-            {
-                if(id == null)
-                {
-                    return HttpNotFound();
-                }
-                else
-                {
-                    var data = await APIHelpers.GetAsync<RolePermission>("api/RolePermission/Get/" + id);
-                    return View(data);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet]
+        //public async Task<ActionResult> Edit(Guid id)
+        //{
+        //    try
+        //    {
+        //        if(id == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        else
+        //        {
+        //            var data = await APIHelpers.GetAsync<RolePermission>("api/RolePermission/Get/" + id);
+        //            return View(data);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
 
-        [HttpPost]
-        public async Task<ActionResult> Edit(RolePermission role)
-        {
-            try
-            {
-                await APIHelpers.PutAsync<RolePermission>("api/RolePermission/Put",role);
-                return RedirectToAction("Edit",role.Id);
-            }
-            catch (Exception ex)
-            {
+        //[HttpPost]
+        //public async Task<ActionResult> Edit(RolePermission role)
+        //{
+        //    try
+        //    {
+        //        await APIHelpers.PutAsync<RolePermission>("api/RolePermission/Put",role);
+        //        return RedirectToAction("DisplayRoles/"+ role.RoleId);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
     }
 }

@@ -36,7 +36,7 @@
         {
 
 
-            <table id="roles" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+            <table id="roles" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0" style="margin-top:15px;">
                 <thead>
                     <tr>
                         <th>
@@ -53,9 +53,6 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Delete)
-                        </th>
-                        <th>
-                            Edit
                         </th>
                     </tr>
                 </thead>
@@ -77,9 +74,6 @@
                             </td>
                             <td id="Delete">
                                 @Html.CheckBoxFor(modelItem => item.Delete)
-                            </td>
-                            <td style="text-align:center">
-                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","RolePermission",new { id = @item.Id})"></a>
                             </td>
                         </tr>
                     }
