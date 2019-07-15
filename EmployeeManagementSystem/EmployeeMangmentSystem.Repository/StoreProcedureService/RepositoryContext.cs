@@ -26,7 +26,7 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public async Task<List<RolePermission>> GetRolesById(Guid roleId)
         {
-            var data = await Database.SqlQuery<RolePermission>(@"exec [dbo].[RolePermissionById]",roleId).ToListAsync();
+            var data = await Database.SqlQuery<RolePermission>(@"exec [dbo].[RolePermissionById] @p0",roleId).ToListAsync();
             return data;
         }
 
