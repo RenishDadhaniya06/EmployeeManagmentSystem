@@ -40,6 +40,7 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Roles = await APIHelpers.GetAsync<List<RolesViewModel>>("api/RolePermission/GetRoles");
                 var data = await APIHelpers.GetAsync<List<RolePermission>>("api/RolePermission/displayRoles/" + id);
                 model.RolePermissions = data;
+                model.Role = id;
                 return View("Index", model);
                 //return RedirectToAction("Index", model);
             }
