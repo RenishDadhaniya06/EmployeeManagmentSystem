@@ -1,11 +1,4 @@
-﻿@*@model IEnumerable<EmployeeMangmentSystem.Repository.Models.RolePermission>*@
-@using EmployeeMangmentSystem.Repository.Models;
-@model DisplayRoleModel
-@*@model dynamic*@
-@*@{ 
-    IEnumerable<RolePermission> roles = ViewData["Roles"] as IEnumerable<RolePermission>;
-    RolePermission role = ViewData["Role"] as RolePermission;
-}*@
+﻿@model EmployeeMangmentSystem.Repository.Models.DisplayRoleModel
 
 @{
     ViewBag.Title = "Role Permission";
@@ -34,7 +27,7 @@
                     <div class="form-group">
                         @Html.Label("Select Role", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.DropDownListFor(model => Model.Role.Id, new SelectList(ViewBag.Roles, "Id", "Name"),"Select Role", new { @class = "form-control", onchange = "SelectedIndexChanged()" ,@id="RoleId"})
+                            @Html.DropDownListFor(model => Model.Role, new SelectList(ViewBag.Roles, "Id", "Name"), "Select Role", new { @class = "form-control", onchange = "SelectedIndexChanged()", @id = "RoleId" })
                         </div>
                     </div>
                 </div>
@@ -48,19 +41,19 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.ModuleName)
+                           Module Name
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Read)
+                           Read
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Create)
+                           Create
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Edit)
+                           Edit
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Delete)
+                           Delete
                         </th>
                         <th>
                             Edit
@@ -68,28 +61,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (RolePermission item in Model.RolePermissions)
+                    @foreach (var item in Model.RolePermissions)
                     {
-                    <tr>
-                        <td id="ModuleName">
-                            @Html.DisplayFor(modelItem => item.ModuleName)
-                        </td>
-                        <td id="Read">
-                            @Html.DisplayFor(modelItem => item.Read)
-                        </td>
-                        <td id="Create">
-                            @Html.DisplayFor(modelItem => item.Create)
-                        </td>
-                        <td id="Edit">
-                            @Html.DisplayFor(modelItem => item.Edit)
-                        </td>
-                        <td id="Delete">
-                            @Html.DisplayFor(modelItem => item.Delete)
-                        </td>
-                        <td>
-                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","RolePermission",new { id = @item.Id})"></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td id="ModuleName">
+                                @Html.DisplayFor(modelItem => item.ModuleName)
+                            </td>
+                            <td id="Read">
+                                @Html.DisplayFor(modelItem => item.Read)
+                            </td>
+                            <td id="Create">
+                                @Html.DisplayFor(modelItem => item.Create)
+                            </td>
+                            <td id="Edit">
+                                @Html.DisplayFor(modelItem => item.Edit)
+                            </td>
+                            <td id="Delete">
+                                @Html.DisplayFor(modelItem => item.Delete)
+                            </td>
+                            <td>
+                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","RolePermission",new { id = @item.Id})"></a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
