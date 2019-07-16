@@ -49,6 +49,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<RolesViewModel> RolesViewModel { get; set; }
 
+        public DbSet<City> City { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

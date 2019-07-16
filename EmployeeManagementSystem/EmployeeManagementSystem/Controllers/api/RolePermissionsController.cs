@@ -155,7 +155,7 @@ namespace EmployeeManagementSystem.Controllers.api
             try
             {
                 //rolerepository.Delete(id);
-                var data =  _customerService.DeletebyRoleId(id);
+                var data = _customerService.DeletebyRoleId(id);
                 //if(data == true)
                 //{
                 //    return true

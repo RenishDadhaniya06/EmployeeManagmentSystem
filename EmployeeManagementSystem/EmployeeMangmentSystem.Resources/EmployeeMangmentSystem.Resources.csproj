@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="CityResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CityResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="CommonResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -53,6 +58,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CityResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CityResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="CommonResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
