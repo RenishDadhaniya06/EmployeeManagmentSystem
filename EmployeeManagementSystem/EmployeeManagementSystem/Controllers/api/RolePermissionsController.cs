@@ -148,5 +148,25 @@ namespace EmployeeManagementSystem.Controllers.api
                 throw;
             }
         }
+
+        [Route("api/RolePermission/Delete/{id}")]
+        public bool  Delete(Guid id)
+        {
+            try
+            {
+                //rolerepository.Delete(id);
+                var data =  _customerService.DeletebyRoleId(id);
+                //if(data == true)
+                //{
+                //    return true
+                //}
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

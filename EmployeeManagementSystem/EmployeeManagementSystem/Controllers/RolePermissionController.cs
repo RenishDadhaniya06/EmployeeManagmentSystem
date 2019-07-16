@@ -1,14 +1,9 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using EmployeeMangmentSystem.Services.Services;
 using Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
@@ -41,9 +36,12 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                DisplayRoleModel model = new DisplayRoleModel();
                 ViewBag.Roles = await APIHelpers.GetAsync<List<RolesViewModel>>("api/RolePermission/GetRoles");
                 var data = await APIHelpers.GetAsync<List<RolePermission>>("api/RolePermission/displayRoles/" + id);
-                return View("Index", data);
+                model.RolePermissions = data;
+                return View("Index", model);
+                //return RedirectToAction("Index", model);
             }
             catch (Exception ex)
             {

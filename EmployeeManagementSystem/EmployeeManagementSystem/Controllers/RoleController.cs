@@ -138,6 +138,7 @@ namespace EmployeeManagementSystem.Controllers
                 appcontext.Roles.Remove(data);
                 await appcontext.SaveChangesAsync();
                 TempData["sucess"] = CommonResources.delete;
+                var temp = await APIHelpers.DeleteAsync<bool>("api/RolePermission/Delete/" + Guid.Parse(id));
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

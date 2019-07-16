@@ -35,5 +35,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             var data = await Database.SqlQuery<RolesViewModel>(@"exec [dbo].[GetRoles]").ToListAsync();
             return data;
         }
+
+        public async Task<bool> DeletebyRoleId(Guid id)
+        {
+            await Database.SqlQuery<bool>(@"exec [dbo].[DeleteRolePermissionsbyRoleid] @p0", id).ToListAsync();
+            return true;
+        }
     }
 }

@@ -45,5 +45,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetRoles();
         }
+
+        public async Task<bool> DeletebyRoleId(Guid id)
+        {
+            return await dbContext.DeletebyRoleId(id);
+        }
     }
 }

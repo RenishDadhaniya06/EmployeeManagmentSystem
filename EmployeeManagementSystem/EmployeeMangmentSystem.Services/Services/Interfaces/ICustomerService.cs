@@ -15,5 +15,7 @@ namespace EmployeeMangmentSystem.Services.Services
          Task<List<RolePermission>>  GetRolesById(Guid roleId);
 
         Task<List<RolesViewModel>> GetRoles();
+
+        Task<bool> DeletebyRoleId(Guid id);
     }
 }

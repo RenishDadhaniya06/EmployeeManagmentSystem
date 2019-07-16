@@ -1,11 +1,10 @@
-﻿@*@model IEnumerable<EmployeeMangmentSystem.Repository.Models.RolePermission>*@
-@using EmployeeMangmentSystem.Repository.Models;
-@model DisplayRoleModel
+@*@model IEnumerable<EmployeeMangmentSystem.Repository.Models.RolePermission>*@
+@using  EmployeeMangmentSystem.Repository.Models
 @*@model dynamic*@
-@*@{ 
+@{ 
     IEnumerable<RolePermission> roles = ViewData["Roles"] as IEnumerable<RolePermission>;
     RolePermission role = ViewData["Role"] as RolePermission;
-}*@
+}
 
 @{
     ViewBag.Title = "Role Permission";
@@ -34,7 +33,7 @@
                     <div class="form-group">
                         @Html.Label("Select Role", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.DropDownListFor(model => Model.Role.Id, new SelectList(ViewBag.Roles, "Id", "Name"),"Select Role", new { @class = "form-control", onchange = "SelectedIndexChanged()" ,@id="RoleId"})
+                            @Html.DropDownListFor(model => role.Id, new SelectList(ViewBag.Roles, "Id", "Name"),"Select Role", new { @class = "form-control", onchange = "SelectedIndexChanged()" ,@id="RoleId"})
                         </div>
                     </div>
                 </div>
@@ -48,19 +47,19 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.ModuleName)
+                            @Html.DisplayNameFor(model => role.ModuleName)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Read)
+                            @Html.DisplayNameFor(model => role.Read)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Create)
+                            @Html.DisplayNameFor(model => role.Create)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Edit)
+                            @Html.DisplayNameFor(model => role.Edit)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => Model.Role.Delete)
+                            @Html.DisplayNameFor(model => role.Delete)
                         </th>
                         <th>
                             Edit
@@ -68,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (RolePermission item in Model.RolePermissions)
+                    @foreach (RolePermission item in roles)
                     {
                     <tr>
                         <td id="ModuleName">
@@ -102,3 +101,6 @@
         location.href = '@Url.Action("DisplayRoles", "RolePermission")?id=' + $("#RoleId").val() ;
     }
 </script>
+
+
+ // https://www.c-sharpcorner.com/UploadFile/ff2f08/multiple-models-in-single-view-in-mvc/
