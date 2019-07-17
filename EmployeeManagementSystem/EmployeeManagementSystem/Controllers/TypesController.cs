@@ -1,4 +1,5 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
@@ -21,6 +22,21 @@ namespace EmployeeManagementSystem.Controllers
                 data = new List<TemplatesType>();
             }
             return View(data.ToList());
+        }
+
+        public async Task<FileResult> Print()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<TemplatesType>>("api/TemplateType/GetTemplateTypes");
+                var builder = new PdfBuilder<List<TemplatesType>>(data, Server.MapPath("/Views/Types/Print.cshtml"));
+                return builder.GetPdf();
+            }
+            catch (Exception ex)
+            {
+
+                return File("AccessDenied", "Error");
+            }
         }
 
         // GET: TemplateType/Details/5

@@ -436,6 +436,12 @@
     <Content Include="Views\RolePermission\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Views\Cities\Create.cshtml" />
+    <Content Include="Views\Country\Print.cshtml" />
+    <Content Include="Views\Template\Print.cshtml" />
+    <Content Include="Views\Designation\Print.cshtml" />
+    <Content Include="Views\Cities\Print.cshtml" />
+    <Content Include="Views\State\Print.cshtml" />
+    <Content Include="Views\Types\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
