@@ -241,6 +241,7 @@
     <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\TypesController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
+    <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -433,10 +434,11 @@
     <Content Include="Views\State\Create.cshtml" />
     <Content Include="Views\RolePermission\Index.cshtml" />
     <Content Include="Views\RolePermission\Edit.cshtml" />
+    <Content Include="Views\Cities\Index.cshtml" />
+    <Content Include="Views\Cities\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cities\" />
     <Folder Include="Views\RolePermissions\" />
   </ItemGroup>
   <ItemGroup>

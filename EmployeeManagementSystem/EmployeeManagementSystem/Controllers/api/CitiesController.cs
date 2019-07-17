@@ -52,7 +52,7 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             try
             {
-                model.id = Guid.NewGuid();
+                model.Id = Guid.NewGuid();
                 var data = _repository.Insert(model);
                 return data;
             }

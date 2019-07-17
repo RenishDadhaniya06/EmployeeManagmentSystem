@@ -7,7 +7,7 @@ namespace EmployeeMangmentSystem.Repository.Models
 {
     public class City
     {
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
 
         public Guid StateId { get; set; }
 
