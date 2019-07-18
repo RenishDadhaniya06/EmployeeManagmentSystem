@@ -237,6 +237,7 @@
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\RolePermissionsController.cs" />
+    <Compile Include="Controllers\api\SettingController.cs" />
     <Compile Include="Controllers\api\StateController.cs" />
     <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\TypesController.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolePermissionController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\StateController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Helper\ITextEvents.cs" />
@@ -442,9 +444,11 @@
     <Content Include="Views\Cities\Print.cshtml" />
     <Content Include="Views\State\Print.cshtml" />
     <Content Include="Views\Types\Print.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Views\RolePermissions\" />
   </ItemGroup>
   <ItemGroup>
