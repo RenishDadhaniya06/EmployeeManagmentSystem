@@ -26,6 +26,7 @@ namespace EmployeeManagementSystem
             container.RegisterType<IRepository<States>, Repository<States>>();
             container.RegisterType<IRepository<City>, Repository<City>>();
             container.RegisterType<IRepository<Countries>, Repository<Countries>>();
+            container.RegisterType<IRepository<SettingView>, Repository<SettingView>>();
             container.RegisterType<IRepository<PermissionModules>, Repository<PermissionModules>>();
             container.RegisterType<IRepository<RolePermission>, Repository<RolePermission>>();
             container.RegisterType<ICustomerService, CustomerService>();

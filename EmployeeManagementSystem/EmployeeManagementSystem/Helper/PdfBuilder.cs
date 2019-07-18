@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Web.Mvc;
-using EmployeeManagementSystem.Helper;
-using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Helper;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using RazorEngine;
+using System;
+using System.IO;
+using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Models
 {

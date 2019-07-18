@@ -53,12 +53,10 @@ namespace EmployeeManagementSystem.Controllers
                 ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
-                    
                     role.Id = Convert.ToString(Guid.NewGuid());
                     appcontext.Roles.Add(role);
                     await appcontext.SaveChangesAsync();
                     bool data = await APIHelpers.GetAsync<bool>("api/RolePermission/PostRoles/" + role.Id);
-                   
                     TempData["sucess"] = CommonResources.create;
                     return RedirectToAction("Index");
                                         

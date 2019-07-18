@@ -1,4 +1,5 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
@@ -18,6 +19,21 @@ namespace EmployeeManagementSystem.Controllers
             ViewBag.Country = await APIHelpers.GetAsync<List<Countries>>("api/Country/GetCountries");
             var data = await APIHelpers.GetAsync<List<States>>("api/State/Getstates");
             return View(data.ToList());
+        }
+
+        public async Task<FileResult> Print()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<States>>("api/State/Getstates");
+                var builder = new PdfBuilder<List<States>>(data, Server.MapPath("/Views/State/Print.cshtml"));
+                return builder.GetPdf();
+            }
+            catch (Exception ex)
+            {
+
+                return File("AccessDenied", "Error");
+            }
         }
 
         // GET: State/Details/5
