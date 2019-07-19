@@ -30,7 +30,7 @@
                 @Html.HiddenFor(model => model.Id)
 
                 <div class="form-group">
-                    @Html.Label("Select Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Select State", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         @Html.DropDownListFor(model => model.StateId, new SelectList(ViewBag.States, "Id", "Name"), "Select State", new { @class = "form-control" })
                     </div>

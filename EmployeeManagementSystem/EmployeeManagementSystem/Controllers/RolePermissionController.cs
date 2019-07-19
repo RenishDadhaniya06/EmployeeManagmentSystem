@@ -32,6 +32,8 @@ namespace EmployeeManagementSystem.Controllers
         //        throw;
         //    }
         //}
+
+
         public async Task<ActionResult> DisplayRoles(Guid id)
         {
             try

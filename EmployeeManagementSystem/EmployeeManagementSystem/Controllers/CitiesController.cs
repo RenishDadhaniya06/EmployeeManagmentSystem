@@ -16,6 +16,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Cities
         public async Task<ActionResult> Index()
         {
+            ViewBag.States = await APIHelpers.GetAsync<List<States>>("api/State/GetStates");
             var data = await APIHelpers.GetAsync<List<City>>("api/City/GetCities");
             return View(data.ToList());
         }

@@ -41,6 +41,9 @@
             <thead>
                 <tr>
                     <th style="text-align:center">
+                        State
+                    </th>
+                    <th style="text-align:center">
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th style="text-align:center">Edit</th>
@@ -50,17 +53,24 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td style="text-align:center">
-                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Cities",new { id = @item.Id})"></a>
-                        </td>
-                        <td style="text-align:center">
-                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-                        </td>
-                    </tr>
+                <tr>
+                    @foreach (var temp in ViewBag.States)
+                    {
+                        if (item.StateId == temp.Id)
+                        {
+                            <td><p>@temp.Name</p></td>
+                        }
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td style="text-align:center">
+                        <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Cities",new { id = @item.Id})"></a>
+                    </td>
+                    <td style="text-align:center">
+                        <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -120,6 +120,8 @@ namespace EmployeeManagementSystem.Controllers.api
                 throw;
             }
         }
+
+
         [Route("api/RolePermission/Put")]
         public RolePermission Put(RolePermission role)
         {

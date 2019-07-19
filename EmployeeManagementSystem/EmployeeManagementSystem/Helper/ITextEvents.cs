@@ -43,7 +43,6 @@ namespace EmployeeManagementSystem.Helper
                 cb.MoveTo(40, document.PageSize.Height - 110);
                 headerTemplate = cb.CreateTemplate(100, 100);
                 footerTemplate = cb.CreateTemplate(50, 50);
-                
             }
             catch (DocumentException de)
             {

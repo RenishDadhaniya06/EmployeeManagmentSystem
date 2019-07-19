@@ -123,11 +123,15 @@ namespace EmployeeManagementSystem.Controllers
             }
 
         }
+
+
         private IAuthenticationManager GetAuthenticationManager()
         {
             var ctx = Request.GetOwinContext();
             return ctx.Authentication;
         }
+
+
         private string GetRedirectUrl(string returnUrl)
         {
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
