@@ -1,4 +1,5 @@
 ﻿@using EmployeeMangmentSystem.Resources
+@using EmployeeManagementSystem.Helper
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
@@ -15,32 +16,52 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
 
-                    <li>
-                        <a><i class="fa fa-bar-chart-o"></i> Administrator <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="@Url.Action("Index", "User")">Users</a></li>
-                            <li><a href="@Url.Action("Index","Role")">Role</a></li>
-                            <li><a href="@Url.Action("Index", "RolePermission")">Role Permission</a></li>
-                            
 
-                        </ul>
-                       
+                    @{
+                        if (CommonHelper.IsSuperAdmin())
+                        {
+                            <li>
+                                <a><i class="fa fa-bar-chart-o"></i> Administrator <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="@Url.Action("Index", "User")">Users</a></li>
+                                    <li><a href="@Url.Action("Index","Role")">Role</a></li>
+                                    <li><a href="@Url.Action("Index", "RolePermission")">Role Permission</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
+                    @{
 
-                    </li>
-                   
-                </ul>
-                <ul class="nav side-menu">
-                    <li>
-                        <a><i class="fa fa-folder-open"></i> Lookups <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
-                            <li><a href="@Url.Action("Index","Template")">@TemplateResources.Name</a></li>
-                            <li><a href="@Url.Action("Index","Types")">@TemplateTypeResources.Name</a></li>
-                            <li><a href="@Url.Action("Index","Country")">@CountryResources.Name</a></li>
-                            <li><a href="@Url.Action("Index","State")">@StateResources.Name</a></li>
-                            <li><a href="@Url.Action("Index","Cities")">@CityResources.name</a></li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a><i class="fa fa-folder-open"></i> Lookups <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                @if (CommonHelper.CheckPermission("Designation", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
+                                }
+                                @if (CommonHelper.CheckPermission("Template", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index","Template")">@TemplateResources.Name</a></li>
+                                }
+                                @if (CommonHelper.CheckPermission("Template Type", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index","Types")">@TemplateTypeResources.Name</a></li>
+                                }
+                                @if (CommonHelper.CheckPermission("Country", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index","Country")">@CountryResources.Name</a></li>
+                                }
+                                @if (CommonHelper.CheckPermission("State", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index","State")">@StateResources.Name</a></li>
+                                }
+                                @if (CommonHelper.CheckPermission("City", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index", "Cities")">@CityResources.name</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
 
                 </ul>
             </div>
@@ -48,16 +69,28 @@
         <!-- /sidebar menu -->
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings" href="@Url.Action("Create","Setting")">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Dashboard">
-                <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
-            </a>
 
+            @if (CommonHelper.IsSuperAdmin())
+            {
+                <a data-toggle="tooltip" data-placement="top" title="Settings" href="@Url.Action("Create", "Setting")">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+
+            }
+            @if (CommonHelper.CheckPermission("My Profile", "Read"))
+            {
+                <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                </a>
+            }
+
+
+            @if (CommonHelper.CheckPermission("Dashboard", "Read"))
+            {
+                <a data-toggle="tooltip" data-placement="top" title="Dashboard">
+                    <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                </a>
+            }
             <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>

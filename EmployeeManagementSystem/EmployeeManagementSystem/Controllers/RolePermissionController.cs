@@ -79,7 +79,7 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 await APIHelpers.PutAsync<RolePermission>("api/RolePermission/Put", role);
-                return RedirectToAction("DisplayRoles/" + role.RoleId);
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {

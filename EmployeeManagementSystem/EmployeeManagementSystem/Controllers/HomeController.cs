@@ -5,7 +5,6 @@ using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
-    [OutputCache(Duration = 86400, VaryByParam = "None")]
     [Authorize]
     public class HomeController : Controller
     {
