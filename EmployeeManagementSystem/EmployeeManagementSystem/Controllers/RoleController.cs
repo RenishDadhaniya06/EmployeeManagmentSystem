@@ -1,13 +1,10 @@
 ﻿using EmployeeManagementSystem.Helper;
 using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
