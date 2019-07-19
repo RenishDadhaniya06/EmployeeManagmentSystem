@@ -41,19 +41,19 @@
                 <thead>
                     <tr>
                         <th>
-                           Module Name
+                            Module Name
                         </th>
                         <th>
-                           Read
+                            Read
                         </th>
                         <th>
-                           Create
+                            Create
                         </th>
                         <th>
-                           Edit
+                            Edit
                         </th>
                         <th>
-                           Delete
+                            Delete
                         </th>
                         <th>
                             Edit
@@ -92,6 +92,11 @@
 
 <script>
     function SelectedIndexChanged() {
-        location.href = '@Url.Action("DisplayRoles", "RolePermission")?id=' + $("#RoleId").val() ;
+        if ($("#RoleId").val() != "") {
+            location.href = '@Url.Action("DisplayRoles", "RolePermission")?id=' + $("#RoleId").val();
+        } else {
+            $("#roles").toggle();
+        }
     }
+
 </script>
