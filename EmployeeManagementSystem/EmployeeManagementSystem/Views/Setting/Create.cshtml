@@ -54,8 +54,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ShowDate, new { @class = "control-label col-md-2"})
                     <div class="col-md-4">
-                        @*@Html.TextBoxFor(model => model.ShowDate, new { @class = "form-control"})*@
-                        <input type="date" name="ShowDate" class="form-control" />
+                        @Html.CheckBoxFor(model => model.ShowDate, new { @class = "form-control"})
                         @Html.ValidationMessageFor(model => model.ShowDate, "", new { @class = "text-danger"})
                     </div>
                 </div>

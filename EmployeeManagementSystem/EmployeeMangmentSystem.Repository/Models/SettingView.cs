@@ -24,7 +24,7 @@ namespace EmployeeMangmentSystem.Repository.Models
 
         [Display(Name ="Date")]
         [DataType(DataType.Date)]
-        public DateTime ShowDate { get; set; }
+        public bool ShowDate { get; set; }
 
         public string Host { get; set; }
 

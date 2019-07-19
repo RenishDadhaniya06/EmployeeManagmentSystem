@@ -15,6 +15,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Setting
         public ActionResult Index()
         {
+            
             return View();
         }
 

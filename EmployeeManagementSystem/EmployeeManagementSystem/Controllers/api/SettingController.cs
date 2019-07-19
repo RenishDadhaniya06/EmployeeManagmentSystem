@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Net.Http;
 using System.Web.Http;
+using System.Linq;
 
 namespace EmployeeManagementSystem.Controllers.api
 {
@@ -25,6 +26,21 @@ namespace EmployeeManagementSystem.Controllers.api
                 model.Id = Guid.NewGuid();
                 var data = _repository.Insert(model);
                 return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [Route("api/Setting/GetSettings")]
+        public SettingView GetSettings()
+        {
+            try
+            {
+                var data = _repository.GetAll().ToList();
+                return data.FirstOrDefault();
             }
             catch (Exception ex)
             {
