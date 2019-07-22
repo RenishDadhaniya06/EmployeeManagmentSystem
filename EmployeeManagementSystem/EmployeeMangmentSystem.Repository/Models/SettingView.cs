@@ -22,7 +22,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         [DataType(DataType.ImageUrl)]
         public string Logo { get; set; }
 
-        [Display(Name ="Date")]
+        [Display(Name ="Show Date")]
         [DataType(DataType.Date)]
         public bool ShowDate { get; set; }
 

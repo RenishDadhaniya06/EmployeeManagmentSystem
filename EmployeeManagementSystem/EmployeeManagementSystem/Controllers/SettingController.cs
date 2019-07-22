@@ -1,9 +1,6 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
 using Helpers;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -15,7 +12,6 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Setting
         public ActionResult Index()
         {
-            
             return View();
         }
 
@@ -26,9 +22,10 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: Setting/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            var data = await APIHelpers.GetAsync<SettingView>("api/Setting/GetSettings");
+            return View(data);
         }
 
         // POST: Setting/Create
