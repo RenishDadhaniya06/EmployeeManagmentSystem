@@ -30,11 +30,12 @@ namespace EmployeeManagementSystem.Controllers
 
         // POST: Setting/Create
         [HttpPost]
-        public async Task<ActionResult> Create(SettingView collection,HttpPostedFileBase Logo)
+        public async Task<ActionResult> Create(HttpPostedFileBase Logo, SettingView collection)
         {
             try
             {
                 //HttpPostedFileBase file;
+               
                 Logo.SaveAs(Server.MapPath("~/Images/" + Logo.FileName));
                 collection.Logo = Logo.FileName;
                 // TODO: Add insert logic here

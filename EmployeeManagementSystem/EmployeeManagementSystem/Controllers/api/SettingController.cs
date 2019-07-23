@@ -23,8 +23,7 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             try
             {
-                model.Id = Guid.NewGuid();
-                var data = _repository.Insert(model);
+                var data = _repository.Update(model);
                 return data;
             }
             catch (Exception ex)

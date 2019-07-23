@@ -53,6 +53,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<SettingView> SettingView { get; set; }
 
+        public DbSet<Employee> Employees { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
