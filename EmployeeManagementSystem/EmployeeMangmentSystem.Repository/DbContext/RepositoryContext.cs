@@ -53,6 +53,12 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<SettingView> SettingView { get; set; }
 
+        public DbSet<Departments> Departments { get; set; }
+
+        public DbSet<Technologies> Technologies { get; set; }
+
+        public DbSet<Skills> Skills { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
