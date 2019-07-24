@@ -17,7 +17,7 @@
     <AssemblyName>EmployeeManagementSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -234,7 +234,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CitiesController.cs" />
     <Compile Include="Controllers\api\CountryController.cs" />
-    <Compile Include="Controllers\api\DepartmentController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\RolePermissionsController.cs" />
@@ -249,6 +248,7 @@
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -451,15 +451,6 @@
     <Content Include="Views\State\Print.cshtml" />
     <Content Include="Views\Types\Print.cshtml" />
     <Content Include="Views\Setting\Create.cshtml" />
-    <Content Include="Views\Department\Index.cshtml" />
-    <Content Include="Views\Department\Create.cshtml" />
-    <Content Include="Views\Department\Print.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
-    <Content Include="Views\Technology\Print.cshtml" />
-    <Content Include="Views\Technology\Create.cshtml" />
-    <Content Include="Views\Skill\Index.cshtml" />
-    <Content Include="Views\Skill\Print.cshtml" />
-    <Content Include="Views\Skill\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

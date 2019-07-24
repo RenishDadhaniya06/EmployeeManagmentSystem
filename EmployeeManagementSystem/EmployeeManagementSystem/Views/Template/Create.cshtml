@@ -26,71 +26,84 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.TemplateType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.TemplateType, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.TemplateType, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TemplateType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownListFor(model => model.TemplateType, new SelectList(ViewBag.Types,"Id" ,"Name"), new { @class="form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TemplateContent, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-8">
-                    @Html.TextAreaFor(model => model.TemplateContent, new { @class = "form-control", @id = "Content" })
-                    @Html.ValidationMessageFor(model => model.TemplateContent, "", new { @class = "text-danger" })
-                    <script>
-                        CKEDITOR.replace("Content")
-
-                    </script>
-                </div>
-                <div class="col-md-2">
-                    <input type="button" value="Name" onclick="InsertLabel('Name')" class="btn btn-primary" />
-
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="col-md-2">
-                        <input type="submit" value="Save" class="btn btn-primary" />
-                    </div>
-                    <div class="col-md-2">
-                        <a href="@Url.Action("Index","Template")" class="btn btn-success">Cancel</a>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.TemplateType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.TemplateType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TemplateType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TemplateType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.TemplateType, new SelectList(ViewBag.Types, "Id", "Name"), new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(model => model.TemplateContent, new { @class = "form-control", @id = "Content" })
+                        @Html.ValidationMessageFor(model => model.TemplateContent, "", new { @class = "text-danger" })
+                        <script>
+                            CKEDITOR.replace("Content")
+
+                        </script>
+                    </div>
+                    <div class="col-md-2" >
+                        <input type="button" style="margin:2px;" value="Current User" onclick="InsertLabel('CurrentUser')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="FirstName" onclick="InsertLabel('FirstName')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="LastName" onclick="InsertLabel('LastName')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Current Date" onclick="InsertLabel('CurrentDate')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Activation Link" onclick="InsertLabel('ActivationLink')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Designation" onclick="InsertLabel('Designation')" class="btn btn-primary" />
+
+                    </div>
+                    <div class="col-md-2" >
+                        <input type="button" style="margin:2px;" value="Department" onclick="InsertLabel('Department')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Expereiance" onclick="InsertLabel('Expereiance')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Current CTC" onclick="InsertLabel('CurrentCTC')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Expected CTC" onclick="InsertLabel('ExpectedCTC')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="ReleseDate" onclick="InsertLabel('ReleseDate')" class="btn btn-primary" />
+                        <input type="button" style="margin:2px;" value="Email" onclick="InsertLabel('Email')" class="btn btn-primary" />
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="col-md-2">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Index","Template")" class="btn btn-success">Cancel</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
         }
     </div>
 </div>
 
 <script>
     function InsertLabel(str) {
-        CKEDITOR.instances['Content'].insertText("###" + str +"###");
+        CKEDITOR.instances['Content'].insertText("###" + str + "###");
     }
 </script>

@@ -35,6 +35,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DesignationResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="EmployeeResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmployeeResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="LoginResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -96,6 +101,10 @@
     <EmbeddedResource Update="DesignationResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DesignationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EmployeeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmployeeResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="LoginResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

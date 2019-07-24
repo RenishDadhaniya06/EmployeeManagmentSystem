@@ -1,9 +1,12 @@
 ﻿using EmployeeManagementSystem.Helper;
+using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Repository.Classes;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using RazorEngine;
 using System;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Models
@@ -15,11 +18,16 @@ namespace EmployeeManagementSystem.Models
 
         private readonly string _file;
 
+        private readonly SettingView setting;
+
+        private readonly RepositoryContext _repositoryDbContext = new RepositoryContext();
+
 
         public PdfBuilder(T post, string file)
         {
             _post = post;
             _file = file;
+            setting = _repositoryDbContext.SettingView.SingleOrDefault();
         }
         /// <summary>
         /// Gets the PDF.
@@ -36,7 +44,7 @@ namespace EmployeeManagementSystem.Models
                 {
                     using (var writer = PdfWriter.GetInstance(doc, ms))
                     {
-                        writer.PageEvent = new ITextEvents();
+                        writer.PageEvent = new ITextEvents(setting);
                         doc.Open();
                         try
                         {

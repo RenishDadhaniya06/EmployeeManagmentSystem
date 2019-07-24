@@ -55,13 +55,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        @foreach(var temp in ViewBag.Country)
-                        {
-                            if(item.CountryId == temp.Id)
-                            {
-                                <td><p>@temp.Name</p></td>
-                            }
-                        }
+                       
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>

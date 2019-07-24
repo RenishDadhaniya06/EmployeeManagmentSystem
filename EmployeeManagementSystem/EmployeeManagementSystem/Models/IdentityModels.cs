@@ -43,8 +43,6 @@ namespace EmployeeManagementSystem.Models
         {
         }
 
-      
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

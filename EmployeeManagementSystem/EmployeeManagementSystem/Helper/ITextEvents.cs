@@ -1,4 +1,5 @@
-﻿using iTextSharp.text;
+﻿using EmployeeMangmentSystem.Repository.Models;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,13 @@ namespace EmployeeManagementSystem.Helper
 
         #region Fields
         private string _header;
+
+        private SettingView setting;
+
+        public ITextEvents(SettingView setting)
+        {
+            this.setting = setting;
+        }
         #endregion
 
         #region Properties
@@ -59,8 +67,8 @@ namespace EmployeeManagementSystem.Helper
             var FontColour = new BaseColor(216, 84, 89);
             iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE);
             iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, FontColour);
-            Phrase p1Header = new Phrase("Albiorix Technology Pvt Ltd.", baseFontBig);
-            Phrase p2Header = new Phrase("Mo. : +91 8980030883, +919979372772", baseFontNormal);
+            Phrase p1Header = new Phrase(this.setting.Header, baseFontBig);
+            Phrase p2Header = new Phrase(this.setting.SubHeader, baseFontNormal);
 
             //Create PdfTable object
             PdfPTable pdfTab = new PdfPTable(3);
@@ -69,7 +77,7 @@ namespace EmployeeManagementSystem.Helper
             //Uri uri = new Uri();
             //Image ima;
             //ima.Url = uri;
-            String path = System.Web.HttpContext.Current.Server.MapPath("~/Content/0 (4).jpg").ToString();
+            String path = System.Web.HttpContext.Current.Server.MapPath("~/Images/" + this.setting.Logo).ToString();
             iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(path);
             image.SetAbsolutePosition(0, 20);
 
@@ -102,9 +110,11 @@ namespace EmployeeManagementSystem.Helper
 
             //Row 2
             PdfPCell pdfCell4 = new PdfPCell(p2Header);
-
+            PdfPCell pdfCell7 = new PdfPCell();
             //Row 3 
-            PdfPCell pdfCell7 = new PdfPCell(new Phrase("Date:" + PrintTime.ToShortDateString(), baseFontBig));
+            if (this.setting.ShowDate) {
+                pdfCell7 = new PdfPCell(new Phrase("Date:" + PrintTime.ToShortDateString(), baseFontBig));
+            }
             PdfPCell pdfCell6 = new PdfPCell();
             PdfPCell pdfCell5 = new PdfPCell();
             //PdfPCell pdfCell7 = new PdfPCell(new Phrase("Date:" + PrintTime.ToShortDateString(), DateTime.Now), baseFontBig));
