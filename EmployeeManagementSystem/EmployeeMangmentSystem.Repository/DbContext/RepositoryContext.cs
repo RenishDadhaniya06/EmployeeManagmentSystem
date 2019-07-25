@@ -55,6 +55,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Employee> Employees { get; set; }
 
+        public DbSet<Leave> Leaves { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

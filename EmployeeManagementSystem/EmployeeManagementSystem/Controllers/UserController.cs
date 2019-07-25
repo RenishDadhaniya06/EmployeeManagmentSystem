@@ -1,5 +1,7 @@
 ﻿using EmployeeManagementSystem.Helper;
 using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Repository.Classes;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -17,15 +19,17 @@ namespace EmployeeManagementSystem.Controllers
     {
         private ApplicationUserManager _userManager;
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
+        private RepositoryContext _repositoryContext = new RepositoryContext();
 
         public UserController()
         {
         }
 
-        public UserController(ApplicationUserManager userManager, ApplicationDbContext applicationDbContext)
+        public UserController(ApplicationUserManager userManager, ApplicationDbContext applicationDbContext, RepositoryContext repositoryContext)
         {
             _userManager = userManager;
             _applicationDbContext = applicationDbContext;
+            _repositoryContext = repositoryContext;
         }
 
         public ApplicationUserManager UserManager
@@ -95,6 +99,9 @@ namespace EmployeeManagementSystem.Controllers
                         //});
                         var data = _applicationDbContext.Roles.Where(m => m.Id == user.RoleId).SingleOrDefault();
                         await UserManager.AddToRoleAsync(user.Id, data.Name);
+                        _repositoryContext.Employees.Add(new Employee()
+                        {
+                        });
 
                         TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");

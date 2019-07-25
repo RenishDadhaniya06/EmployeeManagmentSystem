@@ -1,22 +1,19 @@
 ﻿using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeMangmentSystem.Resources;
+using System.Web;
 using System.Web.Mvc;
 
-namespace EmployeeManagementSystem.Controllers
+namespace LeaveManagementSystem.Controllers
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="System.Web.Mvc.Controller" />
-    public class EmployeeController : Controller
+    public class LeaveController : Controller
     {
-        // GET: Employee
+        // GET: Leave
         /// <summary>
         /// Indexes this instance.
         /// </summary>
@@ -25,12 +22,12 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+                var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeaves");
                 if (data == null)
                 {
-                    data = new List<Employee>();
+                    data = new List<Leave>();
                 }
-                ViewBag.Employee = data;
+                ViewBag.Leave = data;
                 return View(data.ToList());
             }
             catch (Exception)
@@ -49,8 +46,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                var builder = new PdfBuilder<List<Employee>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
+                var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeaves");
+                var builder = new PdfBuilder<List<Leave>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
                 return builder.GetPdf();
             }
             catch (Exception)
@@ -60,7 +57,7 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        // GET: Employee/Details/5
+        // GET: Leave/Details/5
         /// <summary>
         /// Detailses the specified identifier.
         /// </summary>
@@ -79,7 +76,7 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        // GET: Employee/Create
+        // GET: Leave/Create
         /// <summary>
         /// Creates this instance.
         /// </summary>
@@ -88,9 +85,9 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                ViewBag.Employee = data;
-                return View(new Employee());
+                var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeaves");
+                ViewBag.Leave = data;
+                return View(new Leave());
             }
             catch (Exception)
             {
@@ -99,7 +96,7 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        // POST: Employee/Create
+        // POST: Leave/Create
         /// <summary>
         /// Creates the specified collection.
         /// </summary>
@@ -107,22 +104,23 @@ namespace EmployeeManagementSystem.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
-        public async Task<ActionResult> Create(Employee collection)
+        public async Task<ActionResult> Create(Leave collection)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    collection.EmployeeId = Guid.Parse(EmployeeManagementSystem.Helper.CommonHelper.GetUserId());
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
                     {
-                        await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
-                        TempData["sucess"] = EmployeeResources.create;
+                        await APIHelpers.PostAsync<Leave>("api/Leave/Post", collection);
+                        TempData["sucess"] = CommonResources.create;
                     }
                     else
                     {
-                        await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
-                        TempData["sucess"] = EmployeeResources.update;
+                        await APIHelpers.PutAsync<Leave>("api/Leave/Put", collection);
+                        TempData["sucess"] = CommonResources.update;
                     }
                     return RedirectToAction("Index");
                 }
@@ -139,19 +137,20 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        // GET: Employee/Edit/5
+        // GET: Leave/Edit/5
         /// <summary>
         /// Edits the specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
+
         public async Task<ActionResult> Edit(Guid id)
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                ViewBag.Employee = data;
-                return View("Create", await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id));
+                var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeaves");
+                ViewBag.Leave = data;
+                return View("Create", await APIHelpers.GetAsync<Leave>("api/Leave/Get/" + id));
             }
             catch (Exception)
             {
@@ -160,7 +159,7 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        // POST: Employee/Delete/5
+        // POST: Leave/Delete/5
         /// <summary>
         /// Deletes the confirm.
         /// </summary>
@@ -172,8 +171,8 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 // TODO: Add delete logic here
-                await APIHelpers.DeleteAsync<Employee>("api/Employee/Delete/" + id);
-                TempData["sucess"] = EmployeeResources.delete;
+                await APIHelpers.DeleteAsync<Leave>("api/Leave/Delete/" + id);
+                TempData["sucess"] = CommonResources.delete;
                 return RedirectToAction("Index");
             }
             catch

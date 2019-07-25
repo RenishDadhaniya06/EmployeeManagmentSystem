@@ -61,6 +61,15 @@ namespace EmployeeMangmentSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Successfully..
         /// </summary>
         public static string create {
@@ -79,11 +88,56 @@ namespace EmployeeMangmentSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Emergancy Leave.
+        /// </summary>
+        public static string EmergancyLeave {
+            get {
+                return ResourceManager.GetString("EmergancyLeave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Occured While Processing..
         /// </summary>
         public static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid.
+        /// </summary>
+        public static string Paid {
+            get {
+                return ResourceManager.GetString("Paid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string Pending {
+            get {
+                return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string Rejected {
+            get {
+                return ResourceManager.GetString("Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seek Leave.
+        /// </summary>
+        public static string SeekLeave {
+            get {
+                return ResourceManager.GetString("SeekLeave", resourceCulture);
             }
         }
         

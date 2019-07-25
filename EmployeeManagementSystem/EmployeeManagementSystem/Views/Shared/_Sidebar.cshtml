@@ -70,6 +70,17 @@
                                 </ul>
                             </li>
                         }
+                        <li>
+                            <a><i class="fa fa-leaf"></i> Leave Managment <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                @if (!CommonHelper.IsSuperAdmin())
+                                {
+                                    <li><a href="@Url.Action("Index", "Leave")">Leave</a></li>
+                                }
+
+                                <li><a href="@Url.Action("Index", "Leave")"> Manage Leave</a></li>
+                            </ul>
+                        </li>
                     }
 
                 </ul>

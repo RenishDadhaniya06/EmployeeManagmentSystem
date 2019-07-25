@@ -8,14 +8,44 @@ using System.Threading.Tasks;
 
 namespace EmployeeMangmentSystem.Services.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICustomerService
     {
+        /// <summary>
+        /// Gets the customers.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<Customer> GetCustomers();
 
-         Task<List<RolePermission>>  GetRolesById(Guid roleId);
+        /// <summary>
+        /// Gets the roles by identifier.
+        /// </summary>
+        /// <param name="roleId">The role identifier.</param>
+        /// <returns></returns>
+        Task<List<RolePermission>> GetRolesById(Guid roleId);
 
+        /// <summary>
+        /// Gets the roles.
+        /// </summary>
+        /// <returns></returns>
         Task<List<RolesViewModel>> GetRoles();
 
+        /// <summary>
+        /// Deletebies the role identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<bool> DeletebyRoleId(Guid id);
+
+        #region Leaves
+        /// <summary>
+        /// Gets the leaves by employee.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        Task<List<Leave>> GetLeavesByEmployee(Guid id);
+        #endregion
     }
 }

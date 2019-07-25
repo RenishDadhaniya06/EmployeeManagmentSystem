@@ -30,6 +30,7 @@ namespace EmployeeManagementSystem
             container.RegisterType<IRepository<PermissionModules>, Repository<PermissionModules>>();
             container.RegisterType<IRepository<RolePermission>, Repository<RolePermission>>();
             container.RegisterType<IRepository<Employee>, Repository<Employee>>();
+            container.RegisterType<IRepository<Leave>, Repository<Leave>>();
             container.RegisterType<ICustomerService, CustomerService>();
             container.RegisterType<IDataRepositoryContext, RepositoryContext>();
             container.RegisterType<AccountController>(new InjectionConstructor());

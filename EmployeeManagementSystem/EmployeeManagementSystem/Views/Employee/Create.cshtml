@@ -33,6 +33,7 @@
                 @Html.Label("Select Reporting Manager", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.DropDownListFor(model => model.ReportingManagerId, new SelectList(ViewBag.Employee, "Id", "Name"), "Select Employee", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ReportingManagerId, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">

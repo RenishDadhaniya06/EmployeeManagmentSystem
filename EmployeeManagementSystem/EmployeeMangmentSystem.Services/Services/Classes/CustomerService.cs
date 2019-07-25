@@ -29,26 +29,52 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             dbContext = iCustomerRepository;
         }
 
-        /// <summary>Gets the customers.</summary>
+        /// <summary>
+        /// Gets the customers.
+        /// </summary>
         /// <returns></returns>
         public IEnumerable<Customer> GetCustomers()
         {
             return dbContext.GetAll();
         }
 
+        /// <summary>
+        /// Gets the roles by identifier.
+        /// </summary>
+        /// <param name="roleId">The role identifier.</param>
+        /// <returns></returns>
         public async Task<List<RolePermission>> GetRolesById(Guid roleId)
         {
             return await dbContext.GetRolesById(roleId);
         }
 
+        /// <summary>
+        /// Gets the roles.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<RolesViewModel>> GetRoles()
         {
             return await dbContext.GetRoles();
         }
 
+        /// <summary>
+        /// Deletebies the role identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<bool> DeletebyRoleId(Guid id)
         {
             return await dbContext.DeletebyRoleId(id);
+        }
+
+        /// <summary>
+        /// Gets the leaves by employee.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<List<Leave>> GetLeavesByEmployee(Guid id)
+        {
+            return await dbContext.GetLeavesByEmployee(id);
         }
     }
 }
