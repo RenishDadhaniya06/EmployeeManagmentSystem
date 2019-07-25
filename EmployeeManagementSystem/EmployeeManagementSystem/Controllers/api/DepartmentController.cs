@@ -8,17 +8,16 @@ using System.Web.Http;
 
 namespace EmployeeManagementSystem.Controllers.api
 {
-    public class EmployeeController : ApiController
+    public class DepartmentController : ApiController
     {
-        private IRepository<Employee> _repository;
+        private IRepository<Departments> _repository;
 
-        public EmployeeController(IRepository<Employee> repository)
+        public DepartmentController(IRepository<Departments> repository)
         {
             _repository = repository;
         }
-
-        [Route("api/Employee/GetEmployees")]
-        public IEnumerable<Employee> GetEmployees()
+        [Route("api/Department/GetDepartments")]
+        public IEnumerable<Departments> GetDesignations()
         {
             try
             {
@@ -31,34 +30,34 @@ namespace EmployeeManagementSystem.Controllers.api
 
                 throw;
             }
-          
+
         }
 
-        [Route("api/Employee/Get/{id}")]
+        [Route("api/Department/Get/{id}")]
         [HttpGet]
-        public Employee Get(Guid id)
+        public Departments Get(Guid id)
         {
             var data1 = _repository.GetById(id);
             return data1;
         }
 
-        [Route("api/Employee/Post")]
+        [Route("api/Department/Post")]
         [HttpPost]
-        public Employee Post(Employee model)
+        public Departments Post(Departments model)
         {
             model.Id = Guid.NewGuid();
             var data2 = _repository.Insert(model);
             return data2;
         }
 
-        [Route("api/Employee/Put")]
+        [Route("api/Department/Put")]
         [HttpPut]
-        public Employee Put(Employee model)
+        public Departments Put(Departments model)
         {
             return _repository.Update(model);
         }
 
-        [Route("api/Employee/Delete/{id}")]
+        [Route("api/Department/Delete/{id}")]
         [HttpDelete]
         public bool Delete(Guid id)
         {

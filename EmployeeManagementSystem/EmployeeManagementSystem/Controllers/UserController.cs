@@ -3,6 +3,7 @@ using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Repository.Classes;
 using EmployeeMangmentSystem.Resources;
+using Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -85,6 +86,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
@@ -97,6 +99,19 @@ namespace EmployeeManagementSystem.Controllers
                         //    UserId = model.Id,
                         //RoleId = model.RoleId
                         //});
+
+                        var userrole = _applicationDbContext.Roles.Where(m => m.Name == "Employee").SingleOrDefault();
+                        if (model.RoleId == userrole.Id)
+                        {
+                            var month = DateTime.Now.Month;
+                            var cal = 13 - month;
+                            Employee emp = new Employee();
+                            emp.Name = model.FirstName + model.LastName;
+                            emp.Email = model.Email;
+                            emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
+                            await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
+                        }
+
                         var data = _applicationDbContext.Roles.Where(m => m.Id == user.RoleId).SingleOrDefault();
                         await UserManager.AddToRoleAsync(user.Id, data.Name);
                         _repositoryContext.Employees.Add(new Employee()

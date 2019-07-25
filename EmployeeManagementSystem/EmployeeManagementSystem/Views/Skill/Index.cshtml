@@ -1,13 +1,8 @@
-﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
-
-
+﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.Skills>
 
 @{
-    ViewBag.Title = "Roles";
+    ViewBag.Title = "Skill";
 }
-
-<h2></h2>
-
 
 <div class="x_panel">
     <div class="x_title">
@@ -27,21 +22,31 @@
     </div>
     <div class="x_content">
 
+        <div class="row">
+            <div class="col-md-1">
 
-        <p>
-            <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Post","Role")"></a>
+                <p>
+                    <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Skill")"></a>
 
-        </p>
+                </p>
+            </div> <div class="col-md-10">
+            </div>  <div class="col-md-1">
+                <p>
+                    <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Skill", new { target = "_blank" })"></a>
+
+                </p>
+            </div>
+        </div>
         <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>
+                    <th style="text-align:center">
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
-                    <th>Edit</th>
-                    @*<th>
-                        Delete
-                    </th>*@
+
+
+                    <th style="text-align:center">Edit</th>
+                    <th style="text-align:center">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,22 +54,22 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayTextFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>
-                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Role",new { id = @item.Id})"></a>
-                        </td>
-                        @*<td>
-                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-                        </td>*@
 
+
+                        <td style="text-align:center">
+                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Skill",new { id = @item.Id})"></a>
+                        </td>
+                        <td style="text-align:center">
+                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
+                        </td>
                     </tr>
                 }
-
             </tbody>
         </table>
     </div>
 </div>
-@*<script>
-    var deleteUrl = '@Url.Action("DeleteConfirm", "Role")';
-</script>*@
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirm", "Skill")';
+</script>

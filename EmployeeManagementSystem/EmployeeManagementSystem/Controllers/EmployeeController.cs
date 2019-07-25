@@ -33,7 +33,7 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Employee = data;
                 return View(data.ToList());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return RedirectToAction("AccessDenied", "Error");

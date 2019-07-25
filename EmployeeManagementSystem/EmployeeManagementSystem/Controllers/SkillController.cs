@@ -11,17 +11,17 @@ using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
-    public class DesignationController : Controller
+    public class SkillController : Controller
     {
-        // GET: Designation
+        // GET: Department
         public async Task<ActionResult> Index()
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
+                var data = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 if (data == null)
                 {
-                    data = new List<Designation>();
+                    data = new List<Skills>();
                 }
                 return View(data.ToList());
             }
@@ -37,8 +37,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
-                var builder = new PdfBuilder<List<Designation>>(data, Server.MapPath("/Views/Designation/Print.cshtml"));
+                var data = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
+                var builder = new PdfBuilder<List<Skills>>(data, Server.MapPath("/Views/Skill/Print.cshtml"));
                 return builder.GetPdf();
             }
             catch (Exception)
@@ -67,7 +67,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                return View(new Designation());
+                return View(new Skills());
             }
             catch (Exception)
             {
@@ -79,7 +79,7 @@ namespace EmployeeManagementSystem.Controllers
         // POST: Designation/Create
         [HttpPost]
         [ValidateInput(false)]
-        public async Task<ActionResult> Create(Designation collection)
+        public async Task<ActionResult> Create(Skills collection)
         {
             try
             {
@@ -88,13 +88,13 @@ namespace EmployeeManagementSystem.Controllers
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
                     {
-                        await APIHelpers.PostAsync<Designation>("api/Designation/Post", collection);
-                        TempData["sucess"] = DesignationResources.create;
+                        await APIHelpers.PostAsync<Skills>("api/Skill/Post", collection);
+                        TempData["sucess"] = SkillsResources.create;
                     }
                     else
                     {
-                        await APIHelpers.PutAsync<Designation>("api/Designation/Put", collection);
-                        TempData["sucess"] = DesignationResources.update;
+                        await APIHelpers.PutAsync<Skills>("api/Skill/Put", collection);
+                        TempData["sucess"] = SkillsResources.update;
                     }
                     return RedirectToAction("Index");
                 }
@@ -116,7 +116,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                return View("Create", await APIHelpers.GetAsync<Designation>("api/Designation/Get/" + id));
+                return View("Create", await APIHelpers.GetAsync<Skills>("api/Skill/Get/" + id));
             }
             catch (Exception)
             {
@@ -135,8 +135,8 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 // TODO: Add delete logic here
-                await APIHelpers.DeleteAsync<Designation>("api/Designation/Delete/" + id);
-                TempData["sucess"] = DesignationResources.delete;
+                await APIHelpers.DeleteAsync<Skills>("api/Skill/Delete/" + id);
+                TempData["sucess"] = SkillsResources.delete;
                 return RedirectToAction("Index");
             }
             catch

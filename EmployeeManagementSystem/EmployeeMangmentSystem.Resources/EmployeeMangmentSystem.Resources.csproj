@@ -25,6 +25,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DashboardResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="DepartmentResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DepartmentResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="DesignationResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -45,10 +50,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RegestrationResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="SkillsResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SkillsResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StateResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>StateResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="TechnologiesResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TechnologiesResources.resx</DependentUpon>
     </Compile>
     <Compile Update="TemplateResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -79,6 +94,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DashboardResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="DepartmentResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DepartmentResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="DesignationResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DesignationResources.Designer.cs</LastGenOutput>
@@ -95,9 +114,18 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RegestrationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="SkillsResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SkillsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="StateResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StateResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TechnologiesResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <LastGenOutput>TechnologiesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="TemplateResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
