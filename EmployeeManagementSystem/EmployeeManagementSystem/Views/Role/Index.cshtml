@@ -39,9 +39,9 @@
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>Edit</th>
-                    <th>
+                    @*<th>
                         Delete
-                    </th>
+                    </th>*@
                 </tr>
             </thead>
             <tbody>
@@ -54,9 +54,9 @@
                         <td>
                             <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Role",new { id = @item.Id})"></a>
                         </td>
-                        <td>
+                        @*<td>
                             <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-                        </td>
+                        </td>*@
 
                     </tr>
                 }
@@ -65,6 +65,6 @@
         </table>
     </div>
 </div>
-<script>
+@*<script>
     var deleteUrl = '@Url.Action("DeleteConfirm", "Role")';
-</script>
+</script>*@

@@ -9,7 +9,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public double AvailableLeaves { get; set; }
+        public decimal AvailableLeaves { get; set; }
         public Guid ReportingManagerId { get; set; }
     }
 }

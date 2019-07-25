@@ -17,7 +17,7 @@
     <AssemblyName>EmployeeManagementSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -234,7 +234,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CitiesController.cs" />
     <Compile Include="Controllers\api\CountryController.cs" />
+    <Compile Include="Controllers\api\DepartmentController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
+    <Compile Include="Controllers\api\EmployeeController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\RolePermissionsController.cs" />
     <Compile Include="Controllers\api\SettingController.cs" />
