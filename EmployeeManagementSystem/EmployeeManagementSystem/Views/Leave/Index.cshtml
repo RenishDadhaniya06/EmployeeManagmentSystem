@@ -61,7 +61,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>  @item.To.ToShortDateString() To  @item.From.ToShortDateString()</td>
+                        <td>  @item.From.ToShortDateString() To  @item.To.ToShortDateString()</td>
                         <td>@Html.DisplayFor(modelItem => item.Message)</td>
                         <td>
                             @if (item.LeaveStatus == Enums.LeaveStatus.Approved)

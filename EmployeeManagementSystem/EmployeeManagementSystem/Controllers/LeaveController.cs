@@ -4,6 +4,7 @@ using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -113,7 +114,7 @@ namespace LeaveManagementSystem.Controllers
         /// <returns></returns>
         [HttpPost]
         //[ValidateInput(false)]
-        public async Task<ActionResult> Create(HttpPostedFileBase Attachment,Leave collection)
+        public async Task<ActionResult> Create(HttpPostedFileBase[] Attachment,Leave collection)
         {
             try
             {
@@ -124,22 +125,42 @@ namespace LeaveManagementSystem.Controllers
                     collection.AssignTo = "";
                     collection.EmployeeId = Guid.Parse(EmployeeManagementSystem.Helper.CommonHelper.GetUserId());
                     collection.LeaveStatus = Enums.LeaveStatus.Pending;
-                    if(Attachment.FileName.Contains(".pdf") || Attachment.FileName.Contains(".jpg") || Attachment.FileName.Contains(".JPEG"))
-                    {
-                        Attachment.SaveAs(Server.MapPath("~/LeaveImage/" + Attachment.FileName));
-                    }
-                    else
-                    {
+                    collection.Attachment = "";
+                    //if (Attachment.FileName.Contains(".pdf") || Attachment.FileName.Contains(".jpg") || Attachment.FileName.Contains(".JPEG"))
+                    //{
+                    //    Attachment.SaveAs(Server.MapPath("~/LeaveImage/" + Attachment.FileName));
+                    //}
+                    //else
+                    //{
 
-                        TempData["error"] = LeaveResources.FileError;
-                        return View();
+                    //    TempData["error"] = LeaveResources.FileError;
+                    //    return View();
+                    //}
+                    foreach (HttpPostedFileBase file in Attachment)
+                    {
+                        if(file.FileName.Contains(".pdf") || file.FileName.Contains(".jpg") || file.FileName.Contains(".JPEG"))
+                        {
+                            if (file != null)
+                            {
+                                var filename = Path.GetFileName(file.FileName);
+                                collection.Attachment =collection.Attachment + " " + filename;
+                                var serverpath = Path.Combine(Server.MapPath("~/LeaveImage/") + filename);
+                                file.SaveAs(serverpath);
+                            }
+                        }
+                        else
+                        {
+                            TempData["error"] = LeaveResources.FileError;
+                            return View();
+                        }
+                        
                     }
                     // TODO: Add insert logic here
-                    
+
                     //Server.MapPath("~/LeaveImage/" + collection.Attachment);
                     if (collection.Id == Guid.Empty)
                     {
-                        collection.Attachment = Attachment.FileName;
+                        //collection.Attachment = 
                         await APIHelpers.PostAsync<Leave>("api/Leave/Post", collection);
                         TempData["sucess"] = LeaveResources.create;
                     }
