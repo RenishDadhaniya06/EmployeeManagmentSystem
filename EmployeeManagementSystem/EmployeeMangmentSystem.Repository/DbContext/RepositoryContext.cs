@@ -37,6 +37,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Departments> Departments { get; set; }
 
+        public DbSet<Technologies> Technologies { get; set; }
+
         public DbSet<Templates> Templates { get; set; }
 
         public DbSet<TemplatesType> TemplatesType { get; set; }
@@ -58,6 +60,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         public DbSet<Employee> Employees { get; set; }
 
         public DbSet<Leave> Leaves { get; set; }
+
+        public DbSet<Skills> Skills { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
