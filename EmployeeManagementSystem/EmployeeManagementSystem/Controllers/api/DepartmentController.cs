@@ -17,7 +17,7 @@ namespace EmployeeManagementSystem.Controllers.api
             _repository = repository;
         }
         [Route("api/Department/GetDepartments")]
-        public IEnumerable<Departments> GetDesignations()
+        public IEnumerable<Departments> GetDeparments()
         {
             try
             {
