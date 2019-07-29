@@ -13,6 +13,10 @@ namespace LeaveManagementSystem.Controllers
 {
     public class LeaveController : Controller
     {
+        public LeaveController()
+        {
+
+        }
         // GET: Leave
         /// <summary>
         /// Indexes this instance.
@@ -22,7 +26,7 @@ namespace LeaveManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeaves");
+                var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeavesByEmployee/"+ Guid.Parse(EmployeeManagementSystem.Helper.CommonHelper.GetUserId()));
                 if (data == null)
                 {
                     data = new List<Leave>();
@@ -30,7 +34,7 @@ namespace LeaveManagementSystem.Controllers
                 ViewBag.Leave = data;
                 return View(data.ToList());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return RedirectToAction("AccessDenied", "Error");
@@ -87,9 +91,14 @@ namespace LeaveManagementSystem.Controllers
             {
                 var data = await APIHelpers.GetAsync<List<Leave>>("api/Leave/GetLeaves");
                 ViewBag.Leave = data;
-                return View(new Leave());
+                //var model = new Leave { From = DateTime.Now.Date };
+                Leave model = new Leave();
+                model.From = DateTime.Now.Date;
+                model.To = DateTime.Now.Date;
+                //return View(new Leave());
+                return View(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return RedirectToAction("AccessDenied", "Error");
@@ -103,24 +112,41 @@ namespace LeaveManagementSystem.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [HttpPost]
-        [ValidateInput(false)]
-        public async Task<ActionResult> Create(Leave collection)
+        //[ValidateInput(false)]
+        public async Task<ActionResult> Create(HttpPostedFileBase Attachment,Leave collection)
         {
             try
             {
+                ModelState.Remove("Attachment");
+                ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
+                    collection.AssignTo = "";
                     collection.EmployeeId = Guid.Parse(EmployeeManagementSystem.Helper.CommonHelper.GetUserId());
+                    collection.LeaveStatus = Enums.LeaveStatus.Pending;
+                    if(Attachment.FileName.Contains(".pdf") || Attachment.FileName.Contains(".jpg") || Attachment.FileName.Contains(".JPEG"))
+                    {
+                        Attachment.SaveAs(Server.MapPath("~/LeaveImage/" + Attachment.FileName));
+                    }
+                    else
+                    {
+
+                        TempData["error"] = LeaveResources.FileError;
+                        return View();
+                    }
                     // TODO: Add insert logic here
+                    
+                    //Server.MapPath("~/LeaveImage/" + collection.Attachment);
                     if (collection.Id == Guid.Empty)
                     {
+                        collection.Attachment = Attachment.FileName;
                         await APIHelpers.PostAsync<Leave>("api/Leave/Post", collection);
-                        TempData["sucess"] = CommonResources.create;
+                        TempData["sucess"] = LeaveResources.create;
                     }
                     else
                     {
                         await APIHelpers.PutAsync<Leave>("api/Leave/Put", collection);
-                        TempData["sucess"] = CommonResources.update;
+                        TempData["sucess"] = LeaveResources.update;
                     }
                     return RedirectToAction("Index");
                 }
@@ -130,7 +156,7 @@ namespace LeaveManagementSystem.Controllers
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");

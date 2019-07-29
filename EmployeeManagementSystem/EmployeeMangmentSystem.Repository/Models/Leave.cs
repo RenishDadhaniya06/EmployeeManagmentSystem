@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using static Helpers.Enums;
 
@@ -14,7 +15,12 @@ namespace EmployeeMangmentSystem.Repository.Models
         public LeaveStatus LeaveStatus { get; set; }
         public string Message { get; set; }
         public string Attachment { get; set; }
+
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString ="{DD-MM-YYYY}")]
         public DateTime From { get; set; }
+
+        //[DisplayFormat(DataFormatString ="{DD-MM-YYYY")]
         public DateTime To { get; set; }
     }
 }

@@ -14,7 +14,9 @@ namespace EmployeeManagementSystem.Helper
 
         public static string GetUserId()
         {
-            return HttpContext.Current.User.Identity.Name;
+            //return HttpContext.Current.User.Identity.Name;
+            var user = _applicationDbContext.Users.Where(m => m.Email == HttpContext.Current.User.Identity.Name).SingleOrDefault();
+            return user.Id;
         }
 
         public static bool IsSuperAdmin()

@@ -31,7 +31,7 @@ namespace EmployeeManagementSystem.Controllers.api
 
                 throw;
             }
-          
+
         }
 
         [Route("api/Employee/Get/{id}")]

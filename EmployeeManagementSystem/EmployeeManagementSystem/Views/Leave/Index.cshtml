@@ -45,10 +45,10 @@
                         Message
                     </th>
                     <th style="text-align:center">
-                        Status
+                        Leave Status
                     </th>
                     <th style="text-align:center">
-                        Type
+                     Leave Type
                     </th>
                     <th style="text-align:center">
                         Attachment
@@ -61,7 +61,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>  @Html.DisplayFor(modelItem => item.To.ToShortDateString()) + ' '+@Html.DisplayFor(modelItem => item.From.ToShortDateString())</td>
+                        <td>  @item.To.ToShortDateString() To  @item.From.ToShortDateString()</td>
                         <td>@Html.DisplayFor(modelItem => item.Message)</td>
                         <td>
                             @if (item.LeaveStatus == Enums.LeaveStatus.Approved)
