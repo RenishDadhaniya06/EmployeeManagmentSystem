@@ -76,5 +76,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetLeavesByEmployee(id);
         }
+
+        public async Task<List<Notifications>> GetMessages()
+        {
+            return await dbContext.GetMessages();
+        }
     }
 }

@@ -42,5 +42,7 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task<List<Leave>> GetLeavesByEmployee(Guid id);
+
+        Task<List<Notifications>> GetMessages();
     }
 }

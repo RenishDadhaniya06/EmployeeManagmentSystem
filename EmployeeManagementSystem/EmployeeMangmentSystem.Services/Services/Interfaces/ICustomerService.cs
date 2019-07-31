@@ -47,5 +47,7 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <returns></returns>
         Task<List<Leave>> GetLeavesByEmployee(Guid id);
         #endregion
+
+        Task<List<Notifications>> GetMessages();
     }
 }

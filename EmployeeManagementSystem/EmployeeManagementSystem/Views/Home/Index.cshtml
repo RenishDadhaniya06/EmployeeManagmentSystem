@@ -2,4 +2,41 @@
     ViewBag.Title = "Dashboard";
 }
 
+<script type="text/javascript">
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "3000",
+        "hideDuration": "1000",
+        timeOut: 0,
+    extendedTimeOut: 0,
+    tapToDismiss: true,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": 'fadeOut'
+    }
+
+    var msgUrl = '@Url.Action("GetMessages", "Notification")';
+        $.ajax({
+        url: msgUrl,
+        type: 'get',
+        success: function (data) {
+            debugger
+            if (data != null) {
+                debugger
+                console.log("Successfull"),
+                    console.log(data)
+                for (var i = 0; i < data.length; i++) {
+                       toastr.info(data[i].Message);
+                }
+            }
+        },
+    });
+</script>
 

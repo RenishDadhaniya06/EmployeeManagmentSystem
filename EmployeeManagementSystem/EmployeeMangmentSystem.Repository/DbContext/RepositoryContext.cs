@@ -63,6 +63,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Skills> Skills { get; set; }
 
+        public DbSet<Notifications> Notifications { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

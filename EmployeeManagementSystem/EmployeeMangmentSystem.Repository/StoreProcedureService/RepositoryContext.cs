@@ -66,5 +66,10 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         {
             return await Database.SqlQuery<Leave>(@"exec [dbo].[GetLeavesByEmployeeId] @p0", id).ToListAsync();
         }
+
+        public async Task<List<Notifications>> GetMessages()
+        {
+            return await Database.SqlQuery<Notifications>(@"exec [dbo].[GetNotification]").ToListAsync();
+        }
     }
 }

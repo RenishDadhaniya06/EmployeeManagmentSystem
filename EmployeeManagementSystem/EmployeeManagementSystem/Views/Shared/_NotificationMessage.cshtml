@@ -1,0 +1,26 @@
+﻿<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/custom.js"></script>
+<script src="~/Scripts/Notification.js"></script>
+<script src="~/Scripts/script.js"></script>
+<script type='text/javascript'>
+
+    //Alerts your TempData value (you could also use the Session or your rno value here
+         var a = '@(TempData["notificationsuccess"])';
+
+    if (a != '') {
+        toastify("success", a);
+    }
+    var b = '@(TempData["notificationerror"])';
+    if (b != '') {
+            toastify("error", b);
+    }
+    var c = '@(TempData["notificationinfo"])';
+    if (c != '') {
+        toastify("info", c);
+    }
+
+    var c = '@(TempData["notificationwarning"])';
+    if (c != '') {
+        toastify("warning", c);
+    }
+</script>
