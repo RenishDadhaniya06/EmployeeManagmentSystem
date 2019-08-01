@@ -20,12 +20,6 @@ namespace EmployeeManagementSystem.Controllers
             var data2 = await APIHelpers.GetAsync<List<Notifications>>("api/Notification/GetMessage");
             ViewBag.States = await APIHelpers.GetAsync<List<States>>("api/State/GetStates");
             var data = await APIHelpers.GetAsync<List<City>>("api/City/GetCities");
-            //TempData["notificationsuccess"] = data2.FirstOrDefault().Message;
-            //foreach(var item in data2)
-            //{
-            //    TempData["notificationsuccess"] = item.Message;
-            //}
-            
             return View(data.ToList());
         }
 

@@ -167,7 +167,7 @@ namespace EmployeeManagementSystem.Controllers
        //     }
        // }
 
-            [HttpGet]
+        [HttpGet]
         public async Task<JsonResult> GetMessages()
         {
             try
