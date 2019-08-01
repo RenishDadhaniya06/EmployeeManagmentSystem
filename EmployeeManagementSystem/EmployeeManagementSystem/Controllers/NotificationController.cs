@@ -84,7 +84,16 @@ namespace EmployeeManagementSystem.Controllers
                 if (ModelState.IsValid)
                 {
                     collection.From = DateTime.Now.Date;
-                    collection.To = DateTime.Now.Date.AddDays(Convert.ToDouble(Request["Duration"]));
+                    var todate = Convert.ToDouble(Request["Duration"]);
+                    if (todate == 0)
+                    {
+                        return View(collection);
+                    }
+                    else
+                    {
+                        collection.To = DateTime.Now.Date.AddDays(todate - 1);
+                    }
+                    //collection.To = DateTime.Now.Date.AddDays(Convert.ToDouble(Request["Duration"]));
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
                     {
