@@ -87,6 +87,7 @@ namespace EmployeeManagementSystem.Controllers
                     var todate = Convert.ToDouble(Request["Duration"]);
                     if (todate == 0)
                     {
+                        TempData["error"] = NotificationResources.duration;
                         return View(collection);
                     }
                     else

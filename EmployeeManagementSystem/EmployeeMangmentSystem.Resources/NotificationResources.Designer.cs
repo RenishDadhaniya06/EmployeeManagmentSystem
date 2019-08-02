@@ -79,6 +79,15 @@ namespace EmployeeMangmentSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration Must be more than 0..
+        /// </summary>
+        public static string duration {
+            get {
+                return ResourceManager.GetString("duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string name {

@@ -123,6 +123,9 @@
   <data name="delete" xml:space="preserve">
     <value>Notification Deleted Successfully.</value>
   </data>
+  <data name="duration" xml:space="preserve">
+    <value>Duration Must be more than 0.</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Notification</value>
   </data>

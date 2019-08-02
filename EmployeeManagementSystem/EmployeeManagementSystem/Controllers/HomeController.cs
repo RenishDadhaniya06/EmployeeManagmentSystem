@@ -1,16 +1,12 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using Helpers;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-           ////var data = await APIHelpers.GetAsync<Customer>("api/Home/GetCustomers");
             return View();
         }
 
