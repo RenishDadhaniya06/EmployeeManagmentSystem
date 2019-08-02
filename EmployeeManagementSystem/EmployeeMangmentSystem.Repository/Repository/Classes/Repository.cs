@@ -1,8 +1,10 @@
 ﻿using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace EmployeeMangmentSystem.Repository.Repository.Classes
 {
@@ -152,6 +154,39 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
                     context = null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Finds the by.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns></returns>
+        public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        {
+            return dbSet.Where(predicate);
+        }
+
+        /// <summary>
+        /// Deletes the where.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        public virtual void DeleteWhere(Expression<Func<T, bool>> predicate)
+        {
+            var entities = dbSet.Where(predicate);
+            dbSet.RemoveRange(entities);
+            Save();
+        }
+
+        /// <summary>
+        /// Determines whether this instance contains the object.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains] [the specified entity]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Contains(T entity)
+        {
+            return dbSet.FirstOrDefault(t => t == entity) != null;
         }
     }
 }

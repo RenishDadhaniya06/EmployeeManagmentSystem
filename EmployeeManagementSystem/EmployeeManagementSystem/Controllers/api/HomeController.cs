@@ -14,7 +14,7 @@ namespace Web.Controllers.api
     public class HomeController : ApiController
     {
         private ICustomerService _iCustomerService;
-        private IRepository<Customer> _repository;
+        private IRepository<RolePermission> _repository;
 
         public HomeController(ICustomerService iCustomerService, IRepository<Customer> repository)
         {
@@ -26,6 +26,7 @@ namespace Web.Controllers.api
         public IEnumerable<Customer> GetCustomers()
         {
             var data = _repository.GetAll();
+            _repository.FindBy(_ => _.CustomerName == "Renish");
             return data;
         }
 
