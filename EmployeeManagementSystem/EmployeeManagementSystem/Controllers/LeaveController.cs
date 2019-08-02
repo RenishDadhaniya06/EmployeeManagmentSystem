@@ -1,7 +1,10 @@
-﻿using EmployeeManagementSystem.Models;
+﻿using EmployeeManagementSystem;
+using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,9 +17,25 @@ namespace LeaveManagementSystem.Controllers
 {
     public class LeaveController : Controller
     {
-        public LeaveController()
-        {
+        private ApplicationUserManager _userManager;
 
+        public ApplicationDbContext appcontext;
+        public LeaveController(ApplicationUserManager userManager,ApplicationDbContext context)
+        {
+            appcontext = context;
+            _userManager = userManager;
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
         }
         // GET: Leave
         /// <summary>
@@ -162,6 +181,10 @@ namespace LeaveManagementSystem.Controllers
                     {
                         //collection.Attachment = 
                         await APIHelpers.PostAsync<Leave>("api/Leave/Post", collection);
+                        var id = Guid.Parse(User.Identity.GetUserId());
+                        var role = appcontext.Roles.Where(m => m.Name == "HR").SingleOrDefault();
+                        var users = UserManager.Users.Where(_ => _.RoleId == role.Id).SingleOrDefault();
+                        string subject = "Request For Leave";
                         TempData["sucess"] = LeaveResources.create;
                     }
                     else
