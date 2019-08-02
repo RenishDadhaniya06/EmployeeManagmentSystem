@@ -203,5 +203,38 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
                 }
             }
         }
+
+        /// <summary>
+        /// Finds the by.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns></returns>
+        public virtual IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
+        {
+            return dbSet.Where(predicate);
+        }
+
+        /// <summary>
+        /// Deletes the where.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        public virtual void DeleteWhere(Expression<Func<TEntity, bool>> predicate)
+        {
+            var entities = dbSet.Where(predicate);
+            dbSet.RemoveRange(entities);
+            Save();
+        }
+
+        /// <summary>
+        /// Determines whether this instance contains the object.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains] [the specified entity]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Contains(TEntity entity)
+        {
+            return dbSet.FirstOrDefault(t => t == entity) != null;
+        }
     }
 }

@@ -81,5 +81,27 @@ namespace EmployeeMangmentSystem.Repository.Repository.Interfaces
         /// </summary>
         void Save();
 
+        /// <summary>
+        /// Determines whether this instance contains the object.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains] [the specified entity]; otherwise, <c>false</c>.
+        /// </returns>
+        bool Contains(TEntity entity);
+
+        /// <summary>
+        /// Deletes the where.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        void DeleteWhere(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// Finds the by.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns></returns>
+        IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
+
     }
 }
