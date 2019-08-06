@@ -81,5 +81,20 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetMessages();
         }
+
+        public async Task<List<string>> GetHR()
+        {
+            return await dbContext.GetHR();
+        }
+
+        public async Task<Templates> GetLeaveTemplate()
+        {
+            return await dbContext.GetLeaveTemplate();
+        }
+
+        public async Task<List<LeaveViewModel>> GetPendingLeaves()
+        {
+            return await dbContext.GetPendingLeaves();
+        }
     }
 }

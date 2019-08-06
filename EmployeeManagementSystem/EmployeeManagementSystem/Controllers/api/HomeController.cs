@@ -14,7 +14,7 @@ namespace Web.Controllers.api
     public class HomeController : ApiController
     {
         private ICustomerService _iCustomerService;
-        private IRepository<RolePermission> _repository;
+        private IRepository<Customer> _repository;
 
         public HomeController(ICustomerService iCustomerService, IRepository<Customer> repository)
         {

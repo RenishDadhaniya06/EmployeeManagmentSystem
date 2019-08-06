@@ -27,6 +27,7 @@
                                     <li><a href="@Url.Action("Index","Role")">Role</a></li>
                                     <li><a href="@Url.Action("Index", "RolePermission")">Role Permission</a></li>
                                     <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
+                                    
                                 </ul>
                             </li>
                         }
@@ -80,6 +81,10 @@
                                 @if (!CommonHelper.IsSuperAdmin())
                                 {
                                     <li><a href="@Url.Action("Index", "Leave")">@LeaveResources.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("GetPendingLeave","Leave")">Assign Leave</a></li>
                                 }
 
                                 @*<li><a href="@Url.Action("Index", "Leave")"> @LeaveResources.Name</a></li>*@

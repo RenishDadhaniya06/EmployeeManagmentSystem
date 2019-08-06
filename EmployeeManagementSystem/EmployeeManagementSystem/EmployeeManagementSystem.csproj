@@ -670,6 +670,7 @@
     <Content Include="Views\Notification\Index.cshtml" />
     <Content Include="Views\Notification\Create.cshtml" />
     <Content Include="Views\Shared\_NotificationMessage.cshtml" />
+    <Content Include="Views\Leave\GetPendingLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-namespace Helpers
+﻿namespace Helpers
 {
     public static class Enums
     {

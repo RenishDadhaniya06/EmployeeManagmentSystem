@@ -44,5 +44,11 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         Task<List<Leave>> GetLeavesByEmployee(Guid id);
 
         Task<List<Notifications>> GetMessages();
+
+        Task<List<string>> GetHR();
+
+        Task<Templates> GetLeaveTemplate();
+
+        Task<List<LeaveViewModel>> GetPendingLeaves();
     }
 }

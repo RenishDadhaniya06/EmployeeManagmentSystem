@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
 
 namespace Helpers
@@ -8,16 +9,23 @@ namespace Helpers
 
         public static string ApiURL = "http://localhost:56853/";
 
-        public static string Email = "Dhaval.Albiorix@gmail.com";
+        public static string Email = "";
 
-        public static string PWD = "Dhaval@$Albiorix";
+        public static string PWD = "";
 
         public static void SendMail(string emailId, string subject,string body)
         {
-           
+
+            var message = new MailMessage();
             var fromMail = new MailAddress(Email, subject);
-            var toMail = new MailAddress(emailId);
-           
+            message.From = new MailAddress(Email);
+            //var toMail = new MailAddress(emailId);
+            string[] multi = emailId.Split(',');
+            foreach(string multiid in multi)
+            {
+                message.To.Add(multiid);
+            }
+            
 
             var smtp = new SmtpClient
             {
@@ -26,15 +34,23 @@ namespace Helpers
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = true,
-                Credentials = new NetworkCredential(fromMail.Address, PWD)
+                //Credentials = new NetworkCredential(fromMail.Address, PWD)
+                Credentials = new NetworkCredential(Email,PWD)
             };
-            using (var message = new MailMessage(fromMail, toMail)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            })
-                smtp.Send(message);
+            //using (var message = new MailMessage(fromMail, toMail)
+            //{
+            //    Subject = subject,
+            //    Body = body,
+            //    IsBodyHtml = true
+            //})
+            message.Subject = subject;
+
+            message.Body = body;
+
+            message.IsBodyHtml = true;
+            smtp.Send(message);
+            
+                
         }
     }
 }

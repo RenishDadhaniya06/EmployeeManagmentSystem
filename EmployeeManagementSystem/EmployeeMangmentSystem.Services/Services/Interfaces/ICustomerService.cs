@@ -49,5 +49,11 @@ namespace EmployeeMangmentSystem.Services.Services
         #endregion
 
         Task<List<Notifications>> GetMessages();
+
+        Task<List<string>> GetHR();
+
+        Task<Templates> GetLeaveTemplate();
+
+        Task<List<LeaveViewModel>> GetPendingLeaves();
     }
 }

@@ -1,8 +1,11 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Repository.Repository.Interfaces;
 using EmployeeMangmentSystem.Services.Services;
+using Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -104,6 +107,48 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             _repository.Delete(id);
             return true;
+        }
+
+        [Route("api/Leave/GetPendingLeave")]
+        [HttpGet]
+        public async Task<List<LeaveViewModel>> GetPendingLeave()
+        {
+            var data = await _iCustomerService.GetPendingLeaves();
+            return data.ToList();
+        }
+
+        [Route("api/Leave/ApproveLeaves/{id}")]
+        [HttpGet]
+        public bool ApproveLeaves(Guid id)
+        {
+            var data = _repository.GetById(id);
+            if(data != null)
+            {
+                data.LeaveStatus = Enums.LeaveStatus.Approved;
+                _repository.Update(data);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [Route("api/Leave/RejectedLeaves/{id}")]
+        [HttpGet]
+        public bool RejectedLeaves(Guid id)
+        {
+            var data = _repository.GetById(id);
+            if (data != null)
+            {
+                data.LeaveStatus = Enums.LeaveStatus.Rejected;
+                _repository.Update(data);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

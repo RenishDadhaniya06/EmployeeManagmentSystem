@@ -40,6 +40,7 @@ namespace EmployeeManagementSystem
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<UserController>(new InjectionConstructor());
             //container.RegisterType<TemplateTypeController>(new InjectionConstructor);
+            //container.RegisterType<LeaveController>(new InjectionConstructor);
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 

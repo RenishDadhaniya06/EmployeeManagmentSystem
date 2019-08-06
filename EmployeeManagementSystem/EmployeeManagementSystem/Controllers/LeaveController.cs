@@ -1,14 +1,18 @@
 ﻿using EmployeeManagementSystem;
 using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Resources;
+using EmployeeMangmentSystem.Services.Services;
 using Helpers;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -17,26 +21,22 @@ namespace LeaveManagementSystem.Controllers
 {
     public class LeaveController : Controller
     {
-        private ApplicationUserManager _userManager;
+        //private ApplicationUserManager _userManager;
 
-        public ApplicationDbContext appcontext;
-        public LeaveController(ApplicationUserManager userManager,ApplicationDbContext context)
+        private ICustomerService _customerService;
+
+        public LeaveController()
         {
-            appcontext = context;
-            _userManager = userManager;
+
+        }
+        public LeaveController(ICustomerService customerService)
+        {
+            //_userManager = userManager;
+            _customerService = customerService;
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+
+       
         // GET: Leave
         /// <summary>
         /// Indexes this instance.
@@ -145,16 +145,6 @@ namespace LeaveManagementSystem.Controllers
                     collection.EmployeeId = Guid.Parse(EmployeeManagementSystem.Helper.CommonHelper.GetUserId());
                     collection.LeaveStatus = Enums.LeaveStatus.Pending;
                     collection.Attachment = "";
-                    //if (Attachment.FileName.Contains(".pdf") || Attachment.FileName.Contains(".jpg") || Attachment.FileName.Contains(".JPEG"))
-                    //{
-                    //    Attachment.SaveAs(Server.MapPath("~/LeaveImage/" + Attachment.FileName));
-                    //}
-                    //else
-                    //{
-
-                    //    TempData["error"] = LeaveResources.FileError;
-                    //    return View();
-                    //}
                     foreach (HttpPostedFileBase file in Attachment)
                     {
                         if(file.FileName.Contains(".pdf") || file.FileName.Contains(".jpg") || file.FileName.Contains(".JPEG"))
@@ -175,16 +165,23 @@ namespace LeaveManagementSystem.Controllers
                         
                     }
                     // TODO: Add insert logic here
-
-                    //Server.MapPath("~/LeaveImage/" + collection.Attachment);
                     if (collection.Id == Guid.Empty)
                     {
-                        //collection.Attachment = 
                         await APIHelpers.PostAsync<Leave>("api/Leave/Post", collection);
-                        var id = Guid.Parse(User.Identity.GetUserId());
-                        var role = appcontext.Roles.Where(m => m.Name == "HR").SingleOrDefault();
-                        var users = UserManager.Users.Where(_ => _.RoleId == role.Id).SingleOrDefault();
+                        var role = await _customerService.GetHR();
+                        string temp = String.Join(",", role);
                         string subject = "Request For Leave";
+                        var body = await _customerService.GetLeaveTemplate();
+                        var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                        var userManager = new UserManager<ApplicationUser>(store);
+                        ApplicationUser user = userManager.FindByNameAsync(User.Identity.Name).Result;
+                        var content = body.TemplateContent;
+                        content.Replace("###CurrentUser###","Dhaval");
+                        content = Regex.Replace(content, "###CurrentUser###", user.FirstName + " " + user.LastName);
+                        content = Regex.Replace(content, "###FromDate###", collection.From.ToString());
+                        content = Regex.Replace(content, "###ToDate###", collection.To.ToString());
+                        content = Regex.Replace(content, "###LeaveReason###", collection.Message);
+                        CommonHelper.SendMail(temp, subject, content);
                         TempData["sucess"] = LeaveResources.create;
                     }
                     else
@@ -249,6 +246,71 @@ namespace LeaveManagementSystem.Controllers
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetPendingLeave()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<LeaveViewModel>>("api/Leave/GetPendingLeave");
+                return View(data.ToList());
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ApproveLeave(Guid id,string email)
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<bool>("api/Leave/ApproveLeaves/" + id);
+                if(data == true)
+                {
+                    var subject = "Leave";
+                    var body = "Congratulations!! Your Leave has been Approved.";
+                    CommonHelper.SendMail(email, subject, body);
+                    return RedirectToAction("GetPendingLeave","Leave");
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> RejectedLeave(Guid id,string email)
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<bool>("api/Leave/RejectedLeaves/" + id);
+                if (data == true)
+                {
+                    var subject = "Leave";
+                    var body = "Sorry, Your Leave has been Rejected. If You have any query Please Contact Administrator or HR";
+                    CommonHelper.SendMail(email, subject, body);
+                    return RedirectToAction("GetPendingLeave", "Leave");
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

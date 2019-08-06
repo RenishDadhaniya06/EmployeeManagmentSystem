@@ -71,5 +71,22 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         {
             return await Database.SqlQuery<Notifications>(@"exec [dbo].[GetNotification]").ToListAsync();
         }
+
+        public async Task<List<string>> GetHR()
+        {
+            var data = await Database.SqlQuery<string>(@"exec [dbo].[GetHRRole]").ToListAsync();
+            //return await Database.SqlQuery<string>(@"exec [dbo].[GetHRRole]").SingleOrDefaultAsync();
+            return data;
+        }
+
+        public async Task<Templates> GetLeaveTemplate()
+        {
+            return await Database.SqlQuery<Templates>(@"exec [dbo].[GetLeaveTemplate]").SingleOrDefaultAsync();
+        }
+
+        public async Task<List<LeaveViewModel>> GetPendingLeaves()
+        {
+            return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetPendingLeaves]").ToListAsync();
+        }
     }
 }
