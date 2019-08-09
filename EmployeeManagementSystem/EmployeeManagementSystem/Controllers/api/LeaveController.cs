@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
 namespace EmployeeManagementSystem.Controllers.api
 {
@@ -113,6 +114,7 @@ namespace EmployeeManagementSystem.Controllers.api
         [HttpGet]
         public async Task<List<LeaveViewModel>> GetPendingLeave()
         {
+           
             var data = await _iCustomerService.GetPendingLeaves();
             return data.ToList();
         }
@@ -148,6 +150,23 @@ namespace EmployeeManagementSystem.Controllers.api
             else
             {
                 return false;
+            }
+        }
+
+        //[Route("api/Leave/Filter/{name}/{fromdate}")]
+        [Route("api/Leave/Filter")]
+        [HttpGet]
+        public async Task<List<LeaveViewModel>> GetFilter(string name, DateTime fromdate, DateTime todate, Int32 leavetype, Int32 leavestatus)
+        {
+            try
+            {
+                var data = await _iCustomerService.GetFilters(name, fromdate, todate, leavetype, leavestatus);
+                return data.ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

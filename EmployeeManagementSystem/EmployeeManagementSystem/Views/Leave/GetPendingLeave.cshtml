@@ -1,9 +1,16 @@
-﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.ViewModel.LeaveViewModel>
+﻿@*@model IEnumerable<EmployeeMangmentSystem.Repository.Models.ViewModel.LeaveViewModel>*@
+@model EmployeeMangmentSystem.Repository.Models.ViewModel.FilterViewModel
 @using Helpers
 @using EmployeeMangmentSystem.Resources
 @{
     ViewBag.Title = "Leaves";
 }
+
+
+<script>
+    $('.from').datepicker();
+    $('.to').datepicker();
+</script>
 
 <div class="x_panel">
     <div class="x_title">
@@ -22,18 +29,51 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <div class="row">
-        </div>
-        <div class="row">
-            @*<div class="col-md-1">
-
-                <p>
-                    <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Leave")"></a>
-
-                </p>
-            </div>*@
-
-        </div>
+        <div class="row">        </div>
+        @using (Html.BeginForm("GetFilter", "Leave", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LeaveFilters.Name, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.LeaveFilters.Name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LeaveFilters.Fromdate, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.LeaveFilters.Fromdate, new { htmlAttributes = new { @class = "form-control from", data_provide = "datepicker" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LeaveFilters.Todate, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.LeaveFilters.Todate, new { htmlAttributes = new { @class = "form-control to", data_provide = "datepicker" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LeaveFilters.leavetype, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.EnumDropDownListFor(model => model.LeaveFilters.leavetype, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LeaveFilters.leavestatus, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.EnumDropDownListFor(model => model.LeaveFilters.leavestatus, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <input type="submit" value="Search" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+        }
         <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
             <thead>
                 <tr>
@@ -61,7 +101,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Leaves)
                 {
                     <tr>
                         @*<td>  @item.From.ToShortDateString() To  @item.To.ToShortDateString()</td>*@
@@ -105,16 +145,16 @@
 
 
 @*<td>
-    @if (item.LeaveStatus == Enums.LeaveStatus.Approved)
-    {
-        @CommonResources.Approved
-    }
-    else if (item.LeaveStatus == Enums.LeaveStatus.Pending)
-    {
-        @CommonResources.Pending
-    }
-    else
-    {
-        @CommonResources.Rejected
-    }
-</td>*@
+        @if (item.LeaveStatus == Enums.LeaveStatus.Approved)
+        {
+            @CommonResources.Approved
+        }
+        else if (item.LeaveStatus == Enums.LeaveStatus.Pending)
+        {
+            @CommonResources.Pending
+        }
+        else
+        {
+            @CommonResources.Rejected
+        }
+    </td>*@

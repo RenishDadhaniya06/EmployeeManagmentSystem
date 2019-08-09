@@ -96,5 +96,12 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetPendingLeaves();
         }
+
+        public async Task<List<LeaveViewModel>> GetFilters(string name, DateTime fromdate,DateTime todate,Int32 leavetype,Int32 leavestatus)
+        {
+            var data = await dbContext.GetFilters(name, fromdate,todate,leavetype,leavestatus);
+            //return await dbContext.GetFilters(name,fromdate);
+            return data;
+        }
     }
 }

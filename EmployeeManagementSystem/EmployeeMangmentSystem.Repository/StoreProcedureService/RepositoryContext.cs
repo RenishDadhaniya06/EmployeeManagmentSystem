@@ -88,5 +88,14 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         {
             return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetPendingLeaves]").ToListAsync();
         }
+
+        public async Task<List<LeaveViewModel>> GetFilters(string name, DateTime fromdate,DateTime todate,Int32 leavetype,Int32 leavestatus)
+        {
+            var datefrom = fromdate.ToString("yyyy-dd-MM");
+            var dateto = todate.ToString("yyyy-dd-MM");
+            var data = await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetFilterData] @p0,@p1,@p2,@p3,@p4", name, datefrom,dateto,leavetype,leavestatus).ToListAsync();
+            //return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetFilterData] @p0 @p1", name,fromdate).ToListAsync();
+            return data;
+        }
     }
 }

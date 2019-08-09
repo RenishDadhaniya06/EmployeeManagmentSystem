@@ -1,5 +1,4 @@
-﻿using EmployeeManagementSystem;
-using EmployeeManagementSystem.Models;
+﻿using EmployeeManagementSystem.Models;
 using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Resources;
@@ -7,7 +6,6 @@ using EmployeeMangmentSystem.Services.Services;
 using Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -254,8 +252,10 @@ namespace LeaveManagementSystem.Controllers
         {
             try
             {
+                FilterViewModel model = new FilterViewModel();
                 var data = await APIHelpers.GetAsync<List<LeaveViewModel>>("api/Leave/GetPendingLeave");
-                return View(data.ToList());
+                model.Leaves = data.ToList();
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -306,6 +306,27 @@ namespace LeaveManagementSystem.Controllers
                 {
                     return HttpNotFound();
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public async Task<ActionResult> GetFilter(FilterViewModel model)
+        {
+            try
+            {
+                if (DateTime.Compare(model.LeaveFilters.Fromdate,Convert.ToDateTime("01-01-0001")) == 0 || DateTime.Compare(model.LeaveFilters.Todate,Convert.ToDateTime("01-01-2001")) == 0)
+                {
+                    return RedirectToAction("GetPendingLeave");
+                }
+                var data = await APIHelpers.GetAsync<List<LeaveViewModel>>("api/Leave/Filter?name=" + model.LeaveFilters.Name + "&fromdate=" + model.LeaveFilters.Fromdate + "&todate=" + model.LeaveFilters.Todate + "&LeaveType=" + Convert.ToInt32(model.LeaveFilters.leavetype) + "&LeaveStatus=" + Convert.ToInt32(model.LeaveFilters.leavestatus));
+                model.Leaves = data;
+                return View("GetPendingLeave", model);
             }
             catch (Exception ex)
             {
