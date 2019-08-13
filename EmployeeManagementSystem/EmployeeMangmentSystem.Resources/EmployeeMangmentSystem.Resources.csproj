@@ -55,6 +55,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>NotificationResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="OpeningResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OpeningResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="RegestrationResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -127,6 +132,10 @@
     <EmbeddedResource Update="NotificationResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NotificationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="OpeningResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OpeningResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="RegestrationResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

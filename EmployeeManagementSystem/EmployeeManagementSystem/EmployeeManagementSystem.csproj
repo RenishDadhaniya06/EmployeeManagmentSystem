@@ -240,6 +240,7 @@
     <Compile Include="Controllers\api\DesignationController.cs" />
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\NotificationController.cs" />
+    <Compile Include="Controllers\api\OpeningController.cs" />
     <Compile Include="Controllers\api\RolePermissionsController.cs" />
     <Compile Include="Controllers\api\SettingController.cs" />
     <Compile Include="Controllers\api\SkillController.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Controllers\LeaveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\OpeningController.cs" />
     <Compile Include="Controllers\RolePermissionController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
@@ -301,6 +303,7 @@
     <Content Include="Content\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -344,6 +347,7 @@
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\common.js" />
@@ -452,6 +456,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <Content Include="Less\bootstrap-multiselect.less" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\fastclick.js" />
@@ -671,6 +676,8 @@
     <Content Include="Views\Notification\Create.cshtml" />
     <Content Include="Views\Shared\_NotificationMessage.cshtml" />
     <Content Include="Views\Leave\GetPendingLeave.cshtml" />
+    <Content Include="Views\Opening\Index.cshtml" />
+    <Content Include="Views\Opening\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

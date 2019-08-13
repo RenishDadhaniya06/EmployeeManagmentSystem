@@ -57,5 +57,7 @@ namespace EmployeeMangmentSystem.Services.Services
         Task<List<LeaveViewModel>> GetPendingLeaves();
 
         Task<List<LeaveViewModel>> GetFilters(string name, DateTime fromdate,DateTime todate,Int32 leavetype,Int32 leavestatus);
+
+        Task<List<OpeningsViewModel>> GetOpenings();
     }
 }

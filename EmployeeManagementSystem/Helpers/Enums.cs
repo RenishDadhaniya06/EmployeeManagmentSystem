@@ -16,5 +16,12 @@
             Rejected = 1,
             Pending = 2
         }
+
+        public enum OpeningStatus
+        {
+            Active = 0,
+            Expired = 1,
+            OnHold = 2
+        }
     }
 }

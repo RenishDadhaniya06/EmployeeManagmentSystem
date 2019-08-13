@@ -103,5 +103,11 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             //return await dbContext.GetFilters(name,fromdate);
             return data;
         }
+
+        public async Task<List<OpeningsViewModel>> GetOpenings()
+        {
+            var data = await dbContext.GetOpenings();
+            return data;
+        }
     }
 }
