@@ -65,6 +65,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Notifications> Notifications { get; set; }
 
+        public DbSet<Openings> Openings { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

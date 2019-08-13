@@ -27,7 +27,12 @@
                                     <li><a href="@Url.Action("Index","Role")">Role</a></li>
                                     <li><a href="@Url.Action("Index", "RolePermission")">Role Permission</a></li>
                                     <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
-                                    
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-user"></i>Jobs<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="@Url.Action("Index","Opening")">@OpeningResources.name</a></li>
                                 </ul>
                             </li>
                         }

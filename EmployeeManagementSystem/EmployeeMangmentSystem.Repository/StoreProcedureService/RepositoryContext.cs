@@ -97,5 +97,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             //return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetFilterData] @p0 @p1", name,fromdate).ToListAsync();
             return data;
         }
+
+        public async Task<List<OpeningsViewModel>> GetOpenings()
+        {
+            var data = await Database.SqlQuery<OpeningsViewModel>(@"exec [dbo].[GetOpenings]").ToListAsync();
+            return data;
+        }
     }
 }

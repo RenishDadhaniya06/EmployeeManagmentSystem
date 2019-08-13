@@ -1,26 +1,34 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+using EmployeeMangmentSystem.Services.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
+
 
 namespace EmployeeManagementSystem.Controllers.api
 {
-    public class CountryController : ApiController
+    public class OpeningController : ApiController
     {
-        private IRepository<Countries> _repository;
+        private IRepository<Openings> _repository;
 
-        public CountryController(IRepository<Countries> repository)
+        private ICustomerService _customerService;
+
+        public OpeningController(IRepository<Openings> repository,ICustomerService customerService)
         {
             _repository = repository;
+            _customerService = customerService;
         }
-       
-        [Route("api/Country/GetCountries")]
-        public IEnumerable<Countries> GetCountries()
+
+        [Route("api/Openings/GetOpenings")]
+        public async Task<List<OpeningsViewModel>> GetOpenings()
         {
             try
             {
-                var data = _repository.GetAll();
+                //var data = _repository.GetAll();
+                var data = await _customerService.GetOpenings();
                 return data;
             }
             catch (Exception ex)
@@ -30,12 +38,12 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Country/Get/{id}")]
-        public Countries Get(Guid id)
+        [Route("api/Openings/Get/{id}")]
+        public Openings Get(Guid id)
         {
             try
             {
-                Countries data = _repository.GetById(id);
+                var data = _repository.GetById(id);
                 return data;
             }
             catch (Exception ex)
@@ -45,8 +53,8 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Country/Post")]
-        public Countries Post(Countries model)
+        [Route("api/Openings/Post")]
+        public Openings Post(Openings model)
         {
             try
             {
@@ -61,21 +69,21 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Country/Put")]
-        public Countries Put(Countries model)
+        [Route("api/Openings/Put")]
+        public Openings Put(Openings model)
         {
             try
             {
                 return _repository.Update(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
             }
         }
 
-        [Route("api/Country/Delete/{id}")]
+        [Route("api/Openings/Delete/{id}")]
         public bool Delete(Guid id)
         {
             try
