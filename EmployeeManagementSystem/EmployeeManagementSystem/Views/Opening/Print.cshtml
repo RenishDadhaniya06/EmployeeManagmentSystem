@@ -1,0 +1,70 @@
+﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.ViewModel.OpeningsViewModel>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <style type="text/css">
+        .tftable {
+            width: 100%;
+            border-width: 1px;
+            border-collapse: collapse;
+        }
+
+            .tftable th {
+                font-size: 15px;
+                font-weight: bold;
+                background-color: #acc8cc;
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                text-align: left;
+            }
+    </style>
+
+</head>
+<body>
+
+    <table class="tftable" border="1" style="width: 100%;border-style:solid; border-width:1px;" cellpadding="4" cellspacing="4">
+        <tbody>
+            <tr>
+                <th>&nbsp;Created Date</th>
+                <th>&nbsp;Technology</th>
+                <th>&nbsp;Skills</th>
+                <th>&nbsp;Experience Requirement</th>
+                <th>&nbsp;Department</th>
+                <th>&nbsp;Description</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>&nbsp;@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
+            <td>&nbsp;@item.Technology</td>
+            <td>&nbsp;@item.Skills</td>
+            <td>
+                &nbsp;
+                @{var exp = string.Empty;
+                    if (item.Rightside == "00")
+                    {
+                        exp = item.Leftside + " Years";
+                    }
+                    else
+                    {
+                        exp = item.Leftside + " Years " + item.Rightside + " Months";
+                    }
+                }
+                @exp
+            </td>
+            <td>&nbsp;@item.Department</td>
+            <td>&nbsp;@item.Description</td>
+        </tr>
+            }
+
+        </tbody>
+    </table>
+</body>
+</html>

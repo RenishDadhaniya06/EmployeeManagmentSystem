@@ -678,6 +678,7 @@
     <Content Include="Views\Leave\GetPendingLeave.cshtml" />
     <Content Include="Views\Opening\Index.cshtml" />
     <Content Include="Views\Opening\Create.cshtml" />
+    <Content Include="Views\Opening\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

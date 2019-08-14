@@ -1,4 +1,5 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
@@ -26,6 +27,21 @@ namespace EmployeeManagementSystem.Controllers
             return View(data);
         }
 
+        public async Task<FileResult> Print()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<OpeningsViewModel>>("api/Openings/GetOpenings");
+                var builder = new PdfBuilder<List<OpeningsViewModel>>(data, Server.MapPath("/Views/Opening/Print.cshtml"));
+                return builder.GetPdf();
+            }
+            catch (Exception ex)
+            {
+                return File("AccessDenied", "Error");
+                //throw;
+            }
+        }
+
         // GET: Opening/Details/5
         public ActionResult Details(int id)
         {
@@ -40,6 +56,8 @@ namespace EmployeeManagementSystem.Controllers
             ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
             return View();
         }
+
+        
 
         // POST: Opening/Create
         [HttpPost]
