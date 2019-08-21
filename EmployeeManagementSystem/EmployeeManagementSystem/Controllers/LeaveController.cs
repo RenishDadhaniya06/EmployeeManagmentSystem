@@ -54,7 +54,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
 
@@ -72,9 +71,8 @@ namespace LeaveManagementSystem.Controllers
                 var builder = new PdfBuilder<List<Leave>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
                 return builder.GetPdf();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return File("AccessDenied", "Error");
             }
         }
@@ -93,7 +91,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -118,7 +115,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -130,15 +126,22 @@ namespace LeaveManagementSystem.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [HttpPost]
-        //[ValidateInput(false)]
+        [ValidateInput(true)]
         public async Task<ActionResult> Create(HttpPostedFileBase[] Attachment,Leave collection)
         {
             try
             {
+                string from = Request["From"];
+                string to = Request["To"];
                 ModelState.Remove("Attachment");
                 ModelState.Remove("Id");
+                ModelState.Remove("EmployeeId");
+                ModelState.Remove("From");
+                ModelState.Remove("To");
                 if (ModelState.IsValid)
                 {
+                    collection.From = DateTime.ParseExact(from, "MM/dd/yyyy", null);
+                    collection.To = DateTime.ParseExact(to, "MM/dd/yyyy", null);
                     collection.AssignTo = "";
                     collection.EmployeeId = Guid.Parse(EmployeeManagementSystem.Helper.CommonHelper.GetUserId());
                     collection.LeaveStatus = Enums.LeaveStatus.Pending;
@@ -160,7 +163,6 @@ namespace LeaveManagementSystem.Controllers
                             TempData["error"] = LeaveResources.FileError;
                             return View();
                         }
-                        
                     }
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
@@ -217,9 +219,8 @@ namespace LeaveManagementSystem.Controllers
                 ViewBag.Leave = data;
                 return View("Create", await APIHelpers.GetAsync<Leave>("api/Leave/Get/" + id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -259,7 +260,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -272,6 +272,10 @@ namespace LeaveManagementSystem.Controllers
                 var data = await APIHelpers.GetAsync<bool>("api/Leave/ApproveLeaves/" + id);
                 if(data == true)
                 {
+                    var emp = await APIHelpers.GetAsync<Employee>("api/Employee/GetEmployee?Email=" + email);
+                    var leave = await APIHelpers.GetAsync<Leave>("api/Leave/Get/" + id);
+                    emp.AvailableLeaves = emp.AvailableLeaves - (leave.To.Day - leave.From.Day);
+                    await APIHelpers.PutAsync<Employee>("api/Employee/Put", emp);
                     var subject = "Leave";
                     var body = "Congratulations!! Your Leave has been Approved.";
                     CommonHelper.SendMail(email, subject, body);
@@ -284,7 +288,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -309,7 +312,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -330,7 +332,6 @@ namespace LeaveManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

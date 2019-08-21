@@ -103,5 +103,30 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             var data = await Database.SqlQuery<OpeningsViewModel>(@"exec [dbo].[GetOpenings]").ToListAsync();
             return data;
         }
+
+        public async Task<Employee> GetEmployee(string email)
+        {
+            var data = await Database.SqlQuery<Employee>(@"exec [dbo].[GetEmployee] @p0",email).SingleOrDefaultAsync();
+            return data;
+        }
+
+        public async Task<List<DisplayCandidateViewModel>> GetCandidates()
+        {
+            var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[GetCandidateList]").ToListAsync();
+            return data;
+        }
+
+        public bool DeleteCandidateSkill(Guid id)
+        {
+            //var data = await Database.SqlQuery<bool>(@"exec [dbo].[DeleteCandidateSkill]").ToListAsync();
+            Database.ExecuteSqlCommand(@"exec [dbo].[DeleteCandidateSkill] @p0",id);
+            return true;
+        }
+
+        public bool DeleteCandidateTechnology(Guid id)
+        {
+            Database.ExecuteSqlCommand(@"exec [dbo].[DeleteCandidateTechnology] @p0", id);
+            return true;
+        }
     }
 }

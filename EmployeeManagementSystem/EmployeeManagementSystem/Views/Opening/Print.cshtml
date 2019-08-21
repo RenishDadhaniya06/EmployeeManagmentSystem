@@ -44,7 +44,18 @@
         <tr>
             <td>&nbsp;@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
             <td>&nbsp;@item.Technology</td>
-            <td>&nbsp;@item.Skills</td>
+            <td>&nbsp;
+                <ul>
+                    @{
+                        string[] skill = item.Skills.Split(',');
+
+                        for (byte i = 0; i < skill.Length; i++)
+                        {
+                            <li>@skill[i]</li>
+                        }
+                    }
+                </ul>
+            </td>
             <td>
                 &nbsp;
                 @{var exp = string.Empty;

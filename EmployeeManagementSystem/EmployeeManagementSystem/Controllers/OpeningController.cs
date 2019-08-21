@@ -21,9 +21,6 @@ namespace EmployeeManagementSystem.Controllers
             {
                 data = new List<OpeningsViewModel>();
             }
-            List<OpeningsViewModel> model = new List<OpeningsViewModel>();
-            
-            
             return View(data);
         }
 
@@ -58,7 +55,6 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         
-
         // POST: Opening/Create
         [HttpPost]
         public async Task<ActionResult> Create(Openings model)

@@ -54,5 +54,13 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         Task<List<LeaveViewModel>> GetFilters(string name,DateTime fromdate,DateTime todate,Int32 leavetype,Int32 leavestatus);
 
         Task<List<OpeningsViewModel>> GetOpenings();
+
+        Task<Employee> GetEmployee(string email);
+
+        Task<List<DisplayCandidateViewModel>> GetCandidates();
+
+        bool DeleteCandidateSkill(Guid id);
+
+        bool DeleteCandidateTechnology(Guid id);
     }
 }

@@ -31,6 +31,9 @@ namespace EmployeeManagementSystem
             container.RegisterType<IRepository<Skills>, Repository<Skills>>();
             container.RegisterType<IRepository<Notifications>, Repository<Notifications>>();
             container.RegisterType<IRepository<Openings>, Repository<Openings>>();
+            container.RegisterType<IRepository<Candidates>, Repository<Candidates>>();
+            container.RegisterType<IRepository<CandidateSkills>, Repository<CandidateSkills>>();
+            container.RegisterType<IRepository<CandidateTechnologies>, Repository<CandidateTechnologies>>();
             container.RegisterType<IRepository<SettingView>, Repository<SettingView>>();
             container.RegisterType<IRepository<PermissionModules>, Repository<PermissionModules>>();
             container.RegisterType<IRepository<RolePermission>, Repository<RolePermission>>();

@@ -109,5 +109,27 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             var data = await dbContext.GetOpenings();
             return data;
         }
+
+        public async Task<Employee> GetEmployee(string email)
+        {
+            var data = await dbContext.GetEmployee(email);
+            return data;
+        }
+
+        public async Task<List<DisplayCandidateViewModel>> GetCandidates()
+        {
+            var data = await dbContext.GetCandidates();
+            return data;
+        }
+
+        public bool DeleteCandidateSkill(Guid id)
+        {
+            return  dbContext.DeleteCandidateSkill(id);
+        }
+
+        public bool DeleteCandidateTechnology(Guid id)
+        {
+            return dbContext.DeleteCandidateTechnology(id);
+        }
     }
 }

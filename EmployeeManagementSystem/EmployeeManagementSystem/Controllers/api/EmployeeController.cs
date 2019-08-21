@@ -1,9 +1,9 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+using EmployeeMangmentSystem.Services.Services;
 using System;
 using System.Collections.Generic;
-using System.Web.Http;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace EmployeeManagementSystem.Controllers.api
@@ -12,9 +12,12 @@ namespace EmployeeManagementSystem.Controllers.api
     {
         private IRepository<Employee> _repository;
 
-        public EmployeeController(IRepository<Employee> repository)
+        private ICustomerService _iCustomerService;
+
+        public EmployeeController(IRepository<Employee> repository,ICustomerService customerService)
         {
             _repository = repository;
+            _iCustomerService = customerService;
         }
 
         [Route("api/Employee/GetEmployees")]
@@ -64,6 +67,14 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             _repository.Delete(id);
             return true;
+        }
+
+        [Route("api/Employee/GetEmployee")]
+        [HttpGet]
+        public async Task<Employee> GetEmployee(string email)
+        {
+            var data = await _iCustomerService.GetEmployee(email);
+            return data;
         }
     }
 }

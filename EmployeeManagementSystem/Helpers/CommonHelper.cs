@@ -16,7 +16,7 @@ namespace Helpers
         {
 
             var message = new MailMessage();
-            var fromMail = new MailAddress(Email, subject);
+            //var fromMail = new MailAddress(Email, subject);
             message.From = new MailAddress(Email);
             //var toMail = new MailAddress(emailId);
             string[] multi = emailId.Split(',');

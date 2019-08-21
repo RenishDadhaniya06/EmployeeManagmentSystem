@@ -232,6 +232,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\CandidateController.cs" />
     <Compile Include="Controllers\api\CitiesController.cs" />
     <Compile Include="Controllers\api\CountryController.cs" />
     <Compile Include="Controllers\api\DepartmentController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Controllers\api\TemplateController.cs" />
     <Compile Include="Controllers\api\TypesController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
+    <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
@@ -679,6 +681,8 @@
     <Content Include="Views\Opening\Index.cshtml" />
     <Content Include="Views\Opening\Create.cshtml" />
     <Content Include="Views\Opening\Print.cshtml" />
+    <Content Include="Views\Candidate\Index.cshtml" />
+    <Content Include="Views\Candidate\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

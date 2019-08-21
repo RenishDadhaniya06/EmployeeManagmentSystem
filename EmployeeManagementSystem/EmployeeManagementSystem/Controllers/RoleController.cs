@@ -23,7 +23,7 @@ namespace EmployeeManagementSystem.Controllers
         }
         // GET: Role
         [CheckAuthorization]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             //var roleStore = new RoleStore<IdentityRole>(appcontext);
             //var roleMngr = new RoleManager<IdentityRole>(roleStore);
@@ -56,7 +56,6 @@ namespace EmployeeManagementSystem.Controllers
                     bool data = await APIHelpers.GetAsync<bool>("api/RolePermission/PostRoles/" + role.Id);
                     TempData["sucess"] = CommonResources.create;
                     return RedirectToAction("Index");
-                                        
                 }
                 else
                 {
@@ -72,7 +71,7 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             try
             {

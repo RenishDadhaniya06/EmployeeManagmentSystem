@@ -111,11 +111,14 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                ModelState.Remove("AvailableLeaves");
+                var month = (13 - DateTime.Now.Month) * 1.5;
                 if (ModelState.IsValid)
                 {
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
                     {
+                        collection.AvailableLeaves = Convert.ToDecimal(month);
                         await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
                         TempData["sucess"] = EmployeeResources.create;
                     }
@@ -132,7 +135,7 @@ namespace EmployeeManagementSystem.Controllers
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
