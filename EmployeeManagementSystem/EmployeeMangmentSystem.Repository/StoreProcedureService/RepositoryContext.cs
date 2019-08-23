@@ -128,5 +128,13 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             Database.ExecuteSqlCommand(@"exec [dbo].[DeleteCandidateTechnology] @p0", id);
             return true;
         }
+
+        public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skills, string technologies)
+        {
+            //Guid skill = Guid.Parse(skills);
+            //Guid technology = Guid.Parse(technologies);
+            var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[CandidateFilter] p0,p1", skills, technologies).ToListAsync();
+            return data;
+        }
     }
 }

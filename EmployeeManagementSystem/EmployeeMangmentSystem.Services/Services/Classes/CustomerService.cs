@@ -131,5 +131,11 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return dbContext.DeleteCandidateTechnology(id);
         }
+
+        public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill, string technology)
+        {
+            var data = await dbContext.GetFilterCandidate(skill, technology);
+            return data;
+        }
     }
 }

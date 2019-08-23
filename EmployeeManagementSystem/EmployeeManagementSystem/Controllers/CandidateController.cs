@@ -18,6 +18,8 @@ namespace EmployeeManagementSystem.Controllers
         public async Task<ActionResult> Index()
         {
             var data = await APIHelpers.GetAsync<List<DisplayCandidateViewModel>>("api/Candidate/GetCandidateList");
+            ViewBag.Technology = await APIHelpers.GetAsync<List<Technologies>>("api/Technology/GetTechnologies");
+            ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
             return View(data);
         }
 
@@ -108,6 +110,25 @@ namespace EmployeeManagementSystem.Controllers
             catch(Exception ex)
             {
                 return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetFilter()
+        {
+            try
+            {
+                ViewBag.Technology = await APIHelpers.GetAsync<List<Technologies>>("api/Technology/GetTechnologies");
+                ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
+                var tech = Request["Technology"];
+                var skills = Request["Skills"];
+                var data = await APIHelpers.GetAsync<List<DisplayCandidateViewModel>>("api/Candidate/Filter?skill=" + skills + "&technology=" + tech);
+                return View("Index", data);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

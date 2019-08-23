@@ -62,5 +62,7 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         bool DeleteCandidateSkill(Guid id);
 
         bool DeleteCandidateTechnology(Guid id);
+
+        Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skills, string technologies);
     }
 }

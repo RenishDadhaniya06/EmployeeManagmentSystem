@@ -22,6 +22,30 @@
     </div>
     <div class="x_content">
 
+        @using (Html.BeginForm("GetFilter", "Candidate", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="form-group">
+                    @Html.Label("Technology", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.DropDownList("Technology", new SelectList(ViewBag.Technology, "Id", "Name"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Skills", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.DropDownList("Skills", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <input type="submit" value="Search" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        }
+
         <div class="row">
             <div class="col-md-1">
 
@@ -80,76 +104,76 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @item.BirthDate.ToString("dd-MMM-yyyy")
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CurrentCity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Designation)
-                    </td>
-                    <td>
-                        <ul>
-                            @{ 
-                                string[] technology = item.Technology.Split(',');
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @item.BirthDate.ToString("dd-MMM-yyyy")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Designation)
+                        </td>
+                        <td>
+                            <ul>
+                                @{
+                                    string[] technology = item.Technology.Split(',');
 
-                                for(byte i = 0; i < technology.Length; i++)
+                                    for (byte i = 0; i < technology.Length; i++)
+                                    {
+                                        <li>@technology[i]</li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                @{
+                                    string[] skill = item.Skills.Split(',');
+
+                                    for (byte i = 0; i < skill.Length; i++)
+                                    {
+                                        <li>@skill[i]</li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.Experience)*@
+                            @{var exp = string.Empty;
+                                if (item.FractionPart == "00")
                                 {
-                                    <li>@technology[i]</li>
+                                    exp = item.IntegerPart + " Years";
+                                }
+                                else
+                                {
+                                    exp = item.IntegerPart + " Years " + item.FractionPart + " Months";
                                 }
                             }
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            @{
-                                string[] skill = item.Skills.Split(',');
-
-                                for (byte i = 0; i < skill.Length; i++)
-                                {
-                                    <li>@skill[i]</li>
-                                }
-                            }
-                        </ul>
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.Experience)*@
-                        @{var exp = string.Empty;
-                            if (item.FractionPart == "00")
-                            {
-                                exp = item.IntegerPart + " Years";
-                            }
-                            else
-                            {
-                                exp = item.IntegerPart + " Years " + item.FractionPart + " Months";
-                            }
-                        }
-                        @exp
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CurrentSalary)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ExpectedSalary)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NoticePeriod)
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Candidate",new { id = @item.Id})"></a>
-                    </td>
-                    <td style="text-align:center">
-                        <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-                    </td>
-                </tr>
+                            @exp
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentSalary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExpectedSalary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoticePeriod)
+                        </td>
+                        <td style="text-align:center">
+                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Candidate",new { id = @item.Id})"></a>
+                        </td>
+                        <td style="text-align:center">
+                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
