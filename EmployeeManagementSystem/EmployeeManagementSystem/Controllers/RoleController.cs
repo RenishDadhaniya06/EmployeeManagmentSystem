@@ -89,7 +89,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

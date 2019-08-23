@@ -35,7 +35,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 return File("AccessDenied", "Error");
             }
         }
@@ -83,9 +82,8 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     return View(collection);
                 }
-               
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -111,7 +109,7 @@ namespace EmployeeManagementSystem.Controllers
                 TempData["sucess"] = TemplateResources.delete;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 //return View();
                 TempData["error"] = CommonResources.error;

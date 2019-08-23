@@ -73,6 +73,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<CandidateTechnologies> CandidateTechnologies { get; set; }
 
+        public DbSet<Interviews> Interviews { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

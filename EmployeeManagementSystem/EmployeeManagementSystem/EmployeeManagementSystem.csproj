@@ -236,6 +236,7 @@
     <Compile Include="Controllers\api\CitiesController.cs" />
     <Compile Include="Controllers\api\CountryController.cs" />
     <Compile Include="Controllers\api\DepartmentController.cs" />
+    <Compile Include="Controllers\api\InterviewController.cs" />
     <Compile Include="Controllers\api\LeaveController.cs" />
     <Compile Include="Controllers\api\EmployeeController.cs" />
     <Compile Include="Controllers\api\DesignationController.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterviewController.cs" />
     <Compile Include="Controllers\LeaveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
@@ -684,6 +686,8 @@
     <Content Include="Views\Candidate\Index.cshtml" />
     <Content Include="Views\Candidate\Create.cshtml" />
     <Content Include="Views\Candidate\Print.cshtml" />
+    <Content Include="Views\Interview\Index.cshtml" />
+    <Content Include="Views\Interview\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

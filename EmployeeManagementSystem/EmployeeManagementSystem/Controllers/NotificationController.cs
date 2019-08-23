@@ -25,9 +25,8 @@ namespace EmployeeManagementSystem.Controllers
                 }
                 return View(data.ToList());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
 
@@ -41,9 +40,8 @@ namespace EmployeeManagementSystem.Controllers
                 var builder = new PdfBuilder<List<Notifications>>(data, Server.MapPath("/Views/Notification/Print.cshtml"));
                 return builder.GetPdf();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return File("AccessDenied", "Error");
             }
         }
@@ -65,9 +63,8 @@ namespace EmployeeManagementSystem.Controllers
                 //return View(new Notifications());
                 return View(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -112,7 +109,6 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     return View(collection);
                 }
-
             }
             catch(Exception ex)
             {
@@ -128,9 +124,8 @@ namespace EmployeeManagementSystem.Controllers
             {
                 return View("Create", await APIHelpers.GetAsync<Notifications>("api/Notification/Get/" + id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -147,7 +142,7 @@ namespace EmployeeManagementSystem.Controllers
                 TempData["sucess"] = NotificationResources.delete;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
@@ -188,7 +183,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

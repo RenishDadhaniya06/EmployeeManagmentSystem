@@ -48,7 +48,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -70,7 +69,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -85,7 +83,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

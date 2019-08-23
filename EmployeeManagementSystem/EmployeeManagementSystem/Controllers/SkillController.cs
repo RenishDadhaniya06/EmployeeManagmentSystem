@@ -25,9 +25,8 @@ namespace EmployeeManagementSystem.Controllers
                 }
                 return View(data.ToList());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
 
@@ -41,9 +40,8 @@ namespace EmployeeManagementSystem.Controllers
                 var builder = new PdfBuilder<List<Skills>>(data, Server.MapPath("/Views/Skill/Print.cshtml"));
                 return builder.GetPdf();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return File("AccessDenied", "Error");
             }
         }
@@ -55,9 +53,8 @@ namespace EmployeeManagementSystem.Controllers
             {
                 return View();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -69,9 +66,8 @@ namespace EmployeeManagementSystem.Controllers
             {
                 return View(new Skills());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -104,7 +100,7 @@ namespace EmployeeManagementSystem.Controllers
                 }
 
             }
-            catch
+            catch (Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
@@ -118,9 +114,8 @@ namespace EmployeeManagementSystem.Controllers
             {
                 return View("Create", await APIHelpers.GetAsync<Skills>("api/Skill/Get/" + id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -139,7 +134,7 @@ namespace EmployeeManagementSystem.Controllers
                 TempData["sucess"] = SkillsResources.delete;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");

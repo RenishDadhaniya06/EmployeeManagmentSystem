@@ -83,12 +83,13 @@ namespace EmployeeManagementSystem.Controllers
                     if(model.Id == Guid.Empty)
                     {
                         await APIHelpers.PostAsync<CandidateViewModel>("api/Candidate/Post", model);
+                        TempData["sucess"] = CandidateResources.create;
                     }
                     else
                     {
                         await APIHelpers.PutAsync<CandidateViewModel>("api/Candidate/Put", model);
+                        TempData["sucess"] = CandidateResources.update;
                     }
-                    TempData["sucess"] = CityResources.create;
                 }
                 return RedirectToAction("Index");
             }
@@ -121,6 +122,7 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 await APIHelpers.DeleteAsync<bool>("api/Candidate/Delete/" + id);
+                TempData["sucess"] = CandidateResources.delete;
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
@@ -143,7 +145,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

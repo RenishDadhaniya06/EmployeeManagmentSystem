@@ -35,7 +35,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
 
@@ -53,9 +52,8 @@ namespace EmployeeManagementSystem.Controllers
                 var builder = new PdfBuilder<List<Employee>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
                 return builder.GetPdf();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return File("AccessDenied", "Error");
             }
         }
@@ -72,9 +70,8 @@ namespace EmployeeManagementSystem.Controllers
             {
                 return View();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -92,9 +89,8 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Employee = data;
                 return View(new Employee());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -156,9 +152,8 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Employee = data;
                 return View("Create", await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
@@ -179,7 +174,7 @@ namespace EmployeeManagementSystem.Controllers
                 TempData["sucess"] = EmployeeResources.delete;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");

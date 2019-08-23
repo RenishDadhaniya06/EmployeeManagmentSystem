@@ -48,10 +48,6 @@ namespace EmployeeManagementSystem.Controllers
         [CheckAuthorization]
         public ActionResult Index()
         {
-            //TempData["sucess"] = "qdq cqwd  qddwqed ";
-            //TempData["error"] = " we wewqe   eqwqwe ";
-            //TempData["info"] = "qwe qwe qwe e";
-            //TempData["warning"] = "q ewq ";
             return View(GetUsers());
         }
 
@@ -123,7 +119,6 @@ namespace EmployeeManagementSystem.Controllers
                     }
                     else
                     {
-
                         AddErrorModelState(result);
                         return View(model);
                     }
@@ -162,7 +157,7 @@ namespace EmployeeManagementSystem.Controllers
         // GET: User/Edit/5
         [HttpGet]
         [CheckAuthorization]
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             try
             {
@@ -177,9 +172,8 @@ namespace EmployeeManagementSystem.Controllers
                 return View(model);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -292,7 +286,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

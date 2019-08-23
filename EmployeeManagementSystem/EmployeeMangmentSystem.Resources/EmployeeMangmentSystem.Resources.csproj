@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="CandidateResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CandidateResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="CityResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -39,6 +44,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>EmployeeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="InterviewResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InterviewResources.resx</DependentUpon>
     </Compile>
     <Compile Update="LeaveResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -93,6 +103,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CandidateResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CandidateResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="CityResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CityResources.Designer.cs</LastGenOutput>
@@ -120,6 +134,10 @@
     <EmbeddedResource Update="EmployeeResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EmployeeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="InterviewResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InterviewResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="LeaveResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -89,7 +89,7 @@ namespace LeaveManagementSystem.Controllers
             {
                 return View();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -241,7 +241,7 @@ namespace LeaveManagementSystem.Controllers
                 TempData["sucess"] = CommonResources.delete;
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
@@ -258,7 +258,7 @@ namespace LeaveManagementSystem.Controllers
                 model.Leaves = data.ToList();
                 return View(model);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw;
             }

@@ -34,7 +34,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 return File("AccessDenied", "Error");
             }
         }
