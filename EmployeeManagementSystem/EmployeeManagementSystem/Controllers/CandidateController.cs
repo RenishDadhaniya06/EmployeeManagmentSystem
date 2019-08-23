@@ -1,4 +1,5 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
@@ -27,6 +28,21 @@ namespace EmployeeManagementSystem.Controllers
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        public async Task<FileResult> Print()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<DisplayCandidateViewModel>>("api/Candidate/GetCandidateList");
+                var builder = new PdfBuilder<List<DisplayCandidateViewModel>>(data, Server.MapPath("/Views/Candidate/Print.cshtml"));
+                return builder.GetPdf();
+            }
+            catch (Exception ex)
+            {
+                return File("AccessDenied", "Error");
+                //throw;
+            }
         }
 
         // GET: Candidate/Create

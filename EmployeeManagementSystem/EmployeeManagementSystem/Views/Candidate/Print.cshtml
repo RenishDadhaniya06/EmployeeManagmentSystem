@@ -1,0 +1,105 @@
+﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.ViewModel.DisplayCandidateViewModel>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <style type="text/css">
+        .tftable {
+            width: 100%;
+            border-width: 1px;
+            border-collapse: collapse;
+        }
+
+            .tftable th {
+                font-size: 15px;
+                font-weight: bold;
+                background-color: #acc8cc;
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                text-align: left;
+            }
+    </style>
+
+</head>
+<body>
+
+    <table class="tftable" border="1" style="width: 100%;border-style:solid; border-width:1px;" cellpadding="4" cellspacing="4">
+        <tbody>
+            <tr>
+                <th>&nbsp;Name</th>
+                <th>&nbsp;Birth Date</th>
+                <th>&nbsp;Email</th>
+                <th>&nbsp;Current City</th>
+                <th>&nbsp;Designation</th>
+                <th>&nbsp;Technology</th>
+                <th>&nbsp;Skills</th>
+                <th>&nbsp;Experience</th>
+                <th>&nbsp;Current Salary</th>
+                <th>&nbsp;Expected Salary</th>
+                <th>&nbsp;Notice Period</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>&nbsp;@item.Name</td>
+                    <td>&nbsp;@item.BirthDate.ToString("dd-MMM-yyyy")</td>
+                    <td>&nbsp;@item.Email</td>
+                    <td>&nbsp;@item.CurrentCity</td>
+                    <td>&nbsp;@item.Designation</td>
+                    <td>
+                        &nbsp;
+                        <ul>
+                            @{
+                                string[] technology = item.Technology.Split(',');
+
+                                for (byte i = 0; i < technology.Length; i++)
+                                {
+                                    <li>@technology[i]</li>
+                                }
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        &nbsp;
+                        <ul>
+                            @{
+                                string[] skill = item.Skills.Split(',');
+
+                                for (byte i = 0; i < skill.Length; i++)
+                                {
+                                    <li>@skill[i]</li>
+                                }
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        &nbsp;
+                        @{var exp = string.Empty;
+                            if (item.FractionPart == "00")
+                            {
+                                exp = item.IntegerPart + " Years";
+                            }
+                            else
+                            {
+                                exp = item.IntegerPart + " Years " + item.FractionPart + " Months";
+                            }
+                        }
+                        @exp
+                    </td>
+                    <td>&nbsp;@item.CurrentSalary</td>
+                    <td>&nbsp;@item.ExpectedSalary</td>
+                    <td>&nbsp;@item.NoticePeriod</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</body>
+</html>

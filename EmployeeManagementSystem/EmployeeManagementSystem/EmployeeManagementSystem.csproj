@@ -683,6 +683,7 @@
     <Content Include="Views\Opening\Print.cshtml" />
     <Content Include="Views\Candidate\Index.cshtml" />
     <Content Include="Views\Candidate\Create.cshtml" />
+    <Content Include="Views\Candidate\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
