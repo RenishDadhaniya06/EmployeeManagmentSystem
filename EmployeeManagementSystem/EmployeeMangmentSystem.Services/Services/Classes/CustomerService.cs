@@ -132,9 +132,9 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return dbContext.DeleteCandidateTechnology(id);
         }
 
-        public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill, string technology)
+        public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill,string technologies)
         {
-            var data = await dbContext.GetFilterCandidate(skill, technology);
+            var data = await dbContext.GetFilterCandidate(skill,technologies);
             return data;
         }
 

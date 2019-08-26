@@ -4,23 +4,22 @@
     ViewBag.Title = "Create Interview";
 }
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+@*<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet" />*@
+<link href="~/Content/Timepicker.css" rel="stylesheet" />
+<link href="~/Content/Timepicker.min.css" rel="stylesheet" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js" type="text/javascript"></script>*@
+<script src="~/Scripts/Timepicker.js" type="text/javascript"></script>
+<script src="~/Scripts/Timepicker.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    timePicker.setIs24HourView(true)
+    //timePicker.setIs24HourView(true)
     $('.from').timepicker({
-        //use24hours: true
-        ////format: 'HH:mm',
-        ////format : "HH:mm",
-        ////showMeridian: false
-        //showInputs: false,
-        //showMeridian: false,
-        //format: "HH:mm"
-        stepMinute: 5
+       //interval : 5
+        minuteStep: 5,
+        minuteStepping: 5
     });
     $('.to').timepicker()
 </script>

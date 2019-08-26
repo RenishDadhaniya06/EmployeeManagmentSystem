@@ -129,11 +129,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return true;
         }
 
-        public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skills, string technologies)
+        public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skills,string technologies)
         {
-            //Guid skill = Guid.Parse(skills);
-            //Guid technology = Guid.Parse(technologies);
-            var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[CandidateFilter] p0,p1", skills, technologies).ToListAsync();
+            string skill = skills.ToString();
+            string technology = technologies.ToString();
+            var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[CandidateFilter] p0,p1", skill,technology).ToListAsync();
             return data;
         }
 

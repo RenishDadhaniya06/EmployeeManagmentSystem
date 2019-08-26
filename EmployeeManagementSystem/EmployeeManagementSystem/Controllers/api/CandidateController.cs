@@ -204,11 +204,11 @@ namespace EmployeeManagementSystem.Controllers.api
 
         [Route("api/Candidate/Filter")]
         [HttpGet]
-        public async Task<List<DisplayCandidateViewModel>> GetFilter(string skill, string technology)
+        public async Task<List<DisplayCandidateViewModel>> GetFilter(string skill,string technology)
         {
             try
             {
-                var data = await _customerService.GetFilterCandidate(skill, technology);
+                var data = await _customerService.GetFilterCandidate(skill,technology);
                 return data;
             }
             catch (Exception ex)

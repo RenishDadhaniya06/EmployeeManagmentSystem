@@ -5,7 +5,6 @@ using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -106,7 +105,6 @@ namespace EmployeeManagementSystem.Controllers
             return View("create",data1);
         }
 
-       
 
         // POST: Interviews/Delete/5
         [HttpGet]
