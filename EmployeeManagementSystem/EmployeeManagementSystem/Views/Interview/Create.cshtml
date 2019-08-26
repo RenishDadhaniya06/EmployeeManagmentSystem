@@ -17,9 +17,10 @@
         ////format: 'HH:mm',
         ////format : "HH:mm",
         ////showMeridian: false
-        showInputs: false,
-        showMeridian: false,
-        format: "HH:mm"
+        //showInputs: false,
+        //showMeridian: false,
+        //format: "HH:mm"
+        stepMinute: 5
     });
     $('.to').timepicker()
 </script>
@@ -65,17 +66,35 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.FromTime, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @*@Html.TextBoxFor(model => model.FromTime, new { @class = "form-control from",data_provide = "datetimepicker"})*@
-                        @Html.TextBox("FromTime", "", new { @class = "form-control from", data_provide = "timepicker" })
+                        @Html.TextBox("FromTime",(string)ViewBag.fromtime, new { @class = "form-control from", data_provide = "timepicker" })
                         @Html.ValidationMessageFor(model => model.FromTime, "", new { @class = "text-danger" })
+                        @*@if (@Model.FromTime == TimeSpan.Zero)
+                        {
+                            @Html.TextBox("FromTime", "", new { @class = "form-control from", data_provide = "datetimepicker" })
+                            @Html.ValidationMessageFor(model => model.FromTime, "", new { @class = "text-danger" })
+                        }
+                        else
+                        {
+                            @Html.TextBox("FromTime", (TimeSpan)ViewBag.fromtime, new { @class = "form-control from", data_provide = "timepicker" })
+                            @Html.ValidationMessageFor(model => model.FromTime, "", new { @class = "text-danger" })
+                        }*@
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.ToTime, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @*@Html.TextBoxFor(model => model.FromTime, new { @class = "form-control from",data_provide = "datetimepicker"})*@
-                        @Html.TextBox("ToTime", "", new { @class = "form-control to", data_provide = "timepicker" })
+                        @Html.TextBox("ToTime", (string)ViewBag.totime, new { @class = "form-control to", data_provide = "timepicker" })
                         @Html.ValidationMessageFor(model => model.ToTime, "", new { @class = "text-danger" })
+                        @*@if (Model.ToTime == TimeSpan.Zero)
+                        {
+                            @Html.TextBox("ToTime", "", new { @class = "form-control from", data_provide = "datetimepicker" })
+                            @Html.ValidationMessageFor(model => model.ToTime, "", new { @class = "text-danger" })
+                        }
+                        else
+                        {
+                            @Html.TextBox("ToTime", (TimeSpan)ViewBag.totime, new { @class = "form-control to", data_provide = "timepicker" })
+                            @Html.ValidationMessageFor(model => model.ToTime, "", new { @class = "text-danger" })
+                        }*@
                     </div>
                 </div>
                 <div class="form-group">

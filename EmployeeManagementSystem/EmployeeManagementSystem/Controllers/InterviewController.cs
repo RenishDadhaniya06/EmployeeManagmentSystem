@@ -1,11 +1,13 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using EmployeeManagementSystem.Models;
+using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Resources;
 using Helpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
@@ -15,10 +17,10 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Interviews
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<List<Interviews>>("api/Interview/GetInterviews");
+            var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interview/GetInterviewList");
             if (data == null)
             {
-                data = new List<Interviews>();
+                data = new List<DisplayInterviewModel>();
             }
             return View(data.ToList());
         }
@@ -29,6 +31,20 @@ namespace EmployeeManagementSystem.Controllers
             return View();
         }
 
+        public async Task<FileResult> Print()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interview/GetInterviewList");
+                var builder = new PdfBuilder<List<DisplayInterviewModel>>(data, Server.MapPath("/Views/Interview/Print.cshtml"));
+                return builder.GetPdf();
+            }
+            catch (Exception ex)
+            {
+                return File("AccessDenied", "Error");
+            }
+        }
+
         // GET: Interviews/Create
         public async Task<ActionResult> Create()
         {
@@ -36,6 +52,8 @@ namespace EmployeeManagementSystem.Controllers
             ViewBag.Employee = data;
             ViewBag.Technology = await APIHelpers.GetAsync<List<Technologies>>("api/Technology/GetTechnologies");
             ViewBag.Designation = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
+            ViewBag.fromtime = DateTime.Now.ToString("HH:mm");
+            ViewBag.totime = DateTime.Now.AddHours(1).ToString("HH:mm");
             return View();
         }
 
@@ -47,12 +65,25 @@ namespace EmployeeManagementSystem.Controllers
             {
                 var fromtime = Request["FromTime"];
                 var totime = Request["ToTime"];
-                var ftime = TimeSpan.Parse(fromtime);
+                //var ftime = TimeSpan.Parse(fromtime, CultureInfo.InvariantCulture);
+                ModelState.Remove("FromTime");
+                ModelState.Remove("ToTime");
                 ModelState.Remove("Id");
                 if (ModelState.IsValid)
                 {
-                    await APIHelpers.PostAsync<Interviews>("api/Interviews/Post", model);
-                    TempData["sucess"] = InterviewResources.create;
+                    model.FromTime = DateTime.Parse(fromtime).TimeOfDay;
+                    model.ToTime = DateTime.Parse(totime).TimeOfDay;
+                    if(model.Id == Guid.Empty)
+                    {
+                        await APIHelpers.PostAsync<Interviews>("api/Interview/Post", model);
+                        TempData["sucess"] = InterviewResources.create;
+                    }
+                    else
+                    {
+                        await APIHelpers.PutAsync<Interviews>("api/Interview/Put", model);
+                        TempData["sucess"] = InterviewResources.update;
+                    }
+                    
                 }
                 return RedirectToAction("Index");
             }
@@ -63,46 +94,34 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: Interviews/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+            ViewBag.Employee = data;
+            ViewBag.Technology = await APIHelpers.GetAsync<List<Technologies>>("api/Technology/GetTechnologies");
+            ViewBag.Designation = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
+            var data1 = await APIHelpers.GetAsync<Interviews>("api/Interview/Get/" + id);
+            ViewBag.fromtime = DateTime.Today.Add(data1.FromTime).ToString("HH:mm");
+            ViewBag.totime = DateTime.Today.Add(data1.ToTime).ToString("HH:mm");
+            return View("create",data1);
         }
 
-        // POST: Interviews/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch(Exception ex)
-            {
-                return View();
-            }
-        }
-
-        // GET: Interviews/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+       
 
         // POST: Interviews/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public async Task<ActionResult> DeleteConfirm(Guid id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                await APIHelpers.DeleteAsync<Interviews>("api/Interview/Delete/" + id);
+                TempData["sucess"] = InterviewResources.delete;
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
-                return View();
+                TempData["error"] = CommonResources.error;
+                return RedirectToAction("AccessDenied", "Error");
             }
         }
     }

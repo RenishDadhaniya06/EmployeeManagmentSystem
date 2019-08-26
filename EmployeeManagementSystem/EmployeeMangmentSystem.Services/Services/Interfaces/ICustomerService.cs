@@ -69,5 +69,7 @@ namespace EmployeeMangmentSystem.Services.Services
         bool DeleteCandidateTechnology(Guid id);
 
         Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill, string technology);
+
+        Task<List<DisplayInterviewModel>> GetInterviews();
     }
 }

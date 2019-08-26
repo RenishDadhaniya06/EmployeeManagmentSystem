@@ -1,7 +1,10 @@
 ﻿using EmployeeMangmentSystem.Repository.Models;
+using EmployeeMangmentSystem.Repository.Models.ViewModel;
 using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+using EmployeeMangmentSystem.Services.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 
@@ -11,9 +14,12 @@ namespace EmployeeManagementSystem.Controllers.api
     {
         private IRepository<Interviews> _repository;
 
-        public InterviewController(IRepository<Interviews> repository)
+        private ICustomerService _customerService;
+
+        public InterviewController(IRepository<Interviews> repository,ICustomerService customerService)
         {
             _repository = repository;
+            _customerService = customerService;
         }
 
         [Route("api/Interview/GetInterviews")]
@@ -26,7 +32,20 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
+                throw;
+            }
+        }
 
+        [Route("api/Interview/GetInterviewList")]
+        public async Task<List<DisplayInterviewModel>> GetInterviewList()
+        {
+            try
+            {
+                var data = await _customerService.GetInterviews();
+                return data;
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
         }
@@ -41,7 +60,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -57,7 +75,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -71,7 +88,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -86,7 +102,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

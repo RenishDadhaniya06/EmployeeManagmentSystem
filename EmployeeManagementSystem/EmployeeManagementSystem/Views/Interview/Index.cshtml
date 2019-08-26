@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.Interviews>
+﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.ViewModel.DisplayInterviewModel>
 
 @{
     ViewBag.Title = "Interviews";
@@ -41,20 +41,18 @@
             <thead>
                 <tr>
                     <th style="text-align:center">
-                        @Html.DisplayNameFor(model => model.EmployeeId)
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Designation)
                     </th>
                     <th style="text-align:center">
                         @Html.DisplayNameFor(model => model.Technology)
                     </th>
                     <th style="text-align:center">
-                        @Html.DisplayNameFor(model => model.FromTime)
+                        @Html.DisplayName("Time Duration")
                     </th>
-                    <th style="text-align:center">
-                        @Html.DisplayNameFor(model => model.ToTime)
-                    </th>
-                    <th style="text-align:center">
-                        @Html.DisplayNameFor(model => model.Designation)
-                    </th>
+                    
                     <th style="text-align:center">Edit</th>
                     <th style="text-align:center">Delete</th>
                 </tr>
@@ -62,30 +60,31 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmployeeId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Technology)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FromTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ToTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Designation)
-                        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Technology)
+                    </td>
+                   <td>
+                       @{ 
+                           string temp = "Avaliable From " + item.FromTime + " To " + item.ToTime;
+                       }
+                       @temp
+                   </td>
 
-                        <td style="text-align:center">
-                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Interview",new { id = @item.Id})"></a>
-                        </td>
-                        <td style="text-align:center">
-                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FromTime"></a>
-                        </td>
-                    </tr>
+
+                    <td style="text-align:center">
+                        <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit","Interview",new { id = @item.Id})"></a>
+                    </td>
+                    <td style="text-align:center">
+                        <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FromTime"></a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -32,27 +32,27 @@
         <tbody>
             <tr>
                 <th>&nbsp;Name</th>
-                <th>&nbsp;Birth Date</th>
+                @*<th>&nbsp;Birth Date</th>*@
                 <th>&nbsp;Email</th>
                 <th>&nbsp;Current City</th>
                 <th>&nbsp;Designation</th>
-                <th>&nbsp;Technology</th>
+                @*<th>&nbsp;Technology</th>*@
                 <th>&nbsp;Skills</th>
                 <th>&nbsp;Experience</th>
-                <th>&nbsp;Current Salary</th>
+                @*<th>&nbsp;Current Salary</th>
                 <th>&nbsp;Expected Salary</th>
-                <th>&nbsp;Notice Period</th>
+                <th>&nbsp;Notice Period</th>*@
             </tr>
 
             @foreach (var item in Model)
             {
                 <tr>
                     <td>&nbsp;@item.Name</td>
-                    <td>&nbsp;@item.BirthDate.ToString("dd-MMM-yyyy")</td>
+                    @*<td>&nbsp;@item.BirthDate.ToString("dd-MMM-yyyy")</td>*@
                     <td>&nbsp;@item.Email</td>
                     <td>&nbsp;@item.CurrentCity</td>
                     <td>&nbsp;@item.Designation</td>
-                    <td>
+                    @*<td>
                         &nbsp;
                         <ul>
                             @{
@@ -64,7 +64,7 @@
                                 }
                             }
                         </ul>
-                    </td>
+                    </td>*@
                     <td>
                         &nbsp;
                         <ul>
@@ -92,9 +92,9 @@
                         }
                         @exp
                     </td>
-                    <td>&nbsp;@item.CurrentSalary</td>
+                    @*<td>&nbsp;@item.CurrentSalary</td>
                     <td>&nbsp;@item.ExpectedSalary</td>
-                    <td>&nbsp;@item.NoticePeriod</td>
+                    <td>&nbsp;@item.NoticePeriod</td>*@
 
                 </tr>
             }

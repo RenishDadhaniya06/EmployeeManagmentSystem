@@ -136,5 +136,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[CandidateFilter] p0,p1", skills, technologies).ToListAsync();
             return data;
         }
+
+        public async Task<List<DisplayInterviewModel>> GetInterviews()
+        {
+            var data = await Database.SqlQuery<DisplayInterviewModel>(@"exec [dbo].[GetInterviews]").ToListAsync();
+            return data;
+        }
     }
 }

@@ -137,5 +137,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             var data = await dbContext.GetFilterCandidate(skill, technology);
             return data;
         }
+
+        public async Task<List<DisplayInterviewModel>> GetInterviews()
+        {
+            return await dbContext.GetInterviews();
+        }
     }
 }
