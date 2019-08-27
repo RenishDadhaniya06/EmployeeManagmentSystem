@@ -45,6 +45,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EmployeeResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="InterviewerResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InterviewerResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="InterviewResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -134,6 +139,10 @@
     <EmbeddedResource Update="EmployeeResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EmployeeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="InterviewerResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InterviewerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="InterviewResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

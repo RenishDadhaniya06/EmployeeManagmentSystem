@@ -73,7 +73,7 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<CandidateTechnologies> CandidateTechnologies { get; set; }
 
-        public DbSet<Interviews> Interviews { get; set; }
+        public DbSet<Interviewers> Interviewers { get; set; }
 
        
 

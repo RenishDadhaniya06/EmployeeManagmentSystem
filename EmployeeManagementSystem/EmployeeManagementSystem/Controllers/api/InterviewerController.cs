@@ -10,20 +10,20 @@ using System.Web.Http;
 
 namespace EmployeeManagementSystem.Controllers.api
 {
-    public class InterviewController : ApiController
+    public class InterviewerController : ApiController
     {
-        private IRepository<Interviews> _repository;
+        private IRepository<Interviewers> _repository;
 
         private ICustomerService _customerService;
 
-        public InterviewController(IRepository<Interviews> repository,ICustomerService customerService)
+        public InterviewerController(IRepository<Interviewers> repository, ICustomerService customerService)
         {
             _repository = repository;
             _customerService = customerService;
         }
 
-        [Route("api/Interview/GetInterviews")]
-        public IEnumerable<Interviews> GetInterviews()
+        [Route("api/Interviewer/GetInterviewers")]
+        public IEnumerable<Interviewers> GetInterviewers()
         {
             try
             {
@@ -36,12 +36,12 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Interview/GetInterviewList")]
-        public async Task<List<DisplayInterviewModel>> GetInterviewList()
+        [Route("api/Interviewer/GetInterviewerList")]
+        public async Task<List<DisplayInterviewModel>> GetInterviewerList()
         {
             try
             {
-                var data = await _customerService.GetInterviews();
+                var data = await _customerService.GetInterviewers();
                 return data;
             }
             catch (Exception ex)
@@ -50,8 +50,8 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Interview/Get/{id}")]
-        public Interviews Get(Guid id)
+        [Route("api/Interviewer/Get/{id}")]
+        public Interviewers Get(Guid id)
         {
             try
             {
@@ -64,8 +64,8 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Interview/Post")]
-        public Interviews Post(Interviews model)
+        [Route("api/Interviewer/Post")]
+        public Interviewers Post(Interviewers model)
         {
             try
             {
@@ -79,8 +79,8 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Interview/Put")]
-        public Interviews Put(Interviews model)
+        [Route("api/Interviewer/Put")]
+        public Interviewers Put(Interviewers model)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Interview/Delete/{id}")]
+        [Route("api/Interviewer/Delete/{id}")]
         public bool Delete(Guid id)
         {
             try

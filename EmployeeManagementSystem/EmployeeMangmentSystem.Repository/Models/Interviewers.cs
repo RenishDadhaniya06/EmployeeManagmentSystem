@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeMangmentSystem.Repository.Models
 {
-    public class Interviews
+    public class Interviewers
     {
         public Guid Id { get; set; }
 

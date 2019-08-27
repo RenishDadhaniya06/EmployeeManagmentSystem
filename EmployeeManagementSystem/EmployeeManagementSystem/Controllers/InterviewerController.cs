@@ -11,12 +11,12 @@ using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
-    public class InterviewController : Controller
+    public class InterviewerController : Controller
     {
         // GET: Interviews
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interview/GetInterviewList");
+            var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interviewer/GetInterviewerList");
             if (data == null)
             {
                 data = new List<DisplayInterviewModel>();
@@ -34,8 +34,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interview/GetInterviewList");
-                var builder = new PdfBuilder<List<DisplayInterviewModel>>(data, Server.MapPath("/Views/Interview/Print.cshtml"));
+                var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interviewer/GetInterviewList");
+                var builder = new PdfBuilder<List<DisplayInterviewModel>>(data, Server.MapPath("/Views/Interviewer/Print.cshtml"));
                 return builder.GetPdf();
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace EmployeeManagementSystem.Controllers
 
         // POST: Interviews/Create
         [HttpPost]
-        public async Task<ActionResult> Create(Interviews model)
+        public async Task<ActionResult> Create(Interviewers model)
         {
             try
             {
@@ -72,17 +72,17 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     model.FromTime = DateTime.Parse(fromtime).TimeOfDay;
                     model.ToTime = DateTime.Parse(totime).TimeOfDay;
-                    if(model.Id == Guid.Empty)
+                    if (model.Id == Guid.Empty)
                     {
-                        await APIHelpers.PostAsync<Interviews>("api/Interview/Post", model);
-                        TempData["sucess"] = InterviewResources.create;
+                        await APIHelpers.PostAsync<Interviewers>("api/Interviewer/Post", model);
+                        TempData["sucess"] = InterviewerResources.create;
                     }
                     else
                     {
-                        await APIHelpers.PutAsync<Interviews>("api/Interview/Put", model);
-                        TempData["sucess"] = InterviewResources.update;
+                        await APIHelpers.PutAsync<Interviewers>("api/Interviewer/Put", model);
+                        TempData["sucess"] = InterviewerResources.update;
                     }
-                    
+
                 }
                 return RedirectToAction("Index");
             }
@@ -99,10 +99,10 @@ namespace EmployeeManagementSystem.Controllers
             ViewBag.Employee = data;
             ViewBag.Technology = await APIHelpers.GetAsync<List<Technologies>>("api/Technology/GetTechnologies");
             ViewBag.Designation = await APIHelpers.GetAsync<List<Designation>>("api/Designation/GetDesignations");
-            var data1 = await APIHelpers.GetAsync<Interviews>("api/Interview/Get/" + id);
+            var data1 = await APIHelpers.GetAsync<Interviewers>("api/Interviewer/Get/" + id);
             ViewBag.fromtime = DateTime.Today.Add(data1.FromTime).ToString("HH:mm");
             ViewBag.totime = DateTime.Today.Add(data1.ToTime).ToString("HH:mm");
-            return View("create",data1);
+            return View("create", data1);
         }
 
 
@@ -112,11 +112,11 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                await APIHelpers.DeleteAsync<Interviews>("api/Interview/Delete/" + id);
-                TempData["sucess"] = InterviewResources.delete;
+                await APIHelpers.DeleteAsync<Interviewers>("api/Interviewer/Delete/" + id);
+                TempData["sucess"] = InterviewerResources.delete;
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");

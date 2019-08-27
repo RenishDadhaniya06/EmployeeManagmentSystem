@@ -133,13 +133,13 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         {
             string skill = skills.ToString();
             string technology = technologies.ToString();
-            var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[CandidateFilter] p0,p1", skill,technology).ToListAsync();
+            var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[CandidateFilter] @p0,@p1", skill,technology).ToListAsync();
             return data;
         }
 
-        public async Task<List<DisplayInterviewModel>> GetInterviews()
+        public async Task<List<DisplayInterviewModel>> GetInterviewers()
         {
-            var data = await Database.SqlQuery<DisplayInterviewModel>(@"exec [dbo].[GetInterviews]").ToListAsync();
+            var data = await Database.SqlQuery<DisplayInterviewModel>(@"exec [dbo].[GetInterviewers]").ToListAsync();
             return data;
         }
     }

@@ -70,6 +70,6 @@ namespace EmployeeMangmentSystem.Services.Services
 
         Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill,string technologies);
 
-        Task<List<DisplayInterviewModel>> GetInterviews();
+        Task<List<DisplayInterviewModel>> GetInterviewers();
     }
 }

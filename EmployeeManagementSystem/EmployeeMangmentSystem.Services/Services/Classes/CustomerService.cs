@@ -138,9 +138,9 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return data;
         }
 
-        public async Task<List<DisplayInterviewModel>> GetInterviews()
+        public async Task<List<DisplayInterviewModel>> GetInterviewers()
         {
-            return await dbContext.GetInterviews();
+            return await dbContext.GetInterviewers();
         }
     }
 }
