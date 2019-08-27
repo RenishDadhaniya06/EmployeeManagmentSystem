@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DHTMLX.Scheduler.NET" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="CandidateResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

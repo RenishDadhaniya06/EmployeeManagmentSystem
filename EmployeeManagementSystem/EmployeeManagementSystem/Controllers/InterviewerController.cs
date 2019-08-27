@@ -16,10 +16,10 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Interviews
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interviewer/GetInterviewerList");
+            var data = await APIHelpers.GetAsync<List<DisplayInterviewerModel>>("api/Interviewer/GetInterviewerList");
             if (data == null)
             {
-                data = new List<DisplayInterviewModel>();
+                data = new List<DisplayInterviewerModel>();
             }
             return View(data.ToList());
         }
@@ -34,8 +34,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<DisplayInterviewModel>>("api/Interviewer/GetInterviewList");
-                var builder = new PdfBuilder<List<DisplayInterviewModel>>(data, Server.MapPath("/Views/Interviewer/Print.cshtml"));
+                var data = await APIHelpers.GetAsync<List<DisplayInterviewerModel>>("api/Interviewer/GetInterviewList");
+                var builder = new PdfBuilder<List<DisplayInterviewerModel>>(data, Server.MapPath("/Views/Interviewer/Print.cshtml"));
                 return builder.GetPdf();
             }
             catch (Exception ex)

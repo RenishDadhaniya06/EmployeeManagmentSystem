@@ -137,9 +137,15 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
-        public async Task<List<DisplayInterviewModel>> GetInterviewers()
+        public async Task<List<DisplayInterviewerModel>> GetInterviewers()
         {
-            var data = await Database.SqlQuery<DisplayInterviewModel>(@"exec [dbo].[GetInterviewers]").ToListAsync();
+            var data = await Database.SqlQuery<DisplayInterviewerModel>(@"exec [dbo].[GetInterviewers]").ToListAsync();
+            return data;
+        }
+
+        public async Task<List<DisplayInterviewModel>> GetInterviewsList()
+        {
+            var data = await Database.SqlQuery<DisplayInterviewModel>(@"exec [dbo].[GetInterviewsList]").ToListAsync();
             return data;
         }
     }

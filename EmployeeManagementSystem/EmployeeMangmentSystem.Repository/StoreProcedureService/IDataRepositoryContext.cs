@@ -65,6 +65,8 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
 
         Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skills,string technologies);
 
-        Task<List<DisplayInterviewModel>> GetInterviewers();
+        Task<List<DisplayInterviewerModel>> GetInterviewers();
+
+        Task<List<DisplayInterviewModel>> GetInterviewsList();
     }
 }

@@ -37,7 +37,7 @@ namespace EmployeeManagementSystem.Controllers.api
         }
 
         [Route("api/Interviewer/GetInterviewerList")]
-        public async Task<List<DisplayInterviewModel>> GetInterviewerList()
+        public async Task<List<DisplayInterviewerModel>> GetInterviewerList()
         {
             try
             {

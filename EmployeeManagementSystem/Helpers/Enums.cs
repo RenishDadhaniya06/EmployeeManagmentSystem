@@ -23,5 +23,14 @@
             Expired = 1,
             OnHold = 2
         }
+
+        public enum InterviewStatus
+        {
+            Rejected = 0,
+            ResumeonHold = 1,
+            Offered = 2,
+            ProcessForNextRound = 3,
+            Pending = 4
+        }
     }
 }

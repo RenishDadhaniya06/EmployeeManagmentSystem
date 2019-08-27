@@ -75,6 +75,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Interviewers> Interviewers { get; set; }
 
+        public DbSet<Interviews> Interviews { get; set; }
+
        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

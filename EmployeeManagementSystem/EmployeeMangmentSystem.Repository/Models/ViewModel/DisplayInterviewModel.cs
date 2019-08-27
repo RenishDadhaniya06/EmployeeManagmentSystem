@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static Helpers.Enums;
 
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
@@ -8,14 +9,12 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
     {
         public Guid Id { get; set; }
 
-        public string Employee { get; set; }
+        public String Candidate { get; set; }
 
-        public string Designation { get; set; }
+        public String Employee { get; set; }
 
-        public string Technology { get; set; }
+        public DateTime ScheduleTime { get; set; }
 
-        public TimeSpan FromTime { get; set; }
-
-        public TimeSpan ToTime { get; set; }
+        public InterviewStatus InterviewStatus { get; set; }
     }
 }
