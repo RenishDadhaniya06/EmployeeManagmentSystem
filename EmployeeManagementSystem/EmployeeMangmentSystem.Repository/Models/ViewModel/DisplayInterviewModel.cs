@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using static Helpers.Enums;
 
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
@@ -9,9 +7,9 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
     {
         public Guid Id { get; set; }
 
-        public String Candidate { get; set; }
+        public string Candidate { get; set; }
 
-        public String Employee { get; set; }
+        public string Employee { get; set; }
 
         public DateTime ScheduleTime { get; set; }
 

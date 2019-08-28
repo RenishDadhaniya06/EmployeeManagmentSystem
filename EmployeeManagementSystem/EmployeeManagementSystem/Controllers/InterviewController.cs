@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
@@ -33,7 +32,8 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Interview/Create
         public async Task<ActionResult> Create()
         {
-            ViewBag.Candidate = await APIHelpers.GetAsync<List<Candidates>>("api/Candidate/GetCandidates");
+            var data = await APIHelpers.GetAsync<List<Candidates>>("api/Candidate/GetCandidates");
+            ViewBag.Candidate = new SelectList(data, "Id", "Name", "Email");
             ViewBag.Employee = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
             ViewBag.sdate = DateTime.Now.ToString("MM/dd/yyyy");
             ViewBag.stime = DateTime.Now.ToString("HH:mm");
@@ -46,6 +46,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                //var c = Request["CandidateId"];
                 var stime = Request["Stime"];
                 var sdate = Request["Sdate"];
                 DateTime time = Convert.ToDateTime(DateTime.ParseExact(sdate, "MM/dd/yyyy", null) + DateTime.Parse(stime).TimeOfDay);
@@ -84,22 +85,6 @@ namespace EmployeeManagementSystem.Controllers
             return View("create",data);
         }
 
-        // POST: Interview/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: Interview/Delete/5
         [HttpGet]
         public async Task<ActionResult> DeleteConfirm(Guid id)
@@ -114,6 +99,21 @@ namespace EmployeeManagementSystem.Controllers
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetCandidateDetail(string name)
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<Candidates>>("api/Interview/GetCandidateDetail?name=" + name);
+                return Json(data,JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

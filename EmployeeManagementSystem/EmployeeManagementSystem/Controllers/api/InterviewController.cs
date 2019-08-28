@@ -104,5 +104,21 @@ namespace EmployeeManagementSystem.Controllers.api
                 throw;
             }
         }
+
+        [Route("api/Interview/GetCandidateDetail")]
+        [HttpGet]
+        public async Task<List<Candidates>> GetCandidateDetail(string name)
+        {
+            try
+            {
+                var data = await _customerService.GetCandidateSearchDetail(name);
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

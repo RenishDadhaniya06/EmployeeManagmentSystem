@@ -147,5 +147,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetInterviewsList();
         }
+
+        public async Task<List<Candidates>> GetCandidateSearchDetail(string name)
+        {
+            return await dbContext.GetCandidateSearchDetail(name);
+        }
     }
 }

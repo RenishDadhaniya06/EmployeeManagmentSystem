@@ -68,5 +68,7 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         Task<List<DisplayInterviewerModel>> GetInterviewers();
 
         Task<List<DisplayInterviewModel>> GetInterviewsList();
+
+        Task<List<Candidates>> GetCandidateSearchDetail(string name);
     }
 }

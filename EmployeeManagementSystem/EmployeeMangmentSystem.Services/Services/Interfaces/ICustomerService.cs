@@ -73,5 +73,7 @@ namespace EmployeeMangmentSystem.Services.Services
         Task<List<DisplayInterviewerModel>> GetInterviewers();
 
         Task<List<DisplayInterviewModel>> GetInterviewsList();
+
+        Task<List<Candidates>> GetCandidateSearchDetail(string name);
     }
 }

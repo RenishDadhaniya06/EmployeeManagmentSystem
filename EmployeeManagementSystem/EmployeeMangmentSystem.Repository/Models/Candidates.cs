@@ -10,11 +10,6 @@ namespace EmployeeMangmentSystem.Repository.Models
         public string Name { get; set; }
 
         [Display(Name = "Mobile Number")]
-        //[DataType(DataType.PhoneNumber)]
-        //[Required(ErrorMessage = "Mobile Number Required")]
-        //[RegularExpression(@"^(\d{10})$", ErrorMessage = "Invalid mobile")]
-        //public string MobileNo { get; set; }
-        //[StringLength(10,MinimumLength =10)]
         public int MobileNo { get; set; }
 
         [DataType(DataType.EmailAddress)]
