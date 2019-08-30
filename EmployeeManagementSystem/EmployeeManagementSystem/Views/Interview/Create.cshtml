@@ -4,9 +4,7 @@
     ViewBag.Title = "Create Interview";
 }
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
-@*<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+
 <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
 
 
@@ -15,6 +13,8 @@
     $('.stime').timepicker()
 
 </script>
+
+@*<script src="~/Scripts/Autocomplete.js" type="text/javascript"></script>*@
 @*<script type="text/javascript">
         $(function () {
             debugger
@@ -52,10 +52,8 @@
 
 <script type="text/javascript">
     $(function () {
-            debugger
-             $('.name').autocomplete({
-                source: function (request, response) {
-                    //debugger
+        $('.name').autocomplete({
+            source: function(request, response) {
                      $.ajax({
                          url: '@Url.Action("GetCandidateDetail","Interview")',
                          data: "{ 'name': '" + request.term + "'}",
@@ -63,9 +61,7 @@
                             type: "POST",
                             contentType: "application/json; charset=utf-8",
                          success: function (data) {
-                             //debugger
                              response($.map(data, function (item) {
-                                 //debugger
                                  return item;
                                 }))
                             },
@@ -78,21 +74,45 @@
                         });
                     },
                  select: function (event, ui) {
-                     //debugger
                      $('.name').val(ui.item.Name);
                      $('#CandidateId').val(ui.item.Id);
                      return false;
                     },
                  minLength: 3
              }).autocomplete("instance")._renderItem = function (ul, item) {
-                 //debugger
                     return $( "<li>" )
-                        .append("<div>" + "Name : " + item.Name + "<br>" + "Mobile No : " + item.MobileNo + "<br>" + "Email : " + item.Email + "</div>" )
+                        .append("<div>" + "<i class='fa fa-user'> " + "<b>" + "Name :  " + "</b>" + item.Name + "</i>" + "<br>" + "<i class = 'fa fa-phone'> " + "<b>" + "Mobile No : " + "</b>" + item.MobileNo + "</i>" + "<br>" + "<i class = 'fa fa-envelope' > " + "<b>" + "Email : " + "</b>" + item.Email + "</i>" + "</div>" )
                     .appendTo( ul );
             };
         });
 </script>
-
+<script type="text/javascript">
+    function SelectedIndexChanged() {
+        if ($(".emp").val() != "") {
+            debugger
+            //location.href = '@Url.Action("EmployeeDetails", "Interview")?id=' + $("#EmployeeId").val();
+            var temp = {
+                id: $(".emp").val(),
+            };
+            $.ajax({
+                url: '@Url.Action("EmployeeDetails","Interview")',
+                data: JSON.stringify(temp),
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    debugger
+                    $('.ename').val(data.Name);
+                    $('.email').val(data.Email);
+                    //document.getElementById('ename').innerText = data.Name;
+                    //document.getElementById('ename').innerHTML = data.Name.val;
+                    //$("#ename").val(data.Name);
+                    //$("#ename").text(data.Name);
+                },
+            });
+        } 
+    }
+</script>
 
 
 
@@ -125,15 +145,25 @@
                     <div class="col-md-4">
                         @*@Html.DropDownListFor(model => model.CandidateId, (SelectList)ViewBag.Candidate, "Select Candidate", new { @class = "form-control name" })*@
                         @Html.HiddenFor(model => model.CandidateId)
-                        @Html.TextBox("Name","", new { @class = "form-control name" })
+                        @Html.TextBox("Name",(string)ViewBag.Candidate , new { @class = "form-control name" })
                         @Html.ValidationMessageFor(model => model.CandidateId, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.Label("Select Employee", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.DropDownListFor(model => model.EmployeeId, new SelectList(ViewBag.Employee, "Id", "Name"), "Select Employee", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.EmployeeId, new SelectList(ViewBag.Employee, "Id", "Name"), "Select Employee", new { @class = "form-control emp", onchange = "SelectedIndexChanged()", @id = "EmployeeId" })
                         @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @*@Html.TextBox("ename","",new { @class = "form-control ename"})*@
+                        @Html.TextBox("Name",(string)ViewBag.emp.Name, new { @class = "form-control ename",@id = "ename",@readonly = "readonly"})
+                    </div>
+                    @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @*@Html.TextBox("email","",new { @class = "form-control email"})*@
+                        @Html.TextBox("Email",(string)ViewBag.emp.Email, new { @class = "form-control email",@id = "email",@readonly = "readonly"})
                     </div>
                 </div>
                 <div class="form-group">

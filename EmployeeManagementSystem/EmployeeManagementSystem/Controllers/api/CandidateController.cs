@@ -4,7 +4,6 @@ using EmployeeMangmentSystem.Repository.Repository.Interfaces;
 using EmployeeMangmentSystem.Services.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -35,7 +34,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -50,7 +48,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -77,7 +74,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -126,7 +122,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -180,7 +175,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -197,7 +191,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -213,7 +206,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

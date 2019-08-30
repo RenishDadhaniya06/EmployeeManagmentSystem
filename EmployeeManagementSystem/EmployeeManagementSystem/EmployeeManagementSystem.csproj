@@ -357,6 +357,7 @@
     <Content Include="obj\Debug\EmployeeManagementSystem.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\EmployeeManagementSystem.dll" />
     <Content Include="obj\Debug\EmployeeManagementSystem.pdb" />
+    <Content Include="Scripts\Autocomplete.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />

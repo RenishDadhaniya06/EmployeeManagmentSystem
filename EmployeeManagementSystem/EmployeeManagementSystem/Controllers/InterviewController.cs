@@ -24,17 +24,28 @@ namespace EmployeeManagementSystem.Controllers
         }
 
         // GET: Interview/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        public async Task<JsonResult> EmployeeDetails(Guid id)
         {
-            return View();
+            try
+            {
+                var data = await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id);
+                return Json(data,JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         // GET: Interview/Create
         public async Task<ActionResult> Create()
         {
-            var data = await APIHelpers.GetAsync<List<Candidates>>("api/Candidate/GetCandidates");
-            ViewBag.Candidate = new SelectList(data, "Id", "Name", "Email");
+            //var data = await APIHelpers.GetAsync<List<Candidates>>("api/Candidate/GetCandidates");
+            //ViewBag.Candidate = new SelectList(data, "Id", "Name", "Email");
             ViewBag.Employee = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+            ViewBag.emp = new Employee();
             ViewBag.sdate = DateTime.Now.ToString("MM/dd/yyyy");
             ViewBag.stime = DateTime.Now.ToString("HH:mm");
             return View();
@@ -78,8 +89,10 @@ namespace EmployeeManagementSystem.Controllers
         public async Task<ActionResult> Edit(Guid id)
         {
             var data = await APIHelpers.GetAsync<Interviews>("api/Interview/Get/" + id);
-            ViewBag.Candidate = await APIHelpers.GetAsync<List<Candidates>>("api/Candidate/GetCandidates");
+            var Candidate = await APIHelpers.GetAsync<Candidates>("api/Candidate/Get/" + data.CandidateId);
+            ViewBag.Candidate = Candidate.Name;
             ViewBag.Employee = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+            ViewBag.emp = await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + data.EmployeeId);
             ViewBag.stime = data.ScheduleTime.ToString("HH:mm");
             ViewBag.sdate = data.ScheduleTime.ToString("MM/dd/yyyy");
             return View("create",data);
@@ -112,7 +125,6 @@ namespace EmployeeManagementSystem.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

@@ -114,7 +114,6 @@ namespace EmployeeManagementSystem.Controllers.api
         [HttpGet]
         public async Task<List<LeaveViewModel>> GetPendingLeave()
         {
-           
             var data = await _iCustomerService.GetPendingLeaves();
             return data.ToList();
         }
@@ -165,7 +164,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
