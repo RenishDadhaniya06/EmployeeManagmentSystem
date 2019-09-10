@@ -1,18 +1,20 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Resources;
-using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Resources;
+    using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    #endregion
     public class DesignationController : Controller
     {
+        #region Index Method
         // GET: Designation
         public async Task<ActionResult> Index()
         {
@@ -31,7 +33,9 @@ namespace EmployeeManagementSystem.Controllers
             }
 
         }
+        #endregion
 
+        #region Print Method
         public async Task<FileResult> Print()
         {
             try
@@ -45,7 +49,9 @@ namespace EmployeeManagementSystem.Controllers
                 return File("AccessDenied", "Error");
             }
         }
+        #endregion
 
+        #region Details Method
         // GET: Designation/Details/5
         public ActionResult Details(Guid id)
         {
@@ -58,7 +64,9 @@ namespace EmployeeManagementSystem.Controllers
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
+        #endregion
 
+        #region Create Method
         // GET: Designation/Create
         public ActionResult Create()
         {
@@ -106,7 +114,9 @@ namespace EmployeeManagementSystem.Controllers
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
+        #endregion
 
+        #region Edit Method
         // GET: Designation/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -119,10 +129,9 @@ namespace EmployeeManagementSystem.Controllers
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
+        #endregion
 
-        // POST: Designation/Edit/5
-
-
+        #region Delete Method
         // POST: Designation/Delete/5
         [HttpGet]
         public async Task<ActionResult> DeleteConfirm(string id)
@@ -140,5 +149,6 @@ namespace EmployeeManagementSystem.Controllers
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
+        #endregion
     }
 }

@@ -31,7 +31,6 @@ namespace EmployeeManagementSystem.Controllers.api
             }
             catch (Exception ex)
             {
-
                 throw;
             }
 

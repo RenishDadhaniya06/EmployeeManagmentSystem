@@ -15,7 +15,6 @@ namespace EmployeeManagementSystem.Controllers.api
 
         private ICustomerService _customerService;
 
-
         public InterviewController(IRepository<Interviews> repository,ICustomerService customerService)
         {
             _repository = repository;
@@ -65,7 +64,6 @@ namespace EmployeeManagementSystem.Controllers.api
         }
 
         
-
         [Route("api/Interview/Post")]
         public Interviews Post(Interviews model)
         {

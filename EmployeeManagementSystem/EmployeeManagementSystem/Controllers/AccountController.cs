@@ -1,18 +1,18 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using Helpers;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using Helpers;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    #endregion
 
     public class AccountController : Controller
     {
@@ -20,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
+        #region Constructor
         public AccountController()
         {
         }
@@ -30,6 +31,7 @@ namespace EmployeeManagementSystem.Controllers
             SignInManager = signInManager;
             _applicationDbContext = context;
         }
+        #endregion
 
         public ApplicationSignInManager SignInManager
         {
@@ -55,7 +57,7 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        //
+        #region Login Method
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -64,7 +66,6 @@ namespace EmployeeManagementSystem.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -125,6 +126,7 @@ namespace EmployeeManagementSystem.Controllers
             }
 
         }
+        #endregion
 
 
         private IAuthenticationManager GetAuthenticationManager()
@@ -144,7 +146,7 @@ namespace EmployeeManagementSystem.Controllers
             return returnUrl;
         }
 
-        //
+        #region Register Method
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -152,7 +154,6 @@ namespace EmployeeManagementSystem.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -177,6 +178,7 @@ namespace EmployeeManagementSystem.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
         [HttpPost]
         [AllowAnonymous]
@@ -220,7 +222,7 @@ namespace EmployeeManagementSystem.Controllers
         }
 
 
-        //
+        #region Forgot Password Method
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -228,7 +230,6 @@ namespace EmployeeManagementSystem.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -254,6 +255,7 @@ namespace EmployeeManagementSystem.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)

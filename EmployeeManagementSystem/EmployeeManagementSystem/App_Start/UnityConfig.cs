@@ -1,20 +1,22 @@
-using EmployeeManagementSystem.Controllers;
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Repository.Classes;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using EmployeeMangmentSystem.Repository.StoreProcedureService;
-using EmployeeMangmentSystem.Services.Services;
-using EmployeeMangmentSystem.Services.Services.Classes;
-using System.Web.Http;
-using System.Web.Mvc;
-using Unity;
-using Unity.Injection;
-using Unity.WebApi;
 
 namespace EmployeeManagementSystem
 {
+    #region Using
+    using EmployeeManagementSystem.Controllers;
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Repository.Classes;
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using EmployeeMangmentSystem.Repository.StoreProcedureService;
+    using EmployeeMangmentSystem.Services.Services;
+    using EmployeeMangmentSystem.Services.Services.Classes;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using Unity;
+    using Unity.Injection;
+    #endregion
     public static class UnityConfig
     {
+        #region Method
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
@@ -56,5 +58,6 @@ namespace EmployeeManagementSystem
 
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
         }
+        #endregion
     }
 }
