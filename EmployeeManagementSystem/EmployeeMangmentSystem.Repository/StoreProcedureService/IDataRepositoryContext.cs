@@ -1,13 +1,14 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.StoreProcedureService
 {
-   public interface IDataRepositoryContext
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    #endregion
+    public interface IDataRepositoryContext
     {
 
         /// <summary>

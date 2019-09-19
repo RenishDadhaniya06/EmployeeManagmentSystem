@@ -1,13 +1,14 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 
 namespace EmployeeMangmentSystem.Services.Services
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    #endregion
     /// <summary>
     /// 
     /// </summary>

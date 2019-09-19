@@ -1,11 +1,13 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-
+﻿
 namespace Helpers
 {
+    #region Using
+    using Newtonsoft.Json;
+    using System;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+    #endregion
     /// <summary>
     /// API Helper
     /// </summary>

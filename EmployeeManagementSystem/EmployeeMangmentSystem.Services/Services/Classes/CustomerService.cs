@@ -6,14 +6,14 @@
 
 namespace EmployeeMangmentSystem.Services.Services.Classes
 {
-    using System;
+    
     #region using
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using EmployeeMangmentSystem.Repository.StoreProcedureService;
-    
+    using System;
     #endregion
 
     /// <summary>Customer Service</summary>

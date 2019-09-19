@@ -1,16 +1,17 @@
-﻿#region usings
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Repository.StoreProcedureService;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-#endregion
+﻿
 
 namespace EmployeeMangmentSystem.Repository.Repository.Classes
 {
+    #region usings
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using EmployeeMangmentSystem.Repository.StoreProcedureService;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+    #endregion
     /// <summary>
     /// Repository Context
     /// </summary>
