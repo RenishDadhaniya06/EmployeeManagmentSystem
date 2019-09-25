@@ -1,17 +1,24 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using System.Net.Http;
-using System.Web.Http;
-using System.Linq;
-
+﻿
 namespace EmployeeManagementSystem.Controllers.api
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using System;
+    using System.Linq;
+    using System.Web.Http;
+    #endregion
+
+
+    /// <summary>
+    /// SettingController
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class SettingController : ApiController
     {
+        #region Properties
         private IRepository<SettingView> _repository;
+        #endregion
 
         public SettingController(IRepository<SettingView> repository)
         {

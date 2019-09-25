@@ -1,13 +1,18 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace EmployeeManagementSystem.Helper
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using iTextSharp.text;
+    using iTextSharp.text.pdf;
+    using System;
+    #endregion
+
+
+    /// <summary>
+    /// ITextEvents
+    /// </summary>
+    /// <seealso cref="iTextSharp.text.pdf.PdfPageEventHelper" />
     public class ITextEvents : PdfPageEventHelper
     {
         // This is the contentbyte object of the writer
@@ -41,6 +46,15 @@ namespace EmployeeManagementSystem.Helper
         }
         #endregion
 
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="document"></param>
+        /// Called when the document is opened.
+        /// @param writer the <CODE>PdfWriter</CODE> for this document
+        /// @param document the document
         public override void OnOpenDocument(PdfWriter writer, Document document)
         {
             try
@@ -60,6 +74,13 @@ namespace EmployeeManagementSystem.Helper
             }
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="document"></param>
+        /// Called when a page is finished, just before being written to the document.
+        /// @param writer the <CODE>PdfWriter</CODE> for this document
+        /// @param document the document
         public override void OnEndPage(iTextSharp.text.pdf.PdfWriter writer, iTextSharp.text.Document document)
         {
             base.OnEndPage(writer, document);
@@ -175,6 +196,11 @@ namespace EmployeeManagementSystem.Helper
 
         }
 
+        /// <summary>
+        /// Called when [close document].
+        /// </summary>
+        /// <param name="writer">The writer.</param>
+        /// <param name="document">The document.</param>
         public override void OnCloseDocument(PdfWriter writer, Document document)
         {
             base.OnCloseDocument(writer, document);

@@ -1,13 +1,22 @@
-﻿using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Linq.Expressions;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Repository.Classes
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Validation;
+    using System.Linq;
+    using System.Linq.Expressions;
+    #endregion
+
+
+    /// <summary>
+    /// Repository
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <seealso cref="EmployeeMangmentSystem.Repository.Repository.Interfaces.IRepository{T}" />
     public class Repository<T> : IRepository<T> where T : class
     {
         /// <summary>

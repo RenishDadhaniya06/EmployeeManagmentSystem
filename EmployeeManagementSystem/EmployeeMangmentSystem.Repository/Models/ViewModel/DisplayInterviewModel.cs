@@ -1,8 +1,15 @@
-﻿using System;
-using static Helpers.Enums;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System;
+    using static Helpers.Enums;
+    #endregion
+
+
+    /// <summary>
+    /// DisplayInterviewModel
+    /// </summary>
     public class DisplayInterviewModel
     {
         public Guid Id { get; set; }

@@ -1,17 +1,25 @@
-﻿using EmployeeManagementSystem.Helper;
-using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Resources;
-using Helpers;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Helper;
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Resources;
+    using Helpers;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    #endregion
+
+
     //[Route("[controller]/[action]")]
+    /// <summary>
+    /// RoleController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     [HandleError]
     [CheckAuthorization]
     public class RoleController : Controller

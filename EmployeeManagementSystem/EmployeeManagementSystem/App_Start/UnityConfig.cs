@@ -14,6 +14,11 @@ namespace EmployeeManagementSystem
     using Unity;
     using Unity.Injection;
     #endregion
+
+
+    /// <summary>
+    /// UnityConfig
+    /// </summary>
     public static class UnityConfig
     {
         #region Method

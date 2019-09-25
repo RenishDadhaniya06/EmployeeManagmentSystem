@@ -1,12 +1,20 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using Helpers;
-using System;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using Helpers;
+    using System;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    #endregion
+
+
+    /// <summary>
+    /// SettingController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class SettingController : Controller
     {
         // GET: Setting

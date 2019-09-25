@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-
+﻿
 namespace EmployeeManagementSystem.Controllers.api
 {
+    #region Using
+    using System.Collections.Generic;
+    using System.Web.Http;
+    #endregion
+
+
+    /// <summary>
+    /// UserController
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class UserController : ApiController
     {
         // GET: api/User

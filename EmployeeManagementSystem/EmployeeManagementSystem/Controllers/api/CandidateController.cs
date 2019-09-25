@@ -1,20 +1,30 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using EmployeeMangmentSystem.Services.Services;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web.Http;
-
+﻿
 namespace EmployeeManagementSystem.Controllers.api
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using EmployeeMangmentSystem.Services.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    #endregion
+
+
+    /// <summary>
+    /// CandidateController
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class CandidateController : ApiController
     {
+        #region Properties
         private IRepository<Candidates> _repository;
         private IRepository<CandidateSkills> _srepository;
         private IRepository<CandidateTechnologies> _trepository;
         private ICustomerService _customerService;
+        #endregion
 
         public CandidateController(IRepository<Candidates> repository,IRepository<CandidateSkills> srepository,IRepository<CandidateTechnologies> trepository,ICustomerService customerService)
         {

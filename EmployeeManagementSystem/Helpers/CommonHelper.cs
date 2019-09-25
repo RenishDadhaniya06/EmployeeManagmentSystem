@@ -1,8 +1,15 @@
-﻿using System.Net;
-using System.Net.Mail;
-
+﻿
 namespace Helpers
 {
+    #region Using
+    using System.Net;
+    using System.Net.Mail;
+    #endregion
+
+
+    /// <summary>
+    /// CommonHelper
+    /// </summary>
     public static class CommonHelper
     {
 
@@ -12,6 +19,12 @@ namespace Helpers
 
         public static string PWD = "";
 
+        /// <summary>
+        /// Sends the mail.
+        /// </summary>
+        /// <param name="emailId">The email identifier.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="body">The body.</param>
         public static void SendMail(string emailId, string subject,string body)
         {
 

@@ -13,6 +13,11 @@ namespace EmployeeManagementSystem.Controllers
     using System.Threading.Tasks;
     using System.Web.Mvc;
     #endregion
+
+    /// <summary>
+    /// CandidateController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class CandidateController : Controller
     {
         // GET: Candidate

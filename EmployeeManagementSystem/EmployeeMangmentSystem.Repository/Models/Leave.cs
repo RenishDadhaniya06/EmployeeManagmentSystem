@@ -1,8 +1,15 @@
-﻿using System;
-using static Helpers.Enums;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models
 {
+    #region Using
+    using System;
+    using static Helpers.Enums;
+    #endregion
+
+
+    /// <summary>
+    /// Leave
+    /// </summary>
     public class Leave
     {
         public Guid Id { get; set; }

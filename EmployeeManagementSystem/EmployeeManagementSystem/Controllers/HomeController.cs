@@ -1,7 +1,15 @@
-﻿using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using System.Web.Mvc;
+    #endregion
+
+
+    /// <summary>
+    /// HomeController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     [Authorize]
     public class HomeController : Controller
     {

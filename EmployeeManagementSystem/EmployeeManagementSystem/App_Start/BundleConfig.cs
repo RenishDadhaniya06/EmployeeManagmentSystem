@@ -1,8 +1,14 @@
-﻿using System.Web;
-using System.Web.Optimization;
-
+﻿
 namespace EmployeeManagementSystem
 {
+    #region Using
+    using System.Web.Optimization;
+    #endregion
+
+
+    /// <summary>
+    /// BundleConfig
+    /// </summary>
     public class BundleConfig
     {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862

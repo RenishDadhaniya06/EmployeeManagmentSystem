@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using static Helpers.Enums;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System;
+    using static Helpers.Enums;
+    #endregion
+
+
+    /// <summary>
+    /// OpeningsViewModel
+    /// </summary>
     public class OpeningsViewModel
     {
         public Guid Id { get; set; }

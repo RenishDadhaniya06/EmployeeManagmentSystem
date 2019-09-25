@@ -14,6 +14,10 @@ namespace EmployeeManagementSystem.Controllers
     using System.Web.Mvc;
     #endregion
 
+    /// <summary>
+    /// AccountController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

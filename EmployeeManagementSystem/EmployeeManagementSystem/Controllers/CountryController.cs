@@ -12,6 +12,12 @@ namespace EmployeeManagementSystem.Controllers
     using System.Threading.Tasks;
     using System.Web.Mvc;
     #endregion
+
+
+    /// <summary>
+    /// CountryController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class CountryController : Controller
     {
         #region Index Method

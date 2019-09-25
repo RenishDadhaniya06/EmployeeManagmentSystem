@@ -1,15 +1,20 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using EmployeeMangmentSystem.Resources;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
+﻿
 namespace EmployeeManagementSystem.Models
 {
+    #region Using
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    #endregion
+
+
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    /// <summary>
+    /// ApplicationUser
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNet.Identity.EntityFramework.IdentityUser" />
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -36,6 +41,10 @@ namespace EmployeeManagementSystem.Models
         public string RoleId { get; set; }
     }
 
+    /// <summary>
+    /// ApplicationDbContext
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNet.Identity.EntityFramework.IdentityDbContext{EmployeeManagementSystem.Models.ApplicationUser}" />
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

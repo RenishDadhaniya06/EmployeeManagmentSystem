@@ -1,10 +1,17 @@
-﻿using EmployeeMangmentSystem.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace EmployeeManagementSystem.Models
 {
+    
+    #region Usingusing EmployeeMangmentSystem.Resources;
+    using System.Collections.Generic;
+    using EmployeeMangmentSystem.Resources;
+    using System.ComponentModel.DataAnnotations;
+    #endregion
+
+
+    /// <summary>
+    /// ExternalLoginConfirmationViewModel
+    /// </summary>
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -12,13 +19,19 @@ namespace EmployeeManagementSystem.Models
         public string Email { get; set; }
     }
 
+    /// <summary>
+    /// ExternalLoginListViewModel
+    /// </summary>
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }
     }
 
-   
 
+
+    /// <summary>
+    /// SendCodeViewModel
+    /// </summary>
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
@@ -27,6 +40,9 @@ namespace EmployeeManagementSystem.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// VerifyCodeViewModel
+    /// </summary>
     public class VerifyCodeViewModel
     {
         [Required]
@@ -43,6 +59,9 @@ namespace EmployeeManagementSystem.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// ForgotViewModel
+    /// </summary>
     public class ForgotViewModel
     {
         [Required]
@@ -50,6 +69,9 @@ namespace EmployeeManagementSystem.Models
         public string Email { get; set; }
     }
 
+    /// <summary>
+    /// LoginViewModel
+    /// </summary>
     public class LoginViewModel
     {
         [Required]
@@ -66,6 +88,9 @@ namespace EmployeeManagementSystem.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// RegisterViewModel
+    /// </summary>
     public class RegisterViewModel
     {
 
@@ -108,6 +133,9 @@ namespace EmployeeManagementSystem.Models
         //public bool IsActive { get; set; } 
     }
 
+    /// <summary>
+    /// Status
+    /// </summary>
     public enum Status
     {
         Active = 0,
@@ -116,6 +144,9 @@ namespace EmployeeManagementSystem.Models
         Block = 3
     }
 
+    /// <summary>
+    /// RoleViewModel
+    /// </summary>
     public class RoleViewModel
     {
         public string Id { get; set; }
@@ -126,6 +157,9 @@ namespace EmployeeManagementSystem.Models
 
     }
 
+    /// <summary>
+    /// ResetPasswordViewModel
+    /// </summary>
     public class ResetPasswordViewModel
     {
         [Required]
@@ -147,6 +181,9 @@ namespace EmployeeManagementSystem.Models
         public string Code { get; set; }
     }
 
+    /// <summary>
+    /// ForgotPasswordViewModel
+    /// </summary>
     public class ForgotPasswordViewModel
     {
         [Required]

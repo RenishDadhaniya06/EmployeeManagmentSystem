@@ -1,9 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System;
+    #endregion
+
+
+    /// <summary>
+    /// DisplayInterviewerModel
+    /// </summary>
     public class DisplayInterviewerModel
     {
         public Guid Id { get; set; }
