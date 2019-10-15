@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="DHTMLX.Scheduler.NET" Version="4.0.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
   </ItemGroup>
 
   <ItemGroup>

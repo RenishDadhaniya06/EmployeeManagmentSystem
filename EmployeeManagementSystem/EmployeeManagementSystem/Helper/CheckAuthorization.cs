@@ -12,14 +12,20 @@ namespace EmployeeManagementSystem.Helper
     /// <seealso cref="System.Web.Mvc.AuthorizeAttribute" />
     public class CheckAuthorization : AuthorizeAttribute
     {
-
-
+        /// <summary>
+        /// Called when a process requests authorization.
+        /// </summary>
+        /// <param name="filterContext">The filter context, which encapsulates information for using <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
             CheckIfUserIsAuthenticated(filterContext);
         }
 
+        /// <summary>
+        /// Checks if user is authenticated.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
         private void CheckIfUserIsAuthenticated(AuthorizationContext filterContext)
         {
             // If Result is null, we're OK: the user is authenticated and authorized. 

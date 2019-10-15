@@ -131,6 +131,7 @@ namespace LeaveManagementSystem.Controllers
         /// <summary>
         /// Creates the specified collection.
         /// </summary>
+        /// <param name="Attachment">The attachment.</param>
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [HttpPost]

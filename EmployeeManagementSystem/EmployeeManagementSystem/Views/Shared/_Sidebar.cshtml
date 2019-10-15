@@ -25,7 +25,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
                                     @*<li><a href="@Url.Action("Index","Role")">Role</a></li>
-                        <li><a href="@Url.Action("Index", "RolePermission")">Role Permission</a></li>*@
+                                        <li><a href="@Url.Action("Index", "RolePermission")">Role Permission</a></li>*@
                                     <li><a href="@Url.Action("Index", "User")">Users</a></li>
                                 </ul>
                             </li>
@@ -34,14 +34,14 @@
                     }
                     @{
                         @*if (CommonHelper.IsSuperAdmin())
-            {
-                <li>
-                    <a><i class="fa fa-paperclip"></i> Employee Managment <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="@Url.Action("Index", "Employee")">@EmployeeResources.Name</a></li>
-                    </ul>
-                </li>
-            }*@
+                            {
+                                <li>
+                                    <a><i class="fa fa-paperclip"></i> Employee Managment <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Index", "Employee")">@EmployeeResources.Name</a></li>
+                                    </ul>
+                                </li>
+                            }*@
 
                         if (CommonHelper.IsSuperAdmin())
                         {
@@ -58,25 +58,25 @@
                         if (CommonHelper.IsSuperAdmin())
                         {
                             <li><a href="@Url.Action("Index","Candidate")"><i class="fa fa-user-circle"></i>@CandidateResources.name</a></li>
-                            
+
                         }
                         if (CommonHelper.IsSuperAdmin())
                         {
                             <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
                         }
-                        @*<li>
-                <a><i class="fa fa-leaf"></i> Leave Managment <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    @if (!CommonHelper.IsSuperAdmin())
-                    {
-                        <li><a href="@Url.Action("Index", "Leave")">@LeaveResources.Name</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="@Url.Action("GetPendingLeave","Leave")">Assign Leave</a></li>
-                    }
-                </ul>
-            </li>*@
+                        <li>
+                            <a><i class="fa fa-leaf"></i> Leave Managment <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                @if (!CommonHelper.IsSuperAdmin())
+                                {
+                                    <li><a href="@Url.Action("Index", "Leave")">@LeaveResources.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("GetPendingLeave","Leave")">Assign Leave</a></li>
+                                }
+                            </ul>
+                        </li>
                         <li>
                             <a><i class="fa fa-folder-open"></i> Lookups <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
@@ -95,6 +95,10 @@
                                 @if (CommonHelper.CheckPermission("Designation", "Read"))
                                 {
                                     <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
+                                }
+                                @if (CommonHelper.CheckPermission("Leave", "Read"))
+                                {
+                                    <li><a href="@Url.Action("Index","Leave")">@LeaveResources.Name</a></li>
                                 }
                                 @if (CommonHelper.CheckPermission("Skill", "Read"))
                                 {

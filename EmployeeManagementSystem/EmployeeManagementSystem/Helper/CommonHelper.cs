@@ -81,7 +81,6 @@ namespace EmployeeManagementSystem.Helper
             }
             catch (Exception ex)
             {
-
                 return false;
             }
             

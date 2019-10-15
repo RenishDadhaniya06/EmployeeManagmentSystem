@@ -1,7 +1,13 @@
 ﻿namespace Helpers
 {
+    /// <summary>
+    /// Enums
+    /// </summary>
     public static class Enums
     {
+        /// <summary>
+        /// LeaveType
+        /// </summary>
         public enum LeaveType
         {
             Paid = 0,
@@ -10,6 +16,9 @@
         }
 
 
+        /// <summary>
+        /// LeaveStatus
+        /// </summary>
         public enum LeaveStatus
         {
             Approved = 0,
@@ -17,6 +26,9 @@
             Pending = 2
         }
 
+        /// <summary>
+        /// OpeningStatus
+        /// </summary>
         public enum OpeningStatus
         {
             Active = 0,
@@ -24,6 +36,9 @@
             OnHold = 2
         }
 
+        /// <summary>
+        /// InterviewStatus
+        /// </summary>
         public enum InterviewStatus
         {
             Rejected = 0,
