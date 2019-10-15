@@ -1,18 +1,26 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Resources;
-using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Resources;
+    using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    #endregion
+
+
+    /// <summary>
+    /// CitiesController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class CitiesController : Controller
     {
+        #region Index Method
         // GET: Cities
         public async Task<ActionResult> Index()
         {
@@ -22,7 +30,9 @@ namespace EmployeeManagementSystem.Controllers
             var data = await APIHelpers.GetAsync<List<City>>("api/City/GetCities");
             return View(data.ToList());
         }
+        #endregion
 
+        #region Print Method
         public async Task<FileResult> Print()
         {
             try
@@ -36,13 +46,17 @@ namespace EmployeeManagementSystem.Controllers
                 return File("AccessDenied", "Error");
             }
         }
+        #endregion
 
+        #region Detaila Method
         // GET: Cities/Details/5
         public ActionResult Details(Guid id)
         {
             return View();
         }
+        #endregion
 
+        #region Create Method
         // GET: Cities/Create
         public async Task<ActionResult> Create()
         {
@@ -78,14 +92,18 @@ namespace EmployeeManagementSystem.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit Method
         // GET: Cities/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
             ViewBag.States = await APIHelpers.GetAsync<List<States>>("api/State/GetStates");
             return View("Create", await APIHelpers.GetAsync<City>("api/City/Get/" + id));
         }
+        #endregion
 
+        #region Delete Method
         // POST: State/Delete/5
         [HttpGet]
         public async Task<ActionResult> DeleteConfirm(Guid id)
@@ -103,5 +121,6 @@ namespace EmployeeManagementSystem.Controllers
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
+        #endregion
     }
 }

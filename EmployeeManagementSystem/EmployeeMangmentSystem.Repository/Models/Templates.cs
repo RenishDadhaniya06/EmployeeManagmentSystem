@@ -1,8 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models
 {
+    #region Using
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    #endregion
+
+
+    /// <summary>
+    /// Templates
+    /// </summary>
     public class Templates
     {
         [Key]

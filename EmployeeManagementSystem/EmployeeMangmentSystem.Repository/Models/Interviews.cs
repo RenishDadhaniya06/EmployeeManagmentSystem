@@ -1,9 +1,16 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using static Helpers.Enums;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models
 {
+    #region Using
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using static Helpers.Enums;
+    #endregion
+
+
+    /// <summary>
+    /// Interviews
+    /// </summary>
     public class Interviews
     {
         public Guid Id { get; set; }

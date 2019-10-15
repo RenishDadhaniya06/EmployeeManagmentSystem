@@ -1,19 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Repository.Interfaces
 {
+    #region Using
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    #endregion
 
+    /// <summary>
+    /// IRepository
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IRepository<T> where T : class
     {
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<T> GetAll();
+
+        /// <summary>
+        /// Gets the by identifier.
+        /// </summary>
+        /// <param name="Id">The identifier.</param>
+        /// <returns></returns>
         T GetById(object Id);
+
+        /// <summary>
+        /// Inserts the specified object.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns></returns>
         T Insert(T obj);
+
+        /// <summary>
+        /// Inserts the range.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns></returns>
         List<T> InsertRange(List<T> obj);
+
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="Id">The identifier.</param>
         void Delete(object Id);
+
         T Update(T obj);
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
         void Save();
 
         /// <summary>
@@ -38,5 +75,4 @@ namespace EmployeeMangmentSystem.Repository.Repository.Interfaces
         /// <returns></returns>
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
     }
-
 }

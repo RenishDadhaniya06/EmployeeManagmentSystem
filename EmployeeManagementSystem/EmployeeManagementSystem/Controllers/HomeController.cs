@@ -10,6 +10,15 @@ using System.Web.Mvc;
 
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using System.Web.Mvc;
+    #endregion
+
+
+    /// <summary>
+    /// HomeController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     [Authorize]
     public class HomeController : Controller
     {
@@ -21,6 +30,8 @@ namespace EmployeeManagementSystem.Controllers
 
             scheduler.Config.first_hour = 6;
             scheduler.Config.last_hour = 20;
+
+            scheduler.EnableDynamicLoading(SchedulerDataLoader.DynamicalLoadingMode.Month);
 
             scheduler.LoadData = true;
             scheduler.EnableDataprocessor = true;

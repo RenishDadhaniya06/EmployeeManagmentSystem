@@ -1,17 +1,22 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EmployeeMangmentSystem.Resources;
-using System.Web.Mvc;
+﻿
 
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Resources;
+    #endregion
+
+
     /// <summary>
-    /// 
+    /// EmployeeController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
     public class EmployeeController : Controller

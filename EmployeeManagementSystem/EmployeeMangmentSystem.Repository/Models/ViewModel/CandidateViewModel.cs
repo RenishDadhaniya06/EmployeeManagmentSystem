@@ -1,8 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    #endregion
+
+
+    /// <summary>
+    /// CandidateViewModel
+    /// </summary>
     public class CandidateViewModel
     {
         public Guid Id { get; set; }

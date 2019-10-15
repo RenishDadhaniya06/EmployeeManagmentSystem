@@ -1,16 +1,23 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Resources;
-using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using EmployeeMangmentSystem.Resources;
+    using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    #endregion
+
+    /// <summary>
+    /// CandidateController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class CandidateController : Controller
     {
         // GET: Candidate
@@ -28,6 +35,7 @@ namespace EmployeeManagementSystem.Controllers
             return View();
         }
 
+        #region Print Method
         public async Task<FileResult> Print()
         {
             try
@@ -42,7 +50,9 @@ namespace EmployeeManagementSystem.Controllers
                 //throw;
             }
         }
+        #endregion
 
+        #region Create Method
         // GET: Candidate/Create
         public async Task<ActionResult> Create()
         {
@@ -96,7 +106,9 @@ namespace EmployeeManagementSystem.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit Method
         // GET: Candidate/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -111,8 +123,9 @@ namespace EmployeeManagementSystem.Controllers
             ViewBag.birthdate = data.BirthDate;
             return View("create", data);
         }
+        #endregion
 
-
+        #region Delete Method
         // POST: Candidate/Delete/5
         [HttpGet]
         public async Task<ActionResult> DeleteConfirm(Guid id)
@@ -128,7 +141,9 @@ namespace EmployeeManagementSystem.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Filter Method
         [HttpPost]
         public async Task<ActionResult> GetFilter()
         {
@@ -146,5 +161,6 @@ namespace EmployeeManagementSystem.Controllers
                 throw;
             }
         }
+        #endregion
     }
 }

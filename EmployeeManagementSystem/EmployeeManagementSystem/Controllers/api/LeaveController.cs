@@ -1,32 +1,31 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using EmployeeMangmentSystem.Services.Services;
-using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.UI.WebControls;
-
+﻿
 namespace EmployeeManagementSystem.Controllers.api
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using EmployeeMangmentSystem.Services.Services;
+    using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.UI.WebControls;
+    #endregion
+
+
     /// <summary>
-    /// 
+    /// LeaveController
     /// </summary>
     /// <seealso cref="System.Web.Http.ApiController" />
     public class LeaveController : ApiController
     {
-        /// <summary>
-        /// The repository
-        /// </summary>
+        #region Properties
         private IRepository<Leave> _repository;
-
-        /// <summary>
-        /// The i customer service
-        /// </summary>
         private ICustomerService _iCustomerService;
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LeaveController"/> class.

@@ -1,12 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EmployeeMangmentSystem.Repository.Models
+﻿namespace EmployeeMangmentSystem.Repository.Models
 {
     /// <summary>
-    /// 
+    /// Customer
     /// </summary>
     public class Customer
     {

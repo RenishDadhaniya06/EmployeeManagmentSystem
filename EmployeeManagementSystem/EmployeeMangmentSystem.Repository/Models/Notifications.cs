@@ -1,9 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models
 {
+    #region Using
+    using System;
+    #endregion
+
+
+    /// <summary>
+    /// Notifications
+    /// </summary>
     public class Notifications
     {
         public Guid Id { get; set; }

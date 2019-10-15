@@ -1,20 +1,26 @@
 ﻿
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using EmployeeMangmentSystem.Services.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
 namespace Web.Controllers.api
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using EmployeeMangmentSystem.Services.Services;
+    using System.Collections.Generic;
+    using System.Web.Http;
+    #endregion
+
+
+    /// <summary>
+    /// HomeController
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class HomeController : ApiController
     {
+        #region Properties
         private ICustomerService _iCustomerService;
         private IRepository<Customer> _repository;
+        #endregion
 
         public HomeController(ICustomerService iCustomerService, IRepository<Customer> repository)
         {

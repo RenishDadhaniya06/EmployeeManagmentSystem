@@ -1,16 +1,24 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Resources;
-using Helpers;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
+﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using EmployeeMangmentSystem.Resources;
+    using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    #endregion
+
+
+    /// <summary>
+    /// OpeningController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class OpeningController : Controller
     {
         // GET: Opening

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
+﻿
 namespace EmployeeManagementSystem
 {
+    #region Using
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    #endregion
+
+
+    /// <summary>
+    /// RouteConfig
+    /// </summary>
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)

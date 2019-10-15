@@ -1,14 +1,20 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
-using Owin;
-using EmployeeManagementSystem.Models;
-
+﻿
 namespace EmployeeManagementSystem
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
+    using Microsoft.Owin.Security.Cookies;
+    using Owin;
+    using System;
+    #endregion
+
+
+    /// <summary>
+    /// Startup
+    /// </summary>
     public partial class Startup
     {
         public void ConfigureAuth(IAppBuilder app)

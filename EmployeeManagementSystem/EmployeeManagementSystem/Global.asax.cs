@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
+﻿
 namespace EmployeeManagementSystem
 {
+    #region Using
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+    #endregion
+
+
+    /// <summary>
+    /// MvcApplication
+    /// </summary>
+    /// <seealso cref="System.Web.HttpApplication" />
     public class MvcApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// Applications the start.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

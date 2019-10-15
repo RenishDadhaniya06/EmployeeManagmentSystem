@@ -1,17 +1,29 @@
-﻿using EmployeeManagementSystem.Models;
-using EmployeeMangmentSystem.Repository.Repository.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace EmployeeManagementSystem.Helper
 {
+    #region Using
+    using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Repository.Classes;
+    using System;
+    using System.Linq;
+    using System.Web;
+    #endregion
+
+
+    /// <summary>
+    /// CommonHelper
+    /// </summary>
     public static class CommonHelper
     {
+        #region Properties
         private static ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
         private static RepositoryContext _repositoryDbContext = new RepositoryContext();
+        #endregion
 
+        /// <summary>
+        /// Gets the user identifier.
+        /// </summary>
+        /// <returns></returns>
         public static string GetUserId()
         {
             //return HttpContext.Current.User.Identity.Name;
@@ -19,6 +31,12 @@ namespace EmployeeManagementSystem.Helper
             return user.Id;
         }
 
+        /// <summary>
+        /// Determines whether [is super admin].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is super admin]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsSuperAdmin()
         {
             try
@@ -38,6 +56,12 @@ namespace EmployeeManagementSystem.Helper
 
         }
 
+        /// <summary>
+        /// Checks the permission.
+        /// </summary>
+        /// <param name="module">The module.</param>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public static bool CheckPermission(string module, string action)
         {
             try

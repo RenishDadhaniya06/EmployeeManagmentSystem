@@ -1,7 +1,14 @@
-﻿using System;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System;
+    #endregion
+
+
+    /// <summary>
+    /// DisplayCandidateViewModel
+    /// </summary>
     public class DisplayCandidateViewModel
     {
         public Guid Id { get; set; }

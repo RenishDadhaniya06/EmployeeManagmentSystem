@@ -1,17 +1,25 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using System.Net.Http;
-using System.Web.Http;
-
+﻿
 
 namespace EmployeeManagementSystem.Controllers.api
 {
+    #region Using
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Http;
+    #endregion
+
+
+    /// <summary>
+    /// TemplateController
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class TemplateController : ApiController
     {
+        #region Properties
         private IRepository<Templates> _repository;
+        #endregion
 
         public TemplateController(IRepository<Templates> repository)
         {

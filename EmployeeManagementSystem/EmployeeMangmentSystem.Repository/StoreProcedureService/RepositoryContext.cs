@@ -1,16 +1,17 @@
-﻿#region usings
-using EmployeeMangmentSystem.Repository.Models;
-using EmployeeMangmentSystem.Repository.Models.ViewModel;
-using EmployeeMangmentSystem.Repository.StoreProcedureService;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-#endregion
+﻿
 
 namespace EmployeeMangmentSystem.Repository.Repository.Classes
 {
+    #region usings
+    using EmployeeMangmentSystem.Repository.Models;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using EmployeeMangmentSystem.Repository.StoreProcedureService;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+    #endregion
     /// <summary>
     /// Repository Context
     /// </summary>
@@ -67,11 +68,19 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return await Database.SqlQuery<Leave>(@"exec [dbo].[GetLeavesByEmployeeId] @p0", id).ToListAsync();
         }
 
+        /// <summary>
+        /// Gets the messages.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Notifications>> GetMessages()
         {
             return await Database.SqlQuery<Notifications>(@"exec [dbo].[GetNotification]").ToListAsync();
         }
 
+        /// <summary>
+        /// Gets the hr.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<string>> GetHR()
         {
             var data = await Database.SqlQuery<string>(@"exec [dbo].[GetHRRole]").ToListAsync();
@@ -79,16 +88,33 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
+        /// <summary>
+        /// Gets the leave template.
+        /// </summary>
+        /// <returns></returns>
         public async Task<Templates> GetLeaveTemplate()
         {
             return await Database.SqlQuery<Templates>(@"exec [dbo].[GetLeaveTemplate]").SingleOrDefaultAsync();
         }
 
+        /// <summary>
+        /// Gets the pending leaves.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<LeaveViewModel>> GetPendingLeaves()
         {
             return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetPendingLeaves]").ToListAsync();
         }
 
+        /// <summary>
+        /// Gets the filters.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="fromdate">The fromdate.</param>
+        /// <param name="todate">The todate.</param>
+        /// <param name="leavetype">The leavetype.</param>
+        /// <param name="leavestatus">The leavestatus.</param>
+        /// <returns></returns>
         public async Task<List<LeaveViewModel>> GetFilters(string name, DateTime fromdate,DateTime todate,Int32 leavetype,Int32 leavestatus)
         {
             var datefrom = fromdate.ToString("yyyy-dd-MM");
@@ -98,24 +124,42 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
+        /// <summary>
+        /// Gets the openings.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<OpeningsViewModel>> GetOpenings()
         {
             var data = await Database.SqlQuery<OpeningsViewModel>(@"exec [dbo].[GetOpenings]").ToListAsync();
             return data;
         }
 
+        /// <summary>
+        /// Gets the employee.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public async Task<Employee> GetEmployee(string email)
         {
             var data = await Database.SqlQuery<Employee>(@"exec [dbo].[GetEmployee] @p0",email).SingleOrDefaultAsync();
             return data;
         }
 
+        /// <summary>
+        /// Gets the candidates.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<DisplayCandidateViewModel>> GetCandidates()
         {
             var data = await Database.SqlQuery<DisplayCandidateViewModel>(@"exec [dbo].[GetCandidateList]").ToListAsync();
             return data;
         }
 
+        /// <summary>
+        /// Deletes the candidate skill.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public bool DeleteCandidateSkill(Guid id)
         {
             //var data = await Database.SqlQuery<bool>(@"exec [dbo].[DeleteCandidateSkill]").ToListAsync();
@@ -123,12 +167,23 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return true;
         }
 
+        /// <summary>
+        /// Deletes the candidate technology.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public bool DeleteCandidateTechnology(Guid id)
         {
             Database.ExecuteSqlCommand(@"exec [dbo].[DeleteCandidateTechnology] @p0", id);
             return true;
         }
 
+        /// <summary>
+        /// Gets the filter candidate.
+        /// </summary>
+        /// <param name="skills">The skills.</param>
+        /// <param name="technologies">The technologies.</param>
+        /// <returns></returns>
         public async Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skills,string technologies)
         {
             string skill = skills.ToString();
@@ -137,18 +192,31 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
+        /// <summary>
+        /// Gets the interviewers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<DisplayInterviewerModel>> GetInterviewers()
         {
             var data = await Database.SqlQuery<DisplayInterviewerModel>(@"exec [dbo].[GetInterviewers]").ToListAsync();
             return data;
         }
 
+        /// <summary>
+        /// Gets the interviews list.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<DisplayInterviewModel>> GetInterviewsList()
         {
             var data = await Database.SqlQuery<DisplayInterviewModel>(@"exec [dbo].[GetInterviewsList]").ToListAsync();
             return data;
         }
 
+        /// <summary>
+        /// Gets the candidate search detail.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public async Task<List<Candidates>> GetCandidateSearchDetail(string name)
         {
             var data = await Database.SqlQuery<Candidates>(@"exec [dbo].[AutoCompleteCandidate] @p0", name).ToListAsync();

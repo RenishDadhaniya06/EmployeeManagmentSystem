@@ -1,13 +1,15 @@
-﻿using EmployeeMangmentSystem.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models
 {
+    #region Using
+    using EmployeeMangmentSystem.Resources;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    #endregion
+
+
     /// <summary>
-    /// 
+    /// Designation
     /// </summary>
     public class Designation
     {

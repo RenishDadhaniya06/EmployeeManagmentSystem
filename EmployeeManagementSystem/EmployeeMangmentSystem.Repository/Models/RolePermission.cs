@@ -1,7 +1,14 @@
-﻿using System;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models
 {
+    #region Using
+    using System;
+    #endregion
+
+
+    /// <summary>
+    /// RolePermission
+    /// </summary>
     public class RolePermission
     {
         public Guid Id { get; set; }

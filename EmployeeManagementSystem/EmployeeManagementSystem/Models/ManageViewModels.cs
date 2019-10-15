@@ -1,10 +1,17 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-
+﻿
 namespace EmployeeManagementSystem.Models
 {
+    #region Using
+    using Microsoft.AspNet.Identity;
+    using Microsoft.Owin.Security;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    #endregion
+
+
+    /// <summary>
+    /// IndexViewModel
+    /// </summary>
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
@@ -14,17 +21,26 @@ namespace EmployeeManagementSystem.Models
         public bool BrowserRemembered { get; set; }
     }
 
+    /// <summary>
+    /// ManageLoginsViewModel
+    /// </summary>
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 
+    /// <summary>
+    /// FactorViewModel
+    /// </summary>
     public class FactorViewModel
     {
         public string Purpose { get; set; }
     }
 
+    /// <summary>
+    /// SetPasswordViewModel
+    /// </summary>
     public class SetPasswordViewModel
     {
         [Required]
@@ -39,6 +55,9 @@ namespace EmployeeManagementSystem.Models
         public string ConfirmPassword { get; set; }
     }
 
+    /// <summary>
+    /// ChangePasswordViewModel
+    /// </summary>
     public class ChangePasswordViewModel
     {
         [Required]
@@ -58,6 +77,9 @@ namespace EmployeeManagementSystem.Models
         public string ConfirmPassword { get; set; }
     }
 
+    /// <summary>
+    /// AddPhoneNumberViewModel
+    /// </summary>
     public class AddPhoneNumberViewModel
     {
         [Required]
@@ -66,6 +88,9 @@ namespace EmployeeManagementSystem.Models
         public string Number { get; set; }
     }
 
+    /// <summary>
+    /// VerifyPhoneNumberViewModel
+    /// </summary>
     public class VerifyPhoneNumberViewModel
     {
         [Required]
@@ -78,6 +103,9 @@ namespace EmployeeManagementSystem.Models
         public string PhoneNumber { get; set; }
     }
 
+    /// <summary>
+    /// ConfigureTwoFactorViewModel
+    /// </summary>
     public class ConfigureTwoFactorViewModel
     {
         public string SelectedProvider { get; set; }

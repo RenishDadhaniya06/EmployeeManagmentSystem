@@ -1,11 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Repository.Interfaces
 {
+    #region Using
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    #endregion
+
+
+    /// <summary>
+    /// IGenericRepository
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public interface IGenericRepository<TEntity>
     {
         /// <summary>

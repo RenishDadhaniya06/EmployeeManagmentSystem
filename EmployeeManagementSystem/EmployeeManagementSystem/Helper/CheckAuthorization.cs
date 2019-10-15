@@ -1,9 +1,15 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-
+﻿
 namespace EmployeeManagementSystem.Helper
 {
+    #region Using
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    #endregion
 
+    /// <summary>
+    /// CheckAuthorization
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.AuthorizeAttribute" />
     public class CheckAuthorization : AuthorizeAttribute
     {
 
