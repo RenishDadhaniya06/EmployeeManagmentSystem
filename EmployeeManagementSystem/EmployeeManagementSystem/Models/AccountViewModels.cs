@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeManagementSystem.Models
 {
@@ -17,8 +18,7 @@ namespace EmployeeManagementSystem.Models
         public string ReturnUrl { get; set; }
     }
 
-   
-
+  
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }

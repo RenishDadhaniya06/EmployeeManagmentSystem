@@ -1,5 +1,9 @@
-﻿using EmployeeMangmentSystem.Repository.Models;
+﻿using DHTMLX.Scheduler;
+using EmployeeMangmentSystem.Repository.Models;
 using EmployeeMangmentSystem.Repository.Models.ViewModel;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace EmployeeMangmentSystem.Repository.Repository.Classes
@@ -38,6 +42,7 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         public DbSet<Departments> Departments { get; set; }
 
         public DbSet<Technologies> Technologies { get; set; }
+
 
         public DbSet<Templates> Templates { get; set; }
 
@@ -84,4 +89,6 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             base.OnModelCreating(modelBuilder);
         }
     }
+   
+
 }

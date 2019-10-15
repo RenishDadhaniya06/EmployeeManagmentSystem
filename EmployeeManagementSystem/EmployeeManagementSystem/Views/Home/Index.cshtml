@@ -1,7 +1,22 @@
 ﻿@{
     ViewBag.Title = "Dashboard";
 }
+<h2>Appointment Calendar</h2>
+<div class="scheduler_container">
+    @Html.Raw(Model.Render())
+</div>
+<style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
 
+    .scheduler_container {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #aeaeae;
+    }
+</style>
 <script type="text/javascript">
       toastr.options = {
         "closeButton": true,
