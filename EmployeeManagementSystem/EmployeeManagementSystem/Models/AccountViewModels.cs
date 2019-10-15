@@ -1,4 +1,8 @@
-﻿
+﻿using EmployeeMangmentSystem.Resources;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 namespace EmployeeManagementSystem.Models
 {
     
@@ -27,11 +31,7 @@ namespace EmployeeManagementSystem.Models
         public string ReturnUrl { get; set; }
     }
 
-
-
-    /// <summary>
-    /// SendCodeViewModel
-    /// </summary>
+  
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
