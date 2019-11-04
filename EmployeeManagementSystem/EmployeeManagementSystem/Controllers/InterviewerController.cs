@@ -42,7 +42,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<DisplayInterviewerModel>>("api/Interviewer/GetInterviewList");
+                var data = await APIHelpers.GetAsync<List<DisplayInterviewerModel>>("api/Interviewer/GetInterviewerList");
                 var builder = new PdfBuilder<List<DisplayInterviewerModel>>(data, Server.MapPath("/Views/Interviewer/Print.cshtml"));
                 return builder.GetPdf();
             }
