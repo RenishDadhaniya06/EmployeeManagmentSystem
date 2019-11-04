@@ -1,0 +1,63 @@
+﻿@*@{
+        ViewBag.Title = "ViewReport";
+    }
+
+    <h2>ViewReport</h2>*@
+
+
+@model IEnumerable<EmployeeManagementSystem.Models.Time.TimeTrackings>
+
+@{
+    ViewBag.Title = "ViewReport";
+    TimeSpan total = new TimeSpan();
+}
+
+<h4> @Model.FirstOrDefault().CreatedDate  (  @Model.FirstOrDefault().Date )</h4>
+
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.In)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Out)
+        </th>
+        <th>Total</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.In)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Out)
+            </td>
+            <td>
+                @if (item.Out == string.Empty)
+                {
+                    TimeSpan temptotalTime = Convert.ToDateTime(DateTime.Now.ToLongTimeString()) - Convert.ToDateTime(item.In);
+                    total += temptotalTime;
+                    @temptotalTime;
+
+                }
+                else
+                {
+                    TimeSpan temptotalTime = Convert.ToDateTime(item.Out) - Convert.ToDateTime(item.In);
+                    total += temptotalTime;
+                    @temptotalTime;
+                }
+            </td>
+
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td>Total : </td>
+        <td>@total</td>
+    </tr>
+</table>
+

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DHTMLX.Scheduler;
+using EmployeeManagementSystem.Models.Time;
 using EmployeeMangmentSystem.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -64,6 +65,10 @@ namespace EmployeeManagementSystem.Models
         {
         }
         public DbSet<Appointment> Appointments { get; set; }
+
+        public DbSet<TimeTrackingSystems> TimeTrackingSystems { get; set; }
+
+        public DbSet<TimeTrackings> TimeTrackings { get; set; }
 
         public static ApplicationDbContext Create()
         {

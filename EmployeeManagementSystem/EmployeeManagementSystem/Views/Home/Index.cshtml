@@ -1,22 +1,7 @@
 ﻿@{
     ViewBag.Title = "Dashboard";
 }
-<h2>Appointment Calendar</h2>
-<div class="scheduler_container">
-    @Html.Raw(Model.Render())
-</div>
-<style>
-    body {
-        padding-top: 50px;
-        padding-bottom: 20px;
-    }
 
-    .scheduler_container {
-        width: 100%;
-        height: 600px;
-        border: 1px solid #aeaeae;
-    }
-</style>
 <script type="text/javascript">
       toastr.options = {
         "closeButton": true,
@@ -42,9 +27,9 @@
         url: msgUrl,
         type: 'get',
         success: function (data) {
-            debugger
+            //debugger
             if (data != null) {
-                debugger
+                //debugger
                 console.log("Successfull"),
                     console.log(data)
                 for (var i = 0; i < data.length; i++) {
@@ -55,3 +40,50 @@
     });
 </script>
 
+@model EmployeeManagementSystem.Models.Time.TimeTrackingSystems
+
+<div class="row" style="margin:25px">
+    <a class="btn btn-info" href="@Url.Action("Contact","Home")">View Reports</a>
+</div>
+<div class="row" style="margin:25px">
+    <div class="col-lg-12">
+        @if (Model.IsBreakIn && Model.IsClockIn)
+        {
+            using (Html.BeginForm("BrakeOut", "home", FormMethod.Post, new { @class = "col-lg-6", role = "form" }))
+            {
+                <button type="submit" class="btn btn-primary">Brake out</button>
+            }
+        }
+        else
+        {
+            if (Model.IsClockIn)
+            {
+                using (Html.BeginForm("BrakeIn", "Home", FormMethod.Post, new { @class = "col-lg-6", role = "form" }))
+                {
+                    <button type="submit" class=" btn btn-primary">Break In</button>
+                }
+            }
+        }
+
+
+        @if (Model.IsClockIn)
+        {
+            if (!Model.IsBreakIn)
+            {
+                using (Html.BeginForm("ClockOut", "Home", FormMethod.Post, new { @class = "col-lg-6", role = "form" }))
+                {
+                    <button type="submit" class=" btn btn-primary">Clock Out</button>
+                }
+            }
+        }
+        else
+        {
+
+            using (Html.BeginForm("ClockIn", "Home", FormMethod.Post, new { @class = "col-lg-6", role = "form" }))
+            {
+                <button type="submit" class=" btn btn-primary">Clock In</button>
+            }
+
+        }
+    </div>
+</div>

@@ -31,6 +31,12 @@ namespace EmployeeManagementSystem.Helper
             return user.Id;
         }
 
+        public static ApplicationUser GetUser()
+        {
+            var user = _applicationDbContext.Users.Where(m => m.Email == HttpContext.Current.User.Identity.Name).SingleOrDefault();
+            return user;
+        }
+
         /// <summary>
         /// Determines whether [is super admin].
         /// </summary>
