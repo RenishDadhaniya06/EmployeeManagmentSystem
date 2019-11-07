@@ -113,8 +113,15 @@ namespace EmployeeManagementSystem.Controllers.api
         [HttpGet]
         public async Task<List<LeaveViewModel>> GetPendingLeave()
         {
-            var data = await _iCustomerService.GetPendingLeaves();
-            return data.ToList();
+            try
+            {
+                var data = await _iCustomerService.GetPendingLeaves();
+                return data.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         [Route("api/Leave/ApproveLeaves/{id}")]

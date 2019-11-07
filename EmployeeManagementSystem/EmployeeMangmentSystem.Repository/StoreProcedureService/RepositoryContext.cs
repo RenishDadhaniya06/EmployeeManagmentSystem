@@ -103,7 +103,9 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         /// <returns></returns>
         public async Task<List<LeaveViewModel>> GetPendingLeaves()
         {
-            return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetPendingLeaves]").ToListAsync();
+            //return await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetPendingLeaves]").ToListAsync();
+            var data = await Database.SqlQuery<LeaveViewModel>(@"exec [dbo].[GetPendingLeaves]").ToListAsync();
+            return data;
         }
 
         /// <summary>

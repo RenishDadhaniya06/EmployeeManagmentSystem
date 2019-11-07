@@ -302,6 +302,7 @@
     <Compile Include="Controllers\api\HomeController.cs" />
     <Compile Include="Controllers\api\NotificationController.cs" />
     <Compile Include="Controllers\api\OpeningController.cs" />
+    <Compile Include="Controllers\api\ReportsController.cs" />
     <Compile Include="Controllers\api\RolePermissionsController.cs" />
     <Compile Include="Controllers\api\SettingController.cs" />
     <Compile Include="Controllers\api\SkillController.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\OpeningController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RolePermissionController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
@@ -957,6 +959,9 @@
     <Content Include="Views\Interview\Index.cshtml" />
     <Content Include="Views\Interview\Create.cshtml" />
     <Content Include="Views\Home\ViewReport.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\Contact.cshtml" />
+    <Content Include="Views\Reports\ViewReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

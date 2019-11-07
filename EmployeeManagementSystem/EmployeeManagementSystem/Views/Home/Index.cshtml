@@ -42,16 +42,16 @@
 
 @model EmployeeManagementSystem.Models.Time.TimeTrackingSystems
 
-<div class="row" style="margin:25px">
+@*<div class="row" style="margin:25px">
     <a class="btn btn-info" href="@Url.Action("Contact","Home")">View Reports</a>
-</div>
+</div>*@
 <div class="row" style="margin:25px">
     <div class="col-lg-12">
         @if (Model.IsBreakIn && Model.IsClockIn)
         {
             using (Html.BeginForm("BrakeOut", "home", FormMethod.Post, new { @class = "col-lg-6", role = "form" }))
             {
-                <button type="submit" class="btn btn-primary">Brake out</button>
+                <button type="submit" class="btn btn-primary">Break out</button>
             }
         }
         else

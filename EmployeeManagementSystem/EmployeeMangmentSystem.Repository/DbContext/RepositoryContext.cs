@@ -84,6 +84,13 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Interviews> Interviews { get; set; }
 
+        //public DbSet<Report> Report { get; set; }
+
+        //public DbSet<ReportFilter> ReportFilter { get; set; }
+
+        public DbSet<UserViewModel> UserViewModel { get; set; }
+
+
 
 
 
