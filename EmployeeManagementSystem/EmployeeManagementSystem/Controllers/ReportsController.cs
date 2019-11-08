@@ -129,6 +129,9 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 var temp = CommonHelper.GetUser();
+                var emp = Request["Employee"];
+                var from = Request["from"];
+                var to = Request["to"];
                 ViewBag.User = this.applicationDbContext.Users.Select(x => new UserViewModel() { Name = x.FirstName + " " + x.LastName, Id = x.Id }).ToList();
                 //var user = CommonHelper.GetUser();
                 //ViewBag.User = this.applicationDbContext.Users.Select(x => new UserViewModel() { Name = x.FirstName + " " + x.LastName, Id = x.Id }).ToList();
@@ -150,7 +153,7 @@ namespace EmployeeManagementSystem.Controllers
                 //    model = NewMethod(model, data);
                 //}
                 //var data = await Helpers.APIHelpers.PostAsync<ReportFilter>("api/Reports/GetReports",model);
-                var data = await Helpers.APIHelpers.GetAsync<ReportFilter>("api/Reports/GetReports?userId=" + model.UserId + "&admin=" + temp.IsSuperAdmin + "&id=" + temp.Id);
+                var data = await Helpers.APIHelpers.GetAsync<ReportFilter>("api/Reports/GetReports?userId=" + emp + "&admin=" + temp.IsSuperAdmin + "&id=" + temp.Id + "&from=" + from + "&to=" + to);
                 return View("Contact", data);
             }
             catch (Exception ex)

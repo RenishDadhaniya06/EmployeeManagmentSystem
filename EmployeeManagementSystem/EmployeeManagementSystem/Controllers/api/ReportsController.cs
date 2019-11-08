@@ -127,7 +127,7 @@ namespace EmployeeManagementSystem.Controllers.api
 
         [Route("api/Reports/GetReports")]
         [HttpGet]
-        public ReportFilter GetReports(string userId,bool admin,Guid id)
+        public ReportFilter GetReports(string userId,bool admin,Guid id,string from,string to)
         {
             try
             {
@@ -142,7 +142,10 @@ namespace EmployeeManagementSystem.Controllers.api
                     {
                         model.IsSuperAdmin = admin;
                         var id1 = Guid.Parse(model.UserId);
-                        var data = this.applicationDbContext.TimeTrackings.Where(_ => _.UserId == id1).ToList();
+                        DateTime fromdate = DateTime.ParseExact(from, "MM/dd/yyyy", null);
+                        DateTime todate = DateTime.ParseExact(to, "MM/dd/yyyy", null);
+                        var data = this.applicationDbContext.TimeTrackings.Where(_ => _.UserId == id1).ToList().Where(x => DateTime.ParseExact(x.Date, "dd-MM-yyyy", null) >= fromdate && DateTime.ParseExact(x.Date, "dd-MM-yyyy", null) <= todate).ToList(); ;
+                        //var temp = data.ToList().Where(x => DateTime.ParseExact(x.Date, "dd-MM-yyyy", null) >= fromdate && DateTime.ParseExact(x.Date, "dd-MM-yyyy", null) <= todate).ToList(); ;
                         model = NewMethod(model, data);
                     }
                 }

@@ -9,8 +9,20 @@
 
                 <div class="form-group">
                     @Html.Label("Select Employee", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.DropDownListFor(model => model.UserId, new SelectList(ViewBag.User, "Id", "Name"), "Select Employee", new { @class = "form-control" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("Employee", new SelectList(ViewBag.User, "Id", "Name"), "Select Employee", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("From Date", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-2">
+                            @Html.TextBox("From", "", new { @class = "form-control from", data_provide = "datepicker" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("To Date", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-2">
+                            @Html.TextBox("To", "", new { @class = "form-control to", data_provide = "datepicker" })
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary" style="margin-left:20px;">Search</button>
