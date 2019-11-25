@@ -3,12 +3,12 @@ namespace EmployeeManagementSystem.Helper
 {
     #region Using
     using EmployeeManagementSystem.Models;
+    using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Repository.Repository.Classes;
     using System;
     using System.Linq;
     using System.Web;
     #endregion
-
 
     /// <summary>
     /// CommonHelper
@@ -89,7 +89,35 @@ namespace EmployeeManagementSystem.Helper
             {
                 return false;
             }
-            
+
+        }
+
+        public static string CurrentRoleName()
+        {
+            try
+            {
+                var user = _applicationDbContext.Users.Where(m => m.Email == HttpContext.Current.User.Identity.Name).SingleOrDefault();
+                var role = _applicationDbContext.Roles.FirstOrDefault(_=>_.Id == user.RoleId);
+                return role.Name;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
+        public static string CurrentRole()
+        {
+            try
+            {
+                var user = _applicationDbContext.Users.Where(m => m.Email == HttpContext.Current.User.Identity.Name).SingleOrDefault();
+                var role = _applicationDbContext.Roles.FirstOrDefault(_ => _.Id == user.RoleId);
+                return role.Id;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
         }
     }
 }

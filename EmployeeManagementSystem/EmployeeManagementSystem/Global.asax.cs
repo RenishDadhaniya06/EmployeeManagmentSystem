@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using System.Web.Http;
     using System.Web.Mvc;
@@ -20,6 +21,7 @@ namespace EmployeeManagementSystem
         /// </summary>
         protected void Application_Start()
         {
+            JobScheduler.Start();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

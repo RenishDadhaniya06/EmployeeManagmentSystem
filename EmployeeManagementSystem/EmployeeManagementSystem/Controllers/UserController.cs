@@ -90,11 +90,11 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                
+
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,UserStatus = model.UserStatus,RoleId = model.RoleId };
+                    var user = new ApplicationUser { UserName = model.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, UserStatus = model.UserStatus, RoleId = model.RoleId };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -103,25 +103,14 @@ namespace EmployeeManagementSystem.Controllers
                         //    UserId = model.Id,
                         //RoleId = model.RoleId
                         //});
-
-                        var userrole = _applicationDbContext.Roles.Where(m => m.Name == "Employee").SingleOrDefault();
-                        if (model.RoleId == userrole.Id)
-                        {
-                            var month = DateTime.Now.Month;
-                            var cal = 13 - month;
-                            //Employee emp = new Employee();
-                            //emp.Name = model.FirstName + model.LastName;
-                            //emp.Email = model.Email;
-                            //emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
-                            //await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
-                        }
-
-                        var data = _applicationDbContext.Roles.Where(m => m.Id == user.RoleId).SingleOrDefault();
-                        await UserManager.AddToRoleAsync(user.Id, data.Name);
-                        _repositoryContext.Employees.Add(new Employee()
-                        {
-                        });
-
+                        var month = DateTime.Now.Month;
+                        var cal = 13 - month;
+                        Employee emp = new Employee();
+                        emp.Name = model.FirstName + model.LastName;
+                        emp.Email = model.Email;
+                        emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
+                        await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
+                        _repositoryContext.Employees.Add(emp);
                         TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");
                     }
@@ -137,7 +126,7 @@ namespace EmployeeManagementSystem.Controllers
                     return View(model);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return View();
@@ -211,7 +200,7 @@ namespace EmployeeManagementSystem.Controllers
                     var updaterole = _applicationDbContext.Roles.Where(m => m.Id == currentuser.RoleId).SingleOrDefault();
                     var role = UserManager.GetRoles(currentuser.Id);
                     string temp = Convert.ToString(role[0]);
-                    if(await UserManager.IsInRoleAsync(currentuser.Id, temp))
+                    if (await UserManager.IsInRoleAsync(currentuser.Id, temp))
                     {
                         await UserManager.RemoveFromRolesAsync(currentuser.Id, temp);
                         await UserManager.AddToRolesAsync(currentuser.Id, updaterole.Name);
@@ -278,7 +267,7 @@ namespace EmployeeManagementSystem.Controllers
                 await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View();
             }
