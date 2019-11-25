@@ -59,10 +59,10 @@
                             <li><a href="@Url.Action("Index","Candidate")"><i class="fa fa-user-circle"></i>@CandidateResources.name</a></li>
 
                         }*@
-                        @*if (CommonHelper.IsSuperAdmin())
+                        if (CommonHelper.IsSuperAdmin())
                         {
                             <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
-                        }*@
+                        }
 
                         @*<li>
                             <a><i class="fa fa-leaf"></i> Leave Management <span class="fa fa-chevron-down"></span></a>

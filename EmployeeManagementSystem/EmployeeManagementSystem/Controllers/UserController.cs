@@ -109,11 +109,11 @@ namespace EmployeeManagementSystem.Controllers
                         {
                             var month = DateTime.Now.Month;
                             var cal = 13 - month;
-                            Employee emp = new Employee();
-                            emp.Name = model.FirstName + model.LastName;
-                            emp.Email = model.Email;
-                            emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
-                            await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
+                            //Employee emp = new Employee();
+                            //emp.Name = model.FirstName + model.LastName;
+                            //emp.Email = model.Email;
+                            //emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
+                            //await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
                         }
 
                         var data = _applicationDbContext.Roles.Where(m => m.Id == user.RoleId).SingleOrDefault();

@@ -12,6 +12,8 @@ namespace EmployeeManagementSystem.Controllers
     using EmployeeManagementSystem.Models;
     using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Resources;
+    using System.Web;
+    using Microsoft.AspNet.Identity.Owin;
     #endregion
 
 
@@ -21,11 +23,23 @@ namespace EmployeeManagementSystem.Controllers
     /// <seealso cref="System.Web.Mvc.Controller" />
     public class EmployeeController : Controller
     {
+
+        private ApplicationUserManager _userManager;
         // GET: Employee
         /// <summary>
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
+        /// 
+        public EmployeeController()
+        {
+
+        }
+
+        public EmployeeController(ApplicationUserManager userManager)
+        {
+            _userManager = userManager;
+        }
         public async Task<ActionResult> Index()
         {
             try
@@ -35,7 +49,7 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     data = new List<Employee>();
                 }
-                ViewBag.Employee = data;
+                //ViewBag.Department = data;
                 return View(data.ToList());
             }
             catch (Exception ex)
@@ -90,8 +104,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                ViewBag.Employee = data;
+                ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
+                ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 return View(new Employee());
             }
             catch (Exception ex)
@@ -112,16 +126,30 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                ModelState.Remove("AvailableLeaves");
-                var month = (13 - DateTime.Now.Month) * 1.5;
+                string dob = Request["BirthDate"];
+                string email = Request["Email"];
+                string password = Request["Password"];
+                string skills = Request["Skills"];
+                
+                ModelState.Remove("BirthDate");
+                ModelState.Remove("LeaveBalance");
+                //var month = (13 - DateTime.Now.Month) * 1.5;
                 if (ModelState.IsValid)
                 {
+
+                    collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                    collection.LeaveBalance = Convert.ToDecimal(15);
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
                     {
-                        collection.AvailableLeaves = Convert.ToDecimal(month);
-                        await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
-                        TempData["sucess"] = EmployeeResources.create;
+                        var user = new ApplicationUser { UserName = email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = email, FirstName = collection.FirstName, LastName = collection.LastName, UserStatus = 0 };
+                        collection.UserId = Guid.Parse(user.Id);
+                        var result = await UserManager.CreateAsync(user, password);
+                        if (result.Succeeded)
+                        {
+                            await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
+                            TempData["sucess"] = EmployeeResources.create;
+                        }
                     }
                     else
                     {
@@ -153,8 +181,8 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                ViewBag.Employee = data;
+                ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
+                ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 return View("Create", await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id));
             }
             catch (Exception ex)
@@ -183,6 +211,18 @@ namespace EmployeeManagementSystem.Controllers
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
             }
         }
     }

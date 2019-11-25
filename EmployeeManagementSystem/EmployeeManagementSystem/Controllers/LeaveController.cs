@@ -283,7 +283,7 @@ namespace LeaveManagementSystem.Controllers
                 {
                     var emp = await APIHelpers.GetAsync<Employee>("api/Employee/GetEmployee?Email=" + email);
                     var leave = await APIHelpers.GetAsync<Leave>("api/Leave/Get/" + id);
-                    emp.AvailableLeaves = emp.AvailableLeaves - (leave.To.Day - leave.From.Day);
+                    //emp.AvailableLeaves = emp.AvailableLeaves - (leave.To.Day - leave.From.Day);
                     await APIHelpers.PutAsync<Employee>("api/Employee/Put", emp);
                     var subject = "Leave";
                     var body = "Congratulations!! Your Leave has been Approved.";
