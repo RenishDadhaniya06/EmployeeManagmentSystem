@@ -103,14 +103,14 @@ namespace EmployeeManagementSystem.Controllers
                         //    UserId = model.Id,
                         //RoleId = model.RoleId
                         //});
-                        var month = DateTime.Now.Month;
-                        var cal = 13 - month;
-                        Employee emp = new Employee();
-                        emp.Name = model.FirstName + model.LastName;
-                        emp.Email = model.Email;
-                        emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
-                        await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
-                        _repositoryContext.Employees.Add(emp);
+                        //var month = DateTime.Now.Month;
+                        //var cal = 13 - month;
+                        //Employee emp = new Employee();
+                        //emp.Name = model.FirstName + model.LastName;
+                        //emp.Email = model.Email;
+                        //emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
+                        //await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
+                        //_repositoryContext.Employees.Add(emp);
                         TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");
                     }
