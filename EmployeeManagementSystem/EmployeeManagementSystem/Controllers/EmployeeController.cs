@@ -14,6 +14,7 @@ namespace EmployeeManagementSystem.Controllers
     using EmployeeMangmentSystem.Resources;
     using System.Web;
     using Microsoft.AspNet.Identity.Owin;
+    using EmployeeMangmentSystem.Repository.Models.ViewModel;
     #endregion
 
 
@@ -106,7 +107,7 @@ namespace EmployeeManagementSystem.Controllers
             {
                 ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
-                return View(new Employee());
+                return View(new EmployeeUserViewModel());
             }
             catch (Exception ex)
             {
@@ -122,15 +123,13 @@ namespace EmployeeManagementSystem.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
-        public async Task<ActionResult> Create(Employee collection)
+        public async Task<ActionResult> Create(EmployeeUserViewModel collection)
         {
             try
             {
                 string dob = Request["BirthDate"];
-                string email = Request["Email"];
-                string password = Request["Password"];
-                string skills = Request["Skills"];
-                
+                string skills = string.Join(",", Request["Skill"]);
+
                 ModelState.Remove("BirthDate");
                 ModelState.Remove("LeaveBalance");
                 //var month = (13 - DateTime.Now.Month) * 1.5;
@@ -139,12 +138,13 @@ namespace EmployeeManagementSystem.Controllers
 
                     collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
                     collection.LeaveBalance = Convert.ToDecimal(15);
+                    collection.Skills = skills;
                     // TODO: Add insert logic here
                     if (collection.Id == Guid.Empty)
                     {
-                        var user = new ApplicationUser { UserName = email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = email, FirstName = collection.FirstName, LastName = collection.LastName, UserStatus = 0 };
+                        var user = new ApplicationUser { UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = collection.FirstName, LastName = collection.LastName, UserStatus = 0 };
                         collection.UserId = Guid.Parse(user.Id);
-                        var result = await UserManager.CreateAsync(user, password);
+                        var result = await UserManager.CreateAsync(user, collection.Password);
                         if (result.Succeeded)
                         {
                             await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
