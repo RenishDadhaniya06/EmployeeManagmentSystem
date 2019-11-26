@@ -48,105 +48,113 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                    </div>
                 </div>
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.Label("Email", htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.Label("Password", new { @class = "control-label col-md-3" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.TextBox("Email", "", new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.Password("Password", "", new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.Label("Department", htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.Label("Skill", htmlAttributes: new { @class = "control-label" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.BirthDate, "{0:dd-MMM-yyyy}", htmlAttributes: new { @class = "form-control datepicker" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), "Select Department", new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.DropDownList("Skill", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.OtherContact, htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.CurrentSalary, htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.OtherContact, new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.TextBoxFor(model => model.CurrentSalary, new { @class = "form-control" })
-                </div>
-                <div class="col-lg-4 form-group">
-                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
-                </div>
-            </div>
+                <div class="row text-left">
+                    @if (Model.Id == Guid.Empty)
+                    {
+                        <div class="col-lg-4 form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
 
-            <div class="row">
-                <div class="col-md-offset-5">
-                    <input type="submit" value="Save" class="btn btn-success" />
-                    <a href="@Url.Action("Index","Employee")" class="btn btn-primary">Cancel</a>
+
+                        </div>
+                    }
+                        <div class="col-lg-4 form-group">
+                            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+                        </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    @if (Model.Id == Guid.Empty)
+                    {
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    </div>
+                    }
+                    <div class="col-lg-4 form-group">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.Label("Department", htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.Label("Skill", htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.BirthDate, "{0:dd-MMM-yyyy}", htmlAttributes: new { @class = "form-control datepicker" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), "Select Department", new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.OtherContact, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.CurrentSalary, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.OtherContact, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.CurrentSalary, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-5">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        <a href="@Url.Action("Index","Employee")" class="btn btn-primary">Cancel</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
         }
     </div>
