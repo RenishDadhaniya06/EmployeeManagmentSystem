@@ -12,15 +12,22 @@
 <script type="text/javascript">
     var dept= '@data.Department'
     var skill = '@data.Skills'
-    var skillArr = skill.split(',');
+    var skillArr= skill.split(',');
+    //var skillset = [];
+    //for (i = 0; i < skillArr.length; i++) {
+    //    skillset.push(skillArr[i].toLowerCase());
+    //}
+    console.log("skillArr : " + skillArr);
     var id= '@data.Id'
     var empty= '@Guid.Empty'
     var j = jQuery.noConflict();
     j(function () {
         if (empty !== id) {
+            debugger
             j('.skills').multiselect('select', skillArr);
 
-    } else{
+        } else {
+            debugger
           j('.skills').multiselect();
     }
 
