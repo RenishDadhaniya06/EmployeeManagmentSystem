@@ -91,9 +91,39 @@ namespace EmployeeManagementSystem.Controllers.api
 
         [Route("api/Employee/Put")]
         [HttpPut]
-        public Employee Put(Employee model)
+        public Employee Put(EmployeeUserViewModel model)
         {
-            return _repository.Update(model);
+            //return _repository.Update(model);
+            List<CandidateSkills> skills = new List<CandidateSkills>();
+            Employee emp = new Employee
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                MiddleName = model.MiddleName,
+                LastName = model.LastName,
+                Phone = model.Phone,
+                BirthDate = model.BirthDate,
+                Address = model.Address,
+                OtherContact = model.OtherContact,
+                Department = model.Department,
+                LeaveBalance = model.LeaveBalance,
+                CurrentSalary = model.CurrentSalary,
+                IsEmailVerified = model.IsEmailVerified,
+                UserId = model.UserId,
+            };
+            var data2 = _repository.Update(emp);
+            _skillrepository.DeleteWhere(_=> _.CandidateId == emp.Id);
+            foreach (var item in model.Skills.Split(','))
+            {
+                skills.Add(new CandidateSkills()
+                {
+                    Id = Guid.NewGuid(),
+                    CandidateId = data2.Id,
+                    SkillId = Guid.Parse(item)
+                });
+            }
+            _skillrepository.InsertRange(skills);
+            return data2;
         }
 
         [Route("api/Employee/Delete/{id}")]
@@ -110,6 +140,21 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             var data = await _iCustomerService.GetEmployee(email);
             return data;
+        }
+
+        [Route("api/Employee/GetEmployeeUser/{id}")]
+        [HttpGet]
+        public async Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id)
+        {
+            try
+            {
+                var data = await _iCustomerService.GetEmployeeUserViewModel(id);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

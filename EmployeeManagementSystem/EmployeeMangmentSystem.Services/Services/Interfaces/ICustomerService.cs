@@ -143,5 +143,7 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <param name="name">The name.</param>
         /// <returns></returns>
         Task<List<Candidates>> GetCandidateSearchDetail(string name);
+
+        Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
     }
 }

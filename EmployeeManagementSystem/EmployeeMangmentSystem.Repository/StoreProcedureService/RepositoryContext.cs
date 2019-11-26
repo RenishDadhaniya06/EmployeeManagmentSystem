@@ -224,5 +224,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             var data = await Database.SqlQuery<Candidates>(@"exec [dbo].[AutoCompleteCandidate] @p0", name).ToListAsync();
             return data;
         }
+
+        public async Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id)
+        {
+            var data = await Database.SqlQuery<EmployeeUserViewModel>(@"exec [dbo].[GetEmployeeUserViewModel] @p0", id).SingleOrDefaultAsync();
+            return data;
+        }
     }
 }

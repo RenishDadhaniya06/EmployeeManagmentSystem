@@ -183,7 +183,7 @@ namespace EmployeeManagementSystem.Controllers
             {
                 ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
-                return View("Create", await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id));
+                return View("Create", await APIHelpers.GetAsync<EmployeeUserViewModel>("api/Employee/GetEmployeeUser/" + id));
             }
             catch (Exception ex)
             {
