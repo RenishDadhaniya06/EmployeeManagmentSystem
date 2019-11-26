@@ -107,7 +107,11 @@ namespace EmployeeManagementSystem.Controllers
             {
                 ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
-                return View(new EmployeeUserViewModel());
+                var m = new EmployeeUserViewModel()
+                {
+                    BirthDate = DateTime.Today
+                };
+                return View(m);
             }
             catch (Exception ex)
             {
