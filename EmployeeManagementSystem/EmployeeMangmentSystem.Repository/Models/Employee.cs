@@ -37,6 +37,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         public long Phone { get; set; }
 
         [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         [Display(Name = "Address")]
