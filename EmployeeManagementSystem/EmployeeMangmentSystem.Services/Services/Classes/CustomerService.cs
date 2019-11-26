@@ -219,5 +219,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetCandidateSearchDetail(name);
         }
+
+        public async Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id)
+        {
+            return await dbContext.GetEmployeeUserViewModel(id);
+        }
     }
 }
