@@ -3,26 +3,36 @@
 
 @{
     ViewBag.Title = "Create Employee";
-
+    var data = Model;
 }
 @*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
 
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/bootstrap-multiselect.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+    var dept= '@data.Department'
+    var skill = '@data.Skills'
+    var skillArr = skill.split(',');
+    var id= '@data.Id'
+    var empty= '@Guid.Empty'
     var j = jQuery.noConflict();
     j(function () {
-        j('.skills').multiselect({
-            includeSelectAllOption: true
-        });
+        if (empty !== id) {
+            j('.skills').multiselect('select', skillArr);
+
+    } else{
+          j('.skills').multiselect();
+    }
+
     });
+
     $(document).ready(function () {
         $('.datepicker').datepicker({
             dateFormat: "dd-MMM-yyyy",
             todayBtn: true,
             todayHighlight: true
         });
+        $('#Department').val(dept);
     });
 </script>
 
@@ -73,36 +83,7 @@
                         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
                     </div>
                 </div>
-                <div class="row text-left">
-                    @if (Model.Id == Guid.Empty)
-                    {
-                        <div class="col-lg-4 form-group">
-                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
 
-
-                        </div>
-                    }
-                        <div class="col-lg-4 form-group">
-                            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
-                        </div>
-                    <div class="col-lg-4 form-group">
-                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
-                    </div>
-                </div>
-                <div class="row text-left">
-                    @if (Model.Id == Guid.Empty)
-                    {
-                    <div class="col-lg-4 form-group">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                    </div>
-                    }
-                    <div class="col-lg-4 form-group">
-                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                    </div>
-                    <div class="col-lg-4 form-group">
-                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
-                    </div>
-                </div>
                 <div class="row text-left">
                     <div class="col-lg-4 form-group">
                         @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
@@ -127,13 +108,14 @@
                 </div>
                 <div class="row text-left">
                     <div class="col-lg-4 form-group">
-                        @Html.LabelFor(model => model.OtherContact, htmlAttributes: new { @class = "control-label" })
+                        <label class="control-label">Other Contact Number</label>
                     </div>
                     <div class="col-lg-4 form-group">
-                        @Html.LabelFor(model => model.CurrentSalary, htmlAttributes: new { @class = "control-label" })
+                        <label class="control-label">   Current Salary(per month)</label>
                     </div>
+
                     <div class="col-lg-4 form-group">
-                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
                     </div>
                 </div>
                 <div class="row text-left">
@@ -143,11 +125,44 @@
                     <div class="col-lg-4 form-group">
                         @Html.TextBoxFor(model => model.CurrentSalary, new { @class = "form-control" })
                     </div>
+
+                    <div class="col-lg-4 form-group">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    @if (Model.Id == Guid.Empty)
+                    {
+                        <div class="col-lg-4 form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+
+
+                        </div>
+
+                        <div class="col-lg-4 form-group">
+                            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+                        </div>
+                    }
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                    </div>
+
+                </div>
+                <div class="row text-left">
+                    @if (Model.Id == Guid.Empty)
+                    {
+                        <div class="col-lg-4 form-group">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-lg-4 form-group">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        </div>
+                    }
                     <div class="col-lg-4 form-group">
                         @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-offset-5">
                         <input type="submit" value="Save" class="btn btn-success" />
