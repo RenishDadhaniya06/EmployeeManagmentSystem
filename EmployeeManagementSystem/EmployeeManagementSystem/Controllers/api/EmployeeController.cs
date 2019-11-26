@@ -130,6 +130,7 @@ namespace EmployeeManagementSystem.Controllers.api
         [HttpDelete]
         public bool Delete(Guid id)
         {
+            _skillrepository.DeleteWhere(_ => _.CandidateId == id);
             _repository.Delete(id);
             return true;
         }

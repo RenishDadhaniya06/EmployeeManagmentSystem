@@ -66,7 +66,7 @@
                             <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Employee", new { id = @item.Id })"></a>
                         </td>
                         <td style="text-align:center">
-                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName"></a>
+                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName + " " + @item.MiddleName + " " + @item.LastName"></a>
                         </td>
 
                         <td>

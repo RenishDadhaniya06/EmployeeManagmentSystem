@@ -203,7 +203,10 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 // TODO: Add delete logic here
-                await APIHelpers.DeleteAsync<Employee>("api/Employee/Delete/" + id);
+                var data = await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id);
+                await UserManager.DeleteAsync(UserManager.Users.Where(_ => _.Id == data.UserId.ToString()).SingleOrDefault());
+                await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + id);
+                
                 TempData["sucess"] = EmployeeResources.delete;
                 return RedirectToAction("Index");
             }
