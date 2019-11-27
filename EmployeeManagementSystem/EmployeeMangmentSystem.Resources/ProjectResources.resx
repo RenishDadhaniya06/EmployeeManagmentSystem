@@ -117,46 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Active" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="Approved" xml:space="preserve">
-    <value>Approved</value>
-  </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
-  </data>
   <data name="create" xml:space="preserve">
-    <value>Created Successfully.</value>
+    <value>Project Created Successfully</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>Deleted Successfully.</value>
+    <value>Project Deleted Successfully</value>
   </data>
-  <data name="EmergancyLeave" xml:space="preserve">
-    <value>Emergancy Leave</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Error Occured While Processing.</value>
-  </data>
-  <data name="FPP" xml:space="preserve">
-    <value>Fixed Price Project</value>
-  </data>
-  <data name="Hire" xml:space="preserve">
-    <value>Hire Based Project</value>
-  </data>
-  <data name="Paid" xml:space="preserve">
-    <value>Paid</value>
-  </data>
-  <data name="Pending" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="Rejected" xml:space="preserve">
-    <value>Rejected</value>
-  </data>
-  <data name="SeekLeave" xml:space="preserve">
-    <value>Seek Leave</value>
+  <data name="name" xml:space="preserve">
+    <value>Project</value>
   </data>
   <data name="update" xml:space="preserve">
-    <value>Updated Successfully.</value>
+    <value>Project Updated Successfully</value>
   </data>
 </root>

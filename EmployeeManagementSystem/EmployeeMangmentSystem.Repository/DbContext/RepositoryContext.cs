@@ -88,7 +88,9 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         //public DbSet<ReportFilter> ReportFilter { get; set; }
 
-        public DbSet<UserViewModel> UserViewModel { get; set; }
+        //public DbSet<UserViewModel> UserViewModel { get; set; }
+
+        public DbSet<Projects> Projects { get; set; }
 
 
 

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="DHTMLX.Scheduler.NET" Version="4.0.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
   </ItemGroup>
 
@@ -79,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>OpeningResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ProjectResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProjectResources.resx</DependentUpon>
     </Compile>
     <Compile Update="RegestrationResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -168,6 +174,10 @@
     <EmbeddedResource Update="OpeningResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OpeningResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ProjectResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProjectResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="RegestrationResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -18,11 +18,11 @@
     var j = jQuery.noConflict();
     j(function () {
         if (empty !== id) {
-            debugger
+            //debugger
             j('.skills').multiselect('select', skillArr);
 
         } else {
-            debugger
+            //debugger
           j('.skills').multiselect();
     }
 
@@ -105,7 +105,8 @@
                         @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), "Select Department", new { @class = "form-control" })
                     </div>
                     <div class="col-lg-4 form-group">
-                        @Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
+                        @*@Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })*@
+                        @Html.DropDownList("Skill", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
                     </div>
                 </div>
                 <div class="row text-left">

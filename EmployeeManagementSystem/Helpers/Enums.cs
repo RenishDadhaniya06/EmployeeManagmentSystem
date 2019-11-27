@@ -48,6 +48,20 @@
             Pending = 4
         }
 
+        public enum ProjectStatus
+        {
+            Pending = 0,
+            Active = 1,
+            Closed = 2
+        }
+
+        public enum ProjectType
+        {
+            //FPP = 0,
+            //Hire = 1
+            FixedPriceProject = 0,
+            HireBasedProject = 1
+        }
         
     }
 }
