@@ -92,6 +92,8 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
 
         public DbSet<Projects> Projects { get; set; }
 
+        public DbSet<ProjectTeams> ProjectTeams { get; set; }
+
 
 
 
