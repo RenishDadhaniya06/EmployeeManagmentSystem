@@ -13,21 +13,16 @@
     var dept= '@data.Department'
     var skill = '@data.Skills'
     var skillArr= skill.split(',');
-    //var skillset = [];
-    //for (i = 0; i < skillArr.length; i++) {
-    //    skillset.push(skillArr[i].toLowerCase());
-    //}
-    console.log("skillArr : " + skillArr);
     var id= '@data.Id'
     var empty= '@Guid.Empty'
     var j = jQuery.noConflict();
     j(function () {
         if (empty !== id) {
-            debugger
+            //debugger
             j('.skills').multiselect('select', skillArr);
 
         } else {
-            debugger
+            //debugger
           j('.skills').multiselect();
     }
 
@@ -56,7 +51,6 @@
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
-
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -111,7 +105,8 @@
                         @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), "Select Department", new { @class = "form-control" })
                     </div>
                     <div class="col-lg-4 form-group">
-                        @Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
+                        @*@Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })*@
+                        @Html.DropDownList("Skill", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
                     </div>
                 </div>
                 <div class="row text-left">
@@ -144,10 +139,7 @@
                     {
                         <div class="col-lg-4 form-group">
                             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
-
-
                         </div>
-
                         <div class="col-lg-4 form-group">
                             @Html.LabelFor(model => model.Password, new { @class = "control-label" })
                         </div>
@@ -155,7 +147,6 @@
                     <div class="col-lg-4 form-group">
                         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
                     </div>
-
                 </div>
                 <div class="row text-left">
                     @if (Model.Id == Guid.Empty)
@@ -179,7 +170,6 @@
                     </div>
                 </div>
             </div>
-
         }
     </div>
 </div>

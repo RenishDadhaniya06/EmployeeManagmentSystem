@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    #endregion
+
+
+    /// <summary>
+    /// EmployeeUserViewModel
+    /// </summary>
+    /// <seealso cref="EmployeeMangmentSystem.Repository.Models.Employee" />
     [NotMapped]
     public class EmployeeUserViewModel : Employee
     {

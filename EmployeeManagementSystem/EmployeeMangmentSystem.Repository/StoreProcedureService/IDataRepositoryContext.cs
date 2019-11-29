@@ -140,5 +140,7 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         Task<List<Candidates>> GetCandidateSearchDetail(string name);
 
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
+
+        Task<List<ProjectTeamViewModel>> GetProjects();
     }
 }

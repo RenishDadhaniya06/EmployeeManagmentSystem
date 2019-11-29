@@ -50,7 +50,9 @@ namespace EmployeeManagementSystem
             container.RegisterType<IRepository<Interviews>, Repository<Interviews>>();
             container.RegisterType<IRepository<Report>, Repository<Report>>();
             container.RegisterType<IRepository<ReportFilter>, Repository<ReportFilter>>();
-            container.RegisterType<IRepository<UserViewModel>, Repository<UserViewModel>>();
+            //container.RegisterType<IRepository<UserViewModel>, Repository<UserViewModel>>();
+            container.RegisterType<IRepository<Projects>, Repository<Projects>>();
+            container.RegisterType<IRepository<ProjectTeams>, Repository<ProjectTeams>>();
             container.RegisterType<ICustomerService, CustomerService>();
             container.RegisterType<IDataRepositoryContext, RepositoryContext>();
             container.RegisterType<AccountController>(new InjectionConstructor());
