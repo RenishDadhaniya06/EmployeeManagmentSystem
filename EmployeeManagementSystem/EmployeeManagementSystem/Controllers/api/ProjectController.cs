@@ -5,6 +5,7 @@ namespace EmployeeManagementSystem.Controllers.api
     using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using EmployeeMangmentSystem.Repository.Repository.Interfaces;
+    using EmployeeMangmentSystem.Services.Services;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -19,13 +20,15 @@ namespace EmployeeManagementSystem.Controllers.api
         #region Properties
         private IRepository<Projects> _repository;
         private IRepository<ProjectTeams> _teamrepository;
+        private ICustomerService _customerService;
         #endregion
 
         #region Constructor
-        public ProjectController(IRepository<Projects> repository, IRepository<ProjectTeams> teamrepository)
+        public ProjectController(IRepository<Projects> repository, IRepository<ProjectTeams> teamrepository,ICustomerService customerService)
         {
             _repository = repository;
             _teamrepository = teamrepository;
+            _customerService = customerService;
         }
         #endregion
 
@@ -35,6 +38,7 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             try
             {
+                //var temp = _customerService.GetProjects(); For Getting projects from sp
                 var data = _repository.GetAll();
                 return data;
             }
@@ -134,7 +138,7 @@ namespace EmployeeManagementSystem.Controllers.api
                     {
                         Id = Guid.NewGuid(),
                         ProjectId = model.Id,
-                        CurrentlyWorking = model.CurrentlyWorking,
+                        CurrentlyWorking = true,
                         UserId = Guid.Parse(data),
                     });
                 }

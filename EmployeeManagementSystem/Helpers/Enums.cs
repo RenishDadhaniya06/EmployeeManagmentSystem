@@ -57,8 +57,6 @@
 
         public enum ProjectType
         {
-            //FPP = 0,
-            //Hire = 1
             FixedPriceProject = 0,
             HireBasedProject = 1
         }

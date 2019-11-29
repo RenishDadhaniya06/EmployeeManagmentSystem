@@ -64,6 +64,7 @@ namespace EmployeeManagementSystem.Controllers
                 ModelState.Remove("Id");
                 ModelState.Remove("Documents");
                 ModelState.Remove("EmployeeId");
+                ModelState.Remove("CurrentlyWorking");
                 if (ModelState.IsValid)
                 {
                     collection.Documents = "";

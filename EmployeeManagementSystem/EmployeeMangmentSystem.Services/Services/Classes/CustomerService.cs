@@ -224,5 +224,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetEmployeeUserViewModel(id);
         }
+
+        public async Task<List<ProjectTeamViewModel>> GetProjects()
+        {
+            return await dbContext.GetProjects();
+        }
     }
 }

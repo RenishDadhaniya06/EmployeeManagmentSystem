@@ -101,9 +101,9 @@
                         <div class="col-lg-4 form-group">
                             @Html.DropDownList("Employees", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
                         </div>
-                        <div class="col-lg-4 form-group">
+                        @*<div class="col-lg-4 form-group">
                             @Html.CheckBoxFor(model => model.CurrentlyWorking, new { @class = "form-control" })
-                        </div>
+                        </div>*@
                     }
                     else
                     {
