@@ -147,5 +147,7 @@ namespace EmployeeMangmentSystem.Services.Services
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
 
         Task<List<ProjectTeamViewModel>> GetProjects();
+
+        Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id);
     }
 }
