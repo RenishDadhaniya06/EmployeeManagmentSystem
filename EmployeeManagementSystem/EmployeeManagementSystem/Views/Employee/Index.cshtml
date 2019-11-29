@@ -12,12 +12,12 @@
                 @ViewBag.Title
             }
         </h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li>
-                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
+  
+        <div class="nav navbar-right ">
+            <a class="btn btn-success glyphicon glyphicon-plus" style="margin-left:10px" href="@Url.Action("Create","Employee")"></a>
+            <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Employee", new { target = "_blank" })"></a>
 
-        </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -26,13 +26,11 @@
             <div class="col-md-1">
 
                 <p>
-                    <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Employee")"></a>
 
                 </p>
             </div> <div class="col-md-10">
             </div>  <div class="col-md-1">
                 <p>
-                    <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Employee", new { target = "_blank" })"></a>
 
                 </p>
             </div>
