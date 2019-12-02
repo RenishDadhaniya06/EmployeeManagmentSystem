@@ -1,5 +1,8 @@
 ﻿@model EmployeeMangmentSystem.Repository.Models.ViewModel.EmployeeUserViewModel
 @using EmployeeManagementSystem.Helper
+@using EmployeeMangmentSystem.Resources
+
+
 
 
 @{
@@ -37,6 +40,22 @@
         });
         $('#Department').val(dept);
     });
+
+    function changeStatus(id) {
+         $.ajax({
+            url: '@Url.Action("ChangeStatus","Employee")',
+            data: { 'teamid': id },
+            type: 'post',
+            success: function (data) {
+                if (data) {
+                    //toastify("error", 'Record deleted successfully');
+                    document.location.reload()
+                }
+            }, error: function (err) {
+                toastify("error", err.statusText);
+            }
+        });
+    }
 </script>
 
 
@@ -60,66 +79,66 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            <div class="row text-left">
-                <div class="col-lg-6 form-group">
-                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-6 form-group">
-                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-                </div>  <div class="col-lg-6 form-group">
-                    @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-6 form-group">
-                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="row text-left">
-                <div class="col-lg-6 form-group">
-                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
-                </div>
-
-
-                <div class="col-lg-6 form-group">
-                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                </div>
-
-                <div class="col-lg-6 form-group">
-                    @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
-                </div>
-                <div class="col-lg-6 form-group">
-                    @Html.TextBoxFor(model => model.BirthDate, "{0:dd-MMM-yyyy}", htmlAttributes: new { @class = "form-control datepicker has-feedback-left" })
-                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                </div>
-            </div>
-
-            <div class="row text-left">
-                <div class="col-lg-6 form-group">
-                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
-                </div>
-
-                <div class="col-lg-6 form-group">
-                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control has-feedback-left" })
-                    <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
-                </div>
-                <div class="col-lg-6 form-group">
-                    <label class="control-label">Other Contact Number</label>
-                </div>
-                <div class="col-lg-6 form-group">
-                    @Html.TextBoxFor(model => model.OtherContact, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="row text-left">
-                @if (Model.Id == Guid.Empty)
-                {<div class="col-lg-6 form-group">
-                        @Html.LabelFor(model => model.RoleId, new { @class = "control-label" })
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="row text-left">
+                    <div class="col-lg-6 form-group">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
                     </div>
                     <div class="col-lg-6 form-group">
-                        @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    </div>  <div class="col-lg-6 form-group">
+                        @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
                     </div>
-                }
+                    <div class="col-lg-6 form-group">
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    <div class="col-lg-6 form-group">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                    </div>
+
+
+                    <div class="col-lg-6 form-group">
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        @Html.TextBoxFor(model => model.BirthDate, "{0:dd-MMM-yyyy}", htmlAttributes: new { @class = "form-control datepicker has-feedback-left" })
+                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="row text-left">
+                    <div class="col-lg-6 form-group">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label class="control-label">Other Contact Number</label>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        @Html.TextBoxFor(model => model.OtherContact, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row text-left">
+                    @if (Model.Id == Guid.Empty)
+                    {<div class="col-lg-6 form-group">
+                            @Html.LabelFor(model => model.RoleId, new { @class = "control-label" })
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), new { @class = "form-control" })
+                        </div>
+                    }
                     <div class="col-lg-6 form-group">
                         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
                     </div>
@@ -128,24 +147,24 @@
                     </div>
 
                 </div>
-           
-            <div class="row text-left">
-                @if (Model.Id == Guid.Empty)
-                {<div class="col-lg-6 form-group">
-                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        @Html.LabelFor(model => model.Password, new { @class = "control-label" })
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                    </div>
-                }
 
-            </div>
+                <div class="row text-left">
+                    @if (Model.Id == Guid.Empty)
+                    {<div class="col-lg-6 form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        </div>
+                    }
+
+                </div>
                 <div class="row text-left">
                     <div class="col-lg-6 form-group">
                         @Html.Label("Department", htmlAttributes: new { @class = "control-label" })
@@ -164,7 +183,7 @@
                             @Html.DropDownList("Skill", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
                         </div>
                     }
-                    </div>
+                </div>
                 <div class="row text-left">
                     @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
                     {
@@ -186,13 +205,71 @@
                     }
                 </div>
 
-            <div class="row text-center">
-                <div>
-                    <input type="submit" value="Save" class="btn btn-success" />
-                    <a href="@Url.Action("Index","Employee")" class="btn btn-primary">Cancel</a>
+                @if (Model.Projects != null)
+                {
+                    <div style="text-align:center; padding:20px"> <h1> Projects </h1></div>
+                    <div class="row">
+                        <table id="demoGrid" class="table table-striped{ table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">
+                                        Project Name
+                                    </th>
+                                    <th style="text-align:center">
+                                        Project Status
+                                    </th>
+                                    <th style="text-align:center">
+                                        Currently Working
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Projects)
+                                {
+                                <tr>
+                                    <td style="text-align:center">@item.Name</td>
+                                    <td style="text-align:center">
+                                        @if ((int)item.ProjectStatus == 0)
+                                        {
+                                            @CommonResources.Pending
+                                        }
+                                        else if ((int)item.ProjectStatus == 1)
+                                        {
+                                            @CommonResources.Active
+                                        }
+                                        else
+                                        {
+                                            @CommonResources.Closed
+                                        }
+                                    </td>
+                                    <td style="text-align:center">
+                                        @if (item.CurrentlyWorking)
+                                        {
+                                            <button type="button" class="btn btn-success btn-sm pointer " onclick="changeStatus('@item.TeamId')">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-danger btn-sm pointer " onclick="changeStatus('@item.TeamId')">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                <div class="row text-center">
+                    <div>
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        <a href="@Url.Action("Index","Employee")" class="btn btn-primary">Cancel</a>
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </div>

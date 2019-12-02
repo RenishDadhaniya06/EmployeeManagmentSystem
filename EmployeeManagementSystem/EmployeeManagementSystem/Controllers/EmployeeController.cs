@@ -30,11 +30,41 @@
 
         // GET: Employee/Edit/5
         /// <summary>        /// Edits the specified identifier.        /// </summary>        /// <param name="id">The identifier.</param>        /// <returns></returns>        public async Task<ActionResult> Edit(Guid id)        {            try            {                ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");                ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");                ViewBag.Roles = _applicationDbContext.Roles.ToList();
-                var temp = await APIHelpers.GetAsync<EmployeeUserViewModel>("api/Employee/GetEmployeeUser/" + id);                return View("Create", await APIHelpers.GetAsync<EmployeeUserViewModel>("api/Employee/GetEmployeeUser/" + id));            }            catch (Exception ex)            {                return RedirectToAction("AccessDenied", "Error");            }        }
+                var data = await APIHelpers.GetAsync<EmployeeUserViewModel>("api/Employee/GetEmployeeUser/" + id);
+                EmployeeUserViewModel emp = new EmployeeUserViewModel{
+                    Id = data.Id,
+                    FirstName = data.FirstName,
+                    MiddleName = data.MiddleName,
+                    LastName = data.LastName,
+                    Address = data.Address,
+                    BirthDate = data.BirthDate,
+                    Phone = data.Phone,
+                    OtherContact = data.OtherContact,
+                    CurrentSalary = data.CurrentSalary,
+                    LeaveBalance = data.LeaveBalance,
+                    IsEmailVerified = data.IsEmailVerified,
+                    UserId = data.UserId,
+                    Department = data.Department,
+                    Skills = data.Skills
+                };                var temp = await APIHelpers.GetAsync<List<ProjectViewModel>>("api/Employee/Projects/" + data.UserId);                emp.Projects = temp;                return View("Create", emp);            }            catch (Exception ex)            {                return RedirectToAction("AccessDenied", "Error");            }        }
 
         // POST: Employee/Delete/5
         /// <summary>        /// Deletes the confirm.        /// </summary>        /// <param name="id">The identifier.</param>        /// <returns></returns>        [HttpGet]        public async Task<ActionResult> DeleteConfirm(string id)        {            try            {
                 // TODO: Add delete logic here
                 var data = await APIHelpers.GetAsync<Employee>("api/Employee/Get/" + id);                await UserManager.DeleteAsync(UserManager.Users.Where(_ => _.Id == data.UserId.ToString()).SingleOrDefault());                await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + id);
 
-                TempData["sucess"] = EmployeeResources.delete;                return RedirectToAction("Index");            }            catch (Exception ex)            {                TempData["error"] = CommonResources.error;                return RedirectToAction("AccessDenied", "Error");            }        }        public ApplicationUserManager UserManager        {            get            {                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();            }            private set            {                _userManager = value;            }        }    }}
+                TempData["sucess"] = EmployeeResources.delete;                return RedirectToAction("Index");            }            catch (Exception ex)            {                TempData["error"] = CommonResources.error;                return RedirectToAction("AccessDenied", "Error");            }        }        public async Task<JsonResult> ChangeStatus(string teamid)
+        {
+            try
+            {
+                if(teamid != null)
+                {
+                    await APIHelpers.GetAsync<string>("api/Project/ChangeWorkingStatus/" + teamid);
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }        public ApplicationUserManager UserManager        {            get            {                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();            }            private set            {                _userManager = value;            }        }    }}

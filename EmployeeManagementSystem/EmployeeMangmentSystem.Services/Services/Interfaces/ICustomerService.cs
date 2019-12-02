@@ -160,5 +160,7 @@ namespace EmployeeMangmentSystem.Services.Services
         Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id);
 
         Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid);
+
+        Task<List<ProjectViewModel>> GetProjectsbyUserId(Guid id);
     }
 }
