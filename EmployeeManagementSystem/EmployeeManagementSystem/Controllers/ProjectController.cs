@@ -25,18 +25,20 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Project
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<List<Projects>>("api/Project/GetProjects");
+            var data = await APIHelpers.GetAsync<List<ProjectTeamViewModel>>("api/Project/GetProjects");
             if (data == null)
             {
-                data = new List<Projects>();
+                data = new List<ProjectTeamViewModel>();
             }
             return View(data.ToList());
         }
 
+        //ViewTeam
+
         // GET: Project/Details/5
-        public ActionResult Details(int id)
+        public JsonResult ViewTeam(string id)
         {
-            return View();
+            return Json(null);
         }
 
         // GET: Project/Create
@@ -44,7 +46,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                ViewBag.Employees = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+                List<Employee> Employees = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
                 return View(new ProjectTeamViewModel());
             }
             catch (Exception ex)
@@ -68,18 +70,18 @@ namespace EmployeeManagementSystem.Controllers
                 if (ModelState.IsValid)
                 {
                     collection.Documents = "";
-                    foreach (HttpPostedFileBase file in Documents)
-                    {
+                    //foreach (HttpPostedFileBase file in Documents)
+                    //{
 
-                        if (file != null)
-                        {
-                            var filename = Path.GetFileName(file.FileName);
-                            collection.Documents = collection.Documents + " " + filename;
-                            var serverpath = Path.Combine(Server.MapPath("~/ProjectDocuments/") + filename);
-                            file.SaveAs(serverpath);
-                        }
+                    //    if (file != null)
+                    //    {
+                    //        var filename = Path.GetFileName(file.FileName);
+                    //        collection.Documents = collection.Documents + " " + filename;
+                    //        var serverpath = Path.Combine(Server.MapPath("~/ProjectDocuments/") + filename);
+                    //        file.SaveAs(serverpath);
+                    //    }
 
-                    }
+                    //}
                     //ViewBag.Employees = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");  For when redirect to same view this statement is ndeeded for Employee Dropdown
                     if (collection.Id == Guid.Empty)
                     {
@@ -102,7 +104,7 @@ namespace EmployeeManagementSystem.Controllers
                     return View(collection);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View();
             }
@@ -113,8 +115,12 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                ViewBag.Employees = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                return View("Create", await APIHelpers.GetAsync<ProjectTeamViewModel>("api/Project/GetTeam/" + id));
+                List<Employee> emps = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+                var project = await APIHelpers.GetAsync<ProjectTeamViewModel>("api/Project/GetTeam/" + id);
+                IEnumerable<TeamViewModel> team = await APIHelpers.GetAsync<List<TeamViewModel>>("api/Project/GetTeamById/" + id);
+                project.Employees = team.ToList();
+                ViewBag.Employees = emps.Select(_ => new Employee() { UserId = _.UserId, FirstName = _.FirstName + " " + _.MiddleName + " " + _.LastName });
+                return View("Create", project);
             }
             catch (Exception ex)
             {

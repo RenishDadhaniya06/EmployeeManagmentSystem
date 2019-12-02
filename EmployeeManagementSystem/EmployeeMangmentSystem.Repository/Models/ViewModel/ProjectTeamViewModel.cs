@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    using System.Collections.Generic;
     #region Using
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -16,6 +17,11 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
     {
         [Display(Name ="Select Employees")]
         public string EmployeeId { get; set; }
+
+        public List<TeamViewModel> Employees { get; set; }
+    }
+    [NotMapped]
+    public class TeamViewModel : Employee {
 
         [Display(Name = "Currently Working")]
         public bool CurrentlyWorking { get; set; }
