@@ -4,6 +4,15 @@
     ViewBag.Title = "Available Resource by Skill";
 }
 
+<script type="text/javascript">
+    function Print() {
+        var skillid = $('.skill').val();
+        var workingid = $('.workingid').val();
+        location.href = '@Url.Action("Print","Resource")?skillid=' + skillid + '&workid=' + workingid;
+    }
+    
+</script>
+
 <div class="x_panel">
     <div class="x_title">
         <h2>
@@ -14,7 +23,8 @@
         </h2>
         <div class="nav navbar-right">
             <div>
-                <a class="btn btn-success fa fa-file-pdf-o" id="submit"></a>
+                @*<a class="btn btn-success fa fa-file-pdf-o" id="print"></a>*@
+                <button class="btn btn-success fa fa-file-pdf-o" id="print" onclick="Print()"></button>
                 <a class="btn btn-success fa fa-exc" id="print"></a>
             </div>
 
@@ -31,13 +41,13 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Resource, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.DropDownListFor(model => model.Resource, new SelectList(ViewBag.Skills, "Id", "Name"), "Select Skill", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.Resource, new SelectList(ViewBag.Skills, "Id", "Name"), "Select Skill", new { @class = "form-control skill" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.IsCurrentlyWorking, htmlAttributes: new { @class = "Control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.EnumDropDownListFor(model => model.IsCurrentlyWorking, new { @class = "form-control" })
+                            @Html.EnumDropDownListFor(model => model.IsCurrentlyWorking, new { @class = "form-control workingid" })
                         </div>
                     </div>
                     <input type="submit" value="Search" class="btn btn-success" style="margin-left: 30px;" />
@@ -98,12 +108,12 @@
     </script>*@
 
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     if ($('#SkillId').val() != "") {
         $('#submit').click(function () {
         var url = '@Url.Action("Print","Resource")';
         location.href = url + '/' + $('#SkillId').val();
         })
     }
-</script>
+</script>*@
 
