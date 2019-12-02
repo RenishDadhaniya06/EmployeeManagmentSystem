@@ -197,5 +197,15 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
         {
             return dbSet.FirstOrDefault(t => t == entity) != null;
         }
+
+        public virtual T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = dbSet;
+
+            foreach (Expression<Func<T, object>> include in includes)
+                query = query.Include(include);
+
+            return query.FirstOrDefault(filter);
+        }
     }
 }

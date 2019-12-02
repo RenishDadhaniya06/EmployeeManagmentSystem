@@ -74,5 +74,9 @@ namespace EmployeeMangmentSystem.Repository.Repository.Interfaces
         /// <param name="predicate">The predicate.</param>
         /// <returns></returns>
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
+
+        T GetFirstOrDefault(
+            Expression<Func<T, bool>> filter = null,
+            params Expression<Func<T, object>>[] includes);
     }
 }
