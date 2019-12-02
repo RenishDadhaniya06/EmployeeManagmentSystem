@@ -62,11 +62,27 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
 
-        public async Task<FileResult> Print(Guid id)
+        //public async Task<FileResult> Print(Guid id)
+        //{
+        //    try
+        //    {
+        //        var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources/" + id);
+        //        var builder = new PdfBuilder<List<EmployeeUserViewModel>>(data, Server.MapPath("/Views/Resource/Print.cshtml"));
+        //        return builder.GetPdf();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public async Task<FileResult> Print(string skillid,string workid)
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources/" + id);
+                var skill = Guid.Parse(skillid);
+                var work = Convert.ToBoolean(Convert.ToInt32(workid));
+                var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources?id=" + skill + "&workingid=" +  work);
                 var builder = new PdfBuilder<List<EmployeeUserViewModel>>(data, Server.MapPath("/Views/Resource/Print.cshtml"));
                 return builder.GetPdf();
             }
