@@ -243,7 +243,7 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
-        public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id)
+        public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid)
         {
             var data = await Database.SqlQuery<EmployeeUserViewModel>(@"exec [dbo].[GetAvailableResourcebySkills] @p0,@p1",id,workingid).ToListAsync();
             return data;
