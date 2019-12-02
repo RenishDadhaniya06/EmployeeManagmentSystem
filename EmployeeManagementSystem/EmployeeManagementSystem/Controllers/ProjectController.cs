@@ -237,5 +237,21 @@ namespace EmployeeManagementSystem.Controllers
                 throw;
             }
         }
+
+        public async Task<JsonResult> DeleteTeamMember(string id, string proid)
+        {
+            try
+            {
+                if (id != null && proid != null)
+                {
+                    await APIHelpers.GetAsync<string>("api/Project/DeleteMember?id=" + id + "&proid=" + proid);
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -220,6 +220,24 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
+        [Route("api/Project/DeleteMember")]
+        [HttpGet]
+        public bool DeleteMember(string id,string proid)
+        {
+            try
+            {
+                var userid = Guid.Parse(id);
+                var projectid = Guid.Parse(proid);
+                var data = _teamrepository.GetFirstOrDefault(_ => _.ProjectId == projectid && _.UserId == userid);
+                _teamrepository.Delete(data.Id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         //#region Post Method
         //[Route("api/Project/Post")]

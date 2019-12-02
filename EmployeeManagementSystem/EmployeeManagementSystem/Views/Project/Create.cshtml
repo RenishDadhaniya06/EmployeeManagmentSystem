@@ -82,6 +82,24 @@
             }
         });
     }
+
+    function deleteMember(id) {
+        debugger
+        console.log(id);
+        $.ajax({
+            url: '@Url.Action("DeleteTeamMember","Project")',
+            data: { 'id': id, proid: '@Model.Id' },
+            type: 'post',
+            success: function (data) {
+                if (data) {
+                    //toastify("error", 'Record deleted successfully');
+                    document.location.reload()
+                }
+            }, error: function (err) {
+                toastify("error", err.statusText);
+            }
+        });
+    }
 </script>
 
 <div class="x_panel">
@@ -195,7 +213,7 @@
                                             }
                                             else
                                             {
-                                                <button type="button" class="btn btn-danger btn-sm pointer ">
+                                                <button type="button" class="btn btn-danger btn-sm pointer " onclick="updateStatus('@item.UserId')">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             }
@@ -207,7 +225,8 @@
                                                 </button>
                                             </td>*@
                                         <td style="text-align:center">
-                                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName"></a>
+                                            @*<a class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></a>*@
+                                            <button class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
 
                                         </td>
                                     </tr>
