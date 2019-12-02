@@ -37,6 +37,13 @@ namespace EmployeeManagementSystem.Helper
             return user;
         }
 
+        public static Guid CurrentEmployeeId()
+        {
+           var useri= GetUserId();
+            var user = _repositoryDbContext.Employees.Where(m => m.UserId == new Guid(useri)).SingleOrDefault();
+            return user.Id;
+        }
+
         /// <summary>
         /// Determines whether [is super admin].
         /// </summary>

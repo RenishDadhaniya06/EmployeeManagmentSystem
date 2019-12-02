@@ -190,7 +190,7 @@ namespace LeaveManagementSystem.Controllers
                         content = Regex.Replace(content, "###FromDate###", collection.From.ToString());
                         content = Regex.Replace(content, "###ToDate###", collection.To.ToString());
                         content = Regex.Replace(content, "###LeaveReason###", collection.Message);
-                        CommonHelper.SendMail(temp, subject, content);
+                        //CommonHelper.SendMail(temp, subject, content);
                         TempData["sucess"] = LeaveResources.create;
                     }
                     else
@@ -287,7 +287,7 @@ namespace LeaveManagementSystem.Controllers
                     await APIHelpers.PutAsync<Employee>("api/Employee/Put", emp);
                     var subject = "Leave";
                     var body = "Congratulations!! Your Leave has been Approved.";
-                    CommonHelper.SendMail(email, subject, body);
+                    //CommonHelper.SendMail(email, subject, body);
                     return RedirectToAction("GetPendingLeave","Leave");
                 }
                 else
@@ -311,7 +311,7 @@ namespace LeaveManagementSystem.Controllers
                 {
                     var subject = "Leave";
                     var body = "Sorry, Your Leave has been Rejected. If You have any query Please Contact Administrator or HR";
-                    CommonHelper.SendMail(email, subject, body);
+                    //CommonHelper.SendMail(email, subject, body);
                     return RedirectToAction("GetPendingLeave", "Leave");
                 }
                 else

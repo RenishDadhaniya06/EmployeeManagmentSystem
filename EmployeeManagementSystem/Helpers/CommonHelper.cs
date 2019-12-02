@@ -15,9 +15,6 @@ namespace Helpers
 
         public static string ApiURL = "http://localhost:56853/";
 
-        public static string Email = "";
-
-        public static string PWD = "";
 
         /// <summary>
         /// Sends the mail.
@@ -25,12 +22,12 @@ namespace Helpers
         /// <param name="emailId">The email identifier.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The body.</param>
-        public static void SendMail(string emailId, string subject,string body)
+        public static void SendMail(string emailId, string subject,string body,string senderEmail,string senderPassword)
         {
 
             var message = new MailMessage();
             //var fromMail = new MailAddress(Email, subject);
-            message.From = new MailAddress(Email);
+            message.From = new MailAddress(senderEmail);
             //var toMail = new MailAddress(emailId);
             string[] multi = emailId.Split(',');
             foreach(string multiid in multi)
@@ -47,7 +44,7 @@ namespace Helpers
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = true,
                 //Credentials = new NetworkCredential(fromMail.Address, PWD)
-                Credentials = new NetworkCredential(Email,PWD)
+                Credentials = new NetworkCredential(senderEmail, senderPassword)
             };
             //using (var message = new MailMessage(fromMail, toMail)
             //{

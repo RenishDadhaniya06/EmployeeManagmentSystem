@@ -298,7 +298,7 @@ namespace EmployeeManagementSystem.Controllers
             string body = "<br/><br/>We are excited to tell you that your account is" +
         " successfully created. Please click on the below link to verify your account" +
         " <br/><br/><a href='" + activationcode + "'>" + activationcode + "</a> ";
-            CommonHelper.SendMail(emailId, subject, body);
+            //CommonHelper.SendMail(emailId, subject, body);
         }
 
         //
