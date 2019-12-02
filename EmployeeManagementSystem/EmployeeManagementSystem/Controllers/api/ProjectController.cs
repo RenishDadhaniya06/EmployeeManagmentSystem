@@ -140,19 +140,6 @@ namespace EmployeeManagementSystem.Controllers.api
                     Documents = model.Documents
                 };
                 var updatedata = _repository.Update(pro);
-                _teamrepository.DeleteWhere(_=>_.ProjectId == pro.Id);
-                List<ProjectTeams> teams = new List<ProjectTeams>();
-                foreach(var data in model.EmployeeId.Split(','))
-                {
-                    teams.Add(new ProjectTeams()
-                    {
-                        Id = Guid.NewGuid(),
-                        ProjectId = model.Id,
-                        CurrentlyWorking = true,
-                        UserId = Guid.Parse(data),
-                    });
-                }
-                _teamrepository.InsertRange(teams);
                 return updatedata;
             }
             catch (Exception ex)
@@ -161,6 +148,33 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
         #endregion
+
+        [Route("api/Project/PostTeam")]
+        [HttpGet]
+        public void PostTeam(string id,string pid)
+        {
+            try
+            {
+                var proid = Guid.Parse(pid);
+                _teamrepository.DeleteWhere(_ => _.ProjectId == proid);
+                List<ProjectTeams> teams = new List<ProjectTeams>();
+                foreach (var data in id.Split(','))
+                {
+                    teams.Add(new ProjectTeams()
+                    {
+                        Id = Guid.NewGuid(),
+                        ProjectId = proid,
+                        CurrentlyWorking = true,
+                        UserId = Guid.Parse(data),
+                    });
+                }
+                _teamrepository.InsertRange(teams);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         #region Delete Method
         [Route("api/Project/Delete/{id}")]
@@ -178,6 +192,51 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
         #endregion
+
+        [Route("api/Project/UpdateWorkingStatus")]
+        [HttpGet]
+        public void UpdateWorkingStatus(string id,string proid)
+        {
+            try
+            {
+                //ProjectTeams data = new ProjectTeams();
+                var userid = Guid.Parse(id);
+                var projectid = Guid.Parse(proid);
+                var data = _teamrepository.GetFirstOrDefault(_ => _.ProjectId == projectid && _.UserId == userid);
+                if(data.CurrentlyWorking == true)
+                {
+                    data.CurrentlyWorking = false;
+                    _teamrepository.Update(data);
+                }
+                else
+                {
+                    data.CurrentlyWorking = true;
+                    _teamrepository.Update(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("api/Project/DeleteMember")]
+        [HttpGet]
+        public bool DeleteMember(string id,string proid)
+        {
+            try
+            {
+                var userid = Guid.Parse(id);
+                var projectid = Guid.Parse(proid);
+                var data = _teamrepository.GetFirstOrDefault(_ => _.ProjectId == projectid && _.UserId == userid);
+                _teamrepository.Delete(data.Id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
         //#region Post Method

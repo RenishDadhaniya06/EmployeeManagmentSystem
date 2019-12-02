@@ -13,6 +13,7 @@ namespace EmployeeManagementSystem.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Services;
     #endregion
 
 
@@ -46,6 +47,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                ProjectTeamViewModel model = new ProjectTeamViewModel();
                 List<Employee> Employees = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
                 return View(new ProjectTeamViewModel());
             }
@@ -191,5 +193,65 @@ namespace EmployeeManagementSystem.Controllers
         //    }
         //}
 
+        [WebMethod]
+        public async Task<bool> PostTeam(string id,string proid)
+        {
+            try
+            {
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<JsonResult> Team(string id, string pid)
+        {
+            try
+            {
+                if(id != null && pid != null)
+                {
+                    await APIHelpers.GetAsync<string>("api/Project/PostTeam?id=" + id + "&pid=" + pid);
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<JsonResult> UpdateStatus(string id,string proid)
+        {
+            try
+            {
+                if(id != null && proid != null)
+                {
+                    await APIHelpers.GetAsync<string>("api/Project/UpdateWorkingStatus?id=" + id + "&proid=" + proid);
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<JsonResult> DeleteTeamMember(string id, string proid)
+        {
+            try
+            {
+                if (id != null && proid != null)
+                {
+                    await APIHelpers.GetAsync<string>("api/Project/DeleteMember?id=" + id + "&proid=" + proid);
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

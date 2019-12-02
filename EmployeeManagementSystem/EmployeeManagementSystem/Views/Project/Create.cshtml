@@ -28,8 +28,77 @@
     function SaveTeam() {
         debugger
         var employee = $("#openViewTeam").find("#Employees").val();
+        var emp = employee.join(",");
+        console.log("Emp : " + emp);
+        var projectid = '@data.Id';
         console.log(employee);
-        $('#myModal').modal('hide');
+        //location.href = '@Url.Action("PostTeam","Project")?id=' + employee;
+        @*$.ajax({
+            type: "POST",
+            url: '@Url.Action("PostTeam","Project")',
+            data: { id: emp, proid : projectid  },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(msg) {
+                // Replace the div's content with the page method's return.
+                debugger
+                console.log(msg);
+            }, error: function (err) {
+                console.log(err);
+            }
+        });*@
+         $.ajax({
+            url: '@Url.Action("Team","Project")',
+            data: { 'id': employee.join(','),pid: '@Model.Id' },
+            type: 'post',
+            success: function (data) {
+                if (data) {
+                    //toastify("error", 'Record deleted successfully');
+                    document.location.reload()
+                }
+                $('#myModal').modal('hide');
+            }, error: function (err) {
+                toastify("error", err.statusText);
+                $('#myModal').modal('hide');
+            }
+        });
+
+    }
+
+    function updateStatus(id) {
+        debugger
+        console.log(id);
+        $.ajax({
+            url: '@Url.Action("UpdateStatus","Project")',
+            data: { 'id': id, proid: '@Model.Id' },
+            type: 'post',
+            success: function (data) {
+                if (data) {
+                    //toastify("error", 'Record deleted successfully');
+                    document.location.reload()
+                }
+            }, error: function (err) {
+                toastify("error", err.statusText);
+            }
+        });
+    }
+
+    function deleteMember(id) {
+        debugger
+        console.log(id);
+        $.ajax({
+            url: '@Url.Action("DeleteTeamMember","Project")',
+            data: { 'id': id, proid: '@Model.Id' },
+            type: 'post',
+            success: function (data) {
+                if (data) {
+                    //toastify("error", 'Record deleted successfully');
+                    document.location.reload()
+                }
+            }, error: function (err) {
+                toastify("error", err.statusText);
+            }
+        });
     }
 </script>
 
@@ -91,7 +160,7 @@
                             @Html.TextBoxFor(model => model.Documents, new { @class = "form-control row", type = "file", multiple = "multiple" })
                         </div>*@
                     @*@if (Model.Id != Guid.Empty)
-                        {
+
                             <div class="col-lg-12 form-group">
                                 @Html.Label("Team Member", htmlAttributes: new { @class = "control-label" })
                                 @Html.DropDownList("Employees", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
@@ -99,104 +168,115 @@
 
                         }*@
                 </div>
-                <div style="text-align:center; padding:20px"> <h1> Team Members </h1></div>
-                <div class="row">
-                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center">
-                                    Name
-                                </th>
-                                <th style="text-align:center">
-                                    Mobile
-                                </th>
-                                <th style="text-align:center">
-                                    Currently Working
-                                </th>
-                                <th style="text-align:center">
-                                    View Employee
-                                </th>
-                                <th style="text-align:center">
-                                    Delete
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Employees)
-                            {
-                                <tr>
-                                    <td> @item.FirstName  @item.MiddleName  @item.LastName</td>
-                                    <td>  @item.Phone</td>
-                                    <td style="text-align:center">
-                                        @if (item.CurrentlyWorking)
-                                        {
-                                            <button type="button" class="btn btn-success btn-sm pointer ">
-                                                <i class="fa fa-check"></i>
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="button" class="btn btn-danger btn-sm pointer ">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        }
-                                    </td>
+                @if (Model.Employees != null)
+                {
 
-                                    <td style="text-align:center">
-                                        <button type="button" class="btn btn-primary btn-sm text-center pointer ">
-                                            <i class="fa fa-eye"> </i>
-                                        </button>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName"></a>
-
-                                    </td>
-                                </tr>
-                                @*<div class="col-md-3 col-sm-3  profile_details">
-                                        <div class="well profile_view">
-                                            <div class="col-sm-12" style="padding:10px">
-                                                <h2>@item.FirstName  @item.MiddleName  @item.LastName</h2>
-                                                <ul class="list-unstyled">
-                                                    <li><i class="fa fa-phone"></i> Phone #:  @item.Phone</li>
-                                                    <li>
-                                                        Currently Working
-                                                        @if (item.CurrentlyWorking)
-                                                        {
-                                                            <button type="button" class="btn btn-success btn-sm">
-                                                                <i class="fa fa-check"></i>
-                                                            </button>
-                                                        }
-                                                        else
-                                                        {
-                                                            <button type="button" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-times"></i>
-                                                            </button>
-                                                        }
-                                                    </li>
-                                                </ul>
-
-                                                <button type="button" class="btn btn-primary btn-sm text-center">
-                                                    <i class="fa fa-user"> </i> View Profile
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>*@
-                            }
-                        </tbody>
-                    </table>
-
-
-                </div>
-                <div class="row">
-
-                        <div class="col-md-offset-5">
-                            <input type="submit" value="Save" class="btn btn-success" />
-                            @if (Model.Id != Guid.Empty)
-                            {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
-                            }
-                            <a href="@Url.Action("Index","Project")" class="btn btn-primary">Cancel</a>
-                        </div>
+                    @*<h3>No. of Team Members : @Model.Employees.Count()</h3>
+                        <div style="text-align:center; padding:20px"> <h1> Team Members </h1></div>*@
+                    <div style="padding:20px">
+                        <h1 style="text-align:center">Team Members</h1>
+                        <h3>No. of Team Members : @Model.Employees.Count()</h3>
                     </div>
+                    <div class="row">
+                        <table id="demoGrid" class="table table-striped{ table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">
+                                        Name
+                                    </th>
+                                    <th style="text-align:center">
+                                        Mobile
+                                    </th>
+                                    <th style="text-align:center">
+                                        Currently Working
+                                    </th>
+                                    @*<th style="text-align:center">
+                                            View Employee
+                                        </th>*@
+                                    <th style="text-align:center">
+                                        Delete
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Employees)
+                                {
+                                    <tr>
+                                        <td> @item.FirstName  @item.MiddleName  @item.LastName</td>
+                                        <td>  @item.Phone</td>
+                                        <td style="text-align:center">
+                                            @if (item.CurrentlyWorking)
+                                            {
+                                                <button type="button" class="btn btn-success btn-sm pointer " onclick="updateStatus('@item.UserId')">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-danger btn-sm pointer " onclick="updateStatus('@item.UserId')">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            }
+                                        </td>
+
+                                        @*<td style="text-align:center">
+                                                <button type="button" class="btn btn-primary btn-sm text-center pointer ">
+                                                    <i class="fa fa-eye"> </i>
+                                                </button>
+                                            </td>*@
+                                        <td style="text-align:center">
+                                            @*<a class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></a>*@
+                                            <button class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
+
+                                        </td>
+                                    </tr>
+                                    @*<div class="col-md-3 col-sm-3  profile_details">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12" style="padding:10px">
+                                                    <h2>@item.FirstName  @item.MiddleName  @item.LastName</h2>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fa fa-phone"></i> Phone #:  @item.Phone</li>
+                                                        <li>
+                                                            Currently Working
+                                                            @if (item.CurrentlyWorking)
+                                                            {
+                                                                <button type="button" class="btn btn-success btn-sm">
+                                                                    <i class="fa fa-check"></i>
+                                                                </button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button type="button" class="btn btn-danger btn-sm">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                            }
+                                                        </li>
+                                                    </ul>
+
+                                                    <button type="button" class="btn btn-primary btn-sm text-center">
+                                                        <i class="fa fa-user"> </i> View Profile
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                }
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                }
+                <div class="row">
+
+                    <div class="col-md-offset-5">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        @if (Model.Id != Guid.Empty)
+                        {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
+                        }
+                        <a href="@Url.Action("Index","Project")" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
             </div>
         }
     </div>
