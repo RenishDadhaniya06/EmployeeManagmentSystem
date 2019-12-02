@@ -233,6 +233,31 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
+        [Route("api/Project/ChangeWorkingStatus/{id}")]
+        [HttpGet]
+        public void ChangeWorkingStatus(string id)
+        {
+            try
+            {
+                var teamId = Guid.Parse(id);
+                var data = _teamrepository.GetById(teamId);
+                if(data.CurrentlyWorking == true)
+                {
+                    data.CurrentlyWorking = false;
+                    _teamrepository.Update(data);
+                }
+                else
+                {
+                    data.CurrentlyWorking = true;
+                    _teamrepository.Update(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         [Route("api/Project/DeleteMember")]
         [HttpGet]
         public bool DeleteMember(string id,string proid)

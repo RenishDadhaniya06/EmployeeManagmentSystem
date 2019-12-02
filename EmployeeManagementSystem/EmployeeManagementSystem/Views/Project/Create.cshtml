@@ -27,7 +27,6 @@
 
     <script type="text/javascript">
 
-    debugger
     var j = jQuery.noConflict();
 
     var skill = '@data.EmployeeId'
@@ -37,17 +36,13 @@
         j('#Employees').multiselect('select', skillArr);
     });
     $('.open-prompt').click(function () {
-        debugger
         $('#myModal').modal('show');
     });
 
     function SaveTeam() {
-        debugger
         var employee = $("#openViewTeam").find("#Employees").val();
         var emp = employee.join(",");
-        console.log("Emp : " + emp);
         var projectid = '@data.Id';
-        console.log(employee);
         //location.href = '@Url.Action("PostTeam","Project")?id=' + employee;
         @*$.ajax({
             type: "POST",
@@ -82,8 +77,6 @@
     }
 
     function updateStatus(id) {
-        debugger
-        console.log(id);
         $.ajax({
             url: '@Url.Action("UpdateStatus","Project")',
             data: { 'id': id, proid: '@Model.Id' },
@@ -100,8 +93,6 @@
     }
 
     function deleteMember(id) {
-        debugger
-        console.log(id);
         $.ajax({
             url: '@Url.Action("DeleteTeamMember","Project")',
             data: { 'id': id, proid: '@Model.Id' },

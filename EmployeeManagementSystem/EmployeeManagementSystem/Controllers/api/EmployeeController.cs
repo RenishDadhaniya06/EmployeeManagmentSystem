@@ -187,5 +187,19 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
         #endregion
+
+        [Route("api/Employee/Projects/{id}")]
+        [HttpGet]
+        public async Task<List<ProjectViewModel>> GetProjects(Guid id)
+        {
+            try
+            {
+                return await _iCustomerService.GetProjectsbyUserId(id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

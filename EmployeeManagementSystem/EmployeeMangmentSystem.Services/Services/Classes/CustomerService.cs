@@ -244,5 +244,10 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.TeamByProjectIdGet(id);
         }
+
+        public async Task<List<ProjectViewModel>> GetProjectsbyUserId(Guid id)
+        {
+            return await dbContext.GetProjectsbyUserId(id);
+        }
     }
 }
