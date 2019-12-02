@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeManagementSystem.Models;
     using EmployeeMangmentSystem.Repository.Models;
@@ -26,15 +27,33 @@ namespace EmployeeManagementSystem.Controllers
             return View();
         }
 
-        public async Task<ActionResult> DisplayResources(Guid id)
+        //public async Task<ActionResult> DisplayResources(Guid id)
+        //{
+        //    try
+        //    {
+        //        ResourceViewModel model = new ResourceViewModel();
+        //        ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
+        //        var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources/" + id);
+        //        model.EmployeeUserViewModels = data;
+        //        model.Resource = id;
+        //        return View("Index", model);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public async Task<ActionResult> DisplayResources(ResourceViewModel model1)
         {
             try
             {
                 ResourceViewModel model = new ResourceViewModel();
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
-                var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources/" + id);
+                var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources?id=" + model1.Resource + "&workingid=" + Convert.ToBoolean(model1.IsCurrentlyWorking));
                 model.EmployeeUserViewModels = data;
-                model.Resource = id;
+                model.Resource = model1.Resource;
+                model.IsCurrentlyWorking = model1.IsCurrentlyWorking;
                 return View("Index", model);
             }
             catch (Exception ex)

@@ -1,7 +1,7 @@
 ﻿@model EmployeeMangmentSystem.Repository.Models.ViewModel.ResourceViewModel
 
 @{
-    ViewBag.Title = "Resources";
+    ViewBag.Title = "Available Resource by Skill";
 }
 
 <div class="x_panel">
@@ -15,7 +15,9 @@
         <div class="nav navbar-right">
             <div>
                 <a class="btn btn-success fa fa-file-pdf-o" id="submit"></a>
+                <a class="btn btn-success fa fa-exc" id="print"></a>
             </div>
+
         </div>
 
         <div class="clearfix"></div>
@@ -23,14 +25,24 @@
     <div class="x_content">
         <div class="row">
             <div class="col-md-8">
-                <div class="form-row">
+                @using (Html.BeginForm("DisplayResources", "Resource", FormMethod.Post))
+                {
+                    @*@Html.AntiForgeryToken()*@
                     <div class="form-group">
-                        @Html.Label("Select Skill", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.DropDownListFor(model => Model.Resource, new SelectList(ViewBag.Skills, "Id", "Name"), "Select Role", new { @class = "form-control", onchange = "SelectedIndexChanged()", @id = "SkillId" })
+                        @Html.LabelFor(model => model.Resource, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Resource, new SelectList(ViewBag.Skills, "Id", "Name"), "Select Skill", new { @class = "form-control" })
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsCurrentlyWorking, htmlAttributes: new { @class = "Control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EnumDropDownListFor(model => model.IsCurrentlyWorking, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <input type="submit" value="Search" class="btn btn-success" style="margin-left: 30px;" />
+
+                }
             </div>
         </div>
         @if (Model != null)
@@ -75,15 +87,16 @@
     </div>
 </div>
 
-<script>
-    function SelectedIndexChanged() {
-        if ($("#SkillId").val() != "") {
-            location.href = '@Url.Action("DisplayResources", "Resource")?id=' + $("#SkillId").val();
-        } else {
-            $("#skills").toggle();
+@*<script>
+        function SelectedIndexChanged() {
+            if ($("#SkillId").val() != "") {
+                location.href = '@Url.Action("DisplayResources", "Resource")?id=' + $("#SkillId").val();
+            } else {
+                $("#skills").toggle();
+            }
         }
-    }
-</script>
+    </script>*@
+
 
 <script type="text/javascript">
     if ($('#SkillId').val() != "") {
@@ -92,5 +105,5 @@
         location.href = url + '/' + $('#SkillId').val();
         })
     }
-
 </script>
+

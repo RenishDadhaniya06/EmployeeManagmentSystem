@@ -230,9 +230,9 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return await dbContext.GetProjects();
         }
 
-        public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id)
+        public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid)
         {
-            return await dbContext.GetAvailableResources(id);
+            return await dbContext.GetAvailableResources(id,workingid);
         }
     }
 }

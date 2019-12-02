@@ -1,4 +1,6 @@
-﻿namespace Helpers
+﻿using System.ComponentModel;
+
+namespace Helpers
 {
     /// <summary>
     /// Enums
@@ -57,8 +59,17 @@
 
         public enum ProjectType
         {
+            [Description("Fixed Price Project (FPP)")]
             FixedPriceProject = 0,
+            [Description("Hire Based Project")]
             HireBasedProject = 1
+        }
+
+        public enum IsCurrentlyWorking
+        {
+            Working = 1,
+            [Description("Not Working")]
+            NotWorking = 0
         }
         
     }
