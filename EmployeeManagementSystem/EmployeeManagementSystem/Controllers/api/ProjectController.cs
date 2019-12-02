@@ -34,12 +34,11 @@ namespace EmployeeManagementSystem.Controllers.api
 
         #region Get All Method
         [Route("api/Project/GetProjects")]
-        public IEnumerable<Projects> GetProjects()
+        public async System.Threading.Tasks.Task<IEnumerable<ProjectTeamViewModel>> GetProjects()
         {
             try
             {
-                //var temp = _customerService.GetProjects(); For Getting projects from sp
-                var data = _repository.GetAll();
+                var data = await _customerService.GetProjects();
                 return data;
             }
             catch (Exception ex)
@@ -67,27 +66,37 @@ namespace EmployeeManagementSystem.Controllers.api
 
         #region GetbyId Method
         [Route("api/Project/GetTeam/{id}")]
-        public ProjectTeamViewModel GetTeam(Guid id)
+        public async System.Threading.Tasks.Task<ProjectTeamViewModel> GetTeam(Guid id)
         {
             try
             {
-                var data = _repository.GetById(id);
-                ProjectTeamViewModel team = new ProjectTeamViewModel
-                {
-                    Id = data.Id,
-                    Name = data.Name,
-                    Description = data.Description,
-                    ProjectStatus = data.ProjectStatus,
-                    ProjectType = data.ProjectType,
-                    Documents = data.Documents
-                };
-                return team;
+
+                 List<ProjectTeamViewModel> projectList = await _customerService.GetProjects();
+                var single = projectList.Find(_=>_.Id == id);
+             
+                return single;
             }
             catch (Exception ex)
             {
                 throw;
             }
         }
+        [Route("api/Project/GetTeamById/{id}")]
+        public async System.Threading.Tasks.Task<List<TeamViewModel>> GetTeamById(Guid id)
+        {
+            try
+            {
+
+                List<TeamViewModel> projectList = await _customerService.TeamByProjectIdGet(id);
+
+                return projectList;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
         #region Post Method
@@ -131,6 +140,7 @@ namespace EmployeeManagementSystem.Controllers.api
                     Documents = model.Documents
                 };
                 var updatedata = _repository.Update(pro);
+                _teamrepository.DeleteWhere(_=>_.ProjectId == pro.Id);
                 List<ProjectTeams> teams = new List<ProjectTeams>();
                 foreach(var data in model.EmployeeId.Split(','))
                 {

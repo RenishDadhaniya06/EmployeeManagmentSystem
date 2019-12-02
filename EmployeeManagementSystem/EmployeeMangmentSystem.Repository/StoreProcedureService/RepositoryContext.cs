@@ -236,5 +236,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             var data = await Database.SqlQuery<ProjectTeamViewModel>(@"exec [dbo].[GetProjects]").ToListAsync();
             return data;
         }
+
+        public async Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id)
+        {
+            var data = await Database.SqlQuery<TeamViewModel>(@"exec [dbo].[TeamByProjectIdGet] @p0", id).ToListAsync();
+            return data;
+        }
     }
 }

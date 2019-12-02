@@ -144,8 +144,19 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <returns></returns>
         Task<List<Candidates>> GetCandidateSearchDetail(string name);
 
+        /// <summary>
+        /// Gets the employee user view model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
 
         Task<List<ProjectTeamViewModel>> GetProjects();
+
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns></returns>
+        Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.Projects>
+﻿@model IEnumerable<EmployeeMangmentSystem.Repository.Models.ViewModel.ProjectTeamViewModel>
 @using Helpers
 @using EmployeeMangmentSystem.Resources
 
@@ -14,31 +14,15 @@
                 @ViewBag.Title
             }
         </h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li>
-                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
+        <div class="nav navbar-right ">
+            <a class="btn btn-success glyphicon glyphicon-plus" style="margin-left:10px" href="@Url.Action("Create","Project")"></a>
+            <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Project", new { target = "_blank" })"></a>
 
-        </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
 
-        <div class="row">
-            <div class="col-md-1">
-
-                <p>
-                    <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Project")"></a>
-                </p>
-            </div>
-            <div class="col-md-10"></div>
-            <div class="col-md-1">
-                <p>
-                    <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Project", new { target = "_blank" })"></a>
-
-                </p>
-            </div>
-        </div>
         @if (Model.Count() > 0)
         {
             <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
@@ -47,8 +31,8 @@
                         <th style="text-align:center">
                             @Html.DisplayNameFor(model => model.Name)
                         </th>
-                        <th style="text-align:center">
-                            @Html.DisplayNameFor(model => model.Description)
+                        <th>
+                            Team Member
                         </th>
                         <th style="text-align:center">
                             @Html.DisplayNameFor(model => model.ProjectStatus)
@@ -67,44 +51,57 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @if (item.ProjectStatus == Enums.ProjectStatus.Active)
-                            {
-                                @CommonResources.Active
-                            }
-                            else if (item.ProjectStatus == Enums.ProjectStatus.Pending)
-                            {
-                                @CommonResources.Pending
-                            }
-                            else
-                            {
-                                @CommonResources.Closed
-                            }
-                        </td>
-                        <td>
-                            @if (item.ProjectType == Enums.ProjectType.FixedPriceProject)
-                            {
-                                @CommonResources.FPP
-                            }
-                            else
-                            {
-                                @CommonResources.Hire
-                            }
-                        </td>
-                        <td style="text-align:center">
-                            <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Project", new { id = @item.Id })"></a>
-                        </td>
-                        <td style="text-align:center">
-                            <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <ul class="list-inline">
+                                    @if (!string.IsNullOrWhiteSpace(item.EmployeeId))
+                                    {
+
+
+                                        foreach (var i in item.EmployeeId.Split(','))
+                                        {
+                                            <li>
+                                                <a class="glyphicon glyphicon-user avatar" alt="Avatar" data-whatever="used"></a>
+                                            </li>
+
+                                        }
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+                                @if (item.ProjectStatus == Enums.ProjectStatus.Active)
+                                {
+                                    @CommonResources.Active
+                                }
+                                else if (item.ProjectStatus == Enums.ProjectStatus.Pending)
+                                {
+                                    @CommonResources.Pending
+                                }
+                                else
+                                {
+                                    @CommonResources.Closed
+                                }
+                            </td>
+                            <td>
+                                @if (item.ProjectType == Enums.ProjectType.FixedPriceProject)
+                                {
+                                    @CommonResources.FPP
+                                }
+                                else
+                                {
+                                    @CommonResources.Hire
+                                }
+                            </td>
+                            <td style="text-align:center">
+                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Project", new { id = @item.Id })"></a>
+                            </td>
+                            <td style="text-align:center">
+                                <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
