@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers.api
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
@@ -8,6 +9,7 @@ namespace EmployeeManagementSystem.Controllers.api
     using EmployeeMangmentSystem.Services.Services;
     using System;
     using System.Collections.Generic;
+    using System.Web;
     using System.Web.Http;
     #endregion
 
@@ -38,8 +40,19 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             try
             {
-                var data = await _customerService.GetProjects();
-                return data;
+                return await _customerService.GetProjects(); 
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        [Route("api/Project/GetProjectsByUserId/{id}")]
+        public async System.Threading.Tasks.Task<IEnumerable<ProjectTeamViewModel>> GetProjectsByUserId(string id)
+        {
+            try
+            {
+                return await _customerService.GetProjectsByUserId(id);
             }
             catch (Exception ex)
             {

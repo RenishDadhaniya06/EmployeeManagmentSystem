@@ -229,6 +229,11 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
         {
             return await dbContext.GetProjects();
         }
+        public async Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id)
+        {
+            return await dbContext.GetProjectsByUserId(id);
+        }
+        
 
         public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid)
         {

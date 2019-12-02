@@ -34,7 +34,7 @@ namespace EmployeeMangmentSystem.Repository.Models
 
         [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
-        public long Phone { get; set; }
+        public string Phone { get; set; }
 
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
@@ -45,18 +45,18 @@ namespace EmployeeMangmentSystem.Repository.Models
 
         [Display(Name = "Other Contact")]
         [DataType(DataType.PhoneNumber)]
-        public long OtherContact { get; set; }
+        public string OtherContact { get; set; }
 
         public Guid Department { get; set; }
 
 
         [Display(Name = "Current Salary")]
 
-        public long CurrentSalary { get; set; }
+        public string CurrentSalary { get; set; }
 
         [Display(Name = "Leave Balance")]
 
-        public decimal LeaveBalance { get; set; }
+        public string LeaveBalance { get; set; }
 
         public bool IsEmailVerified { get; set; }
 

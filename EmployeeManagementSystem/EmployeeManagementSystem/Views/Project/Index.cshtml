@@ -4,6 +4,8 @@
 
 @{
     ViewBag.Title = "Projects";
+    var role = EmployeeManagementSystem.Helper.CommonHelper.CurrentRoleName();
+
 }
 
 <div class="x_panel">
@@ -14,7 +16,7 @@
                 @ViewBag.Title
             }
         </h2>
-        
+
         <div class="nav navbar-right">
             <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Project")"></a>
             <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Project", new { target = "_blank" })"></a>
@@ -40,11 +42,22 @@
                             @Html.DisplayNameFor(model => model.ProjectType)
                         </th>
                         <th style="text-align:center">
-                            Edit
+                            @if (role == "Admin" || role == "PM")
+                            {
+                                <span>Edit</span>
+                            }
+                            else
+                            {
+                                <span>View</span>
+
+                            }
                         </th>
-                        <th style="text-align:center">
-                            Delete
-                        </th>
+                        @if (role == "Admin" || role == "PM")
+                        {
+                            <th style="text-align:center">
+                                Delete
+                            </th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -95,11 +108,25 @@
                                 }
                             </td>
                             <td style="text-align:center">
-                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Project", new { id = @item.Id })"></a>
+                                @if (role == "Admin" || role == "PM")
+                                {
+
+                                    <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Project", new { id = @item.Id })"></a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-info glyphicon glyphicon-eye-open" href="@Url.Action("Edit", "Project", new { id = @item.Id })"></a>
+
+                                }
                             </td>
-                            <td style="text-align:center">
-                                <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
-                            </td>
+                            @if (role == "Admin" || role == "PM")
+                            {
+                                <td style="text-align:center">
+
+                                    <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.Name"></a>
+                                </td>
+                            }
+
                         </tr>
                     }
                 </tbody>

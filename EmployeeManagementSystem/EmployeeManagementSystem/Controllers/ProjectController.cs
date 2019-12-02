@@ -26,10 +26,16 @@ namespace EmployeeManagementSystem.Controllers
         // GET: Project
         public async Task<ActionResult> Index()
         {
-            var data = await APIHelpers.GetAsync<List<ProjectTeamViewModel>>("api/Project/GetProjects");
-            if (data == null)
+            var roleName = EmployeeManagementSystem.Helper.CommonHelper.CurrentRoleName();
+            var data = new List<ProjectTeamViewModel>();
+            if (roleName == "Employee")
             {
-                data = new List<ProjectTeamViewModel>();
+                data = await APIHelpers.GetAsync<List<ProjectTeamViewModel>>("api/Project/GetProjectsByUserId/"+ EmployeeManagementSystem.Helper.CommonHelper.GetUserId());
+            }
+            else
+            {
+                 data = await APIHelpers.GetAsync<List<ProjectTeamViewModel>>("api/Project/GetProjects");
+
             }
             return View(data.ToList());
         }

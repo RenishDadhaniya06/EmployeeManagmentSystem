@@ -162,6 +162,7 @@
                         <div class="col-lg-6 form-group">
                             @*@Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })*@
                             @Html.DropDownList("Skill", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
+                            <a class="btn btn-success glyphicon glyphicon-plus" onclick="OpenSkill();"></a>
                         </div>
                     }
                     </div>

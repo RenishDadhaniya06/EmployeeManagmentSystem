@@ -66,7 +66,6 @@ namespace EmployeeManagementSystem.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -85,42 +84,19 @@ namespace EmployeeManagementSystem.Controllers
 
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, change to shouldLockout: true
-                //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-                var user = await SignInManager.UserManager.FindAsync(model.Email, model.Password);
-
-                if (user != null && user.UserStatus == Status.Active)
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
                 {
-                    if(user.UserStatus == Status.InActive)
-                    {
-                        TempData["error"] = "This Account is inactive";
-                        return View();
-                    }
-                    else if(user.UserStatus == Status.Block)
-                    {
-                        TempData["error"] = "This Account is blocked";
-                        return View();
-                    }
-                    else if(user.UserStatus == Status.Suspended)
-                    {
-                        TempData["error"] = "This Account is suspended";
-                        return View();
-                    }
-                    else
-                    {
-                        var ctx = Request.GetOwinContext();
-                        var identity = await UserManager.CreateIdentityAsync(
-                        user, DefaultAuthenticationTypes.ApplicationCookie);
-                        var authManager = ctx.Authentication;
-                        authManager.SignIn(identity);
-                        TempData["sucess"] = "Sucessfully Login.";
+                    case SignInStatus.Success:
                         return RedirectToAction("Index", "Home");
-                    }
-                   
-                }
-                else
-                {
-                    TempData["error"] = "UserName or Password is wrong! Try Again.";
-                    return View();
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
                 }
             }
             catch (Exception ex)
@@ -309,7 +285,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             var ctx = Request.GetOwinContext();
             var authManager = ctx.Authentication;
-
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             authManager.SignOut("ApplicationCookie");
             return RedirectToAction("Login");
         }

@@ -142,6 +142,7 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
 
         Task<List<ProjectTeamViewModel>> GetProjects();
+        Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id);
 
         Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid);
 

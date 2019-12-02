@@ -82,7 +82,7 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <param name="leavetype">The leavetype.</param>
         /// <param name="leavestatus">The leavestatus.</param>
         /// <returns></returns>
-        Task<List<LeaveViewModel>> GetFilters(string name, DateTime fromdate,DateTime todate,Int32 leavetype,Int32 leavestatus);
+        Task<List<LeaveViewModel>> GetFilters(string name, DateTime fromdate, DateTime todate, Int32 leavetype, Int32 leavestatus);
 
         /// <summary>
         /// Gets the openings.
@@ -123,7 +123,7 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <param name="skill">The skill.</param>
         /// <param name="technologies">The technologies.</param>
         /// <returns></returns>
-        Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill,string technologies);
+        Task<List<DisplayCandidateViewModel>> GetFilterCandidate(string skill, string technologies);
 
         /// <summary>
         /// Gets the interviewers.
@@ -152,7 +152,7 @@ namespace EmployeeMangmentSystem.Services.Services
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
 
         Task<List<ProjectTeamViewModel>> GetProjects();
-
+        Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id);
         /// <summary>
         /// Gets the projects.
         /// </summary>
