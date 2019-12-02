@@ -43,9 +43,10 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 //HttpPostedFileBase file;
-               
+                if (!string.IsNullOrEmpty(Logo.FileName)) { 
                 Logo.SaveAs(Server.MapPath("~/Images/" + Logo.FileName));
                 collection.Logo = Logo.FileName;
+                }
                 // TODO: Add insert logic here
                 ModelState.Remove("Id");
                 if (ModelState.IsValid)

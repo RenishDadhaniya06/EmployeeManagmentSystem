@@ -34,10 +34,12 @@ namespace EmployeeMangmentSystem.Repository.Models
 
         [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
+
         public string Phone { get; set; }
 
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
         [Display(Name = "Address")]

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
+    var data = Model;
 }
 @using (Html.BeginForm("Create", "Setting", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -42,12 +43,20 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-8">
-                                @Html.TextBoxFor(model => model.Logo, new { @class = "form-control", type = "file"})
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Logo, new { @class = "form-control", accept = "image/x-png,image/gif,image/jpeg", type = "file", @onchange = "readURL(this);" })
                                 @*<input type="file" name="Logo" class="form-control" />*@
                                 @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
                             </div>
+                            <div class="form-group col-md-4">
+
+                                @if (data != null && data.Logo != "")
+                                {
+                                    <img src="~/Images/@Model.Logo" id="selctedImage" height="100" width="100" />
+                                }
+                            </div>
                         </div>
+                       
                         <div class="form-group">
                             @Html.LabelFor(model => model.ShowDate, new { @class = "control-label col-md-2" })
                             <div class="col-md-8">
@@ -106,14 +115,30 @@
                 </div>
             </div>
         </div>
-     
-                <div class="form-group">
-                    <div class="col-md-offset-6 col-md-6">
-                        <div class="col-md-2">
-                            <input type="submit" value="Update" class="btn btn-primary" />
-                        </div>
-                    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-6">
+                <div class="col-md-2">
+                    <input type="submit" value="Update" class="btn btn-primary" />
                 </div>
             </div>
-       
+        </div>
+    </div>
+
 }
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#selctedImage')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
