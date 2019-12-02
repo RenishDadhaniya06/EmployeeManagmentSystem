@@ -22,15 +22,17 @@ namespace EmployeeManagementSystem.Controllers.api
         #region Properties
         private IRepository<Employee> _repository;
         private IRepository<CandidateSkills> _skillrepository;
+        private IRepository<ProjectTeams> _projectteamrepository;
         private ICustomerService _iCustomerService;
         #endregion
 
         #region Constructor
-        public EmployeeController(IRepository<Employee> repository,ICustomerService customerService,IRepository<CandidateSkills> skillrepository)
+        public EmployeeController(IRepository<Employee> repository,ICustomerService customerService,IRepository<CandidateSkills> skillrepository,IRepository<ProjectTeams> projectrepository)
         {
             _repository = repository;
             _iCustomerService = customerService;
             _skillrepository = skillrepository;
+            _projectteamrepository = projectrepository;
         }
         #endregion
 
@@ -151,8 +153,10 @@ namespace EmployeeManagementSystem.Controllers.api
         [HttpDelete]
         public bool Delete(Guid id)
         {
-            _skillrepository.DeleteWhere(_ => _.CandidateId == id);
+            var data = Get(id);
             _repository.Delete(id);
+            _skillrepository.DeleteWhere(_ => _.CandidateId == id);
+            _projectteamrepository.DeleteWhere(_ => _.UserId == data.UserId);
             return true;
         }
         #endregion

@@ -58,6 +58,7 @@
                             <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
                         }
                         <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
+                        <li><a href="@Url.Action("Index","Resource")"> <i class="fa fa-file"></i>Report</a></li>
                         @*<li>
                 <a><i class="fa fa-leaf"></i> Leave Management <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -81,6 +82,8 @@
                                 <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
 
                                 <li><a href="@Url.Action("Index", "Skill")">@SkillsResources.name</a></li>
+
+
 
 
                                 @*@if (CommonHelper.CheckPermission("City", "Read"))

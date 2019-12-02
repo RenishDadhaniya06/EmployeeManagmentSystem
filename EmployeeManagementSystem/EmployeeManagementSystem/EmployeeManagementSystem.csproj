@@ -308,6 +308,7 @@
     <Compile Include="Controllers\api\OpeningController.cs" />
     <Compile Include="Controllers\api\ProjectController.cs" />
     <Compile Include="Controllers\api\ReportsController.cs" />
+    <Compile Include="Controllers\api\ResourceController.cs" />
     <Compile Include="Controllers\api\RolePermissionsController.cs" />
     <Compile Include="Controllers\api\SettingController.cs" />
     <Compile Include="Controllers\api\SkillController.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="Controllers\OpeningController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\RolePermissionController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
@@ -977,6 +979,8 @@
     <Content Include="Views\Reports\ViewReport.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Resource\Index.cshtml" />
+    <Content Include="Views\Resource\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

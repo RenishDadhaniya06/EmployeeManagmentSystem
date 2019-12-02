@@ -168,6 +168,7 @@ namespace EmployeeManagementSystem.Controllers.api
         {
             try
             {
+                _teamrepository.DeleteWhere(_ => _.ProjectId == id);
                 _repository.Delete(id);
                 return true;
             }
