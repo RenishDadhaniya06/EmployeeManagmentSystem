@@ -39,8 +39,8 @@ namespace EmployeeManagementSystem.Helper
 
         public static Guid CurrentEmployeeId()
         {
-           var useri= GetUserId();
-            var user = _repositoryDbContext.Employees.Where(m => m.UserId == new Guid(useri)).SingleOrDefault();
+            var useri = Guid.Parse(GetUserId());
+            var user = _repositoryDbContext.Employees.Where(m => m.UserId == useri).SingleOrDefault();
             return user.Id;
         }
 

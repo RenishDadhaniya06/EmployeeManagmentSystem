@@ -30,11 +30,11 @@
     });
 
     $(document).ready(function () {
-        $('.datepicker').datepicker({
-            dateFormat: "dd-MMM-yyyy",
-            todayBtn: true,
-            todayHighlight: true
-        });
+        //$('.datepicker').datepicker({
+        //    dateFormat: "dd-MMM-yyyy",
+        //    todayBtn: true,
+        //    todayHighlight: true
+        //});
         $('#Department').val(dept);
     });
 </script>
@@ -63,6 +63,7 @@
             <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.UserId)
                 <div class="row text-left">
                     <div class="col-lg-6 form-group">
                         @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
@@ -101,14 +102,14 @@
                     </div>
 
                     <div class="col-lg-6 form-group">
-                        @Html.TextBoxFor(model => model.Phone, new { @readonly = "readonly", @class = "form-control has-feedback-left" })
+                        @Html.TextBoxFor(model => model.Phone, new {  @class = "form-control has-feedback-left" })
                         <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-lg-6 form-group">
                         <label class="control-label">Other Contact Number</label>
                     </div>
                     <div class="col-lg-6 form-group">
-                        @Html.TextBoxFor(model => model.OtherContact, new { @readonly = "readonly", @class = "form-control" })
+                        @Html.TextBoxFor(model => model.OtherContact, new { @readonly = "readonly",@class = "form-control" })
                     </div>
                 </div>
                 <div class="row text-left">
@@ -125,7 +126,7 @@
                             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-lg-6 form-group">
-                            @Html.TextAreaFor(model => model.Address, new { @readonly = "readonly", @class = "form-control" })
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
                         </div>
 
                     </div>

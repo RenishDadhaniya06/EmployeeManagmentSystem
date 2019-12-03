@@ -52,33 +52,41 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
+                    <tr>
+                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
+                        {
+                            <td style="text-align:center">
+                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Employee", new { id = @item.Id })"></a>
+                            </td>
+                            if (CommonHelper.CurrentEmployeeId() == item.Id)
                             {
-                                <td style="text-align:center">
-                                    <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Employee", new { id = @item.Id })"></a>
-                                </td>
+                                <td></td>
+                            }
+                            else
+                            {
                                 <td style="text-align:center">
                                     <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName + " " + @item.MiddleName + " " + @item.LastName"></a>
                                 </td>
                             }
-                            <td>
-                                @{
-                                    string name = item.FirstName + " " + item.MiddleName + " " + item.LastName;
-                                }
-                                @name
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BirthDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LeaveBalance)
-                            </td>
 
-                        </tr>
+                        }
+                        <td style="text-align:center">
+                            @{
+                                string name = item.FirstName + " " + item.MiddleName + " " + item.LastName;
+                            }
+                            @name
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.BirthDate)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.LeaveBalance)
+                        </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>
