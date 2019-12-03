@@ -89,16 +89,19 @@ namespace EmployeeManagementSystem.Controllers.api
                     UserId = model.UserId,
                 };
                 var data2 = _repository.Insert(emp);
-                foreach (var item in model.Skills.Split(','))
+                if(model.Skills != "")
                 {
-                    skills.Add(new CandidateSkills()
+                    foreach (var item in model.Skills.Split(','))
                     {
-                        Id = Guid.NewGuid(),
-                        CandidateId = data2.Id,
-                        SkillId = Guid.Parse(item)
-                    });
+                        skills.Add(new CandidateSkills()
+                        {
+                            Id = Guid.NewGuid(),
+                            CandidateId = data2.Id,
+                            SkillId = Guid.Parse(item)
+                        });
+                    }
+                    _skillrepository.InsertRange(skills);
                 }
-                _skillrepository.InsertRange(skills);
                 return data2;
             }
             catch (Exception ex)
@@ -134,16 +137,20 @@ namespace EmployeeManagementSystem.Controllers.api
             };
             var data2 = _repository.Update(emp);
             _skillrepository.DeleteWhere(_=> _.CandidateId == emp.Id);
-            foreach (var item in model.Skills.Split(','))
+            if(model.Skills != "")
             {
-                skills.Add(new CandidateSkills()
+                foreach (var item in model.Skills.Split(','))
                 {
-                    Id = Guid.NewGuid(),
-                    CandidateId = data2.Id,
-                    SkillId = Guid.Parse(item)
-                });
+                    skills.Add(new CandidateSkills()
+                    {
+                        Id = Guid.NewGuid(),
+                        CandidateId = data2.Id,
+                        SkillId = Guid.Parse(item)
+                    });
+                }
+                _skillrepository.InsertRange(skills);
             }
-            _skillrepository.InsertRange(skills);
+            
             return data2;
         }
         #endregion
