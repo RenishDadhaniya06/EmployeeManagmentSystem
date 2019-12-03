@@ -92,11 +92,12 @@
                         </li>
 
                         <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
+                        
 
                     </ul>
                 }
 
-
+                
 
 
             </div>
@@ -124,7 +125,9 @@
                 </a>
             }else
             {
-           
+        <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")">
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+        </a>
 
             <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
