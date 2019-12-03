@@ -320,30 +320,38 @@
 
                                             }
                                         </td>
-                                        </tr>
+                                    </tr>
 
-                                    }
-                                        </tbody>
-                                    </table>
+                                }
+                            </tbody>
+                        </table>
 
 
 
-                                </div>
-                            }
-                                <div class="row">
+                    </div>
+                }
+                <div class="row">
 
-                                    <div class="col-md-offset-5">
-                                        <input type="submit" value="Save" class="btn btn-success" />
-                                        @if (Model.Id != Guid.Empty && role != "Employee")
-                                        {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
-                                        }
-                                        <a href="@Url.Action("Index","Project")" class="btn btn-primary">Cancel</a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-md-offset-5">
+                        @if (Model.Id == Guid.Empty)
+                        {
+                            <input type="submit" value="Save" class="btn btn-success" />
                         }
+                        else
+                        {
+                            <input type="submit" value="Update" class="btn btn-success" />
+                        }
+
+                        @if (Model.Id != Guid.Empty && role != "Employee")
+                        {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
+                        }
+                        <a href="@Url.Action("Index","Project")" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        }
+    </div>
+</div>
 
         @if (Model.Id != Guid.Empty)
         {<div class="modal fade" id="openViewTeam" tabindex="-1" role="dialog" aria-labelledby="openViewTeam" aria-hidden="true">
@@ -370,6 +378,6 @@
             </div>
         }
 
-        <script>
+<script>
     var deleteUrl = '@Url.Action("DeleteTeamPlayer", "Project")';
-        </script>
+</script>

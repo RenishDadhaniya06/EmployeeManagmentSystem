@@ -1,7 +1,14 @@
 ﻿@model EmployeeMangmentSystem.Repository.Models.Designation
 
 @{
-    ViewBag.Title = "Create Designation";
+    if (Model.Id == Guid.Empty)
+    {
+        ViewBag.Title = "Add Designation";
+    }
+    else
+    {
+        ViewBag.Title = "Edit Designation";
+    }
 }
 @*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
 <div class="x_panel">
@@ -25,29 +32,39 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @*     <h4>RegisterViewModel</h4>*@
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                @*     <h4>RegisterViewModel</h4>*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="col-md-2">
-                        <input type="submit" value="Save" class="btn btn-primary" />
-                    </div>
-                    <div class="col-md-2">
-                        <a href="@Url.Action("Index","Designation")" class="btn btn-success">Cancel</a>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @if (Model.Id == Guid.Empty)
+                        {
+                            <div class="col-md-2">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                            </div>
+                        }
+
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Index","Designation")" class="btn btn-success">Cancel</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </div>

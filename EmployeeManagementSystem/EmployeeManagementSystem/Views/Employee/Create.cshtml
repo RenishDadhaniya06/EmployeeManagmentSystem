@@ -6,7 +6,15 @@
 
 
 @{
-    ViewBag.Title = "Create Employee";
+
+    if (Model.Id == Guid.Empty)
+    {
+        ViewBag.Title = "Add Employee";
+    }
+    else
+    {
+        ViewBag.Title = "Edit Employee";
+    }
     var data = Model;
 }
 @*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
@@ -166,10 +174,10 @@
                     {<div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.RoleId, new { @class = "control-label" })
                         </div>
-                     <div class="col-lg-6 form-group">
-                         @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), new { @class = "form-control" })
-                         @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                     </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                        </div>
                     }
                     <div class="col-lg-6 form-group">
                         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
@@ -186,10 +194,10 @@
                     {<div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
                         </div>
-                     <div class="col-lg-6 form-group">
-                         @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                     </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
                         <div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.Password, new { @class = "control-label" })
                         </div>
@@ -199,10 +207,10 @@
                         </div>
                     }
                     @*else
-                    {
-                        @Html.HiddenFor(model => model.Email)
-                        @Html.HiddenFor(model => model.Password)
-                    }*@
+                        {
+                            @Html.HiddenFor(model => model.Email)
+                            @Html.HiddenFor(model => model.Password)
+                        }*@
 
                 </div>
                 <div class="row text-left">
@@ -309,7 +317,15 @@
 
                 <div class="row text-center">
                     <div>
-                        <input type="submit" value="Save" class="btn btn-success" />
+                        @if (Model.Id == Guid.Empty)
+                        {
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Update" class="btn btn-success" />
+                        }
+
                         <a href="@Url.Action("Index","Employee")" class="btn btn-primary">Cancel</a>
                     </div>
                 </div>
