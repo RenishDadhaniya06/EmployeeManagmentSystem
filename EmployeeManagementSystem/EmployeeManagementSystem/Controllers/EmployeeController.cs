@@ -22,11 +22,79 @@
                 var m = new EmployeeUserViewModel()                {                    BirthDate = DateTime.Today                };                return View(m);            }            catch (Exception ex)            {                return RedirectToAction("AccessDenied", "Error");            }        }
 
         // POST: Employee/Create
-        /// <summary>        /// Creates the specified collection.        /// </summary>        /// <param name="collection">The collection.</param>        /// <returns></returns>        [HttpPost]        [ValidateInput(false)]        public async Task<ActionResult> Create(EmployeeUserViewModel collection)        {            try            {                                string skills = string.Join(",", Request["Skill"]);                ModelState.Remove("BirthDate");                ModelState.Remove("LeaveBalance");
+        /// <summary>        /// Creates the specified collection.        /// </summary>        /// <param name="collection">The collection.</param>        /// <returns></returns>        [HttpPost]        [ValidateInput(false)]        public async Task<ActionResult> Create(EmployeeUserViewModel collection)        {            try            {
+                ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");                ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");                ViewBag.Roles = _applicationDbContext.Roles.ToList();                string skills = string.Join(",", Request["Skill"]);                ModelState.Remove("BirthDate");                ModelState.Remove("LeaveBalance");
+                ModelState.Remove("OtherContact");
+                ModelState.Remove("Skills");
                 //var month = (13 - DateTime.Now.Month) * 1.5;
-                if (ModelState.IsValid)                {                                        collection.Skills = skills;
-                    // TODO: Add insert logic here
-                    if (collection.Id == Guid.Empty)                    {                        string dob = Request["BirthDate"];                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);                        var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };                        collection.UserId = Guid.Parse(user.Id);                        var result = await UserManager.CreateAsync(user, collection.Password);                        if (result.Succeeded)                        {                            await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);                            TempData["sucess"] = EmployeeResources.create;                        }                    }                    else                    {                        await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);                        TempData["sucess"] = EmployeeResources.update;                    }                    return RedirectToAction("Index");                }                else                {                    return View(collection);                }            }            catch (Exception ex)            {                TempData["error"] = CommonResources.error;                return RedirectToAction("AccessDenied", "Error");            }        }
+                if(collection.Id == Guid.Empty)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        collection.Skills = skills;
+                        string dob = Request["BirthDate"];
+                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                        var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
+                        collection.UserId = Guid.Parse(user.Id);
+                        var result = await UserManager.CreateAsync(user, collection.Password);
+                        if (result.Succeeded)
+                        {
+                            await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
+                            TempData["sucess"] = EmployeeResources.create;
+                        }
+                    }
+                    else
+                    {
+                        return View(collection);
+                    }
+
+                }
+                else
+                {
+                    ModelState.Remove("Password");
+                    ModelState.Remove("Email");
+                    if (ModelState.IsValid)
+                    {
+                        collection.Skills = skills;
+                        await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
+                        TempData["sucess"] = EmployeeResources.update;
+                    }
+                    else
+                    {
+                        return View(collection);
+                    }
+                }
+                return RedirectToAction("Index");
+                //if (ModelState.IsValid)
+                //{
+                //    collection.Skills = skills;
+                //    // TODO: Add insert logic here
+                //    if (collection.Id == Guid.Empty)
+                //    {
+                //        string dob = Request["BirthDate"];
+                //        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                //        var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
+                //        collection.UserId = Guid.Parse(user.Id);
+                //        var result = await UserManager.CreateAsync(user, collection.Password);
+                //        if (result.Succeeded)
+                //        {
+                //            await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
+                //            TempData["sucess"] = EmployeeResources.create;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
+                //        TempData["sucess"] = EmployeeResources.update;
+                //    }
+                //    return RedirectToAction("Index");
+                //}
+                //else
+                //{
+                //    return View(collection);
+                //}
+
+            }            catch (Exception ex)            {                TempData["error"] = CommonResources.error;                return RedirectToAction("AccessDenied", "Error");            }        }
 
         // GET: Employee/Edit/5
         /// <summary>        /// Edits the specified identifier.        /// </summary>        /// <param name="id">The identifier.</param>        /// <returns></returns>        public async Task<ActionResult> Edit(Guid id)        {            try            {                ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");                ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");                ViewBag.Roles = _applicationDbContext.Roles.ToList();

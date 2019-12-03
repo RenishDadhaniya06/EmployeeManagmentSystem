@@ -34,7 +34,7 @@
 
     $(document).ready(function () {
         $('.datepicker').datepicker({
-            dateFormat: "dd-MMM-yyyy",
+            dateFormat: "MM-dd-yyyy",
             todayBtn: true,
             todayHighlight: true
         });
@@ -89,11 +89,13 @@
                     </div>
                     <div class="col-lg-6 form-group">
                         @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                     </div>  <div class="col-lg-6 form-group">
                         @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
                     </div>
                     <div class="col-lg-6 form-group">
                         @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row text-left">
@@ -104,13 +106,15 @@
 
                     <div class="col-lg-6 form-group">
                         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-lg-6 form-group">
                         @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
                     </div>
                     <div class="col-lg-6 form-group">
-                        @Html.TextBoxFor(model => model.BirthDate, "{0:dd-MMM-yyyy}", htmlAttributes: new { @class = "form-control datepicker has-feedback-left" })
+                        @Html.TextBoxFor(model => model.BirthDate, "{0:MM-dd-yyyy}", htmlAttributes: new { @class = "form-control datepicker has-feedback-left" })
+                        @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -122,6 +126,7 @@
 
                     <div class="col-lg-6 form-group">
                         @Html.TextBoxFor(model => model.Phone, new { @class = "form-control has-feedback-left" })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                         <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-lg-6 form-group">
@@ -129,6 +134,7 @@
                     </div>
                     <div class="col-lg-6 form-group">
                         @Html.TextBoxFor(model => model.OtherContact, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OtherContact, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row text-left">
@@ -136,15 +142,17 @@
                     {<div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.RoleId, new { @class = "control-label" })
                         </div>
-                        <div class="col-lg-6 form-group">
-                            @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), new { @class = "form-control" })
-                        </div>
+                     <div class="col-lg-6 form-group">
+                         @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name"), new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                     </div>
                     }
                     <div class="col-lg-6 form-group">
                         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
                     </div>
                     <div class="col-lg-6 form-group">
                         @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                     </div>
 
                 </div>
@@ -154,16 +162,23 @@
                     {<div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
                         </div>
-                        <div class="col-lg-6 form-group">
-                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                        </div>
+                     <div class="col-lg-6 form-group">
+                         @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                     </div>
                         <div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.Password, new { @class = "control-label" })
                         </div>
                         <div class="col-lg-6 form-group">
                             @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                     }
+                    @*else
+                    {
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.Password)
+                    }*@
 
                 </div>
                 <div class="row text-left">
@@ -172,7 +187,8 @@
                     </div>
 
                     <div class="col-lg-6 form-group">
-                        @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), "Select Department", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
                     </div>
                     @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "PM")
                     {
@@ -194,6 +210,7 @@
                         </div>
                         <div class="col-lg-6 form-group">
                             @Html.TextBoxFor(model => model.CurrentSalary, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CurrentSalary, "", new { @class = "text-danger" })
                         </div>
                     }
                     @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.CurrentRoleName() == "PM")
@@ -203,6 +220,7 @@
                         </div>
                         <div class="col-lg-6 form-group">
                             @Html.TextBoxFor(model => model.LeaveBalance, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LeaveBalance, "", new { @class = "text-danger" })
                         </div>
                     }
                 </div>
@@ -228,38 +246,38 @@
                             <tbody>
                                 @foreach (var item in Model.Projects)
                                 {
-                                <tr>
-                                    <td style="text-align:center">@item.Name</td>
-                                    <td style="text-align:center">
-                                        @if ((int)item.ProjectStatus == 0)
-                                        {
-                                            @CommonResources.Pending
-                                        }
-                                        else if ((int)item.ProjectStatus == 1)
-                                        {
-                                            @CommonResources.Active
-                                        }
-                                        else
-                                        {
-                                            @CommonResources.Closed
-                                        }
-                                    </td>
-                                    <td style="text-align:center">
-                                        @if (item.CurrentlyWorking)
-                                        {
-                                            <button type="button" class="btn btn-success btn-sm pointer " onclick="changeStatus('@item.TeamId')">
-                                                <i class="fa fa-check"></i>
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="button" class="btn btn-danger btn-sm pointer " onclick="changeStatus('@item.TeamId')">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        }
-                                    </td>
-                                </tr>
-                                    }
+                                    <tr>
+                                        <td style="text-align:center">@item.Name</td>
+                                        <td style="text-align:center">
+                                            @if ((int)item.ProjectStatus == 0)
+                                            {
+                                                @CommonResources.Pending
+                                            }
+                                            else if ((int)item.ProjectStatus == 1)
+                                            {
+                                                @CommonResources.Active
+                                            }
+                                            else
+                                            {
+                                                @CommonResources.Closed
+                                            }
+                                        </td>
+                                        <td style="text-align:center">
+                                            @if (item.CurrentlyWorking)
+                                            {
+                                                <button type="button" class="btn btn-success btn-sm pointer " onclick="changeStatus('@item.TeamId')">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-danger btn-sm pointer " onclick="changeStatus('@item.TeamId')">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

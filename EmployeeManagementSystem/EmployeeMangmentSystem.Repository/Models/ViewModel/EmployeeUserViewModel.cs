@@ -22,6 +22,9 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// <value>
         /// The email.
         /// </value>
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string Email { get; set; }
 
         /// <summary>
@@ -30,6 +33,8 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// <value>
         /// The password.
         /// </value>
+        [Required]
+        [Display(Name ="Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -39,6 +44,7 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// <value>
         /// The skills.
         /// </value>
+        [Required]
         public string Skills { get; set; }
 
         /// <summary>
