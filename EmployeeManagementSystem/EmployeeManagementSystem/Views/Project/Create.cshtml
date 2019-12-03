@@ -9,7 +9,7 @@
     }
     else
     {
-        if(data.Id == Guid.Empty)
+        if (data.Id == Guid.Empty)
         {
             ViewBag.Title = "Add Project";
 
@@ -19,13 +19,13 @@
             ViewBag.Title = "Edit Project";
         }
     }
-    }
+}
 
-    <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/bootstrap-multiselect.js" type="text/javascript"></script>
-    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bootstrap-multiselect.js" type="text/javascript"></script>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
     var j = jQuery.noConflict();
 
@@ -107,185 +107,154 @@
             }
         });
     }
-    </script>
+</script>
 
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>
-                @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
-                {
-                    @ViewBag.Title
-                }
-            </h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div class="x_panel">
+    <div class="x_title">
+        <h2>
+            @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
             {
-                @Html.AntiForgeryToken()
+                @ViewBag.Title
+            }
+        </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
 
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Id)
-                    <div class="row text-left">
-                        <div class="col-lg-4 form-group">
-                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label row" })
-                            @if (role == "Employee")
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="row text-left">
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label row" })
+                        @if (role == "Employee")
+                        {
+                            <label class="form-control">
+                                @Model.Name
+                            </label>
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control row" })
+                        }
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.ProjectStatus, htmlAttributes: new { @class = "control-label row" })
+                        @if (role == "Employee")
+                        {
+                            if (Model.ProjectStatus == Helpers.Enums.ProjectStatus.Active)
                             {
                                 <label class="form-control">
-                                    @Model.Name
+                                    Active
                                 </label>
                             }
-                            else
+                            else if (Model.ProjectStatus == Helpers.Enums.ProjectStatus.Pending)
                             {
-                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control row" })
-                            }
-                        </div>
-                        <div class="col-lg-4 form-group">
-                            @Html.LabelFor(model => model.ProjectStatus, htmlAttributes: new { @class = "control-label row" })
-                            @if (role == "Employee")
-                            {
-                                if (Model.ProjectStatus == Helpers.Enums.ProjectStatus.Active)
-                                {
-                                    <label class="form-control">
-                                        Active
-                                    </label>
-                                }
-                                else if (Model.ProjectStatus == Helpers.Enums.ProjectStatus.Pending)
-                                {
-                                    <label class="form-control">
-                                        Pending
-                                    </label>
+                                <label class="form-control">
+                                    Pending
+                                </label>
 
-                                }
-                                else
-                                {
-                                    <label class="form-control">
-                                        Closed
-                                    </label>
+                            }
+                            else
+                            {
+                                <label class="form-control">
+                                    Closed
+                                </label>
 
-                                }
+                            }
+                        }
+                        else
+                        {
+                            @Html.EnumDropDownListFor(model => model.ProjectStatus, new { @class = "form-control row" })
+                        }
+                    </div>
+                    <div class="col-lg-4 form-group">
+                        @Html.LabelFor(model => model.ProjectType, htmlAttributes: new { @class = "control-label row" })
+                        @if (role == "Employee")
+                        {
+                            if (Model.ProjectType == Helpers.Enums.ProjectType.FixedPriceProject)
+                            {
+                                <label class="form-control">Fixed Price Project</label>
                             }
                             else
                             {
-                                @Html.EnumDropDownListFor(model => model.ProjectStatus, new { @class = "form-control row" })
+                                <label class="form-control">Hired Based Project</label>
                             }
-                        </div>
+                        }
+                        else
+                        {
+                            @Html.EnumDropDownListFor(model => model.ProjectType, new { @class = "form-control row" })
+                        }
+                    </div>
+                </div>
+
+                @if (role != "Employee")
+                {
+                    <div class="row text-left">
                         <div class="col-lg-4 form-group">
-                            @Html.LabelFor(model => model.ProjectType, htmlAttributes: new { @class = "control-label row" })
-                            @if (role == "Employee")
-                            {
-                                if (Model.ProjectType == Helpers.Enums.ProjectType.FixedPriceProject)
-                                {
-                                    <label class="form-control">Fixed Price Project</label>
-                                }
-                                else
-                                {
-                                    <label class="form-control">Hired Based Project</label>
-                                }
-                            }
-                            else
-                            {
-                                @Html.EnumDropDownListFor(model => model.ProjectType, new { @class = "form-control row" })
-                            }
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label row" })
                         </div>
                     </div>
 
-                    @if (role != "Employee")
-                    {
-                        <div class="row text-left">
-                            <div class="col-lg-4 form-group">
-                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label row" })
-                            </div>
+                    <div class="row text-left">
+                        <div class="col-lg-12 form-group">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control row", @id = "Description" })
+                            <script type="text/javascript">
+                                CKEDITOR.replace('Description')
+                            </script>
                         </div>
+                    </div>
+                }
 
-                        <div class="row text-left">
-                            <div class="col-lg-12 form-group">
-                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control row", @id = "Description" })
-                                <script type="text/javascript">
-                                    CKEDITOR.replace('Description')
-                                </script>
-                            </div>
-                        </div>
-                    }
+                @if (Model.Employees != null)
+                {
 
-                    @if (Model.Employees != null)
-                    {
+                    @*<h3>No. of Team Members : @Model.Employees.Count()</h3>
+                        <div style="text-align:center; padding:20px"> <h1> Team Members </h1></div>*@
+                    <div style="padding:20px">
+                        <h1 style="text-align:center">Team Members</h1>
+                        <h3>No. of Team Members : @Model.Employees.Count()</h3>
+                    </div>
+                    <div class="row">
+                        <table id="demoGrid" class="table table-striped{ table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">
+                                        Name
+                                    </th>
+                                    <th style="text-align:center">
+                                        Mobile
+                                    </th>
+                                    <th style="text-align:center">
+                                        Currently Working
+                                    </th>
 
-                        @*<h3>No. of Team Members : @Model.Employees.Count()</h3>
-                            <div style="text-align:center; padding:20px"> <h1> Team Members </h1></div>*@
-                        <div style="padding:20px">
-                            <h1 style="text-align:center">Team Members</h1>
-                            <h3>No. of Team Members : @Model.Employees.Count()</h3>
-                        </div>
-                        <div class="row">
-                            <table id="demoGrid" class="table table-striped{ table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
-                                <thead>
+                                    <th style="text-align:center">
+                                        Delete
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Employees)
+                                {
                                     <tr>
-                                        <th style="text-align:center">
-                                            Name
-                                        </th>
-                                        <th style="text-align:center">
-                                            Mobile
-                                        </th>
-                                        <th style="text-align:center">
-                                            Currently Working
-                                        </th>
-
-                                        <th style="text-align:center">
-                                            Delete
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Employees)
-                                    {
-                                        <tr>
-                                            <td> @item.FirstName  @item.MiddleName  @item.LastName</td>
-                                            <td>  @item.Phone</td>
-                                            <td style="text-align:center">
-                                                @if (role == "Employee")
+                                        <td> @item.FirstName  @item.MiddleName  @item.LastName</td>
+                                        <td>  @item.Phone</td>
+                                        <td style="text-align:center">
+                                            @if (role == "Employee")
+                                            {
+                                                if (item.CurrentlyWorking)
                                                 {
-                                                    if (item.CurrentlyWorking)
-                                                    {
-                                                        if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
-                                                        {
-                                                            <button type="button" class="btn btn-success btn-sm pointer " onclick="updateStatus('@item.UserId')">
-                                                                <i class="fa fa-check"></i>
-                                                            </button>
-                                                        }
-                                                        else
-                                                        {
-                                                            <button type="button" class="btn btn-success btn-sm pointer " disabled>
-                                                                <i class="fa fa-check"></i>
-                                                            </button>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
-                                                        {
-                                                            <button type="button" class="btn btn-danger btn-sm pointer " onclick="updateStatus('@item.UserId')">
-                                                                <i class="fa fa-times"></i>
-                                                            </button>
-                                                        }
-                                                        else
-                                                        {
-                                                            <button type="button" class="btn btn-danger btn-sm pointer " disabled>
-                                                                <i class="fa fa-check"></i>
-                                                            </button>
-                                                        }
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    if (item.CurrentlyWorking)
+                                                    if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
                                                     {
                                                         <button type="button" class="btn btn-success btn-sm pointer " onclick="updateStatus('@item.UserId')">
                                                             <i class="fa fa-check"></i>
@@ -293,15 +262,49 @@
                                                     }
                                                     else
                                                     {
+                                                        <button type="button" class="btn btn-success btn-sm pointer " disabled>
+                                                            <i class="fa fa-check"></i>
+                                                        </button>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
+                                                    {
                                                         <button type="button" class="btn btn-danger btn-sm pointer " onclick="updateStatus('@item.UserId')">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     }
+                                                    else
+                                                    {
+                                                        <button type="button" class="btn btn-danger btn-sm pointer " disabled>
+                                                            <i class="fa fa-check"></i>
+                                                        </button>
+                                                    }
                                                 }
-                                            </td>
+                                            }
+                                            else
+                                            {
+                                                if (item.CurrentlyWorking)
+                                                {
+                                                    <button type="button" class="btn btn-success btn-sm pointer " onclick="updateStatus('@item.UserId')">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" class="btn btn-danger btn-sm pointer " onclick="updateStatus('@item.UserId')">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                }
+                                            }
+                                        </td>
 
-                                            <td style="text-align:center">
-                                                @if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
+                                        <td style="text-align:center">
+                                            @if (role == "Employee")
+                                            {
+
+                                                if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
                                                 {
                                                     <button class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
                                                 }
@@ -309,57 +312,63 @@
                                                 {
                                                     <button type="button" class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" disabled></button>
                                                 }
-                                            </td>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
+
+                                            }
+                                        </td>
                                         </tr>
 
                                     }
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
 
 
 
-                        </div>
-                    }
-                    <div class="row">
-
-                        <div class="col-md-offset-5">
-                            <input type="submit" value="Save" class="btn btn-success" />
-                            @if (Model.Id != Guid.Empty &&  role != "Employee")
-                            {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
+                                </div>
                             }
-                            <a href="@Url.Action("Index","Project")" class="btn btn-primary">Cancel</a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+                                <div class="row">
 
-    @if (Model.Id != Guid.Empty)
-    {<div class="modal fade" id="openViewTeam" tabindex="-1" role="dialog" aria-labelledby="openViewTeam" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">View Team</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            @Html.Label("Team Member", htmlAttributes: new { @class = "control-label" })
-                            @Html.DropDownList("Employees", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
+                                    <div class="col-md-offset-5">
+                                        <input type="submit" value="Save" class="btn btn-success" />
+                                        @if (Model.Id != Guid.Empty && role != "Employee")
+                                        {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
+                                        }
+                                        <a href="@Url.Action("Index","Project")" class="btn btn-primary">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+            </div>
+        </div>
+
+        @if (Model.Id != Guid.Empty)
+        {<div class="modal fade" id="openViewTeam" tabindex="-1" role="dialog" aria-labelledby="openViewTeam" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">View Team</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="SaveTeam()">Select</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                @Html.Label("Team Member", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("Employees", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="SaveTeam()">Select</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
 
-    <script>
+        <script>
     var deleteUrl = '@Url.Action("DeleteTeamPlayer", "Project")';
-    </script>
+        </script>

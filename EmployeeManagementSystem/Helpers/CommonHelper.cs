@@ -22,9 +22,12 @@ namespace Helpers
         /// <param name="emailId">The email identifier.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The body.</param>
-        public static void SendMail(string emailId, string subject,string body,string senderEmail,string senderPassword)
+        public static void SendMail(string emailId, string subject,string body,string senderEmail,string senderPassword,string host,int port)
         {
+            try
+            {
 
+            
             var message = new MailMessage();
             //var fromMail = new MailAddress(Email, subject);
             message.From = new MailAddress(senderEmail);
@@ -38,12 +41,11 @@ namespace Helpers
 
             var smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
+                Host = host,
+                Port = port,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = true,
-                //Credentials = new NetworkCredential(fromMail.Address, PWD)
                 Credentials = new NetworkCredential(senderEmail, senderPassword)
             };
             //using (var message = new MailMessage(fromMail, toMail)
@@ -58,8 +60,13 @@ namespace Helpers
 
             message.IsBodyHtml = true;
             smtp.Send(message);
-            
-                
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+
         }
     }
 }
