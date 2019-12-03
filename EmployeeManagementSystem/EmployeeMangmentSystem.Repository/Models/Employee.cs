@@ -46,7 +46,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         [Required]
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-mm-yyyy}")]
         public DateTime BirthDate { get; set; }
 
         [Required]

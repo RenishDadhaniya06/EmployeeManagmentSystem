@@ -20,13 +20,42 @@
 @*<script src="~/Scripts/ckeditor/ckeditor.js"></script>*@
 
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+
 <script src="~/Scripts/bootstrap-multiselect.js" type="text/javascript"></script>
+
+
 <script type="text/javascript">
-    var dept= '@data.Department'
+    var dept = '@data.Department'
+    var data = '@Model.BirthDate';
     var skill = '@data.Skills'
     var skillArr= skill.split(',');
     var id= '@data.Id'
-    var empty= '@Guid.Empty'
+    var empty = '@Guid.Empty'
+
+    $(document).ready(function () {
+
+        $(function () {
+            if (id !== empty) {
+                var datestrring = data.split(' ')[0];
+                var datestrringarr = datestrring.split('-');
+    var d = new Date(datestrringarr[2], datestrringarr[1], datestrringarr[0]);
+                var currMonth = d.getMonth();
+                var currYear = d.getFullYear();
+                var currDate = d.getDate();
+                var startDate = new Date(currYear,(currMonth-1), currDate);
+                $('.datepicker').datepicker('setDate', startDate);
+
+            } else {
+               var d = new Date();
+                var currMonth = d.getMonth();
+                var currYear = d.getFullYear();
+                var currDate = d.getDate();
+                var startDate = new Date(currYear, currMonth, currDate);
+                $('.datepicker').datepicker('setDate', startDate);
+            }
+
+        });
+    });
     var j = jQuery.noConflict();
     j(function () {
         if (empty !== id) {
@@ -41,11 +70,6 @@
     });
 
     $(document).ready(function () {
-        $('.datepicker').datepicker({
-            dateFormat: "MM-dd-yyyy",
-            todayBtn: true,
-            todayHighlight: true
-        });
         $('#Department').val(dept);
     });
 

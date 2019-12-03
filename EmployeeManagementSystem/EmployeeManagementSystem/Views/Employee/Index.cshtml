@@ -65,7 +65,8 @@
                             @Html.DisplayFor(modelItem => item.Phone)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.BirthDate)
+                           @item.BirthDate.ToShortDateString()
+
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.LeaveBalance)
@@ -87,6 +88,7 @@
                             }
 
                         }
+                        
 
                     </tr>
                     }
