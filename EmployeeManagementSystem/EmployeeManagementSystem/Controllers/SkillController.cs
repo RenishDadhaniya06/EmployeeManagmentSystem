@@ -147,5 +147,30 @@ namespace EmployeeManagementSystem.Controllers
                 return RedirectToAction("AccessDenied", "Error");
             }
         }
+
+        public async Task<JsonResult> PostSkill(string name)
+        {
+            try
+            {
+                if(name != "")
+                {
+                    Skills skill = new Skills
+                    {
+                        Id = Guid.Empty,
+                        Name = name
+                    };
+                    await APIHelpers.PostAsync<Skills>("api/Skill/Post", skill);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
