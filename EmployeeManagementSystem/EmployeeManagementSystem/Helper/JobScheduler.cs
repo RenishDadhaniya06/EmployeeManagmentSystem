@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using EmployeeMangmentSystem.Repository.Models.ViewModel;
+using EmployeeMangmentSystem.Repository.Repository.Classes;
+using Quartz;
 using Quartz.Impl;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace EmployeeManagementSystem.Helper
             ITrigger trigger = TriggerBuilder.Create()
             .WithIdentity("trigger1", "group1")
             .StartNow()
-           .WithCronSchedule("0 55 11 1/1 * ? *")
+           .WithCronSchedule("0 34 12 1/1 * ? *")
             .Build();  
   
             scheduler.ScheduleJob(job, trigger);  
