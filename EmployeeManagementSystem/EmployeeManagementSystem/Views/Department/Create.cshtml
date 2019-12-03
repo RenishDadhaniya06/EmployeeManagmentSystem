@@ -1,7 +1,14 @@
 ﻿@model EmployeeMangmentSystem.Repository.Models.Departments
 
 @{
-    ViewBag.Title = "Create Department";
+    if (Model.Id == Guid.Empty)
+    {
+        ViewBag.Title = "Add Department";
+    }
+    else
+    {
+        ViewBag.Title = "Edit Department";
+    }
 }
 <div class="x_panel">
     <div class="x_title">
@@ -38,9 +45,19 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <div class="col-md-2">
-                            <input type="submit" value="Save" class="btn btn-primary" />
-                        </div>
+                        @if (Model.Id == Guid.Empty)
+                        {
+                            <div class="col-md-2">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                            </div>
+                        }
+
                         <div class="col-md-2">
                             <a href="@Url.Action("Index","Department")" class="btn btn-success">Cancel</a>
                         </div>
