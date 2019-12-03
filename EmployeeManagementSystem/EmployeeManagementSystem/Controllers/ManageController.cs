@@ -266,15 +266,17 @@ namespace EmployeeManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                string code = await UserManager.GeneratePasswordResetTokenAsync(User.Identity.GetUserId());
+                var result = await UserManager.ResetPasswordAsync(User.Identity.GetUserId(), code, model.NewPassword);
                 if (result.Succeeded)
                 {
                     var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                     if (user != null)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
                     }
-                    return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
+                    TempData["sucess"] = "Password Reset Sucessfully.";
+                    return RedirectToAction("Index", "Employee");
                 }
                 AddErrors(result);
             }

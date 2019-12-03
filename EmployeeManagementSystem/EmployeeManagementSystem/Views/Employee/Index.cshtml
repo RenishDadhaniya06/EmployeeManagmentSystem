@@ -18,7 +18,7 @@
             @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
             { 
                 <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Employee")"></a>
-            <a class="btn btn-success fa fa-file-pdf-o" type="submit" target="_blank" href="@Url.Action("Print","Employee", new { target = "_blank" })"></a>
+            <a class="btn btn-success glyphicon glyphicon-file" type="submit" target="_blank" href="@Url.Action("Print","Employee", new { target = "_blank" })"></a>
             }
         </div>
         <div class="clearfix"></div>
@@ -43,6 +43,11 @@
                         <th>
                             @Html.DisplayNameFor(model => model.LeaveBalance)
                         </th>
+                        @if (CommonHelper.CurrentRoleName() == "Admin")
+                        {
+                            <th style="text-align:center">Genrate Password</th>
+                        }
+                        
                         @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
                         {
                             <th style="text-align:center">Edit</th>
@@ -65,32 +70,39 @@
                             @Html.DisplayFor(modelItem => item.Phone)
                         </td>
                         <td>
-                           @item.BirthDate.ToShortDateString()
+                            @item.BirthDate.ToShortDateString()
 
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.LeaveBalance)
                         </td>
-                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
+
+                        @if (CommonHelper.CurrentRoleName() == "Admin")
                         {
                             <td style="text-align:center">
-                                <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Employee", new { id = @item.Id })"></a>
+                                <a class="btn btn-dark glyphicon glyphicon-lock" href="@Url.Action("SetPassword", "Manage", new { id = @item.Id })"></a>
                             </td>
-                            if (CommonHelper.CurrentEmployeeId() == item.Id)
-                            {
-                                <td></td>
-                            }
-                            else
+                        }
+                            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
                             {
                                 <td style="text-align:center">
-                                    <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName + " " + @item.MiddleName + " " + @item.LastName"></a>
+                                    <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Employee", new { id = @item.Id })"></a>
                                 </td>
+                                if (CommonHelper.CurrentEmployeeId() == item.Id)
+                                {
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td style="text-align:center">
+                                        <a class="btn btn-danger glyphicon glyphicon-trash delete-prompt" id="@item.Id" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@item.FirstName + " " + @item.MiddleName + " " + @item.LastName"></a>
+                                    </td>
+                                }
+
                             }
 
-                        }
-                        
 
-                    </tr>
+                        </tr>
                     }
                 </tbody>
             </table>

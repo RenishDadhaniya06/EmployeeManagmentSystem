@@ -227,7 +227,7 @@ namespace EmployeeManagementSystem.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                // ;
 
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }

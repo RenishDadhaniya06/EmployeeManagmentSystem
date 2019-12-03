@@ -56,6 +56,7 @@ namespace EmployeeManagementSystem
             container.RegisterType<ICustomerService, CustomerService>();
             container.RegisterType<IDataRepositoryContext, RepositoryContext>();
             container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<UserController>(new InjectionConstructor());
             container.RegisterType<EmployeeController>(new InjectionConstructor());
             //container.RegisterType<TemplateTypeController>(new InjectionConstructor);
