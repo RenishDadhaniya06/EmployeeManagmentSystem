@@ -26,21 +26,20 @@
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
-
     var j = jQuery.noConflict();
 
     var skill = '@data.EmployeeId'
     var skillArr= skill.split(',');
     var j = jQuery.noConflict();
     j(function () {
-        j('#Employees').multiselect('select', skillArr);
+        j('#EmployeesList').multiselect('select', skillArr);
     });
     $('.open-prompt').click(function () {
         $('#myModal').modal('show');
     });
 
     function SaveTeam() {
-        var employee = $("#openViewTeam").find("#Employees").val();
+        var employee = $("#openViewTeam").find("#EmployeesList").val();
         var emp = employee.join(",");
         var projectid = '@data.Id';
         //location.href = '@Url.Action("PostTeam","Project")?id=' + employee;
@@ -359,7 +358,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 @Html.Label("Team Member", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownList("Employees", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
+                                @Html.DropDownList("EmployeesList", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
                             </div>
                         </div>
                         <div class="modal-footer">
