@@ -154,7 +154,7 @@
                         </div>
 
                         <div class="col-lg-6 form-group">
-                            @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), "Select Department", new { @readonly = "readonly", @class = "form-control" })
+                            @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), new { @readonly = "readonly", @class = "form-control" })
                         </div>
                         @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "PM")
                         {
