@@ -32,7 +32,7 @@
                         <th style="text-align:center">
                             @Html.DisplayNameFor(model => model.Name)
                         </th>
-                        <th>
+                        <th style="text-align:center">
                             Team Member
                         </th>
                         <th style="text-align:center">
@@ -64,10 +64,10 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                            <td style="text-align:center">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
-                            <td>
+                            <td style="text-align:center">
                                 <ul class="list-inline">
                                     @if (!string.IsNullOrWhiteSpace(item.EmployeeId))
                                     {
@@ -83,7 +83,7 @@
                                     }
                                 </ul>
                             </td>
-                            <td>
+                            <td style="text-align:center">
                                 @if (item.ProjectStatus == Enums.ProjectStatus.Active)
                                 {
                                     @CommonResources.Active
@@ -97,7 +97,7 @@
                                     @CommonResources.Closed
                                 }
                             </td>
-                            <td>
+                            <td style="text-align:center">
                                 @if (item.ProjectType == Enums.ProjectType.FixedPriceProject)
                                 {
                                     @CommonResources.FPP
