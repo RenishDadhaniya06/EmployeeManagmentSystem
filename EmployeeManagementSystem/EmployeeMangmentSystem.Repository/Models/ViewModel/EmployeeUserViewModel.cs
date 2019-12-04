@@ -34,7 +34,7 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// The password.
         /// </value>
         [Required]
-        [Display(Name ="Password")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -54,9 +54,8 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// The role identifier.
         /// </value>
         public string RoleId { get; set; }
-
-        public Int32 WorkingCount { get; set; }
-
+        [NotMapped]
+        public int WorkingCount { get; set; }
         public List<ProjectViewModel> Projects { get; set; }
 
     }

@@ -8,6 +8,7 @@ namespace EmployeeManagementSystem.Controllers
     using Helpers;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     #endregion
@@ -53,7 +54,15 @@ namespace EmployeeManagementSystem.Controllers
                 ResourceViewModel model = new ResourceViewModel();
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 var data = await APIHelpers.GetAsync<List<EmployeeUserViewModel>>("api/Resource/GetAvailableResources?id=" + model1.Resource + "&workingid=" + Convert.ToBoolean(model1.IsCurrentlyWorking));
-                model.EmployeeUserViewModels = data;
+                if (Convert.ToBoolean(model1.IsCurrentlyWorking))
+                {
+                    model.EmployeeUserViewModels = data.Where(_ => _.WorkingCount > 0);
+                }
+                else
+                {
+                    model.EmployeeUserViewModels = data.Where(_ => _.WorkingCount == 0);
+
+                }
                 model.Resource = model1.Resource;
                 model.IsCurrentlyWorking = model1.IsCurrentlyWorking;
                 return View("Index", model);
