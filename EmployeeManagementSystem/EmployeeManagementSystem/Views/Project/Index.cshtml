@@ -18,7 +18,7 @@
         </h2>
 
         <div class="nav navbar-right">
-            @if (role == "Admin" || role == "PM")
+            @if (role == "Admin" || EmployeeManagementSystem.Helper.CommonHelper.IsSuperAdmin() || role == "PM")
             {
                 <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create", "Project")"></a>
           
@@ -46,7 +46,7 @@
                             @Html.DisplayNameFor(model => model.ProjectType)
                         </th>
                         <th style="text-align:center">
-                            @if (role == "Admin" || role == "PM")
+                            @if (role == "Admin" || EmployeeManagementSystem.Helper.CommonHelper.IsSuperAdmin() || role == "PM")
                             {
                                 <span>Edit</span>
                             }
@@ -56,7 +56,7 @@
 
                             }
                         </th>
-                        @if (role == "Admin" || role == "PM")
+                        @if (role == "Admin" || EmployeeManagementSystem.Helper.CommonHelper.IsSuperAdmin() || role == "PM")
                         {
                             <th style="text-align:center">
                                 Delete
@@ -112,7 +112,7 @@
                                 }
                             </td>
                             <td style="text-align:center">
-                                @if (role == "Admin" || role == "PM")
+                                @if (role == "Admin" || EmployeeManagementSystem.Helper.CommonHelper.IsSuperAdmin() || role == "PM")
                                 {
 
                                     <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Project", new { id = @item.Id })"></a>
@@ -123,7 +123,7 @@
 
                                 }
                             </td>
-                            @if (role == "Admin" || role == "PM")
+                            @if (role == "Admin" || EmployeeManagementSystem.Helper.CommonHelper.IsSuperAdmin() || role == "PM")
                             {
                                 <td style="text-align:center">
 
