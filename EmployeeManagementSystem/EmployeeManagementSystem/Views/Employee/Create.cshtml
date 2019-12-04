@@ -93,7 +93,6 @@
         var skill = $('.skillname').val();
         console.log("Skill name : " + skill);
         if (skill != "") {
-            debugger
             $.ajax({
             url: '@Url.Action("PostSkill","Skill")',
             data: { 'name': skill },
@@ -254,7 +253,7 @@
                             @*@Html.DropDownListFor(model => model.Skills, new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })*@
                             @Html.DropDownList("Skill", new SelectList(ViewBag.Skills, "Id", "Name"), new { @class = "form-control skills", @multiple = "multiple" })
                             @*<a class="btn btn-success glyphicon glyphicon-plus" onclick="OpenSkill();"></a>*@
-                            <a class="btn btn-success glyphicon glyphicon-plus" data-toggle="modal" data-target="#openViewTeam"></a>
+                            @*<a class="btn btn-success glyphicon glyphicon-plus" data-toggle="modal" data-target="#openViewTeam"></a>*@
                         </div>
                     }
                 </div>
