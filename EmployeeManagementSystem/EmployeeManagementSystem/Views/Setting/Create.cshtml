@@ -12,7 +12,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         <div class="row">
-            <div class="col-md-6">
+            @*<div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
@@ -45,7 +45,6 @@
                             @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-6">
                                 @Html.TextBoxFor(model => model.Logo, new { @class = "form-control", accept = "image/x-png,image/gif,image/jpeg", type = "file", @onchange = "readURL(this);" })
-                                @*<input type="file" name="Logo" class="form-control" />*@
                                 @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group col-md-4">
@@ -66,8 +65,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
+            </div>*@
+            <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
