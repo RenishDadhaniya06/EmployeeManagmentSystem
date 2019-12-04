@@ -13,7 +13,36 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                @if (CommonHelper.CurrentRoleName() == "Employee")
+                @if (CommonHelper.IsSuperAdmin())
+                {
+                <ul class="nav side-menu">
+
+                    <li>
+                        <a><i class="fa fa-bar-chart-o"></i> Administrator <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="@Url.Action("Index", "Department")">@DepartmentResources.Name</a></li>
+
+                            <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
+
+                            <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
+                            <li><a href="@Url.Action("Index", "Skill")">@SkillsResources.name</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
+                    <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
+                    <li>
+                        <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="@Url.Action("Index","Resource")"> <i class="fa fa-file"></i>Skill Report</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+                }
+                else if (CommonHelper.CurrentRoleName() == "Employee")
                 {
                     <ul class="nav side-menu">
                         <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>My Projects</a></li>
@@ -28,9 +57,11 @@
                             <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="@Url.Action("Index","Resource")"> <i class="fa fa-file"></i>Skill Report</a></li>
-                                <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
                             </ul>
                         </li>
+
+                        <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
+
 
                     </ul>
                 }
@@ -95,8 +126,12 @@
 
             </ul>
                 }
+                else
+                {
 
-                
+                }
+
+
 
 
             </div>
@@ -105,40 +140,48 @@
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
 
-            @if (CommonHelper.CurrentRoleName() == "Admin")
+            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
 
             {<a data-toggle="tooltip" data-placement="top" title="Settings" href="@Url.Action("Create", "Setting")">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 </a>
-
-                <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                </a>
-
-                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Dashboard")">
+                if (!CommonHelper.IsSuperAdmin())
+                {
+                    <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                }
+                else
+                {
+                    <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    </a>
+                }
+                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Home")">
                     <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
                 </a>
 
                 <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                 </a>
-            }else
+            }
+            else
             {
-        <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")">
-            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-        </a>
+                <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                </a>
 
-            <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-            </a>
+                <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                </a>
 
-            <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Dashboard")">
-                <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
-            </a>
+                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Home")">
+                    <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                </a>
 
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-            </a>}
+                <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                </a>}
         </div>
             <!-- /menu footer buttons -->
     </div>

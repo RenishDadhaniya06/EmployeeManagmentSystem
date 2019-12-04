@@ -15,8 +15,8 @@
         </h2>
         <div class="nav navbar-right">
 
-            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
-            { 
+            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin() )
+            {
                 <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("Create","Employee")"></a>
             <a class="btn btn-success glyphicon glyphicon-file" type="submit" target="_blank" href="@Url.Action("Print","Employee", new { target = "_blank" })"></a>
             }
@@ -43,12 +43,12 @@
                         <th>
                             @Html.DisplayNameFor(model => model.LeaveBalance)
                         </th>
-                        @if (CommonHelper.CurrentRoleName() == "Admin")
+                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
                         {
                             <th style="text-align:center">Genrate Password</th>
                         }
                         
-                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
+                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin() )
                         {
                             <th style="text-align:center">Edit</th>
                             <th style="text-align:center">Delete</th>
@@ -77,18 +77,18 @@
                             @Html.DisplayFor(modelItem => item.LeaveBalance)
                         </td>
 
-                        @if (CommonHelper.CurrentRoleName() == "Admin")
+                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
                         {
                             <td style="text-align:center">
                                 <a class="btn btn-dark glyphicon glyphicon-lock" href="@Url.Action("SetPassword", "Manage", new { id = @item.Id })"></a>
                             </td>
                         }
-                            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
+                            @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin())
                             {
                                 <td style="text-align:center">
                                     <a class="btn btn-info glyphicon glyphicon-edit" href="@Url.Action("Edit", "Employee", new { id = @item.Id })"></a>
                                 </td>
-                                if (CommonHelper.CurrentEmployeeId() == item.Id)
+                                if (!CommonHelper.IsSuperAdmin() && CommonHelper.CurrentEmployeeId() == item.Id)
                                 {
                                     <td></td>
                                 }

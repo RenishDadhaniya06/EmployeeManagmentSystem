@@ -244,7 +244,7 @@
                         @Html.DropDownListFor(model => model.Department, new SelectList(ViewBag.Department, "Id", "Name"), new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
                     </div>
-                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "PM")
+                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "PM" || CommonHelper.IsSuperAdmin())
                     {
                         <div class="col-lg-6 form-group">
                             @Html.Label("Skill", htmlAttributes: new { @class = "control-label" })
@@ -258,7 +258,7 @@
                     }
                 </div>
                 <div class="row text-left">
-                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR")
+                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin())
                     {
                         <div class="col-lg-6 form-group">
                             <label class="control-label">   Current Salary(per month)</label>
@@ -268,7 +268,7 @@
                             @Html.ValidationMessageFor(model => model.CurrentSalary, "", new { @class = "text-danger" })
                         </div>
                     }
-                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.CurrentRoleName() == "PM")
+                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin()|| CommonHelper.CurrentRoleName() == "PM")
                     {
                         <div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.LeaveBalance, new { @class = "control-label" })
