@@ -73,7 +73,8 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
-                var builder = new PdfBuilder<List<Employee>>(data, Server.MapPath("/Views/Print/Pdf.cshtml"));
+                //var data = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+                var builder = new PdfBuilder<List<Employee>>(data, Server.MapPath("/Views/Employee/Print.cshtml"));
                 return builder.GetPdf();
             }
             catch (Exception ex)
