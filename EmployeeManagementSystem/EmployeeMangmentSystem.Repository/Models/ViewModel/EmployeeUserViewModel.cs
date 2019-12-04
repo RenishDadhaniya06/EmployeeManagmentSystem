@@ -55,6 +55,8 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// </value>
         public string RoleId { get; set; }
 
+        public Int32 WorkingCount { get; set; }
+
         public List<ProjectViewModel> Projects { get; set; }
 
     }
