@@ -1,20 +1,32 @@
 ﻿
-using EmployeeManagementSystem.Helper;
-using EmployeeManagementSystem.Models;
-using EmployeeManagementSystem.Models.Time;
-using EmployeeMangmentSystem.Repository.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 
 
 namespace EmployeeManagementSystem.Controllers
 {
+    #region Using
+    using EmployeeManagementSystem.Helper;
+    using EmployeeManagementSystem.Models;
+    using EmployeeManagementSystem.Models.Time;
+    using EmployeeMangmentSystem.Repository.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    #endregion
+
+
+    /// <summary>
+    /// ReportsController
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class ReportsController : Controller
     {
+        #region Properties
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
+        #endregion
+
+
         // GET: Reports
         public ActionResult Index()
         {

@@ -199,18 +199,6 @@ namespace EmployeeManagementSystem.Controllers
         //    }
         //}
 
-        [WebMethod]
-        public async Task<bool> PostTeam(string id,string proid)
-        {
-            try
-            {
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
 
         public async Task<JsonResult> Team(string id, string pid)
         {
