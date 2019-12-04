@@ -15,23 +15,24 @@
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
 
-                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
-                        <li><a href="@Url.Action(" ChangePassword","Manage")">Change Password</a></li>
+                        <li><a href="@Url.Action("ChangePassword","Manage")">Change Password</a></li>
                         <li>
-                            <a href="@Url.Action(" LogOff", "Account" )">
+                            <a href="@Url.Action("LogOff", "Account" )">
                                 LogOut
                             </a>
                         </li>
-                        @if (!CommonHelper.IsSuperAdmin()) {
-                        <li><a href="@Url.Action(" Profile","User")"> Profile</a></li>}
-                        @if (CommonHelper.CurrentRoleName() == "Admin")
+                        @if (!CommonHelper.IsSuperAdmin())
+                        {
+                            <li><a href="@Url.Action("Profile","User")"> Profile</a></li>
+                        }
+                        @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
 
                         {
-                        <li>
-                            <a href="@Url.Action(" Create", "Setting" )">
-                                Settings
-                            </a>
-                        </li>
+                            <li>
+                                <a href="@Url.Action("Create", "Setting" )">
+                                    Settings
+                                </a>
+                            </li>
                         }
 
 

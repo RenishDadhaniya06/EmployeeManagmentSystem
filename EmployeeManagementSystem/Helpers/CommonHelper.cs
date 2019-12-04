@@ -13,8 +13,8 @@ namespace Helpers
     public static class CommonHelper
     {
 
-        //public static string ApiURL = "http://localhost/EmployeeManagmentSystem.Web/";
-        public static string ApiURL = "http://localhost:56853/";
+        public static string ApiURL = "http://localhost/EmployeeManagmentSystem.Web/";
+        //public static string ApiURL = "http://localhost:56853/";
 
 
         /// <summary>
