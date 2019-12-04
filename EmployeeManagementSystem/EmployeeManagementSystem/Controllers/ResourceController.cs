@@ -19,12 +19,14 @@ namespace EmployeeManagementSystem.Controllers
     /// <seealso cref="System.Web.Mvc.Controller" />
     public class ResourceController : Controller
     {
+        #region Index Method
         // GET: Resource
         public async Task<ActionResult> Index()
         {
             ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
             return View();
         }
+        #endregion
 
         //public async Task<ActionResult> DisplayResources(Guid id)
         //{
@@ -43,6 +45,7 @@ namespace EmployeeManagementSystem.Controllers
         //    }
         //}
 
+        #region Display Resources Method
         public async Task<ActionResult> DisplayResources(ResourceViewModel model1)
         {
             try
@@ -60,6 +63,7 @@ namespace EmployeeManagementSystem.Controllers
                 throw;
             }
         }
+        #endregion
 
         //public async Task<FileResult> Print(Guid id)
         //{
@@ -75,6 +79,7 @@ namespace EmployeeManagementSystem.Controllers
         //    }
         //}
 
+        #region Print Method
         public async Task<FileResult> Print(string skillid,string workid)
         {
             try
@@ -90,5 +95,6 @@ namespace EmployeeManagementSystem.Controllers
                 throw;
             }
         }
+        #endregion
     }
 }

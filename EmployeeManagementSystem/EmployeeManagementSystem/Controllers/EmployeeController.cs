@@ -173,6 +173,8 @@ namespace EmployeeManagementSystem.Controllers
                     ModelState.Remove("Email");
                     if (ModelState.IsValid)
                     {
+                        string dob = Request["BirthDate"];
+                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
                         collection.Skills = skills;
                         await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
                         TempData["sucess"] = EmployeeResources.update;
