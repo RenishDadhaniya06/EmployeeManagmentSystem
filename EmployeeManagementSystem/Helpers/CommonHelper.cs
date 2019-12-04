@@ -14,6 +14,7 @@ namespace Helpers
     {
 
         public static string ApiURL = "http://localhost/EmployeeManagmentSystem.Web/";
+        //public static string ApiURL = "http://localhost:56853/";
 
 
         /// <summary>

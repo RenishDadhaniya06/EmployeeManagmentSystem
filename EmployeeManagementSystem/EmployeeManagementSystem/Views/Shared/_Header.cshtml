@@ -14,6 +14,12 @@
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a href="@Url.Action("ChangePassword","Manage")">Change Password</a></li>
+                        <li>
+                            <a href="@Url.Action("LogOff", "Account")">
+                                LogOut
+                            </a>
+                        </li>
                         <li><a href="@Url.Action("Profile","User")"> Profile</a></li>
                         @if (CommonHelper.CurrentRoleName() == "Admin")
 
@@ -25,12 +31,6 @@
                             </li>
                         }
 
-                        <li>
-                            <a href="@Url.Action("LogOff", "Account")">
-                                LogOut
-                            </a>
-                        </li>
-                        <li><a href="@Url.Action("ChangePassword","Manage")">Change Password</a></li>
 
                     </ul>
                 </li>
