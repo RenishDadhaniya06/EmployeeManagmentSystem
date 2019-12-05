@@ -1,14 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using EmployeeManagementSystem.Models.Time;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DHTMLX.Scheduler;
-using EmployeeManagementSystem.Models.Time;
-using EmployeeMangmentSystem.Resources;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EmployeeManagementSystem.Models
 {
@@ -42,29 +38,13 @@ namespace EmployeeManagementSystem.Models
 
         public string RoleId { get; set; }
     }
-    public class Appointment
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [DHXJson(Alias = "id")]
-        public int Id { get; set; }
-
-        [DHXJson(Alias = "text")]
-        public string Description { get; set; }
-
-        [DHXJson(Alias = "start_date")]
-        public DateTime StartDate { get; set; }
-
-        [DHXJson(Alias = "end_date")]
-        public DateTime EndDate { get; set; }
-    }
+   
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
         : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public DbSet<Appointment> Appointments { get; set; }
 
         public DbSet<TimeTrackingSystems> TimeTrackingSystems { get; set; }
 
