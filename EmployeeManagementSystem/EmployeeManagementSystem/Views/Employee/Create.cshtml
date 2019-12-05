@@ -280,7 +280,7 @@
                     }
                 </div>
 
-                @if (Model.Projects != null)
+                @if (Model.Projects != null && CommonHelper.CurrentRoleName() != "HR")
                 {
                     <div style="text-align:center; padding:20px"> <h1> Projects </h1></div>
                     <div class="row">
