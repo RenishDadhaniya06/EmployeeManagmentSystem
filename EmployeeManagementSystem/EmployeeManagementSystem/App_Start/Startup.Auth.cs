@@ -26,7 +26,9 @@ namespace EmployeeManagementSystem
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/LogOn")
+                LoginPath = new PathString("/Account/LogOn"),
+                LogoutPath = new PathString("/Account/LogOff"),
+                ExpireTimeSpan = TimeSpan.FromMinutes(30.0)
             });
 
             // Enable the application to use a cookie to store information for the signed in user

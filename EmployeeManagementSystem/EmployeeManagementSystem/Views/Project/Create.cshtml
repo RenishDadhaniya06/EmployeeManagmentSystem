@@ -63,8 +63,7 @@
             type: 'post',
             success: function (data) {
                 if (data) {
-                    //toastify("error", 'Record deleted successfully');
-                    document.location.reload()
+                    document.location.reload();
                 }
                 $('#myModal').modal('hide');
             }, error: function (err) {
@@ -82,8 +81,7 @@
             type: 'post',
             success: function (data) {
                 if (data) {
-                    //toastify("error", 'Record deleted successfully');
-                    document.location.reload()
+                    document.location.reload();
                 }
             }, error: function (err) {
                 toastify("error", err.statusText);
@@ -99,7 +97,8 @@
             success: function (data) {
                 if (data) {
                     //toastify("error", 'Record deleted successfully');
-                    document.location.reload()
+                    document.location.reload();
+
                 }
             }, error: function (err) {
                 toastify("error", err.statusText);
@@ -307,7 +306,7 @@
 
                                                 if (EmployeeManagementSystem.Helper.CommonHelper.GetUserId() == item.UserId.ToString())
                                                 {
-                                                    <button class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
+                                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
                                                 }
                                                 else
                                                 {
@@ -316,7 +315,7 @@
                                             }
                                             else
                                             {
-                                                <button class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
+                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash delete-prompt pointer" onclick="deleteMember('@item.UserId')"></button>
 
                                             }
                                         </td>
@@ -333,15 +332,17 @@
                 <div class="row">
 
                     <div class="col-md-offset-5">
-                        @if (Model.Id == Guid.Empty)
+                        @if (role != "Employee")
                         {
-                            <input type="submit" value="Save" class="btn btn-success" />
+                            if (Model.Id == Guid.Empty)
+                            {
+                                <input type="submit" value="Save" class="btn btn-success" />
+                            }
+                            else
+                            {
+                                <input type="submit" value="Update" class="btn btn-success" />
+                            }
                         }
-                        else
-                        {
-                            <input type="submit" value="Update" class="btn btn-success" />
-                        }
-
                         @if (Model.Id != Guid.Empty && role != "Employee")
                         {<input type="button" value="Add Team" id="@data.EmployeeId" data-toggle="modal" data-target="#openViewTeam" data-whatever="@data.Name" class="btn btn-info open-prompt" />
                         }
@@ -353,30 +354,30 @@
     </div>
 </div>
 
-        @if (Model.Id != Guid.Empty)
-        {<div class="modal fade" id="openViewTeam" tabindex="-1" role="dialog" aria-labelledby="openViewTeam" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">View Team</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                @Html.Label("Team Member", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownList("EmployeesList", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="SaveTeam()">Select</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        </div>
+@if (Model.Id != Guid.Empty)
+{<div class="modal fade" id="openViewTeam" tabindex="-1" role="dialog" aria-labelledby="openViewTeam" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">View Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.Label("Team Member", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("EmployeesList", new SelectList(ViewBag.Employees, "UserId", "FirstName"), new { @class = "form-control employee", @multiple = "multiple" })
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="SaveTeam()">Select</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
-        }
+        </div>
+    </div>
+}
 
 <script>
     var deleteUrl = '@Url.Action("DeleteTeamPlayer", "Project")';

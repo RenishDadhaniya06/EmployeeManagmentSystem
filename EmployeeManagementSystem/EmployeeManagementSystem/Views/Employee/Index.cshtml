@@ -80,7 +80,7 @@
                         @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
                         {
                             <td style="text-align:center">
-                                <a class="btn btn-dark glyphicon glyphicon-lock" href="@Url.Action("SetPassword", "Manage", new { id = @item.Id })"></a>
+                                <a class="btn btn-dark glyphicon glyphicon-lock" href="@Url.Action("SetPassword", "Manage", new { id = @item.UserId })"></a>
                             </td>
                         }
                             @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin())
