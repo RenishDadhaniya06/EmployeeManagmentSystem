@@ -20,8 +20,10 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -303,6 +305,7 @@
     <Compile Include="Controllers\api\CandidateController.cs" />
     <Compile Include="Controllers\api\CitiesController.cs" />
     <Compile Include="Controllers\api\CountryController.cs" />
+    <Compile Include="Controllers\api\DashboardController.cs" />
     <Compile Include="Controllers\api\DepartmentController.cs" />
     <Compile Include="Controllers\api\InterviewController.cs" />
     <Compile Include="Controllers\api\InterviewerController.cs" />
@@ -326,6 +329,7 @@
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -1363,6 +1367,7 @@
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Resource\Index.cshtml" />
     <Content Include="Views\Resource\Print.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

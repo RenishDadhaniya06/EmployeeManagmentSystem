@@ -1,0 +1,38 @@
+﻿@model EmployeeMangmentSystem.Repository.Models.ViewModel.DashboardCounts
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+
+    <div class="tile_count">
+        <div class="col-md-2 col-sm-4  tile_stats_count">
+            <span class="count_top" style="font-size:15px;"><i class="fa fa-user"></i> Total Employees</span>
+            <div class="count">@Model.TotalEmployee</div>
+        </div>
+
+        <div class="col-md-2 col-sm-4  tile_stats_count">
+            <span class="count_top" style="font-size:15px;"><i class="fa fa-user"></i> Total Developers</span>
+            <div class="count">@Model.TotalDeveloper</div>
+        </div>
+
+        <div class="col-md-2 col-sm-4  tile_stats_count">
+            <span class="count_top" style="font-size:15px;"><i class="fa fa-user"></i> Total Human Resources</span>
+            <div class="count">@Model.TotalHR</div>
+        </div>
+
+        <div class="col-md-2 col-sm-4  tile_stats_count">
+            <span class="count_top" style="font-size:15px;"><i class="fa fa-user"></i> Total Project Manager</span>
+            <div class="count">@Model.TotalPM</div>
+        </div>
+
+        <div class="col-md-2 col-sm-4  tile_stats_count">
+            <span class="count_top" style="font-size:15px;"><i class="fa fa-user"></i> Total Sales Manager</span>
+            <div class="count">@Model.TotalSales</div>
+        </div>
+
+        <div class="col-md-2 col-sm-4  tile_stats_count">
+            <span class="count_top" style="font-size:15px;"><i class="fa fa-file-text-o"></i> Total Projects</span>
+            <div class="count">@Model.TotalProjects</div>
+        </div>
+    </div>

@@ -185,5 +185,7 @@ namespace EmployeeMangmentSystem.Services.Services
         /// </summary>
         /// <returns></returns>
         Task<List<Employee>> GetEmployeeByRole(string id);
+
+        Task<DashboardCounts> GetDashboardCounts();
     }
 }
