@@ -67,7 +67,12 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         /// </summary>
         /// <returns></returns>
         Task<List<LeaveViewModel>> GetPendingLeaves();
-
+        /// <summary>
+        /// Gets the employee by role.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        Task<List<Employee>> GetEmployeeByRole(string id);
         /// <summary>
         /// Gets the filters.
         /// </summary>

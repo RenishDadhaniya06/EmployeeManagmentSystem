@@ -151,16 +151,39 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <returns></returns>
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
 
-        Task<List<ProjectTeamViewModel>> GetProjects();
-        Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id);
         /// <summary>
         /// Gets the projects.
         /// </summary>
         /// <returns></returns>
+        Task<List<ProjectTeamViewModel>> GetProjects();
+
+        Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id);
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id);
 
+        /// <summary>
+        /// Gets the available resources.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="workingid">if set to <c>true</c> [workingid].</param>
+        /// <returns></returns>
         Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid);
 
+        /// <summary>
+        /// Gets the projectsby user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<List<ProjectViewModel>> GetProjectsbyUserId(Guid id);
+
+        /// <summary>
+        /// Gets the employee by role.
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Employee>> GetEmployeeByRole(string id);
     }
 }

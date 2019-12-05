@@ -63,7 +63,7 @@
             type: 'post',
             success: function (data) {
                 if (data) {
-                    winddows.location.reload();
+                    document.location.reload();
                 }
                 $('#myModal').modal('hide');
             }, error: function (err) {
@@ -81,7 +81,7 @@
             type: 'post',
             success: function (data) {
                 if (data) {
-                    winddows.location.reload();
+                    document.location.reload();
                 }
             }, error: function (err) {
                 toastify("error", err.statusText);
@@ -97,7 +97,7 @@
             success: function (data) {
                 if (data) {
                     //toastify("error", 'Record deleted successfully');
-                    winddows.location.reload();
+                    document.location.reload();
 
                 }
             }, error: function (err) {

@@ -6,6 +6,7 @@ namespace EmployeeManagementSystem.Controllers
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -253,28 +254,27 @@ namespace EmployeeManagementSystem.Controllers
 
         //
         // GET: /Manage/SetPassword
-        public ActionResult SetPassword()
+        public ActionResult SetPassword(string id)
         {
-            return View();
+            return View(new SetPasswordViewModelBind()
+            {
+                id = id
+            }
+            );
         }
 
         //
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
+        public async Task<ActionResult> SetPassword(SetPasswordViewModelBind model)
         {
             if (ModelState.IsValid)
             {
-                string code = await UserManager.GeneratePasswordResetTokenAsync(User.Identity.GetUserId());
-                var result = await UserManager.ResetPasswordAsync(User.Identity.GetUserId(), code, model.NewPassword);
+                string code = await UserManager.GeneratePasswordResetTokenAsync(model.id);
+                var result = await UserManager.ResetPasswordAsync(model.id, code, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                    if (user != null)
-                    {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
-                    }
                     TempData["sucess"] = "Password Reset Sucessfully.";
                     return RedirectToAction("Index", "Employee");
                 }

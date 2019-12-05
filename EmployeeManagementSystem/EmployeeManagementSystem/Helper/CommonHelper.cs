@@ -44,6 +44,10 @@ namespace EmployeeManagementSystem.Helper
             return user.Id;
         }
 
+        public static string EmployeeRoleId()
+        {
+            return "45541ba5-8b9d-4b26-ba8d-2ca870ff82b1";
+        }
         /// <summary>
         /// Determines whether [is super admin].
         /// </summary>

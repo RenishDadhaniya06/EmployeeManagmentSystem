@@ -52,6 +52,23 @@ namespace EmployeeManagementSystem.Controllers.api
             }
 
         }
+
+        [Route("api/Employee/GetEmployeesByRole/{id}")]
+        [HttpGet]
+        public async Task<List<Employee>> GetEmployeesByRole(string id)
+        {
+            try
+            {
+                var data = await _iCustomerService.GetEmployeeByRole(id);
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
         #endregion
 
         #region GetbyId Method

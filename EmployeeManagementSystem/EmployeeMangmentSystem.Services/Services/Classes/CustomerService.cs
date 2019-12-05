@@ -220,34 +220,75 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return await dbContext.GetCandidateSearchDetail(name);
         }
 
+        /// <summary>
+        /// Gets the employee user view model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id)
         {
             return await dbContext.GetEmployeeUserViewModel(id);
         }
 
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ProjectTeamViewModel>> GetProjects()
         {
             return await dbContext.GetProjects();
         }
+        /// <summary>
+        /// Gets the projects by user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id)
         {
             return await dbContext.GetProjectsByUserId(id);
         }
-        
 
+
+        /// <summary>
+        /// Gets the available resources.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="workingid">if set to <c>true</c> [workingid].</param>
+        /// <returns></returns>
         public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid)
         {
             return await dbContext.GetAvailableResources(id,workingid);
         }
 
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id)
         {
             return await dbContext.TeamByProjectIdGet(id);
         }
 
+        /// <summary>
+        /// Gets the projectsby user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<ProjectViewModel>> GetProjectsbyUserId(Guid id)
         {
             return await dbContext.GetProjectsbyUserId(id);
         }
+        /// <summary>
+        /// Gets the employee by role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<Employee>> GetEmployeeByRole(string id)
+        {
+            return await dbContext.GetEmployeeByRole(id);
+        }
+
+        
     }
 }

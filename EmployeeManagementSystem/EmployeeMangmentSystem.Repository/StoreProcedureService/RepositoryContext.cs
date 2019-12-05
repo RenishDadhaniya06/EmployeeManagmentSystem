@@ -179,7 +179,11 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             Database.ExecuteSqlCommand(@"exec [dbo].[DeleteCandidateTechnology] @p0", id);
             return true;
         }
-
+        public async Task<List<Employee>> GetEmployeeByRole(string id)
+        {
+            var data = await Database.SqlQuery<Employee>(@"exec [dbo].[GetEmployeeByRole] @p0", id).ToListAsync();
+            return data;
+        }
         /// <summary>
         /// Gets the filter candidate.
         /// </summary>

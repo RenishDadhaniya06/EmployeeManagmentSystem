@@ -54,9 +54,8 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 ProjectTeamViewModel model = new ProjectTeamViewModel();
-                List<Employee> emps = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+                List<Employee> emps = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployeesByRole/"+ EmployeeManagementSystem.Helper.CommonHelper.EmployeeRoleId());
                 ViewBag.Employees = emps.Select(_ => new Employee() { UserId = _.UserId, FirstName = _.FirstName + " " + _.MiddleName + " " + _.LastName });
-                List<Employee> Employees = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
                 return View(new ProjectTeamViewModel());
             }
             catch (Exception ex)
@@ -125,7 +124,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                List<Employee> emps = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployees");
+                List<Employee> emps = await APIHelpers.GetAsync<List<Employee>>("api/Employee/GetEmployeesByRole/" + EmployeeManagementSystem.Helper.CommonHelper.EmployeeRoleId());
                 ViewBag.Employees = emps.Select(_ => new Employee() { UserId = _.UserId, FirstName = _.FirstName + " " + _.MiddleName + " " + _.LastName });
                 var project = await APIHelpers.GetAsync<ProjectTeamViewModel>("api/Project/GetTeam/" + id);
                 IEnumerable<TeamViewModel> team = await APIHelpers.GetAsync<List<TeamViewModel>>("api/Project/GetTeamById/" + id);
