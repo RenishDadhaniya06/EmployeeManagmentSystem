@@ -109,6 +109,10 @@ namespace EmployeeManagementSystem.Helper
             {
                 var user = _applicationDbContext.Users.Where(m => m.Email == HttpContext.Current.User.Identity.Name).SingleOrDefault();
                 var role = _applicationDbContext.Roles.FirstOrDefault(_=>_.Id == user.RoleId);
+                if(role.Name == "Developer")
+                {
+                    role.Name = "Employee";
+                }
                 return role.Name;
             }
             catch (Exception ex)
