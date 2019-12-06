@@ -186,6 +186,12 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <returns></returns>
         Task<List<Employee>> GetEmployeeByRole(string id);
 
+        /// <summary>
+        /// Gets the dashboard counts.
+        /// </summary>
+        /// <returns></returns>
         Task<DashboardCounts> GetDashboardCounts();
+
+        Task<List<DashboardCounts>> GetMonthBirthdays();
     }
 }

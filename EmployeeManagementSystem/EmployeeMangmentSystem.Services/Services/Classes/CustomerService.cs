@@ -289,9 +289,18 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return await dbContext.GetEmployeeByRole(id);
         }
 
+        /// <summary>
+        /// Gets the dashboard counts.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DashboardCounts> GetDashboardCounts()
         {
             return await dbContext.GetDashboardCounts();
+        }
+
+        public async Task<List<DashboardCounts>> GetMonthBirthdays()
+        {
+            return await dbContext.GetMonthBirthdays();
         }
 
 

@@ -229,44 +229,91 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
+
+        /// <summary>
+        /// Gets the employee user view model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id)
         {
             var data = await Database.SqlQuery<EmployeeUserViewModel>(@"exec [dbo].[GetEmployeeUserViewModel] @p0", id).SingleOrDefaultAsync();
             return data;
         }
 
+
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ProjectTeamViewModel>> GetProjects()
         {
             var data = await Database.SqlQuery<ProjectTeamViewModel>(@"exec [dbo].[GetProjects]").ToListAsync();
             return data;
         }
+
+
+        /// <summary>
+        /// Gets the projects by user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id)
         {
             return await Database.SqlQuery<ProjectTeamViewModel>(@"exec [dbo].[GetProjectsByUserId] @p0", id).ToListAsync();
         }
 
 
+        /// <summary>
+        /// Teams the by project identifier get.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id)
         {
             var data = await Database.SqlQuery<TeamViewModel>(@"exec [dbo].[TeamByProjectIdGet] @p0", id).ToListAsync();
             return data;
         }
 
+
+        /// <summary>
+        /// Gets the available resources.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="workingid">if set to <c>true</c> [workingid].</param>
+        /// <returns></returns>
         public async Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid)
         {
             var data = await Database.SqlQuery<EmployeeUserViewModel>(@"exec [dbo].[GetAvailableResourcebySkills] @p0,@p1",id,workingid).ToListAsync();
             return data;
         }
 
+
+        /// <summary>
+        /// Gets the projectsby user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<ProjectViewModel>> GetProjectsbyUserId(Guid id)
         {
             var data = await Database.SqlQuery<ProjectViewModel>(@"exec [dbo].[GetProjectTeambyUserId] @p0", id).ToListAsync();
             return data;
         }
 
+
+        /// <summary>
+        /// Gets the dashboard counts.
+        /// </summary>
+        /// <returns></returns>
         public async Task<DashboardCounts> GetDashboardCounts()
         {
             var data = await Database.SqlQuery<DashboardCounts>(@"exec [dbo].[DashboardCounts]").SingleOrDefaultAsync();
+            return data;
+        }
+
+        public async Task<List<DashboardCounts>> GetMonthBirthdays()
+        {
+            var data = await Database.SqlQuery<DashboardCounts>(@"exec [dbo].[GetThisMonthBirthdays]").ToListAsync();
             return data;
         }
     }

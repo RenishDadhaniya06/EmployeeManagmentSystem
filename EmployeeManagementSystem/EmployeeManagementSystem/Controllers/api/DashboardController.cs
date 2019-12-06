@@ -37,5 +37,19 @@ namespace EmployeeManagementSystem.Controllers.api
                 throw;
             }
         }
+
+        [Route("api/Dashboard/GetMonthBirthdays")]
+        [HttpGet]
+        public async Task<List<DashboardCounts>> GetMonthBirthdays()
+        {
+            try
+            {
+                return await _customerService.GetMonthBirthdays();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

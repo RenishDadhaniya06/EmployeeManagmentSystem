@@ -1,7 +1,12 @@
-﻿using System.ComponentModel;
-
+﻿
 namespace Helpers
 {
+    #region Using
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    #endregion
+
+
     /// <summary>
     /// Enums
     /// </summary>
@@ -59,9 +64,11 @@ namespace Helpers
 
         public enum ProjectType
         {
-            [Description("Fixed Price Project (FPP)")]
+            //[Description("Fixed Price Project (FPP)")]
+            [Display(Name = "Fixed Price Project (FPP)")]
             FixedPriceProject = 0,
-            [Description("Hire Based Project")]
+            //[Description("Hire Based Project")]
+            [Display(Name = "Hire Based Project")]
             HireBasedProject = 1
         }
 

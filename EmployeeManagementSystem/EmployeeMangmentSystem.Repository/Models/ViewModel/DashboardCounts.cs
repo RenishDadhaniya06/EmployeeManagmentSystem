@@ -17,5 +17,14 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         public int TotalEmployee { get; set; }
 
         public int TotalProjects { get; set; }
+
+        public List<MonthBirthdays> BirthDays { get; set; }
+    }
+
+    public class MonthBirthdays
+    {
+        public string Name { get; set; }
+
+        public DateTime BirthDate { get; set; }
     }
 }

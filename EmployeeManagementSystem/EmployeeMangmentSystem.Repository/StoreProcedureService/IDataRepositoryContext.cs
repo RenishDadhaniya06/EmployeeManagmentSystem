@@ -8,6 +8,11 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
     using System.Collections.Generic;
     using System.Threading.Tasks;
     #endregion
+
+
+    /// <summary>
+    /// IDataRepositoryContext
+    /// </summary>
     public interface IDataRepositoryContext
     {
 
@@ -144,18 +149,56 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         /// <returns></returns>
         Task<List<Candidates>> GetCandidateSearchDetail(string name);
 
+        /// <summary>
+        /// Gets the employee user view model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<EmployeeUserViewModel> GetEmployeeUserViewModel(Guid id);
 
+        /// <summary>
+        /// Gets the projects.
+        /// </summary>
+        /// <returns></returns>
         Task<List<ProjectTeamViewModel>> GetProjects();
+
+
+        /// <summary>
+        /// Gets the projects by user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<List<ProjectTeamViewModel>> GetProjectsByUserId(string id);
 
+        /// <summary>
+        /// Gets the available resources.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="workingid">if set to <c>true</c> [workingid].</param>
+        /// <returns></returns>
         Task<List<EmployeeUserViewModel>> GetAvailableResources(Guid id, bool workingid);
 
+        /// <summary>
+        /// Teams the by project identifier get.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<List<TeamViewModel>> TeamByProjectIdGet(Guid id);
 
+        /// <summary>
+        /// Gets the projectsby user identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         Task<List<ProjectViewModel>> GetProjectsbyUserId(Guid id);
 
+        /// <summary>
+        /// Gets the dashboard counts.
+        /// </summary>
+        /// <returns></returns>
         Task<DashboardCounts> GetDashboardCounts();
+
+        Task<List<DashboardCounts>> GetMonthBirthdays();
         
     }
 }
