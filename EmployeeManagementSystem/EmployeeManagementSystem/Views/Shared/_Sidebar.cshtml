@@ -3,7 +3,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="@Url.Action("Index", "Home")" class="site_title"> <span>Employee Managment System</span></a>
+            <a href="@Url.Action("Index", "Home")" class="site_title" onclick="showPageLoadingSpinner()"> <span>Employee Managment System</span></a>
         </div>
         <div class="clearfix"></div>
         <!-- menu profile quick info -->
@@ -20,22 +20,22 @@
                     <li>
                         <a><i class="fa fa-bar-chart-o"></i> Administrator <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="@Url.Action("Index", "Department")">@DepartmentResources.Name</a></li>
+                            <li><a href="@Url.Action("Index", "Department")" onclick="showPageLoadingSpinner()">@DepartmentResources.Name</a></li>
 
-                            <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
+                            <li><a href="@Url.Action("Index", "Designation")" onclick="showPageLoadingSpinner()">@DesignationResources.Name</a></li>
 
-                            <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
-                            <li><a href="@Url.Action("Index", "Skill")">@SkillsResources.name</a></li>
+                            <li><a href="@Url.Action("Index","Notification")" onclick="showPageLoadingSpinner()">@NotificationResources.name</a></li>
+                            <li><a href="@Url.Action("Index", "Skill")"  onclick="showPageLoadingSpinner()">@SkillsResources.name</a></li>
                             
                         </ul>
                     </li>
 
-                    <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
-                    <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
+                    <li><a href="@Url.Action("Index", "Employee")" onclick="showPageLoadingSpinner()"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
+                    <li><a href="@Url.Action("Index","Project")" onclick="showPageLoadingSpinner()"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
                     <li>
                         <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="@Url.Action("Index","Resource")"> <i class="fa fa-file"></i>Skill Report</a></li>
+                            <li><a href="@Url.Action("Index","Resource")" onclick="showPageLoadingSpinner()"> <i class="fa fa-file"></i>Skill Report</a></li>
                         </ul>
                     </li>
 
@@ -46,8 +46,8 @@
                 else if (CommonHelper.CurrentRoleName() == "Employee")
                 {
                     <ul class="nav side-menu">
-                        <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>My Projects</a></li>
-                        <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
+                        <li><a href="@Url.Action("Index","Project")" onclick="showPageLoadingSpinner()"><i class="fa fa-tasks"></i>My Projects</a></li>
+                        <li><a href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()"><i class="fa fa-user"></i>My Profile</a></li>
                     </ul>
                 }
                 else if (CommonHelper.CurrentRoleName() == "Sales")
@@ -57,11 +57,11 @@
                         <li>
                             <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="@Url.Action("Index","Resource")"> <i class="fa fa-file"></i>Skill Report</a></li>
+                                <li><a href="@Url.Action("Index","Resource")" onclick="showPageLoadingSpinner()"> <i class="fa fa-file"></i>Skill Report</a></li>
                             </ul>
                         </li>
 
-                        <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
+                        <li><a href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()"><i class="fa fa-user"></i>My Profile</a></li>
 
 
                     </ul>
@@ -73,18 +73,18 @@
                         <li>
                             <a><i class="fa fa-bar-chart-o"></i> Administrator <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
-                                <li><a href="@Url.Action("Index", "Department")">@DepartmentResources.Name</a></li>
+                                <li><a href="@Url.Action("Index","Notification")" onclick="showPageLoadingSpinner()">@NotificationResources.name</a></li>
+                                <li><a href="@Url.Action("Index", "Department")" onclick="showPageLoadingSpinner()">@DepartmentResources.Name</a></li>
 
-                                <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
+                                <li><a href="@Url.Action("Index", "Designation")" onclick="showPageLoadingSpinner()">@DesignationResources.Name</a></li>
 
-                                <li><a href="@Url.Action("Index", "Skill")">@SkillsResources.name</a></li>
+                                <li><a href="@Url.Action("Index", "Skill")" onclick="showPageLoadingSpinner()">@SkillsResources.name</a></li>
                             </ul>
                         </li>
 
-                        <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")" onclick="showPageLoadingSpinner()"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
 
-                        <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
+                        <li><a href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()"><i class="fa fa-user"></i>My Profile</a></li>
 
 
                     </ul>
@@ -93,9 +93,9 @@
                 else if (CommonHelper.CurrentRoleName() == "PM")
                 {
                     <ul class="nav side-menu">
-                        <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
-                        <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
-                        <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
+                        <li><a href="@Url.Action("Index", "Employee")" onclick="showPageLoadingSpinner()"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
+                        <li><a href="@Url.Action("Index","Project")" onclick="showPageLoadingSpinner()"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
+                        <li><a href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()"><i class="fa fa-user"></i>My Profile</a></li>
                     </ul>
                 }
                 else if (CommonHelper.CurrentRoleName() == "Admin")
@@ -105,22 +105,22 @@
                 <li>
                     <a><i class="fa fa-bar-chart-o"></i> Administrator <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="@Url.Action("Index","Notification")">@NotificationResources.name</a></li>
-                        <li><a href="@Url.Action("Index", "Department")">@DepartmentResources.Name</a></li>
+                        <li><a href="@Url.Action("Index","Notification")" onclick="showPageLoadingSpinner()">@NotificationResources.name</a></li>
+                        <li><a href="@Url.Action("Index", "Department")" onclick="showPageLoadingSpinner()">@DepartmentResources.Name</a></li>
 
-                        <li><a href="@Url.Action("Index", "Designation")">@DesignationResources.Name</a></li>
+                        <li><a href="@Url.Action("Index", "Designation")" onclick="showPageLoadingSpinner()">@DesignationResources.Name</a></li>
 
-                        <li><a href="@Url.Action("Index", "Skill")">@SkillsResources.name</a></li>
+                        <li><a href="@Url.Action("Index", "Skill")" onclick="showPageLoadingSpinner()">@SkillsResources.name</a></li>
                     </ul>
                 </li>
 
-                <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
-                <li><a href="@Url.Action("Profile","User")"><i class="fa fa-user"></i>My Profile</a></li>
-                <li><a href="@Url.Action("Index","Project")"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
+                <li><a href="@Url.Action("Index", "Employee")" onclick="showPageLoadingSpinner()"><i class="fa fa-user-circle-o"></i>@EmployeeResources.Name</a></li>
+                <li><a href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()"><i class="fa fa-user"></i>My Profile</a></li>
+                <li><a href="@Url.Action("Index","Project")" onclick="showPageLoadingSpinner()"><i class="fa fa-tasks"></i>@ProjectResources.name</a></li>
                 <li>
                     <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="@Url.Action("Index","Resource")"> <i class="fa fa-file"></i>Skill Report</a></li>
+                        <li><a href="@Url.Action("Index","Resource")" onclick="showPageLoadingSpinner()"> <i class="fa fa-file"></i>Skill Report</a></li>
                     </ul>
                 </li>
 
@@ -143,44 +143,44 @@
 
             @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.IsSuperAdmin())
 
-            {<a data-toggle="tooltip" data-placement="top" title="Settings" href="@Url.Action("Create", "Setting")">
+            {<a data-toggle="tooltip" data-placement="top" title="Settings" href="@Url.Action("Create", "Setting")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 </a>
                 if (!CommonHelper.IsSuperAdmin())
                 {
-                    <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
+                    <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()">
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                     </a>
                 }
                 else
                 {
-                    <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")">
+                    <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")" onclick="showPageLoadingSpinner()">
                         <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                     </a>
                 }
-                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Dashboard")">
+                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Dashboard")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
                 </a>
 
-                <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")">
+                <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                 </a>
             }
             else
             {
-                <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")">
+                <a data-toggle="tooltip" data-placement="top" title="Change Password" href="@Url.Action("ChangePassword", "Manage")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                 </a>
 
-                <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")">
+                <a data-toggle="tooltip" data-placement="top" title="My Profile" href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                 </a>
 
-                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Home")">
+                <a data-toggle="tooltip" data-placement="top" title="Dashboard" href="@Url.Action("Index","Home")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
                 </a>
 
-                <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")">
+                <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("LogOff", "Account")" onclick="showPageLoadingSpinner()">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                 </a>}
         </div>

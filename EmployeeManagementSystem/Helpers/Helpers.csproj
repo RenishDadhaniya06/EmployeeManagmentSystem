@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ApiHelpers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DHTMLX.Scheduler.NET" Version="4.0.1" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />

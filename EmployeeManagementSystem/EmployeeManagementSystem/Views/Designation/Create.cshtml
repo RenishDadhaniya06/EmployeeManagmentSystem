@@ -49,13 +49,13 @@
                         @if (Model.Id == Guid.Empty)
                         {
                             <div class="col-md-2">
-                                <input type="submit" value="Save" class="btn btn-primary" />
+                                <input type="submit" value="Save" class="btn btn-primary"  onclick = "return showPageLoadingSpinner();" />
                             </div>
                         }
                         else
                         {
                             <div class="col-md-2">
-                                <input type="submit" value="Update" class="btn btn-primary" />
+                                <input type="submit" value="Update" class="btn btn-primary"  onclick = "return showPageLoadingSpinner();" />
                             </div>
                         }
 

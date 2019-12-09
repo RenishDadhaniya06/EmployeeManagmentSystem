@@ -95,7 +95,7 @@ namespace EmployeeManagementSystem.Controllers
                         return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                     case SignInStatus.Failure:
                     default:
-                        ModelState.AddModelError("", "Username or Password is wrong please try again.");
+                        TempData["error"] = "Username or Password is wrong please try again.";
                         return View(model);
                 }
             }
