@@ -89,7 +89,7 @@
 <script type="text/javascript">
     function SelectedIndexChanged() {
         if ($(".emp").val() != "") {
-            debugger
+            //debugger
             //location.href = '@Url.Action("EmployeeDetails", "Interview")?id=' + $("#EmployeeId").val();
             var temp = {
                 id: $(".emp").val(),
@@ -101,7 +101,7 @@
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    debugger
+                    //debugger
                     $('.ename').val(data.Name);
                     $('.email').val(data.Email);
                     //document.getElementById('ename').innerText = data.Name;

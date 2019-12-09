@@ -25,9 +25,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                
                 var data = await APIHelpers.GetAsync<DashboardCounts>("api/Dashboard/DashboardCounts");
-                
                 var temp = await APIHelpers.GetAsync<List<MonthBirthdays>>("api/Dashboard/GetMonthBirthdays");
                 DashboardViewModel model = new DashboardViewModel
                 {
@@ -48,5 +46,31 @@ namespace EmployeeManagementSystem.Controllers
             }
         }
         #endregion
+
+        public async Task<JsonResult> RoleWiseUserData()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<ChartViewModel>>("api/Dashboard/RoleWiseUser");
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<JsonResult> SkillWiseUserData()
+        {
+            try
+            {
+                var data = await APIHelpers.GetAsync<List<ChartViewModel>>("api/Dashboard/SkillWiseUsers");
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

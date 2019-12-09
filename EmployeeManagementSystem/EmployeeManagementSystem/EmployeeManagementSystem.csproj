@@ -1279,6 +1279,8 @@
     <Content Include="Views\Resource\Print.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Skill\CreateBulk.cshtml" />
+    <Content Include="Views\Interviews\Create.cshtml" />
+    <Content Include="Views\Interviews\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

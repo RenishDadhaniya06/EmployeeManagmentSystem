@@ -51,5 +51,33 @@ namespace EmployeeManagementSystem.Controllers.api
                 throw;
             }
         }
+
+        [Route("api/Dashboard/RoleWiseUser")]
+        [HttpGet]
+        public async Task<List<ChartViewModel>> RoleWiseUser()
+        {
+            try
+            {
+                return await _customerService.RoleWiseUser();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("api/Dashboard/SkillWiseUsers")]
+        [HttpGet]
+        public async Task<List<ChartViewModel>> SkillWiseUsers()
+        {
+            try
+            {
+                return await _customerService.SkillWiseUser();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

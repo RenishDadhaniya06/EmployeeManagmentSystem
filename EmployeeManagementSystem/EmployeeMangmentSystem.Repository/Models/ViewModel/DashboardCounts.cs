@@ -28,8 +28,6 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 
     public class DashboardViewModel : DashboardCounts
     {
-        //public DashboardCounts DashboardCounts { get; set; }
-
         public List<MonthBirthdays> MonthBirthdays { get; set; }
     }
 }

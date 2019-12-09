@@ -316,5 +316,17 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             var data = await Database.SqlQuery<MonthBirthdays>(@"exec [dbo].[GetThisMonthBirthdays]").ToListAsync();
             return data;
         }
+
+        public async Task<List<ChartViewModel>> RoleWiseUser()
+        {
+            var data = await Database.SqlQuery<ChartViewModel>(@"exec [dbo].[RoleWiseUserCount]").ToListAsync();
+            return data;
+        }
+
+        public async Task<List<ChartViewModel>> SkillWiseUser()
+        {
+            var data = await Database.SqlQuery<ChartViewModel>(@"exec [dbo].[SkillWiseUserCount]").ToListAsync();
+            return data;
+        }
     }
 }
