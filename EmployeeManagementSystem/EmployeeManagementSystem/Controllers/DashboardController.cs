@@ -1,10 +1,10 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
-    using EmployeeManagementSystem.Helper;
+
     #region Using
+    using EmployeeManagementSystem.Helper;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
-    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -51,7 +51,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                var data = await APIHelpers.GetAsync<List<ChartViewModel>>("api/Dashboard/RoleWiseUser");
+                var data = await APIHelpers.GetAsync<List<ChartViewModel>>("api/Dashboard/RoleWiseUsers");
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

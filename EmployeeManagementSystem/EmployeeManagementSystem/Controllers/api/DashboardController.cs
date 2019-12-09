@@ -52,9 +52,9 @@ namespace EmployeeManagementSystem.Controllers.api
             }
         }
 
-        [Route("api/Dashboard/RoleWiseUser")]
+        [Route("api/Dashboard/RoleWiseUsers")]
         [HttpGet]
-        public async Task<List<ChartViewModel>> RoleWiseUser()
+        public async Task<List<ChartViewModel>> RoleWiseUsers()
         {
             try
             {
