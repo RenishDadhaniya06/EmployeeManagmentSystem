@@ -40,12 +40,10 @@ namespace EmployeeManagementSystem.Controllers
         //    return View();
         //}
 
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
+        public ActionResult Lockout()
+        {
+            return View();
+        }
 
         public async Task<TimeTrackingSystems> GetTimeTrackingSystems()
         {

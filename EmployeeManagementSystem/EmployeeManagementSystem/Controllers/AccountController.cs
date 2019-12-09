@@ -88,6 +88,7 @@ namespace EmployeeManagementSystem.Controllers
                 switch (result)
                 {
                     case SignInStatus.Success:
+                        Session["UserID"] = Guid.NewGuid().ToString();
                         return RedirectToAction("Index", "Home");
                     case SignInStatus.LockedOut:
                         return View("Lockout");

@@ -20,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
     /// ReportsController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class ReportsController : Controller
     {
         #region Properties

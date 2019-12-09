@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
@@ -16,6 +17,7 @@ namespace EmployeeManagementSystem.Controllers
     /// RolePermissionController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class RolePermissionController : Controller
     {
     

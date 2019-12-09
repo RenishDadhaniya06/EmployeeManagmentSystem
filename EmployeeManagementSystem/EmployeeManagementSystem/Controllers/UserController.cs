@@ -25,6 +25,7 @@ namespace EmployeeManagementSystem.Controllers
     /// UserController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class UserController : Controller
     {
         #region Properties
@@ -101,19 +102,6 @@ namespace EmployeeManagementSystem.Controllers
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        //_applicationDbContext.UserRoles.Add(new IdentityUserRole<string>()
-                        //{
-                        //    UserId = model.Id,
-                        //RoleId = model.RoleId
-                        //});
-                        //var month = DateTime.Now.Month;
-                        //var cal = 13 - month;
-                        //Employee emp = new Employee();
-                        //emp.Name = model.FirstName + model.LastName;
-                        //emp.Email = model.Email;
-                        //emp.AvailableLeaves = Convert.ToDecimal(cal * 1.5);
-                        //await APIHelpers.PostAsync<Employee>("api/Employee/Post", emp);
-                        //_repositoryContext.Employees.Add(emp);
                         TempData["sucess"] = CommonResources.create;
                         return RedirectToAction("Index");
                     }

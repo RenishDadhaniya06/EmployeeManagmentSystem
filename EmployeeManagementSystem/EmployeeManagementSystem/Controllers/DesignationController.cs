@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeManagementSystem.Models;
     using EmployeeMangmentSystem.Repository.Models;
@@ -18,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// DesignationController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class DesignationController : Controller
     {
         #region Index Method

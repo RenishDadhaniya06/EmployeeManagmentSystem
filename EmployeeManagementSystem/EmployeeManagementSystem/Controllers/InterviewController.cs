@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeMangmentSystem.Repository.Models;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
@@ -18,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// InterviewController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class InterviewController : Controller
     {
         // GET: Interview

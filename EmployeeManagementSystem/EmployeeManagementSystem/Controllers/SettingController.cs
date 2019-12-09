@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeMangmentSystem.Repository.Models;
     using Helpers;
@@ -15,6 +16,7 @@ namespace EmployeeManagementSystem.Controllers
     /// SettingController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class SettingController : Controller
     {
         // GET: Setting

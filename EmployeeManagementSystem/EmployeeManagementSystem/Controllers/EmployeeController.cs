@@ -18,6 +18,7 @@ namespace EmployeeManagementSystem.Controllers
     using Microsoft.AspNet.Identity.Owin;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using Newtonsoft.Json;
+    using EmployeeManagementSystem.Helper;
     #endregion
 
 
@@ -25,6 +26,7 @@ namespace EmployeeManagementSystem.Controllers
     /// EmployeeController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class EmployeeController : Controller
     {
 

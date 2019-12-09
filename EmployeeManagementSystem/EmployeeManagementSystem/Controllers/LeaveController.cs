@@ -1,6 +1,7 @@
 ﻿
 namespace LeaveManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeManagementSystem.Models;
     using EmployeeMangmentSystem.Repository.Models;
@@ -25,6 +26,7 @@ namespace LeaveManagementSystem.Controllers
     /// LeaveController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class LeaveController : Controller
     {
         //private ApplicationUserManager _userManager;

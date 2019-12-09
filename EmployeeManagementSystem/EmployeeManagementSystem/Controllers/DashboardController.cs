@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using Helpers;
@@ -14,6 +15,7 @@ namespace EmployeeManagementSystem.Controllers
     /// DashboardController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class DashboardController : Controller
     {
         #region Index Method
