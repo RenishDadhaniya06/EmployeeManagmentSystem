@@ -27,7 +27,8 @@
                     width: "300px",
                     responsive: false,
                     animation: false,
-                    legend: { horizontalAlign: 'right', },
+            legend: { position: 'bottom' },
+
                     data: {
                         //labels: ["M", "T", "W", "T", "F", "S", "S"],
                         labels: ["Employee", "Developer", "HR", "PM", "Sales", "Project"],
@@ -126,11 +127,15 @@
     </div>
     <canvas id="myChart" width="400" height="200"></canvas>
 </div>*@
-<div class="x_panel">
-    <div class="x_content">
-        <div class="col-md-4">
-            <canvas id="myChart" width="400" height="250"></canvas>
+<div class="row">
+    <div class="col-md-6">
+        <div class="x_panel ">
+            <div class="x_title">Role Wise Employee</div>
+            <div class="x_content">
+                <div class="">
+                    <canvas id="myChart" width="400" height="250"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-

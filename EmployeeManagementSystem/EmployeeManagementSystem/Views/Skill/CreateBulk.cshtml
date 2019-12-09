@@ -1,0 +1,47 @@
+﻿
+@{
+   
+        ViewBag.Title = "Add Bulk Skill";
+
+}
+<div class="x_panel">
+    <div class="x_title">
+        <h2>
+            @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
+            {
+                @ViewBag.Title
+            }
+        </h2>
+        <div class="nav navbar-right panel_toolbox">
+            <div class="control-label">Download Format:
+          
+                <a href="~/Images/Demo.xlsx" class="btn btn-rounded btn btn-info glyphicon glyphicon-download"></a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        @using (Html.BeginForm("UploadExcel", "Skill", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
+        {
+            <div class="form-horizontal">
+              
+
+                <div class="form-group">
+
+                    <div class="control-label col-md-2">Excel:</div>
+                    <div class="col-md-10">
+                        <input type="file" id="FileUpload1" name="FileUpload1"  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Upload" id="btnSubmit" class="btn btn-primary"  onclick = "return showPageLoadingSpinner();" />
+
+                    </div>
+                </div>
+            </div>
+        }
+   
+    </div>
+</div>
