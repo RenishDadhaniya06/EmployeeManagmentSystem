@@ -45,7 +45,7 @@ namespace EmployeeManagementSystem.Models
         : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+       
         public DbSet<TimeTrackingSystems> TimeTrackingSystems { get; set; }
 
         public DbSet<TimeTrackings> TimeTrackings { get; set; }

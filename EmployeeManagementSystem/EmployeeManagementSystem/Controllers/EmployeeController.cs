@@ -17,6 +17,7 @@ namespace EmployeeManagementSystem.Controllers
     using System.Web;
     using Microsoft.AspNet.Identity.Owin;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
+    using Newtonsoft.Json;
     #endregion
 
 
@@ -155,12 +156,33 @@ namespace EmployeeManagementSystem.Controllers
                         collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
                         var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
                         collection.UserId = Guid.Parse(user.Id);
-                        var result = await UserManager.CreateAsync(user, collection.Password);
-                        if (result.Succeeded)
+                        var result = await PostAsync<EmployeeUserViewModel>("api/Employee/Post", collection);
+                        if (result)
                         {
-                            await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
-                            TempData["sucess"] = EmployeeResources.create;
+                            var account = await UserManager.CreateAsync(user, collection.Password);
+                            if (account.Succeeded)
+                            {
+                                TempData["sucess"] = EmployeeResources.create;
+                            }
+                            else
+                            {
+                                string msg = "";
+                                foreach (var error in account.Errors)
+                                {
+                                    ModelState.AddModelError("", error);
+                                    msg += error + Environment.NewLine;
+                                }
+                                TempData["error"] = msg;
+                                return View(collection);
+                            }
                         }
+                        else
+                        {
+                            TempData["error"] = CommonResources.error;
+                            return View(collection);
+                        }
+
+                      
                     }
                     else
                     {
@@ -186,40 +208,25 @@ namespace EmployeeManagementSystem.Controllers
                     }
                 }
                 return RedirectToAction("Index");
-                //if (ModelState.IsValid)
-                //{
-                //    collection.Skills = skills;
-                //    // TODO: Add insert logic here
-                //    if (collection.Id == Guid.Empty)
-                //    {
-                //        string dob = Request["BirthDate"];
-                //        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
-                //        var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
-                //        collection.UserId = Guid.Parse(user.Id);
-                //        var result = await UserManager.CreateAsync(user, collection.Password);
-                //        if (result.Succeeded)
-                //        {
-                //            await APIHelpers.PostAsync<Employee>("api/Employee/Post", collection);
-                //            TempData["sucess"] = EmployeeResources.create;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
-                //        TempData["sucess"] = EmployeeResources.update;
-                //    }
-                //    return RedirectToAction("Index");
-                //}
-                //else
-                //{
-                //    return View(collection);
-                //}
-
+               
             }
             catch (Exception ex)
             {
                 TempData["error"] = CommonResources.error;
                 return RedirectToAction("AccessDenied", "Error");
+            }
+        }
+
+        public static async Task<bool> PostAsync<T>(string uri, EmployeeUserViewModel data)
+        {
+            var response = await APIHelpers.CallApi(uri, JsonConvert.SerializeObject(data), "POST");
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

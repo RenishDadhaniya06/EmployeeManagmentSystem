@@ -1,4 +1,10 @@
-﻿
+﻿$(document)
+    .ajaxStart(function () {
+        $('#AjaxLoader').show();
+    })
+    .ajaxStop(function () {
+        $('#AjaxLoader').hide();
+    });  
 $(document).ready(function () {
     //start of the document ready function
     //delcaring global variable to hold primary key value.
@@ -14,7 +20,7 @@ $(document).ready(function () {
 
         if (pryEmpId != '') {
             $.ajax({
-                url: deleteUrl +'/'+ pryEmpId,
+                url: deleteUrl + '/' + pryEmpId,
                 //data: { 'id': pryEmpId },
                 type: 'get',
                 success: function (data) {
@@ -29,9 +35,9 @@ $(document).ready(function () {
             });
         }
     });
-  
+
 });
 $('#demoGrid').dataTable({
-    
+
     //end of the docuement ready function
 });

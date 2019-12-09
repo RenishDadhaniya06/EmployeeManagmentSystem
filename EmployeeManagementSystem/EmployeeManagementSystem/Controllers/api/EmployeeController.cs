@@ -84,7 +84,7 @@ namespace EmployeeManagementSystem.Controllers.api
         #region Post Method
         [Route("api/Employee/Post")]
         [HttpPost]
-        public Employee Post(EmployeeUserViewModel model)
+        public bool Post(EmployeeUserViewModel model)
         {
             try
             {
@@ -119,13 +119,14 @@ namespace EmployeeManagementSystem.Controllers.api
                     }
                     _skillrepository.InsertRange(skills);
                 }
-                return data2;
+                return true;
             }
             catch (Exception ex)
             {
-                throw;
+                return false;
+
             }
-            
+
         }
         #endregion
 
