@@ -198,7 +198,7 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         /// <returns></returns>
         Task<DashboardCounts> GetDashboardCounts();
 
-        Task<List<DashboardCounts>> GetMonthBirthdays();
+        Task<List<MonthBirthdays>> GetMonthBirthdays();
         
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace Helpers
+namespace EmployeeManagementSystem.Helper
 {
     #region Using
     using Newtonsoft.Json;

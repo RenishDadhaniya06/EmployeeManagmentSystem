@@ -40,7 +40,7 @@ namespace EmployeeManagementSystem.Controllers.api
 
         [Route("api/Dashboard/GetMonthBirthdays")]
         [HttpGet]
-        public async Task<List<DashboardCounts>> GetMonthBirthdays()
+        public async Task<List<MonthBirthdays>> GetMonthBirthdays()
         {
             try
             {

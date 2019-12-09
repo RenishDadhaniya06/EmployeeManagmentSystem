@@ -192,6 +192,6 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <returns></returns>
         Task<DashboardCounts> GetDashboardCounts();
 
-        Task<List<DashboardCounts>> GetMonthBirthdays();
+        Task<List<MonthBirthdays>> GetMonthBirthdays();
     }
 }

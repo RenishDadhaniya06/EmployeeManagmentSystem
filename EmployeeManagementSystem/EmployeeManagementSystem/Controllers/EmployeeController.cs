@@ -149,7 +149,7 @@ namespace EmployeeManagementSystem.Controllers
                 ModelState.Remove("OtherContact");
                 ModelState.Remove("Skills");
                 //var month = (13 - DateTime.Now.Month) * 1.5;
-                if(collection.Id == Guid.Empty)
+                if (collection.Id == Guid.Empty)
                 {
                     if (ModelState.IsValid)
                     {
@@ -158,33 +158,38 @@ namespace EmployeeManagementSystem.Controllers
                         collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
                         var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
                         collection.UserId = Guid.Parse(user.Id);
-                        var result = await PostAsync<EmployeeUserViewModel>("api/Employee/Post", collection);
-                        if (result)
+                        var account = await UserManager.CreateAsync(user, collection.Password);
+                        if (account.Succeeded)
                         {
-                            var account = await UserManager.CreateAsync(user, collection.Password);
-                            if (account.Succeeded)
+                            var result = await PostAsync<EmployeeUserViewModel>("api/Employee/Post", collection);
+                            if (result)
                             {
                                 TempData["sucess"] = EmployeeResources.create;
+                                return RedirectToAction("Index");
                             }
                             else
                             {
-                                string msg = "";
-                                foreach (var error in account.Errors)
-                                {
-                                    ModelState.AddModelError("", error);
-                                    msg += error + Environment.NewLine;
-                                }
-                                TempData["error"] = msg;
+                                await UserManager.DeleteAsync(user);
+                                TempData["error"] = CommonResources.error;
                                 return View(collection);
                             }
                         }
                         else
                         {
-                            TempData["error"] = CommonResources.error;
+                            string msg = "";
+                            foreach (var error in account.Errors)
+                            {
+                                ModelState.AddModelError("", error);
+                                msg += error + Environment.NewLine;
+                            }
+
+                            //await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + data.Id);
+                            TempData["error"] = msg;
                             return View(collection);
                         }
 
-                      
+
+
                     }
                     else
                     {
@@ -210,7 +215,7 @@ namespace EmployeeManagementSystem.Controllers
                     }
                 }
                 return RedirectToAction("Index");
-               
+
             }
             catch (Exception ex)
             {
@@ -246,7 +251,8 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 ViewBag.Roles = _applicationDbContext.Roles.ToList();
                 var data = await APIHelpers.GetAsync<EmployeeUserViewModel>("api/Employee/GetEmployeeUser/" + id);
-                EmployeeUserViewModel emp = new EmployeeUserViewModel{
+                EmployeeUserViewModel emp = new EmployeeUserViewModel
+                {
                     Id = data.Id,
                     FirstName = data.FirstName,
                     MiddleName = data.MiddleName,
@@ -302,7 +308,7 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
-                if(teamid != null)
+                if (teamid != null)
                 {
                     await APIHelpers.GetAsync<string>("api/Project/ChangeWorkingStatus/" + teamid);
                 }

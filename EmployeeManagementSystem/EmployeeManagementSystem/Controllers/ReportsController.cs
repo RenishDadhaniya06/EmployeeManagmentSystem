@@ -57,7 +57,7 @@ namespace EmployeeManagementSystem.Controllers
                 //    model = NewMethod(model, data);
                 //    return View(model);
                 //}
-                var data = await Helpers.APIHelpers.GetAsync<ReportFilter>("api/Reports/Contect?admin=" + temp.IsSuperAdmin + "&id1=" + temp.Id);
+                var data = await APIHelpers.GetAsync<ReportFilter>("api/Reports/Contect?admin=" + temp.IsSuperAdmin + "&id1=" + temp.Id);
                 return View(data);
             }
             catch (Exception ex)
@@ -128,7 +128,7 @@ namespace EmployeeManagementSystem.Controllers
                 //    item.CreatedDate = cuurUser.FirstName + " " + cuurUser.LastName;
                 //}
                 //return View(data);
-                var data = await Helpers.APIHelpers.GetAsync<List<TimeTrackings>>("api/Reports/ViewReport?id=" + id + "&date=" + date);
+                var data = await APIHelpers.GetAsync<List<TimeTrackings>>("api/Reports/ViewReport?id=" + id + "&date=" + date);
                 return View(data);
             }
             catch (Exception ex)
@@ -166,7 +166,7 @@ namespace EmployeeManagementSystem.Controllers
                 //    model = NewMethod(model, data);
                 //}
                 //var data = await Helpers.APIHelpers.PostAsync<ReportFilter>("api/Reports/GetReports",model);
-                var data = await Helpers.APIHelpers.GetAsync<ReportFilter>("api/Reports/GetReports?userId=" + emp + "&admin=" + temp.IsSuperAdmin + "&id=" + temp.Id + "&from=" + from + "&to=" + to);
+                var data = await APIHelpers.GetAsync<ReportFilter>("api/Reports/GetReports?userId=" + emp + "&admin=" + temp.IsSuperAdmin + "&id=" + temp.Id + "&from=" + from + "&to=" + to);
                 return View("Contact", data);
             }
             catch (Exception ex)
