@@ -14,105 +14,52 @@
 
 
 <script type="text/javascript">
-    function generatePieChart() {
-          $.ajax({
-            url: '@Url.Action("RoleWiseUserData","Dashboard")',
-            type: 'get',
-            success: function (data) {
-                  bindPieData(data)
+   var employee = @Model.TotalEmployee;
+    var developer = @Model.TotalDeveloper;
+    var sales = @Model.TotalSales;
+    var pm = @Model.TotalPM;
+    var project = @Model.TotalProjects;
+    var hr = @Model.TotalHR;
+   
+   $(function () {
+        var ctx1 = document.getElementById("myChart").getContext("2d");
+        var myChart = new Chart(ctx1, {
+                    type: 'pie',
+                    height: "230px",
+                    width: "300px",
+                    responsive: false,
+                    animation: false,
+            legend: { position: 'bottom' },
 
-            }, error: function (err) {
-                toastify("error", err.statusText);
-            }
-        });
-    }
-     generatePieChart()
-    function bindPieData(data) {
-        if (data) {
-            //toastify("error", 'Record deleted successfully');
-            var ctx1 = document.getElementById("pieChart").getContext("2d");
-            var datalabel = $.map(data, function (value, key) {
-                return value.Name;
-            });
-            var total = $.map(data, function (value, key) {
-                return value.Total;
-            });
-            var myChart = new Chart(ctx1, {
-                type: 'pie',
-                height: "230px",
-                width: "300px",
-                responsive: false,
-                animation: false,
-                legend: { horizontalAlign: 'bottom', },
-                data: {
-                    //labels: ["M", "T", "W", "T", "F", "S", "S"],
-                    labels: datalabel,
-                    datasets: [{
-                        label: 'Monthly Expenses',
-                        data: total,
-                        backgroundColor: ["red", "blue", "green", "yellow", "pink", "brown"]
-                    }]
-                }
-            });
-        }
-     }
-
-    function generateSkillChart() {
-          $.ajax({
-            url: '@Url.Action("SkillWiseUserData","Dashboard")',
-            type: 'get',
-              success: function (data) {
-                  console.log("Skill : " + data);
-                  bindSkillData(data)
-
-            }, error: function (err) {
-                toastify("error", err.statusText);
-                }
-        });
-    }
-     generateSkillChart()
-    function bindSkillData(data) {
-        if (data) {
-            //toastify("error", 'Record deleted successfully');
-            var ctx1 = document.getElementById("lineChart").getContext("2d");
-            var datalabel = $.map(data, function (value, key) {
-                return value.Name;
-            });
-            console.log(datalabel);
-            var total = $.map(data, function (value, key) {
-                return value.Total;
-            });
-            console.log(total);
-            var skillchart = new Chart(ctx1, {
-                type: 'line',
-                height: "230px",
-                width: "300px",
-                responsive: false,
-                animation: false,
-                legend: { horizontalAlign: 'bottom', },
-                data: {
-                    //labels: ["M", "T", "W", "T", "F", "S", "S"],
-                    labels: datalabel,
-                    datasets: [{
-                        label: 'Skill',
-                        data: total,
-                        backgroundColor: "rgb(66, 134, 244)"
-                    }]
-                }, options: {
-                    scaleShowValues: true,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                autoSkip: false
-                                }
-                            }]
-                        }
+                    data: {
+                        //labels: ["M", "T", "W", "T", "F", "S", "S"],
+                        labels: ["Employee", "Developer", "HR", "PM", "Sales", "Project"],
+                        datasets: [{
+                            label: 'Monthly Expenses',
+                            data: [employee, developer, hr, pm, sales, project],
+                            backgroundColor: ["red", "blue", "green", "yellow", "pink", "brown"]
+                        }]
                     }
+                });
+     });
+    //$(function () {
+    //    var ctx = document.getElementById("myChart").getContext('2d');
+    //    var myChart = new Chart(ctx, {
+    //        type: 'pie',
+    //            height: "230px",
+    //        width: "300px",
+    //        responsive: false,
+    //        animation: false,
+    //        data: {
+    //            labels: ["Employee", "Developer", "HR", "PM", "Sales", "Project"],
+    //            datasets: [{
+    //                  label: 'Monthly Expenses',
+    //                data: [employee, developer,  hr, pm, sales, project],
+    //                backgroundColor: ["red", "blue", "green", "yellow", "pink", "brown"]
+    //            }]
+    //        }
+    //    });
+    //});
 
                 });
             }
@@ -178,33 +125,22 @@
 
 
 @*<div class="col-md-4">
-        <div class="col-md-4 col-md-offset-1">
-            <button type="button" class="btn btn-secondary" onclick="showPie()">
-                Value
-            </button>
-        </div>
-        <canvas id="myChart" width="400" height="200"></canvas>
-    </div>*@
+    <div class="col-md-4 col-md-offset-1">
+        <button type="button" class="btn btn-secondary" onclick="showPie()">
+            Value
+        </button>
+    </div>
+    <canvas id="myChart" width="400" height="200"></canvas>
+</div>*@
 <div class="row">
     <div class="col-md-6">
         <div class="x_panel ">
             <div class="x_title">Role Wise Employee</div>
             <div class="x_content">
                 <div class="">
-                    <canvas id="pieChart" width="400" height="250"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="x_panel ">
-            <div class="x_title">Skill Wise Employee</div>
-            <div class="x_content">
-                <div class="">
-                    <canvas id="lineChart" width="400" height="250"></canvas>
+                    <canvas id="myChart" width="400" height="250"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

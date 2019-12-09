@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// TemplateController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class TemplateController : Controller
     {
         // GET: Template

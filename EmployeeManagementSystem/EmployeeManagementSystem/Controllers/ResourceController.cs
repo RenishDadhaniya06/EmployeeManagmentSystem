@@ -20,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
     /// ResourceController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class ResourceController : Controller
     {
         #region Index Method

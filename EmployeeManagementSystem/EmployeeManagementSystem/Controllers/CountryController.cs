@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// CountryController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class CountryController : Controller
     {
         #region Index Method

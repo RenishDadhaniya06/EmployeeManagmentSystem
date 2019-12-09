@@ -22,6 +22,7 @@ namespace EmployeeManagementSystem.Controllers
     /// <seealso cref="System.Web.Mvc.Controller" />
     [HandleError]
     [CheckAuthorization]
+    [SessionTimeout]
     public class RoleController : Controller
     {
         public ApplicationDbContext appcontext;

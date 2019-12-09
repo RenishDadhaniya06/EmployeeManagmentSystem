@@ -20,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
     /// InterviewerController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class InterviewerController : Controller
     {
         // GET: Interviews

@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// DepartmentController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class DepartmentController : Controller
     {
         #region Index Method

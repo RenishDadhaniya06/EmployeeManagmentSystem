@@ -60,11 +60,18 @@
     j(function () {
         if (empty !== id) {
             //debugger
-            j('.skills').multiselect('select', skillArr);
+            j('.skills').multiselect('select', skillArr, {
+                enableFiltering: true,
+                maxHeight: 200, dropUp: true, enableCaseInsensitiveFiltering: true
+            });
 
         } else {
             //debugger
-          j('.skills').multiselect();
+            j('.skills').multiselect({
+                enableFiltering: true, maxHeight: 200, dropUp: true, enableCaseInsensitiveFiltering: true
+
+
+            });
     }
 
     });
@@ -268,7 +275,7 @@
                             @Html.ValidationMessageFor(model => model.CurrentSalary, "", new { @class = "text-danger" })
                         </div>
                     }
-                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin()|| CommonHelper.CurrentRoleName() == "PM")
+                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin() || CommonHelper.CurrentRoleName() == "PM")
                     {
                         <div class="col-lg-6 form-group">
                             @Html.LabelFor(model => model.LeaveBalance, new { @class = "control-label" })
@@ -342,11 +349,11 @@
                     <div>
                         @if (Model.Id == Guid.Empty)
                         {
-                            <input type="submit" value="Save" class="btn btn-success"  onclick = "return showPageLoadingSpinner();" />
+                            <input type="submit" value="Save" class="btn btn-success" onclick="return showPageLoadingSpinner();" />
                         }
                         else
                         {
-                            <input type="submit" value="Update" class="btn btn-success"   onclick = "return showPageLoadingSpinner();"/>
+                            <input type="submit" value="Update" class="btn btn-success" onclick="return showPageLoadingSpinner();" />
                         }
 
                         <a href="@Url.Action("Index","Employee")" class="btn btn-primary">Cancel</a>

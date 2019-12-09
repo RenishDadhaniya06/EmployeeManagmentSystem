@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeManagementSystem.Models;
     using Microsoft.AspNet.Identity;
@@ -19,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
     [Authorize]
+    [SessionTimeout]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

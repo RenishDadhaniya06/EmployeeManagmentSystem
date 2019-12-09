@@ -1,10 +1,28 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
+﻿
 @{
-    ViewBag.Title = "Locked Out";
-}
+    /**/
 
-<hgroup>
-    <h1 class="text-danger">Locked out.</h1>
-    <h2 class="text-danger">This account has been locked out, please try again later.</h2>
-</hgroup>
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Libs/Gentelella/css/custom.min.css" rel="stylesheet" />
+<link href="~/Content/common.css" rel="stylesheet" />
+<body class="login">
+    <div>
+  
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <h1 class="text-danger"> @ViewBag.Title</h1>
+                <h2 class="text-danger">Your Session Expire Please login again <a href="@Url.Action("LogOff","Account")">Login</a>.</h2>
+            </div>
+
+        </div>
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/fastclick.js"></script>
+    <script src="~/Scripts/nprogress.min.js"></script>
+    <script src="~/Libs/Gentelella/js/custom.min.js"></script>
+
+</body>
+

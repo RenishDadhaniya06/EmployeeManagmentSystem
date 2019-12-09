@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// NotificationController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class NotificationController : Controller
     {
         // GET: Notification

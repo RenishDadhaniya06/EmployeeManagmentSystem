@@ -26,6 +26,7 @@ namespace LeaveManagementSystem.Controllers
     /// LeaveController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class LeaveController : Controller
     {
         //private ApplicationUserManager _userManager;

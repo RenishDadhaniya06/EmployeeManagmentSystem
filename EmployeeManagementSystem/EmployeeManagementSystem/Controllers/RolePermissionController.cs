@@ -17,6 +17,7 @@ namespace EmployeeManagementSystem.Controllers
     /// RolePermissionController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class RolePermissionController : Controller
     {
     

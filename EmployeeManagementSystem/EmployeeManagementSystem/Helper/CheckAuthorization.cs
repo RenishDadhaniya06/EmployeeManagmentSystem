@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Helper
 {
+    using System.Web;
     #region Using
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -41,6 +42,19 @@ namespace EmployeeManagementSystem.Helper
                RouteValueDictionary(new { controller = "Error", action = "AccessDenied" }));
             }
 
+        }
+    }
+
+
+    public class SessionTimeoutAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            HttpContext ctx = HttpContext.Current;
+            if (ctx.Session == null)
+            { 
+                ctx.Response.Redirect("~/LogOut/LogOut");
+            }
         }
     }
 }

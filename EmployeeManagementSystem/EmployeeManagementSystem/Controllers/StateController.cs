@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// StateController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class StateController : Controller
     {
         // GET: State

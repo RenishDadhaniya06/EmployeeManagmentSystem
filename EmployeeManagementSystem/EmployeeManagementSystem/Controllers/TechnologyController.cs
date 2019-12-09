@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// TechnologyController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class TechnologyController : Controller
     {
         // GET: Department

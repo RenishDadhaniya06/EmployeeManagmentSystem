@@ -26,6 +26,7 @@ namespace EmployeeManagementSystem.Controllers
     /// EmployeeController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class EmployeeController : Controller
     {
 
@@ -168,7 +169,7 @@ namespace EmployeeManagementSystem.Controllers
                             }
                             else
                             {
-                                await UserManager.DeleteAsync(user);
+                             var delete = await UserManager.DeleteAsync(user);
                                 TempData["error"] = CommonResources.error;
                                 return View(collection);
                             }

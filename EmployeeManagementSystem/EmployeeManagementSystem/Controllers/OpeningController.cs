@@ -20,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
     /// OpeningController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class OpeningController : Controller
     {
         // GET: Opening

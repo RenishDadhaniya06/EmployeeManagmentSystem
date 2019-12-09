@@ -16,6 +16,7 @@ namespace EmployeeManagementSystem.Controllers
     /// DashboardController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class DashboardController : Controller
     {
         #region Index Method

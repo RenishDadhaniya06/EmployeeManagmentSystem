@@ -20,6 +20,7 @@ namespace EmployeeManagementSystem.Controllers
     /// ProjectController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class ProjectController : Controller
     {
         // GET: Project

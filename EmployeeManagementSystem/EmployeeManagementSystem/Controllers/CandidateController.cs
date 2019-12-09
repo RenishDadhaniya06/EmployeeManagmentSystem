@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// CandidateController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class CandidateController : Controller
     {
         // GET: Candidate

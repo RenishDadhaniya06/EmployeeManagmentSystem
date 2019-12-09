@@ -27,6 +27,11 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
+        @{
+            ViewBag.Title = "Index";
+        }
+
+      
         @using (Html.BeginForm("Create", "Skill", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -48,18 +53,18 @@
                         @if (Model.Id == Guid.Empty)
                         {
                             <div class="col-md-2">
-                                <input type="submit" value="Save" class="btn btn-primary"  onclick = "return showPageLoadingSpinner();" />
+                                <input type="submit" value="Save" class="btn btn-primary" onclick="return showPageLoadingSpinner();" />
                             </div>
                         }
                         else
                         {
                             <div class="col-md-2">
-                                <input type="submit" value="Update" class="btn btn-primary"  onclick = "return showPageLoadingSpinner();" />
+                                <input type="submit" value="Update" class="btn btn-primary" onclick="return showPageLoadingSpinner();" />
                             </div>
                         }
 
                         <div class="col-md-2">
-                            <a href="@Url.Action("Index","Skill")" class="btn btn-success">Cancel</a>
+                            <a href="@Url.Action("Index","Skill")" class="btn btn-default">Cancel</a>
                         </div>
                     </div>
                 </div>

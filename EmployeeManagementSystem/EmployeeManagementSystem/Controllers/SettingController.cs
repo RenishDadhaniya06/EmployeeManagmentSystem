@@ -16,6 +16,7 @@ namespace EmployeeManagementSystem.Controllers
     /// SettingController
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
+    [SessionTimeout]
     public class SettingController : Controller
     {
         // GET: Setting
