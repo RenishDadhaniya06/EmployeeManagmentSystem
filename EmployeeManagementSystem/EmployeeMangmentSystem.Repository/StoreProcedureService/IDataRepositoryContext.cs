@@ -199,6 +199,10 @@ namespace EmployeeMangmentSystem.Repository.StoreProcedureService
         Task<DashboardCounts> GetDashboardCounts();
 
         Task<List<MonthBirthdays>> GetMonthBirthdays();
-        
+
+        Task<List<ChartViewModel>> RoleWiseUser();
+
+        Task<List<ChartViewModel>> SkillWiseUser();
+
     }
 }

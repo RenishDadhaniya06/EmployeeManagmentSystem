@@ -303,6 +303,14 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return await dbContext.GetMonthBirthdays();
         }
 
+        public async Task<List<ChartViewModel>> RoleWiseUser()
+        {
+            return await dbContext.RoleWiseUser();
+        }
 
+        public async Task<List<ChartViewModel>> SkillWiseUser()
+        {
+            return await dbContext.SkillWiseUser();
+        }
     }
 }
