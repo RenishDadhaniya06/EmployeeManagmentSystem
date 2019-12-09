@@ -37,6 +37,12 @@ namespace EmployeeManagementSystem.Helper
             return user;
         }
 
+        public static ApplicationUser GetUserById(string id)
+        {
+            var user = _applicationDbContext.Users.Where(m => m.Id ==  id).SingleOrDefault();
+            return user;
+        }
+
         public static Guid CurrentEmployeeId()
         {
             var useri = Guid.Parse(GetUserId());

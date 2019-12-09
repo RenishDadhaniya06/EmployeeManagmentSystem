@@ -19,6 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using Newtonsoft.Json;
     using EmployeeManagementSystem.Helper;
+    using CommonHelper = Helper.CommonHelper;
     #endregion
 
 
@@ -169,7 +170,7 @@ namespace EmployeeManagementSystem.Controllers
                             }
                             else
                             {
-                             var delete = await UserManager.DeleteAsync(user);
+                             var delete = await UserManager.DeleteAsync(CommonHelper.GetUserById(user.Id));
                                 TempData["error"] = CommonResources.error;
                                 return View(collection);
                             }
