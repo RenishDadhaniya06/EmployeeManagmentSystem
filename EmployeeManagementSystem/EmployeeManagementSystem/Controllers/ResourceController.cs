@@ -1,6 +1,7 @@
 ﻿
 namespace EmployeeManagementSystem.Controllers
 {
+    using EmployeeManagementSystem.Helper;
     #region Using
     using EmployeeManagementSystem.Models;
     using EmployeeMangmentSystem.Repository.Models;
@@ -11,6 +12,7 @@ namespace EmployeeManagementSystem.Controllers
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using APIHelpers = Helper.APIHelpers;
     #endregion
 
 

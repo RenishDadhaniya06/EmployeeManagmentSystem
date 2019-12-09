@@ -18,6 +18,7 @@ namespace EmployeeManagementSystem.Controllers
     using Microsoft.AspNet.Identity.Owin;
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using Newtonsoft.Json;
+    using EmployeeManagementSystem.Helper;
     #endregion
 
 
@@ -172,6 +173,8 @@ namespace EmployeeManagementSystem.Controllers
                                     ModelState.AddModelError("", error);
                                     msg += error + Environment.NewLine;
                                 }
+                             
+                                //await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + data.Id);
                                 TempData["error"] = msg;
                                 return View(collection);
                             }
