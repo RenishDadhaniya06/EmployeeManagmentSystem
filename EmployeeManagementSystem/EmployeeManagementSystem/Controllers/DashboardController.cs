@@ -5,6 +5,7 @@ namespace EmployeeManagementSystem.Controllers
     using EmployeeMangmentSystem.Repository.Models.ViewModel;
     using Helpers;
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     #endregion
@@ -22,8 +23,22 @@ namespace EmployeeManagementSystem.Controllers
         {
             try
             {
+                
                 var data = await APIHelpers.GetAsync<DashboardCounts>("api/Dashboard/DashboardCounts");
-                return View(data);
+                
+                var temp = await APIHelpers.GetAsync<List<MonthBirthdays>>("api/Dashboard/GetMonthBirthdays");
+                DashboardViewModel model = new DashboardViewModel
+                {
+                    TotalEmployee = data.TotalEmployee,
+                    TotalDeveloper = data.TotalDeveloper,
+                    TotalHR = data.TotalHR,
+                    TotalPM = data.TotalPM,
+                    TotalSales = data.TotalSales,
+                    TotalProjects = data.TotalProjects,
+                    MonthBirthdays = temp
+                };
+                //data.BirthDays = temp.BirthDays;
+                return View(model);
             }
             catch (Exception ex)
             {

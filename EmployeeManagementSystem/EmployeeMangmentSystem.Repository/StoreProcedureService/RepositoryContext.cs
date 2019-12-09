@@ -311,9 +311,9 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
-        public async Task<List<DashboardCounts>> GetMonthBirthdays()
+        public async Task<List<MonthBirthdays>> GetMonthBirthdays()
         {
-            var data = await Database.SqlQuery<DashboardCounts>(@"exec [dbo].[GetThisMonthBirthdays]").ToListAsync();
+            var data = await Database.SqlQuery<MonthBirthdays>(@"exec [dbo].[GetThisMonthBirthdays]").ToListAsync();
             return data;
         }
     }

@@ -298,7 +298,7 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return await dbContext.GetDashboardCounts();
         }
 
-        public async Task<List<DashboardCounts>> GetMonthBirthdays()
+        public async Task<List<MonthBirthdays>> GetMonthBirthdays()
         {
             return await dbContext.GetMonthBirthdays();
         }

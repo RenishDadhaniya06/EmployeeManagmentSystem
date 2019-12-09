@@ -17,8 +17,6 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         public int TotalEmployee { get; set; }
 
         public int TotalProjects { get; set; }
-
-        public List<MonthBirthdays> BirthDays { get; set; }
     }
 
     public class MonthBirthdays
@@ -26,5 +24,12 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         public string Name { get; set; }
 
         public DateTime BirthDate { get; set; }
+    }
+
+    public class DashboardViewModel : DashboardCounts
+    {
+        //public DashboardCounts DashboardCounts { get; set; }
+
+        public List<MonthBirthdays> MonthBirthdays { get; set; }
     }
 }

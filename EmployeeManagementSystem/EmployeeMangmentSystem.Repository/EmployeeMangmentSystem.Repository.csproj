@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Chart.js" Version="2.9.3" />
     <PackageReference Include="DHTMLX.Scheduler.NET" Version="4.0.1" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
