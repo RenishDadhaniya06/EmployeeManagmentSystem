@@ -38,9 +38,9 @@ namespace EmployeeMangmentSystem.Repository.Models
         [Required]
         [Display(Name = "Phone")]
         [DataType(DataType.PhoneNumber)]
-        [Phone]
+        [Phone(ErrorMessage = "Mobile Number is not valid")]
         //[RegularExpression(@"^[1-9]\d{10}$", ErrorMessage = "Mobile Number is not valid")]
-        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Mobile Number is not valid")]
+        //[RegularExpression(@"^[6-9]\d{9}$",)]
         public string Phone { get; set; }
 
         [Required]
@@ -72,6 +72,15 @@ namespace EmployeeMangmentSystem.Repository.Models
         [Display(Name = "Leave Balance")]
         //[RegularExpression(@"^[0-1]{1}[0-9]{1}$", ErrorMessage = "Leave Balance is not valid")]
         public string LeaveBalance { get; set; }
+
+        public decimal Experience { get; set; }
+        //[Experience]
+
+        [Required]
+        [Display(Name = "Joining Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-mm-yyyy}")]
+        public DateTime JoiningDate { get; set; }
 
         public bool IsEmailVerified { get; set; }
 

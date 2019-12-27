@@ -145,7 +145,10 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 ViewBag.Roles = _applicationDbContext.Roles.ToList();
                 string skills = string.Join(",", Request["Skill"]);
+                decimal exp = Convert.ToDecimal(collection.Experience);
+                //collection.Experience = Convert.ToDecimal(collection.Experience);
                 ModelState.Remove("BirthDate");
+                ModelState.Remove("JoiningDate");
                 ModelState.Remove("LeaveBalance");
                 ModelState.Remove("OtherContact");
                 ModelState.Remove("Skills");
@@ -154,9 +157,12 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     if (ModelState.IsValid)
                     {
+                        collection.Experience = exp;
                         collection.Skills = skills;
                         string dob = Request["BirthDate"];
                         collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                        string join = Request["JoiningDate"];
+                        collection.JoiningDate = DateTime.ParseExact(join, "MM/dd/yyyy", null);
                         var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
                         collection.UserId = Guid.Parse(user.Id);
                         var account = await UserManager.CreateAsync(user, collection.Password);

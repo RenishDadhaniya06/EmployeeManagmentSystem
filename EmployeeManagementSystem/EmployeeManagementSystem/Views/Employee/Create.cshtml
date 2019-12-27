@@ -27,6 +27,7 @@
 <script type="text/javascript">
     var dept = '@data.Department'
     var data = '@Model.BirthDate';
+    var joindate = '@Model.JoiningDate'; 
     var skill = '@data.Skills'
     var skillArr= skill.split(',');
     var id= '@data.Id'
@@ -38,7 +39,7 @@
             if (id !== empty) {
                 var datestrring = data.split(' ')[0];
                 var datestrringarr = datestrring.split('-');
-    var d = new Date(datestrringarr[2], datestrringarr[1], datestrringarr[0]);
+                var d = new Date(datestrringarr[2], datestrringarr[1], datestrringarr[0]);
                 var currMonth = d.getMonth();
                 var currYear = d.getFullYear();
                 var currDate = d.getDate();
@@ -52,6 +53,27 @@
                 var currDate = d.getDate();
                 var startDate = new Date(currYear, currMonth, currDate);
                 $('.datepicker').datepicker('setDate', startDate);
+            }
+
+        });
+        $(function () {
+            if (id !== empty) {
+                var datestrring = joindate.split(' ')[0];
+                var datestrringarr = datestrring.split('-');
+                var d = new Date(datestrringarr[2], datestrringarr[1], datestrringarr[0]);
+                var currMonth = d.getMonth();
+                var currYear = d.getFullYear();
+                var currDate = d.getDate();
+                var startDate = new Date(currYear,(currMonth-1), currDate);
+                $('.datepicker1').datepicker('setDate', startDate);
+
+            } else {
+               var d = new Date();
+                var currMonth = d.getMonth();
+                var currYear = d.getFullYear();
+                var currDate = d.getDate();
+                var startDate = new Date(currYear, currMonth, currDate);
+                $('.datepicker1').datepicker('setDate', startDate);
             }
 
         });
@@ -264,6 +286,29 @@
                         </div>
                     }
                 </div>
+                <div class="row text-left">
+                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin())
+                    {
+                        <div class="col-lg-6 form-group">
+                            @*@Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label" })*@
+                            <label class="control-label">   Experience(in years)</label>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.TextBoxFor(model => model.Experience, new { @class = "form-control" })
+                        </div>
+                    }
+                    @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin())
+                    {
+                        <div class="col-lg-6 form-group">
+                            @Html.LabelFor(model => model.JoiningDate, htmlAttributes: new { @class = "control-label"})
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.TextBoxFor(model => model.JoiningDate, "{0:MM-dd-yyyy}", htmlAttributes: new { @class = "form-control datepicker1 has-feedback-left" })
+                            @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    }
+                    </div>
                 <div class="row text-left">
                     @if (CommonHelper.CurrentRoleName() == "Admin" || CommonHelper.CurrentRoleName() == "HR" || CommonHelper.IsSuperAdmin())
                     {

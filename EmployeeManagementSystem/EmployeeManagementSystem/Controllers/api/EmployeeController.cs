@@ -104,6 +104,8 @@ namespace EmployeeManagementSystem.Controllers.api
                     CurrentSalary = model.CurrentSalary,
                     IsEmailVerified = model.IsEmailVerified,
                     UserId = model.UserId,
+                    JoiningDate = model.JoiningDate,
+                    Experience = model.Experience,
                 };
                 var data2 = _repository.Insert(emp);
                 if(model.Skills != "")
