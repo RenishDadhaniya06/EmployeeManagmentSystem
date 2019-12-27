@@ -311,18 +311,30 @@ namespace EmployeeMangmentSystem.Repository.Repository.Classes
             return data;
         }
 
+        /// <summary>
+        /// Gets the month birthdays.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<MonthBirthdays>> GetMonthBirthdays()
         {
             var data = await Database.SqlQuery<MonthBirthdays>(@"exec [dbo].[GetThisMonthBirthdays]").ToListAsync();
             return data;
         }
 
+        /// <summary>
+        /// Roles the wise user.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ChartViewModel>> RoleWiseUser()
         {
             var data = await Database.SqlQuery<ChartViewModel>(@"exec [dbo].[RoleWiseUserCount]").ToListAsync();
             return data;
         }
 
+        /// <summary>
+        /// Skills the wise user.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ChartViewModel>> SkillWiseUser()
         {
             var data = await Database.SqlQuery<ChartViewModel>(@"exec [dbo].[SkillWiseUserCount]").ToListAsync();

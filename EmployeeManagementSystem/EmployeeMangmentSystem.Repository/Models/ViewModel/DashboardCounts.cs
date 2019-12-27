@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 {
+    #region Using
+    using System;
+    using System.Collections.Generic;
+    #endregion
+
+
+    /// <summary>
+    /// DashboardCounts
+    /// </summary>
     public class DashboardCounts
     {
         public int TotalDeveloper { get; set; }
@@ -19,6 +25,9 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         public int TotalProjects { get; set; }
     }
 
+    /// <summary>
+    /// MonthBirthdays
+    /// </summary>
     public class MonthBirthdays
     {
         public string Name { get; set; }
@@ -26,6 +35,10 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         public DateTime BirthDate { get; set; }
     }
 
+    /// <summary>
+    /// DashboardViewModel
+    /// </summary>
+    /// <seealso cref="EmployeeMangmentSystem.Repository.Models.ViewModel.DashboardCounts" />
     public class DashboardViewModel : DashboardCounts
     {
         public List<MonthBirthdays> MonthBirthdays { get; set; }

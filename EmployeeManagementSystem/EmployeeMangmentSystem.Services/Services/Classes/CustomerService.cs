@@ -298,16 +298,28 @@ namespace EmployeeMangmentSystem.Services.Services.Classes
             return await dbContext.GetDashboardCounts();
         }
 
+        /// <summary>
+        /// Gets the month birthdays.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<MonthBirthdays>> GetMonthBirthdays()
         {
             return await dbContext.GetMonthBirthdays();
         }
 
+        /// <summary>
+        /// Roles the wise user.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ChartViewModel>> RoleWiseUser()
         {
             return await dbContext.RoleWiseUser();
         }
 
+        /// <summary>
+        /// Skills the wise user.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ChartViewModel>> SkillWiseUser()
         {
             return await dbContext.SkillWiseUser();

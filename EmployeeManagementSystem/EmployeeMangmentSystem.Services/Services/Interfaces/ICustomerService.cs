@@ -192,10 +192,22 @@ namespace EmployeeMangmentSystem.Services.Services
         /// <returns></returns>
         Task<DashboardCounts> GetDashboardCounts();
 
+        /// <summary>
+        /// Gets the month birthdays.
+        /// </summary>
+        /// <returns></returns>
         Task<List<MonthBirthdays>> GetMonthBirthdays();
 
+        /// <summary>
+        /// Roles the wise user.
+        /// </summary>
+        /// <returns></returns>
         Task<List<ChartViewModel>> RoleWiseUser();
 
+        /// <summary>
+        /// Skills the wise user.
+        /// </summary>
+        /// <returns></returns>
         Task<List<ChartViewModel>> SkillWiseUser();
 
     }
