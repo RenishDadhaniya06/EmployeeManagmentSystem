@@ -273,7 +273,9 @@ namespace EmployeeManagementSystem.Controllers
                     IsEmailVerified = data.IsEmailVerified,
                     UserId = data.UserId,
                     Department = data.Department,
-                    Skills = data.Skills
+                    Skills = data.Skills,
+                    JoiningDate = data.JoiningDate,
+                    Experience = data.Experience
                 };
                 var temp = await APIHelpers.GetAsync<List<ProjectViewModel>>("api/Employee/Projects/" + data.UserId);
                 emp.Projects = temp;
