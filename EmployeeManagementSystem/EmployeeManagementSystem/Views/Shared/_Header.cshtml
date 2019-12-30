@@ -16,11 +16,7 @@
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
 
                         <li><a href="@Url.Action("ChangePassword","Manage")" onclick="showPageLoadingSpinner()">Change Password</a></li>
-                        <li>
-                            <a href="@Url.Action("LogOff", "Account" )" onclick="showPageLoadingSpinner()">
-                                LogOut
-                            </a>
-                        </li>
+
                         @if (!CommonHelper.IsSuperAdmin())
                         {
                             <li><a href="@Url.Action("Profile","User")" onclick="showPageLoadingSpinner()"> Profile</a></li>
@@ -34,7 +30,11 @@
                                 </a>
                             </li>
                         }
-
+                        <li>
+                            <a href="@Url.Action("LogOff", "Account" )" onclick="showPageLoadingSpinner()">
+                                LogOut
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

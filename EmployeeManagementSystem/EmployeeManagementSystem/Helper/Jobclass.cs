@@ -27,14 +27,14 @@ namespace EmployeeManagementSystem.Helper
             html += ".tftable {width: 100 %;border-width: 1px;border-collapse: collapse;}.tftable th {font-size: 15px;font-weight: bold;background-color: #acc8cc;border-width: 1px;padding: 8px; border-style: solid;text-align: left;}</style>";
             html += "</head><body>";
             html += "<table class='tftable' border='1' style='width: 100 %; border-style:solid; border-width:1px;cellpadding='4' cellspacing='4'><tbody> ";
-            html += "<tr><td>Name</td><td>Email</td><td>Skills</td></tr>";
+            html += "<tr><td>Name</td><td>Email</td><td>Skills</td><td>Total Experiance</td></tr>";
 
 
             foreach (var d in data)
             {
                 if (Convert.ToInt32(d.WorkingCount) == 0)
                 {
-                    html += "<tr><td>" + d.FullName + "</td> <td>" + d.Email + "</td> <td>" + d.Skills + "</td> </tr>";
+                    html += "<tr><td>" + d.FullName + "</td> <td>" + d.Email + "</td> <td>" + d.Skills + "</td><td>" + d.Experience + "</td> </tr>";
                 }
             }
             html += " </tbody></table>";

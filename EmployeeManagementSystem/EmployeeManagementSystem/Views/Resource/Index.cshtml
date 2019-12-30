@@ -70,25 +70,31 @@
                         <th style="text-align:center">
                             Phone
                         </th>
+                        <th style="text-align:center">
+                            Experiance
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.EmployeeUserViewModels)
                     {
-                        <tr>
-                            <td id="Name" style="text-align:center">
-                                @{
-                                    var name = item.FirstName + " " + item.MiddleName + " " + item.LastName;
-                                }
-                                @name
-                            </td>
-                            <td style="text-align:center">
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td style="text-align:center">
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                        </tr>
+                    <tr>
+                        <td id="Name" style="text-align:center">
+                            @{
+                                var name = item.FirstName + " " + item.MiddleName + " " + item.LastName;
+                            }
+                            @name
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Experience)
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
