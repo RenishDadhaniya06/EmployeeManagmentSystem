@@ -145,16 +145,37 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 ViewBag.Roles = _applicationDbContext.Roles.ToList();
-                var tempexp = collection.Experience.ToString(CultureInfo.InvariantCulture).Split('.');
-                var intpart = tempexp[0];
-                var fractionalpart = tempexp[1];
-                if (int.Parse(fractionalpart) < 10)
+                var fractionalpart = "";
+                string temp = collection.Experience.ToString();
+                if (temp.Contains("."))
                 {
-                    fractionalpart = "0" + fractionalpart;
+                    var tempexp = collection.Experience.ToString(CultureInfo.InvariantCulture).Split('.');
+                    var intpart = tempexp[0];
+                    fractionalpart = tempexp[1];
+                    if(int.Parse(fractionalpart) < 12)
+                    {
+                        if (int.Parse(fractionalpart) < 10)
+                        {
+                            fractionalpart = "0" + fractionalpart;
+                        }
+                        //var experience = intpart + "." + fractionalpart;
+                        collection.Experience = Convert.ToDecimal(intpart + "." + fractionalpart);
+                    }
+                    else
+                    {
+                        string dob = Request["BirthDate"];
+                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                        string msg = "Experience is not valid";
+                        TempData["error"] = msg;
+                        return View(collection);
+                    }
                 }
-                var experience = intpart + "." + fractionalpart;
+                else
+                {
+                    collection.Experience = Convert.ToDecimal(temp);
+                }
                 string skills = string.Join(",", Request["Skill"]);
-                decimal exp = Convert.ToDecimal(experience);
+
                 //collection.Experience = Convert.ToDecimal(collection.Experience);
                 ModelState.Remove("BirthDate");
                 ModelState.Remove("JoiningDate");
@@ -162,80 +183,72 @@ namespace EmployeeManagementSystem.Controllers
                 ModelState.Remove("OtherContact");
                 ModelState.Remove("Skills");
                 //var month = (13 - DateTime.Now.Month) * 1.5;
-                if (int.Parse(fractionalpart) < 12)
+
+                if (collection.Id == Guid.Empty)
                 {
-                    if (collection.Id == Guid.Empty)
+                    if (ModelState.IsValid)
                     {
-                        if (ModelState.IsValid)
+                        
+                        collection.Skills = skills;
+                        string dob = Request["BirthDate"];
+                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                        string join = Request["JoiningDate"];
+                        collection.JoiningDate = DateTime.ParseExact(join, "MM/dd/yyyy", null);
+                        var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
+                        collection.UserId = Guid.Parse(user.Id);
+                        var account = await UserManager.CreateAsync(user, collection.Password);
+                        if (account.Succeeded)
                         {
-                            collection.Experience = exp;
-                            collection.Skills = skills;
-                            string dob = Request["BirthDate"];
-                            collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
-                            string join = Request["JoiningDate"];
-                            collection.JoiningDate = DateTime.ParseExact(join, "MM/dd/yyyy", null);
-                            var user = new ApplicationUser { RoleId = collection.RoleId, UserName = collection.Email, IsSuperAdmin = false, ParentUserID = Guid.Parse("06644856-45f6-4c78-9c19-60781abba7e3"), Email = collection.Email, FirstName = "", LastName = "", UserStatus = 0 };
-                            collection.UserId = Guid.Parse(user.Id);
-                            var account = await UserManager.CreateAsync(user, collection.Password);
-                            if (account.Succeeded)
+                            var result = await PostAsync<EmployeeUserViewModel>("api/Employee/Post", collection);
+                            if (result)
                             {
-                                var result = await PostAsync<EmployeeUserViewModel>("api/Employee/Post", collection);
-                                if (result)
-                                {
-                                    TempData["sucess"] = EmployeeResources.create;
-                                    return RedirectToAction("Index");
-                                }
-                                else
-                                {
-                                    var delete = await UserManager.DeleteAsync(CommonHelper.GetUserById(user.Id));
-                                    TempData["error"] = CommonResources.error;
-                                    return View(collection);
-                                }
+                                TempData["sucess"] = EmployeeResources.create;
+                                return RedirectToAction("Index");
                             }
                             else
                             {
-                                string msg = "";
-                                foreach (var error in account.Errors)
-                                {
-                                    ModelState.AddModelError("", error);
-                                    msg += error + Environment.NewLine;
-                                }
-
-                                //await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + data.Id);
-                                TempData["error"] = msg;
+                                var delete = await UserManager.DeleteAsync(CommonHelper.GetUserById(user.Id));
+                                TempData["error"] = CommonResources.error;
                                 return View(collection);
                             }
                         }
                         else
                         {
+                            string msg = "";
+                            foreach (var error in account.Errors)
+                            {
+                                ModelState.AddModelError("", error);
+                                msg += error + Environment.NewLine;
+                            }
+
+                            //await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + data.Id);
+                            TempData["error"] = msg;
                             return View(collection);
                         }
                     }
                     else
                     {
-                        ModelState.Remove("Password");
-                        ModelState.Remove("Email");
-                        if (ModelState.IsValid)
-                        {
-                            string dob = Request["BirthDate"];
-                            collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
-                            collection.Skills = skills;
-                            await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
-                            TempData["sucess"] = EmployeeResources.update;
-                        }
-                        else
-                        {
-                            return View(collection);
-                        }
+                        return View(collection);
                     }
                 }
                 else
                 {
-                    string msg = "Experience is not valid";
-                    //ModelState.AddModelError("", "Experience is not valid");
-                    TempData["error"] = msg;
-                    return View(collection);
+                    ModelState.Remove("Password");
+                    ModelState.Remove("Email");
+                    if (ModelState.IsValid)
+                    {
+                        string dob = Request["BirthDate"];
+                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
+                        collection.Skills = skills;
+                        await APIHelpers.PutAsync<Employee>("api/Employee/Put", collection);
+                        TempData["sucess"] = EmployeeResources.update;
+                    }
+                    else
+                    {
+                        return View(collection);
+                    }
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
