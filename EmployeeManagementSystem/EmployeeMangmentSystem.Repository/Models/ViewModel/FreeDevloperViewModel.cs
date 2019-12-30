@@ -10,5 +10,6 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         public string Email { get; set; }
         public Int32 WorkingCount { get; set; }
         public string Skills { get; set; }
+        public string Experience { get; set; }
     }
 }
