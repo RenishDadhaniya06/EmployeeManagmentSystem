@@ -25,5 +25,7 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
 
         [Display(Name = "Currently Working")]
         public bool CurrentlyWorking { get; set; }
+        public string Skills { get; set; }
+        public string ProjectName { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace EmployeeManagementSystem.Controllers
     using EmployeeManagementSystem.Helper;
     using CommonHelper = Helper.CommonHelper;
     using System.Globalization;
+    using System.Web.Routing;
     #endregion
 
 
@@ -245,7 +246,8 @@ namespace EmployeeManagementSystem.Controllers
                     }
                     else
                     {
-                        return View(collection);
+                        return RedirectToAction("Edit", new RouteValueDictionary(
+      new { action = "Edit", Id = collection.Id }));
                     }
                 }
 

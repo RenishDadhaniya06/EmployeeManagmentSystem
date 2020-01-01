@@ -45,12 +45,16 @@ namespace EmployeeManagementSystem.Controllers
             try
             {
                 //HttpPostedFileBase file;
-                if (Logo != null && !string.IsNullOrEmpty(Logo.FileName)) { 
-                Logo.SaveAs(Server.MapPath("~/Images/" + Logo.FileName));
-                collection.Logo = Logo.FileName;
-                }
+                //if (Logo != null && !string.IsNullOrEmpty(Logo.FileName)) { 
+                //Logo.SaveAs(Server.MapPath("~/Images/" + Logo.FileName));
+                //collection.Logo = Logo.FileName;
+                //}
                 // TODO: Add insert logic here
                 ModelState.Remove("Id");
+                ModelState.Remove("Header");
+                ModelState.Remove("SubHeader");
+                ModelState.Remove("Logo");
+                ModelState.Remove("ShowDate");
                 if (ModelState.IsValid)
                 {
                     await APIHelpers.PostAsync<SettingView>("api/Setting/Post",collection);
