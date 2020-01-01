@@ -21,7 +21,7 @@ namespace EmployeeManagementSystem
         /// </summary>
         protected void Application_Start()
         {
-            //JobScheduler.Start();
+            JobScheduler.Start();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

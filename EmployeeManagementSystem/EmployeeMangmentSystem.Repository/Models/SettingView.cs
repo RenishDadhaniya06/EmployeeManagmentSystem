@@ -14,11 +14,9 @@ namespace EmployeeMangmentSystem.Repository.Models
     {
         public Guid Id { get; set; }
 
-        [Required]
         [Display(Name ="Header")]
         public string Header { get; set; }
 
-        [Required]
         [Display(Name ="SubHeader")]
         public string SubHeader { get; set; }
 
@@ -38,5 +36,8 @@ namespace EmployeeMangmentSystem.Repository.Models
 
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "Send Daily Report?")]
+        public bool DailySalesReport { get; set; }
     }
 }

@@ -231,8 +231,15 @@
                                     <th style="text-align:center">
                                         Name
                                     </th>
+                                    <th style="text-align: center;
+    word-spacing: unset;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;">
+                                        Skills
+                                    </th>
                                     <th style="text-align:center">
-                                        Mobile
+                                        Project Name
                                     </th>
                                     <th style="text-align:center">
                                         Currently Working
@@ -248,7 +255,20 @@
                                 {
                                     <tr>
                                         <td> @item.FirstName  @item.MiddleName  @item.LastName</td>
-                                        <td>  @item.Phone</td>
+                                        <td>
+                                            @{
+                                                var skill = item.Skills.Split(',');
+                                                <ul>
+                                                    @foreach (var sk in skill.OrderBy(_=>_.))
+                                                    {
+                                                        <li>@sk</li>
+
+                                                    }
+                                                </ul>
+                                            }
+
+                                        </td>
+                                        <td>  @item.ProjectName</td>
                                         <td style="text-align:center">
                                             @if (role == "Employee")
                                             {
@@ -336,11 +356,11 @@
                         {
                             if (Model.Id == Guid.Empty)
                             {
-                                <input type="submit" value="Save" class="btn btn-success"  onclick = "return showPageLoadingSpinner();"/>
+                                <input type="submit" value="Save" class="btn btn-success" onclick="return showPageLoadingSpinner();" />
                             }
                             else
                             {
-                                <input type="submit" value="Update" class="btn btn-success"  onclick = "return showPageLoadingSpinner();"/>
+                                <input type="submit" value="Update" class="btn btn-success" onclick="return showPageLoadingSpinner();" />
                             }
                         }
                         @if (Model.Id != Guid.Empty && role != "Employee")
