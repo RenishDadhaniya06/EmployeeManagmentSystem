@@ -4,6 +4,7 @@ namespace EmployeeMangmentSystem.Repository.Models
     #region Using
     using System;
     using System.ComponentModel.DataAnnotations;
+    using static Helpers.Enums;
     #endregion
 
 
@@ -40,7 +41,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         [DataType(DataType.PhoneNumber)]
         [Phone(ErrorMessage = "Mobile Number is not valid")]
         //[RegularExpression(@"^[1-9]\d{10}$", ErrorMessage = "Mobile Number is not valid")]
-        //[RegularExpression(@"^[6-9]\d{9}$",)]
+        [RegularExpression(@"^[6-9]\d{9}$",ErrorMessage ="Mobile number is not valid")]
         public string Phone { get; set; }
 
         [Required]
@@ -56,7 +57,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         [Display(Name = "Other Contact")]
         [DataType(DataType.PhoneNumber)]
         [Phone]
-        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Mobile Number is not valid")]
+        //[RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Mobile Number is not valid")]
         public string OtherContact { get; set; }
 
         [Required]
@@ -85,5 +86,20 @@ namespace EmployeeMangmentSystem.Repository.Models
         public bool IsEmailVerified { get; set; }
 
         public Guid UserId { get; set; }
+
+        [Required]
+        [Display(Name ="Blood Group")]
+        public BloodGroups BloodGroup { get; set; }
+
+        [Required]
+        [Display(Name ="Emergency Contact Name")]
+        public string EmergencyContactName { get; set; }
+
+        [Required]
+        [Display(Name ="Emergency Contact Phone")]
+        [DataType(DataType.PhoneNumber)]
+        //[Phone(ErrorMessage = "Mobile Number is not valid")]
+        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Mobile number is not valid")]
+        public string EmergencyContactNumber { get; set; }
     }
 }

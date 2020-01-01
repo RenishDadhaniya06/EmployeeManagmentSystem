@@ -1,9 +1,6 @@
 ﻿
-
 namespace EmployeeManagementSystem.Controllers
 {
-
-
     #region Using
     using Helpers;
     using System;
@@ -22,7 +19,6 @@ namespace EmployeeManagementSystem.Controllers
     using CommonHelper = Helper.CommonHelper;
     using System.Globalization;
     #endregion
-
 
     /// <summary>
     /// EmployeeController
@@ -188,7 +184,6 @@ namespace EmployeeManagementSystem.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        
                         collection.Skills = skills;
                         string dob = Request["BirthDate"];
                         collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
@@ -302,7 +297,10 @@ namespace EmployeeManagementSystem.Controllers
                     Department = data.Department,
                     Skills = data.Skills,
                     JoiningDate = data.JoiningDate,
-                    Experience = data.Experience
+                    Experience = data.Experience,
+                    EmergencyContactName = data.EmergencyContactName,
+                    EmergencyContactNumber = data.EmergencyContactNumber,
+                    BloodGroup = data.BloodGroup
                 };
                 var temp = await APIHelpers.GetAsync<List<ProjectViewModel>>("api/Employee/Projects/" + data.UserId);
                 emp.Projects = temp;

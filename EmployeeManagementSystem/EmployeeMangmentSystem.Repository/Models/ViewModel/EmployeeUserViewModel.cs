@@ -53,6 +53,7 @@ namespace EmployeeMangmentSystem.Repository.Models.ViewModel
         /// <value>
         /// The role identifier.
         /// </value>
+        [Display(Name ="Role")]
         public string RoleId { get; set; }
         [NotMapped]
         public int WorkingCount { get; set; }

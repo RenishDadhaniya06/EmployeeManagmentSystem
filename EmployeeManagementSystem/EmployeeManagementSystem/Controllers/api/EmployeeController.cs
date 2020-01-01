@@ -106,6 +106,9 @@ namespace EmployeeManagementSystem.Controllers.api
                     UserId = model.UserId,
                     JoiningDate = model.JoiningDate,
                     Experience = model.Experience,
+                    EmergencyContactName = model.EmergencyContactName,
+                    EmergencyContactNumber = model.EmergencyContactNumber,
+                    BloodGroup = model.BloodGroup
                 };
                 var data2 = _repository.Insert(emp);
                 if(model.Skills != "")
@@ -156,6 +159,9 @@ namespace EmployeeManagementSystem.Controllers.api
                 UserId = model.UserId,
                 JoiningDate = model.JoiningDate,
                 Experience = model.Experience,
+                BloodGroup = model.BloodGroup,
+                EmergencyContactNumber = model.EmergencyContactNumber,
+                EmergencyContactName = model.EmergencyContactName,
             };
             var data2 = _repository.Update(emp);
             _skillrepository.DeleteWhere(_=> _.CandidateId == emp.Id);

@@ -78,6 +78,33 @@ namespace Helpers
             [Description("Not Working")]
             NotWorking = 0
         }
+
+        public enum BloodGroups
+        {
+            [Display(Name ="A+")]
+            APositive = 0,
+
+            [Display(Name ="A-")]
+            ANegetive = 1,
+
+            [Display(Name ="B+")]
+            BPositive = 2,
+
+            [Display(Name ="B-")]
+            BNegetive = 3,
+
+            [Display(Name ="O+")]
+            OPositive = 4,
+
+            [Display(Name ="O-")]
+            ONegetive = 5,
+
+            [Display(Name ="AB+")]
+            ABPositive = 6,
+
+            [Display(Name ="AB-")]
+            ABNegetive = 7
+        }
         
     }
 }
