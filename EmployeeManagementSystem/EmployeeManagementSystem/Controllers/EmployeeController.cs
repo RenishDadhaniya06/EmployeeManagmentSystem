@@ -143,20 +143,21 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 ViewBag.Roles = _applicationDbContext.Roles.ToList();
                 var fractionalpart = "";
-                string temp = collection.Experience.ToString();
-                if (temp.Contains("."))
+                //string temp = collection.Experience.ToString();
+                if (collection.Experience.Contains("."))
                 {
                     var tempexp = collection.Experience.ToString(CultureInfo.InvariantCulture).Split('.');
                     var intpart = tempexp[0];
                     fractionalpart = tempexp[1];
-                    if(int.Parse(fractionalpart) < 12)
+                    if (int.Parse(fractionalpart) < 12)
                     {
                         if (int.Parse(fractionalpart) < 10)
                         {
                             fractionalpart = "0" + fractionalpart;
                         }
                         //var experience = intpart + "." + fractionalpart;
-                        collection.Experience = Convert.ToDecimal(intpart + "." + fractionalpart);
+                        //collection.Experience = Convert.ToDecimal(intpart + "." + fractionalpart);
+                        collection.Experience = intpart + "." + fractionalpart;
                     }
                     else
                     {
@@ -169,7 +170,8 @@ namespace EmployeeManagementSystem.Controllers
                 }
                 else
                 {
-                    collection.Experience = Convert.ToDecimal(temp);
+                    //collection.Experience = Convert.ToDecimal(temp);
+                    collection.Experience = collection.Experience;
                 }
                 string skills = string.Join(",", Request["Skill"]);
 
