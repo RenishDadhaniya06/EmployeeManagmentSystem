@@ -259,7 +259,7 @@
                                             @{
                                                 var skill = item.Skills.Split(',');
                                                 <ul>
-                                                    @foreach (var sk in skill.OrderBy(_=>_.))
+                                                    @foreach (var sk in skill)
                                                     {
                                                         <li>@sk</li>
 

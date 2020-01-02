@@ -20,7 +20,9 @@ namespace EmployeeManagementSystem.Helper
             var data = repositoryContext.Database.SqlQuery<FreeDevloperViewModel>(@"exec [dbo].[FreeEmployees]").ToList();
             var email = repositoryContext.Database.SqlQuery<string>(@"exec [dbo].[GetSalesAdminEmail]").ToArray();
             var systemSetting = repositoryContext.SettingView.FirstOrDefault();
-            
+
+            if (systemSetting.DailySalesReport)
+            { 
             string html = "";
 
             html += "<html><head>" + "<meta name = 'viewport' content = 'width=device-width' /><style type = 'text/css'>";
@@ -40,6 +42,7 @@ namespace EmployeeManagementSystem.Helper
             html += " </tbody></table>";
 
             Helpers.CommonHelper.SendMail(string.Join(",", email), "List of Available Resource", html, systemSetting.Email, systemSetting.Password, systemSetting.Host, systemSetting.Port);
+            }
         }
     }
 
