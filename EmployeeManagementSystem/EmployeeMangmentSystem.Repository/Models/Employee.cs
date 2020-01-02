@@ -74,7 +74,7 @@ namespace EmployeeMangmentSystem.Repository.Models
         //[RegularExpression(@"^[0-1]{1}[0-9]{1}$", ErrorMessage = "Leave Balance is not valid")]
         public string LeaveBalance { get; set; }
 
-        public decimal Experience { get; set; }
+        public string Experience { get; set; }
         //[Experience]
 
         [Required]
