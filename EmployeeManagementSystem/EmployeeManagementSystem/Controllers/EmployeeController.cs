@@ -142,40 +142,7 @@ namespace EmployeeManagementSystem.Controllers
                 ViewBag.Department = await APIHelpers.GetAsync<List<Departments>>("api/Department/GetDepartments");
                 ViewBag.Skills = await APIHelpers.GetAsync<List<Skills>>("api/Skill/GetSkills");
                 ViewBag.Roles = _applicationDbContext.Roles.ToList();
-                var fractionalpart = "";
-                //string temp = collection.Experience.ToString();
-                if (collection.Experience.Contains("."))
-                {
-                    var tempexp = collection.Experience.ToString(CultureInfo.InvariantCulture).Split('.');
-                    var intpart = tempexp[0];
-                    fractionalpart = tempexp[1];
-                    if (int.Parse(fractionalpart) < 12)
-                    {
-                        if (int.Parse(fractionalpart) < 10)
-                        {
-                            fractionalpart = "0" + fractionalpart;
-                        }
-                        //var experience = intpart + "." + fractionalpart;
-                        //collection.Experience = Convert.ToDecimal(intpart + "." + fractionalpart);
-                        collection.Experience = intpart + "." + fractionalpart;
-                    }
-                    else
-                    {
-                        string dob = Request["BirthDate"];
-                        collection.BirthDate = DateTime.ParseExact(dob, "MM/dd/yyyy", null);
-                        string msg = "Experience is not valid";
-                        TempData["error"] = msg;
-                        return View(collection);
-                    }
-                }
-                else
-                {
-                    //collection.Experience = Convert.ToDecimal(temp);
-                    collection.Experience = collection.Experience;
-                }
                 string skills = string.Join(",", Request["Skill"]);
-
-                //collection.Experience = Convert.ToDecimal(collection.Experience);
                 ModelState.Remove("BirthDate");
                 ModelState.Remove("JoiningDate");
                 ModelState.Remove("LeaveBalance");
@@ -218,7 +185,6 @@ namespace EmployeeManagementSystem.Controllers
                                 ModelState.AddModelError("", error);
                                 msg += error + Environment.NewLine;
                             }
-
                             //await APIHelpers.DeleteAsync<bool>("api/Employee/Delete/" + data.Id);
                             TempData["error"] = msg;
                             return View(collection);
@@ -244,7 +210,8 @@ namespace EmployeeManagementSystem.Controllers
                     else
                     {
                         return RedirectToAction("Edit", new RouteValueDictionary(
-      new { action = "Edit", Id = collection.Id }));
+                            new { action = "Edit", Id = collection.Id }));
+                        //return View(collection);
                     }
                 }
 
